@@ -3,5 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.Index.as_view(), name='collegeHub-index'),
+    path('section', views.create_section, name='create-section'),
+    path('specific', views.create_specific, name='create-specific'),
+
 ]

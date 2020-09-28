@@ -1,9 +1,15 @@
-from django.shortcuts import render
-from django.shortcuts import render
+import json
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.views.generic import TemplateView
 
+from collegeHub import models
+from .forms import SpecificForm
 # Create your views here.
+
+
 def register(user_request):
     if user_request.method == 'POST':
         form = UserCreationForm(user_request.POST)
@@ -16,4 +22,36 @@ def register(user_request):
     return render(user_request, 'User/register.html',{'form':form})
     
 
+def create_experience(user):
+    experiences = models.Experiences(user=user)
+    experiences.save()
 
+
+def create_section(request):
+    if request.method == 'POST':
+        data = json.loads(request.read().decode())
+        name = data['name']
+        experience_id = int(data['experience_id'])
+
+        experience = get_object_or_404(models.Experiences, pk=experience_id)
+        section = models.Section(name=name, experiences=experience)
+        section.save()
+
+    return JsonResponse({'section_name':  name}, status=200)
+
+
+def create_specific(request):
+    if request.method == 'POST':
+        form = SpecificForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        else:
+            form = SpecificForm()
+
+    return render(request, 'collegeHub/test.html', {'form': form})
+
+
+def test_page(request):
+    form = SpecificForm(request.POST or None)
+    context = {'form': form}
+    return render(request, 'collegeHub/test.html', context)

@@ -6,6 +6,7 @@ from django.contrib.auth import models as auth_models
 
 CurrentUser = get_user_model()
 
+
 class User(auth_models.User, auth_models.PermissionsMixin):
 
     def __str__(self):
@@ -13,22 +14,22 @@ class User(auth_models.User, auth_models.PermissionsMixin):
 
 
 class Experiences(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
 
 
 class Section(models.Model):
-    name = models.CharField()
-    experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section')
 
 
 class Specific(models.Model):
-    image = models.ImageField()
-    description = models.CharField()
-    bullet_section = models.CharField()
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    description = models.CharField(max_length=2000)
+    bullet_section = models.CharField(max_length=200)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
 
     def get_bullet_list(self):
-        return self.bullet_section.split(',')
+        return self.bullet_section.split(', ')
 
 
 
