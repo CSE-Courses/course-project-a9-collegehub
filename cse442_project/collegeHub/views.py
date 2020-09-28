@@ -45,13 +45,23 @@ def create_specific(request):
         form = SpecificForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            form.cleaned_data.get('image')
+            print(form.cleaned_data.get('description\n\n\n\n\n'))
+            form.cleaned_data.get('bullet_section')
+            form.cleaned_data.get('section')
         else:
             form = SpecificForm()
 
     return render(request, 'collegeHub/test.html', {'form': form})
 
 
-def test_page(request):
-    form = SpecificForm(request.POST or None)
-    context = {'form': form}
-    return render(request, 'collegeHub/test.html', context)
+class test_page(TemplateView):
+    template_name = 'collegeHub/test.html'
+
+    def get(self, request):
+        form = SpecificForm(request.POST or None)
+        context = {'form': form}
+        return render(request, 'collegeHub/test.html', context)
+
+    def post(self, request):
+        return create_specific(request)

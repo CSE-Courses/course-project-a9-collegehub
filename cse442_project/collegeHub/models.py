@@ -23,7 +23,7 @@ class Section(models.Model):
 
 
 class Specific(models.Model):
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    image = models.ImageField(upload_to='media/', blank=True, null=True)
     description = models.CharField(max_length=2000)
     bullet_section = models.CharField(max_length=200)
     section = models.ForeignKey(Section, on_delete=models.CASCADE)

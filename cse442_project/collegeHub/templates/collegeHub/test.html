@@ -8,7 +8,21 @@
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
    {{ form.as_p }}
-  <button type="submit">Upload</button>
+  <button type="submit" id="submit-test3">Upload</button>
 </form>
 </body>
+<script>
+    $(".submit-test3").click(function(){
+
+    $.ajax({
+        url : '/specific/',
+        type : 'post',
+        data : {
+            data : serializedData,
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+
+    })
+   })
+</script>
 </html>
