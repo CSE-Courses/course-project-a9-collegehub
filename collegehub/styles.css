@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a2e;
+  font-family: Asap, sans-serif;
+}
+
+#CollegeHubLogo {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+header {
+  background: #16213e;
+  color: #e94560;
+}
+
+#DP {
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom-container {
+  padding: 3px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #16213e;
+  color: #e94560;
+}
+
+#copy-right {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  padding-right: 30%;
+  padding-bottom: 1px;
+}
+
+#Contact {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  padding-bottom: 1px;
+
+}
+
+.footer-link {
+  position: relative;
+  left: 40%;
+  color: #11999E;
+  font-family: 'Montserrat', sans-serif;
+  padding: 3%;
+}
