@@ -55,6 +55,14 @@ def create_specific(request):
     return render(request, 'collegeHub/test.html', {'form': form})
 
 
+class Index(TemplateView):
+    template_name = 'collegeHub/index.html'
+
+
+class Settings(TemplateView):
+    template_name = 'collegeHub/settings.html'
+
+
 class test_page(TemplateView):
     template_name = 'collegeHub/test.html'
 

@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
     <!--    Animate on scroll (AOS)-->
@@ -29,7 +30,7 @@
         <ul class="nav">
             <li>
                 <div style="width: 90px; height: 90px;padding: 5px">
-                    <img src="images/logo.png" id="nav-logo" alt="CollegeHub Logo">
+                    <img src="{%static 'collegehub/images/logo.png' %}" id="nav-logo" alt="CollegeHub Logo">
                 </div>
             </li>
             <li class="nav-item">
@@ -41,13 +42,13 @@
         </span>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" target="_blank" href="index.html"><span> <i
+                <a class="nav-link" target="_blank" href="{% url 'index' %}"><span> <i
                         class="fas fa-user-circle"> </i> </span>Profile</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"  data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #81b5b5; border-radius: 7px">
-                    <h4 class="dropdown-header" style="font-size: large; color: white"> <span> <img src="images/logo.png" id="settings-logo" alt="User name"></span>Full Name</h4>
+                    <h4 class="dropdown-header" style="font-size: large; color: white"> <span> <img src="{%static 'collegehub/images/logo.png'%}" id="settings-logo" alt="User name"></span>Full Name</h4>
                     <a class="dropdown-item" href="#"><span> <i class="fas fa-cog"></i> </span>Account</a>
 <!--                    <a class="dropdown-item" href="#"><span> <i class="fas fa-users"></i> </span>People</a>-->
                     <a class="dropdown-item" href="#"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
@@ -62,7 +63,7 @@
             <div class="card mb-3" style="background-color:rgba(0,0,0,.03);">
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img src="images/preview.jpg" class="card-img" alt="...">
+                        <img src="{%static 'collegehub/images/preview.jpg'%}" class="card-img" alt="...">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
@@ -79,7 +80,7 @@
                 <div data-aos="fade-right" class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="images/vertical_template1.jpg" class="card-img" alt="...">
+                            <img src="{%static 'collegehub/images/vertical_template1.jpg'%}" class="card-img" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -130,14 +131,14 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <img src="images/vertical_template.jpg" class="card-img" alt="...">
+                            <img src="{%static 'collegehub/images/vertical_template.jpg'%}" class="card-img" alt="...">
                         </div>
                     </div>
                 </div>
                 <div class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="images/vertical_template2.jpg" class="card-img" alt="...">
+                            <img src="{%static 'collegehub/images/vertical_template2.jpg'%}" class="card-img" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -189,14 +190,14 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <img src="images/vertical_template1.jpg" class="card-img" alt="...">
+                            <img src="{%static 'collegehub/images/vertical_template1.jpg'%}" class="card-img" alt="...">
                         </div>
                     </div>
                 </div>
                 <div class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="images/vertical_template.jpg" class="card-img" alt="...">
+                            <img src="{%static 'collegehub/images/vertical_template.jpg'%}" class="card-img" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
