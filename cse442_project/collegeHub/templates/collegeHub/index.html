@@ -1,0 +1,394 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!--    Style CSS-->
+{#  <link rel="stylesheet" type="text/css" href="style.css">#}
+  <!--    fontawesome-->
+  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+  <!--    Animate on scroll (AOS)-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!--logo icon / favicon-->
+  <!--      <link rel="icon" href="images/logo.png">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
+    <script type="text/javascript" src="{% static 'collegehub/script.js' %}"></script>
+  <title>CollgeHub</title>
+</head>
+
+<body>
+  <div id="desktop">
+    <!--    Navigation bar-->
+    <nav class="navigation">
+      <ul class="nav-list text-center ">
+        <li>
+          <a href="#"> Home </a>
+        </li>
+        <li>
+          <a href="#about"> About </a>
+        </li>
+        <li>
+          <a href="#education">Education</a>
+        </li>
+        <li>
+          <a href="#skills"> Skills </a>
+        </li>
+        <li>
+          <a href="#experience">Experience</a>
+        </li>
+        <li>
+          <a href="#projects">Projects</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+        <li class="nav-item dropdown" style="float: right;">
+          <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #81b5b5; border-radius: 7px;">
+            <h4 class="dropdown-header" style="font-size: large; color: white"> <span> <img src="{%static 'collegehub/images/logo.png'%}" id="settings-logo" alt="User name"></span>Full Name</h4>
+            <a class="dropdown-item" href="{% url 'settings' %}"><span> <i class="fas fa-cog"></i> </span>Account</a>
+            <a class="dropdown-item" href="#"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!--header-->
+    <header id="header">
+      <div id="name-container">
+        <h1 id="name"> Full Name</h1>
+        <!--            add social links here too right under the name-->
+        <h3>
+          <span>
+            <!--            add icon-->
+            <i id="FA_Header" class="fa fa-linkedin-square" style="font-size:36px"></i>
+          </span>
+          <span>
+            <!--            add icon-->
+            <i id="FA_Header" class="fa fa-facebook-square" style="font-size:36px"></i>
+          </span>
+          <span>
+            <!--            add icon-->
+            <i id="FA_Header" class="fa fa-instagram" style="font-size:36px"></i>
+          </span>
+        </h3>
+      </div>
+    </header>
+    <main>
+      <section id="about">
+        <img id="user-image" src="{%static 'collegehub/images/logo.png'%}">
+        <div class="section-heading">
+          <h1>About</h1>
+        </div>
+        <!--            add loren ipsum about in p tag-->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus viverra quis mauris sed tempus. A elit.</p>
+
+      </section>
+      <section id="education">
+        <div class="section-heading">
+          <h1>Education</h1>
+
+        </div>
+
+        <div class="row">
+
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/1523904417385.jpg'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Education 1</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/1523904417385.jpg'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Education 2</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--            add cards for types-->
+      </section>
+      <section id="skills">
+        <div class="section-heading">
+          <h1>Skills</h1>
+        </div>
+        <div class="row">
+
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/giphy.gif'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Skill 1</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/giphy.gif'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Skill 2</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <section id="experience">
+        <div class="section-heading">
+          <h1>Experience</h1>
+        </div>
+        <div class="row">
+
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/178-1780031_circle-icons-briefcase-working-experience-logo-png-transparent.png'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Experience 1</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/178-1780031_circle-icons-briefcase-working-experience-logo-png-transparent.png'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Experience 2</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <section id="projects">
+        <div class="section-heading">
+          <h1>Project</h1>
+        </div>
+        <div class="row">
+
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/giphy (1).gif'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Project 1</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/giphy (1).gif'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Project 2</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <section id="certificates">
+        <div class="section-heading">
+          <h1>Certificates</h1>
+        </div>
+        <div class="row">
+
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/image1.jpg'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Certificate 1</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="column" class="section-container">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{%static 'collegehub/images/image1.jpg'%}" class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Certificate 2</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+    <section id="contact">
+      <div>
+        <h1>Contact</h1>
+      </div>
+      <div class="row">
+
+
+        <div id="column" class="section-container">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{%static 'collegehub/images/8807.png'%}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Emails</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="column" class="section-container">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{%static 'collegehub/images/8807.png'%}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Phone Numbers</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <footer>
+      <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #b83b5e 5%, #b83b5e 34%);
+        background-size: 100%;
+        background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
+        <span style="color: white">
+          @ 2020 CollegeHub
+        </span>
+
+      </nav>
+    </footer>
+  </div>
+
+  <div id="mobile-body">
+    <div id="mobile-container">
+      <h1 style="font-weight: bold">CollegeHub</h1>
+      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+      <h2 style="font-weight: lighter">COMING SOON</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <!--<script src="script.js"></script>-->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>
