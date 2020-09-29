@@ -8,5 +8,6 @@ urlpatterns = [
     path('section', views.create_section, name='create-section'),
     path('specific', views.create_specific, name='create-specific'),
     path('test/', views.test_page.as_view(), name='test'),
+    path('register/', views.register, name='register')
 
 ]
