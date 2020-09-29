@@ -10,7 +10,7 @@ CurrentUser = get_user_model()
 class User(auth_models.User, auth_models.PermissionsMixin):
 
     def __str__(self):
-        return "@{}".format(self.username)
+        return "{}".format(self.username)
 
 class UserProfile(models.Model):
     profile_pic = models.ImageField(upload_to="images/", blank=True, null=True, default="images/BlueHead.jpg")
@@ -33,7 +33,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Experiences(models.Model):
-    user = models.OneToOneField(CurrentUser, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
 
 
 class Section(models.Model):
