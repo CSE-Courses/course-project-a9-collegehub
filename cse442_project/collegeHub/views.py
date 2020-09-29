@@ -15,5 +15,8 @@ def register(user_request):
             form = UserCreationForm()
     return render(user_request, 'User/register.html',{'form':form})
     
+def comingsoon(request):
+    return render(request, 'collegehub/coming_soon.html')
+    
 
 

@@ -3,5 +3,6 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.Index.as_view(), name='collegeHub-index'),
+    path('', views.comingsoon, name='collegeHub-index'),
+
 ]
