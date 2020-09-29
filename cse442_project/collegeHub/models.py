@@ -33,7 +33,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Experiences(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
+    user = models.OneToOneField(CurrentUser, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
 
 
 class Section(models.Model):

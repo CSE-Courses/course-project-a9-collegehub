@@ -21,7 +21,8 @@ class ExperienceTest(TestCase):
         user = self.user
         create_experience(user)
         # Get user from experience
-        self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1).user, self.user)
+        self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1).user.username, self.user.username)
+        self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1).user.email, self.user.email)
         # Get experience from user
         self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1), self.user.experience)
 
