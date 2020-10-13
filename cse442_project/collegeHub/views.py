@@ -79,6 +79,11 @@ class register_confirmed(TemplateView):
 class register_not_confirmed(TemplateView):
     template_name = "collegehub/unconfirmed.html"
 
+ 
+@login_required
+def profile(request):
+    return render(request, 'templates/profile.html')
+
 #@login_required
 def create_experience(user):
     experiences = models.Experiences(profile=user)
