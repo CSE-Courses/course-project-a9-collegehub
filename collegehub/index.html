@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <!--      <link rel="icon" href="images/logo.png">-->
+    <title>Name | CollegeHu</title>
+</head>
+
+<body>
+<div id="desktop">
+    <!--    Navigation bar-->
+    <nav class="navigation">
+        <ul class="nav-list text-center ">
+            <li>
+                <a href="#"> Home </a>
+            </li>
+            <li>
+                <a href="#about"> About </a>
+            </li>
+            <li>
+                <a href="#education">Education</a>
+            </li>
+            <li>
+                <a href="#skills"> Skills </a>
+            </li>
+            <li>
+                <a href="#experience">Experience</a>
+            </li>
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            <li class="nav-item dropdown" style="float: right;">
+                <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                     style="background-color: #14213D; border-radius: 7px;">
+                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="images/logo.png" id="settings-logo" alt="User name"></span>
+                        Full Name
+                    </h4>
+                    <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
+                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
+                    <a class="dropdown-item" href="settings.html"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                    <a class="dropdown-item" href="home.html"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addLabel">Add a Section</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="return false">
+                        <div class="form-group">
+                            <label for="new_section_name">Section Name</label>
+                            <input type="text" class="form-control" id="new_section_name" aria-describedby="emailHelp">
+                        </div>
+                        <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="section_add()">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="remove" tabindex="-1" aria-labelledby="removeLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeLabel">Remove a Section</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="return false">
+                        <div class="form-group">
+                            <label for="remove_section_name">Section Name to remove</label>
+                            <input type="text" class="form-control" id="remove_section_name" aria-describedby="emailHelp">
+                        </div>
+                        <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="remove_section()">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header-->
+    <header id="header">
+        <div id="name-container">
+            <h1 id="name"> John Doe</h1>
+            <!--            add social links here too right under the name-->
+            <h3>
+                <a href="#"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="#"><span><i class="fa fa-facebook-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="#"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
+            </h3>
+        </div>
+    </header>
+
+    <main id="sections-container">
+        <section id="about">
+            <img id="user-image" src="images/logo.png" alt="User profile picture">
+            <div class="section-heading">
+                <h1>About</h1>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Vivamus viverra quis mauris sed tempus. A elit.
+            </p>
+        </section>
+        <section id="education">
+            <div class="section-heading">
+                <h1 id="education-heading-text">Education</h1>
+                <button type="button" class="option-button"  data-toggle="modal" data-target="#edu_rename_section"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="ellipse-container">
+                <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+            </div>
+            <div class="modal fade" id="edu_rename_section" tabindex="-1" aria-labelledby="edu_rename_sectionLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edu_rename_sectionLabel">Rename Section</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false">
+                                <div class="form-group">
+                                    <label for="edu_new_name">New Name</label>
+                                    <input type="text" class="form-control" id="edu_new_name" aria-describedby="emailHelp">
+                                </div>
+                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('education-heading-text','edu_new_name')">Rename</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false">
+                                <div class="form-group">
+                                    <label for="add_uniname">Uni Name</label>
+                                    <input type="text" class="form-control" id="add_uniname" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_major">Major</label>
+                                    <input type="text" class="form-control" id="add_major">
+                                </div>
+                                <div class="form-group">
+                                    <label for="add_year">Year graduated</label>
+                                    <input type="number" class="form-control" id="add_year">
+                                </div>
+                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="add_card()">Add</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="education-container">
+                <div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="images/preview.jpg" class="card-img" alt="edu-logo">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="dropdown ">
+                                <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="uni-Button">
+                                    <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>
+                                    <button class="dropdown-item"  onclick="removeme('uni')">Remove</button>
+                                </div>
+                            </div>
+                            <div class="card-body" >
+                                <h5 id="uniname" class="card-title">University at Buffalo</h5>
+                                <p id="major" class="card-text">Major: Computer Science</p>
+                                <p id="year" class="card-text"><small class="text-muted">2021</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="edit_card" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edit_cardLabel">Add Education card</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                   <h3> add form for eddit</h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="skills">
+            <div class="section-heading">
+                <h1 id="skills-heading-text">Skills</h1>
+                <button type="button" class="option-button"  data-toggle="modal" data-target="#skills_rename_section"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="ellipse-container">
+                <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+            </div>
+            <div class="modal fade" id="skills_rename_section" tabindex="-1" aria-labelledby="skills_rename_sectionLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="skills_rename_sectionLabel">Rename Section</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false">
+                                <div class="form-group">
+                                    <label for="skills_new_name">New Name</label>
+                                    <input type="text" class="form-control" id="skills_new_name" aria-describedby="emailHelp">
+                                </div>
+                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('skills-heading-text','skills_new_name')">Rename</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="skills_add_cardLabel">Add Skills card</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                           <h1> special form</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="skills-container">
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Skill name</div>
+                </div>
+            </div>
+        </section>
+        <section id="experience">
+            <div class="section-heading">
+                <h1 id="experience-heading-text">Experience</h1>
+                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="ellipse-container">
+                <button type="button" data-toggle="modal" data-target="#experience_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+            </div>
+            <div class="modal fade" id="experience_rename_section" tabindex="-1" aria-labelledby="experience_rename_sectionLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="experience_rename_sectionLabel">Rename Section</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false">
+                                <div class="form-group">
+                                    <label for="experience_new_name">New Name</label>
+                                    <input type="text" class="form-control" id="experience_new_name" aria-describedby="emailHelp">
+                                </div>
+                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('experience-heading-text','experience_new_name')">Rename</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="experience_add_card" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="experience_add_cardLabel">Add Experience card</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h1> special form</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="experience-container">
+                <div class="card" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Experience 1</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Links</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Experience 2</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Links</a>
+                    </div>
+                </div>
+                <div class="card" style="width: 23rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Experience 3</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Links</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects">
+            <div class="section-heading">
+                <h1 id="projects-heading-text">Projects</h1>
+                <button type="button" class="option-button"  data-toggle="modal" data-target="#projects_rename_section"><i class="fas fa-pencil-alt"></i></button>
+            </div>
+            <div class="ellipse-container">
+                <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+            </div>
+            <div class="modal fade" id="projects_rename_section" tabindex="-1" aria-labelledby="projects_rename_sectionLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="projects_rename_sectionLabel">Rename Section</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false">
+                                <div class="form-group">
+                                    <label for="projects_new_name">New Name</label>
+                                    <input type="text" class="form-control" id="projects_new_name" aria-describedby="emailHelp">
+                                </div>
+                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('projects-heading-text','projects_new_name')">Rename</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="projects_add_cardLabel">Add Projects card</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h1> special form</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div id="projects-container">
+                <div class="card">
+                    <div class="card-header">
+                        Project 1
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Project 2
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Project 3
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!--     **************   DONT REMOVE THIS COMMENT SECTION ***************-->
+<!--        <section id="cert">-->
+<!--        <div class="section-heading">-->
+<!--            <h1 id="cert-heading-text">cert</h1>-->
+<!--            <button type="button" class="option-button"  data-toggle="modal" data-target="#cert_rename_section"><i class="fas fa-pencil-alt"></i></button>-->
+<!--        </div>-->
+<!--        <div class="ellipse-container">-->
+<!--            <button type="button" data-toggle="modal" data-target="#cert_add_card" class="option-button"> <i class="fas fa-plus"></i></button>-->
+<!--        </div>-->
+<!--        <div class="modal fade" id="cert_rename_section" tabindex="-1" aria-labelledby="cert_rename_sectionLabel" aria-hidden="true">-->
+<!--            <div class="modal-dialog">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="cert_rename_sectionLabel">Rename Section</h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body">-->
+<!--                        <form onsubmit="return false">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="cert_new_name">New Name</label>-->
+<!--                                <input type="text" class="form-control" id="cert_new_name" aria-describedby="emailHelp">-->
+<!--                            </div>-->
+<!--                            <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('cert-heading-text','cert_new_name')">Rename</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="modal fade" id="cert_add_card" tabindex="-1" aria-labelledby="cert_add_cardLabel" aria-hidden="true">-->
+<!--            <div class="modal-dialog">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="cert_add_cardLabel">Add Education card</h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body">-->
+<!--                        <h3>every section will have its own form</h3>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div id="cert-container">-->
+
+<!--        </div>-->
+<!--    </section>-->
+        <!--     **************   DONT REMOVE THIS COMMENT SECTION ***************-->
+
+    </main>
+    <section id="contact">
+        <div>
+            <h1>Contact</h1>
+        </div>
+        <div id="contact-container">
+            <div class="card text-center">
+                <div class="card-header">
+                    Reach me at
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">LinkedIn</a>
+                </div>
+                <div class="card-footer text-muted">
+                    Email@uffalo.edu
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #b83b5e 5%, #b83b5e 34%);
+        background-size: 100%;
+        background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
+        <span style="color: white">
+          @ 2020 CollegeHub
+        </span>
+
+        </nav>
+    </footer>
+</div>
+
+<div id="mobile-body">
+    <div id="mobile-container">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+
+</html>
