@@ -175,6 +175,64 @@ html {
             /*background-color: rgb(206, 212, 218);*/
         }
 
+        /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Account PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+        #account{
+            width: 100%;
+            height: 90%;
+            padding: 50px;
+        }
+        #account-container{
+            /*background-color: #626262;*/
+            height: 100%;
+            padding: 30px;
+        }
+        #account-container-left{
+            float: left;
+            width: 20%;
+            height: 100%;
+        }
+        #account-container-right{
+            float: right;
+            width: 70%;
+            background-color: #eaeaea;
+            padding: 30px;
+            height: 100%;
+            border-radius: 1rem;
+            box-shadow: -30px 0 30px 0 lightgrey;
+        }
+        .sub-headers{
+            width: 20%;
+        }
+        .account-forms{
+            padding: 15px;
+        }
+        .account-forms > div{
+            margin-bottom: 10px;
+        }
+        .header-item{
+            position: relative;
+            display: block;
+            padding: .75rem 1.25rem;
+            background-color: #fff;
+            color: black;
+            text-decoration: none;
+            border-radius: 0.5rem;
+        }
+        .header-item.active {
+            z-index: 2;
+            color: #fff;
+            background-color: #FCA311;
+        }
+        .header-item:hover{
+            background-color: rgba(252, 163, 17, 0.85);
+            color: white;
+            text-decoration: none;
+        }
+        #template-setting-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
 
             /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Home PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
         .signup {
