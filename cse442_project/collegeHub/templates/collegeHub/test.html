@@ -6,6 +6,11 @@
 </head>
 <body>
 
+<h3> Data </h3>
+<div id="data-sec">
+</div>
+<h3> -------------------- </h3>
+
 <h1> Section Test </h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
@@ -28,42 +33,55 @@
 </form>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
-    $(".submit-section-test").click(function(){
+    $(document).ready(()=>{
 
-    $.ajax({
-        url : '/section/',
-        type : 'post',
-        data : {
-            data : serializedData,
-            csrfmiddlewaretoken: "{{ csrf_token }}",
-        },
+        $(".submit-section-test").click(function(){
+        let serializedData = $("form[data-id=like-"+post_pk+"]").serialize();
+            $.ajax({
+            url : '/section/',
+            type : 'post',
+            data : {
+                data : serializedData,
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            },
+            success : function(response){
+                console.log('Sup b')
+                $("div[id=data-sec]").append('<p> Section: ' + 'name: ' + response.name + '</p>');
+            }
+        })
+       })
+
+        $(".submit-specific-test").click(function(){
+        $.ajax({
+            url : '/specific/',
+            type : 'post',
+            data : {
+                data : serializedData,
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            },
+            success : function(response){
+                $("div[id=data-sec]").append('<p> Specific: ' + 'description: ' + response.description + 'bullet_section:'+ response.bullet_section +'</p>');
+            }
+        })
+       })
+
+        $(".submit-education-test").click(function(){
+        $.ajax({
+            url : '/education/',
+            type : 'post',
+            data : {
+                data : serializedData,
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+            },
+            success : function(response){
+                $("div[id=data-sec]").append('<p> Education: ' + 'location: ' + response.location + 'date: ' + response.month+'/'+response.year + '</p>');
+            }
+        })
+       })
 
     })
-   })
-    $(".submit-specific-test").click(function(){
-
-    $.ajax({
-        url : '/specific/',
-        type : 'post',
-        data : {
-            data : serializedData,
-            csrfmiddlewaretoken: "{{ csrf_token }}",
-        },
-
-    })
-   })
-    $(".submit-education-test").click(function(){
-
-    $.ajax({
-        url : '/education/',
-        type : 'post',
-        data : {
-            data : serializedData,
-            csrfmiddlewaretoken: "{{ csrf_token }}",
-        },
-
-    })
-   })
 </script>
 </html>

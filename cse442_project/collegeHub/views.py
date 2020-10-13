@@ -50,13 +50,18 @@ def create_specific(request):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
         if form.is_valid():
+            image = form.data.get('image')
+            description = form.data.get('description')
+            bullet_section = form.data.get('bullet_section')
+            section = form.data.get('section')
             form.save()
+            return JsonResponse({'description': description, 'bullet_section': bullet_section, 'section':section, 'fail': False}, status=200)
         else:
-            form = SpecificForm()
+            return JsonResponse({'fail': True}, status=200)
     else:
-        form = SpecificForm()
+        return
 
-    return JsonResponse({}, status=200)
+    # return JsonResponse({}, status=200)
 
 
 #@login_required
@@ -64,7 +69,14 @@ def create_education(request):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
         if form.is_valid():
+            image = form.data.get('image')
+            location = form.data.get('location')
+            certification_name = form.data.get('certification_name')
+            description = form.data.get('description')
+            month = form.data.get('month')
+            year = form.data.get('year')
             form.save()
+            return JsonResponse({'description': description, 'location': location, 'certification_name':certification_name, 'month': month, 'year': year, 'fail': False}, status=200)
         else:
             form = EducationFrom()
     else:
