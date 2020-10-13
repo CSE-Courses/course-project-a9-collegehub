@@ -160,6 +160,26 @@ html {
 
     }
 
+    .inner_left{
+      background: #fff8cd;
+      margin: 100px;
+      padding-top: 100px;
+      padding-left: 50px;
+      padding-right: 30%;
+      padding-bottom: 100px;
+
+    }
+
+
+    .list-group-item {
+      text-align: center;
+      background-color: #ff9642;
+      color: black;
+    }
+
+    .forms{
+      padding-left: 50px;
+    }
 
     /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& INDEX PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
 
@@ -232,7 +252,7 @@ html {
         background-color: #eeecda;
         margin-bottom: 20px;
     }
-  
+
     #user-image{
         height: 12rem;
         width: 12rem;
