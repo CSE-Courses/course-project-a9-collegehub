@@ -121,7 +121,7 @@ def create_specific(request):
 #@login_required
 def create_education(request):
     if request.method == 'POST':
-        form = SpecificForm(request.POST, request.FILES)
+        form = EducationFrom(request.POST, request.FILES)
         print(form.is_valid())
         if form.is_valid():
             image = form.data.get('image')
