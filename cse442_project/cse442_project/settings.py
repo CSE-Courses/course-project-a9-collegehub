@@ -125,6 +125,6 @@ MEDIA_URL = '/media/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mayanksjha@gmail.com'
-EMAIL_HOST_PASSWORD = 'MikeJane1403'
+EMAIL_HOST_USER = 'email@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
