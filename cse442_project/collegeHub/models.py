@@ -12,6 +12,7 @@ class User(auth_models.User, auth_models.PermissionsMixin):
     def __str__(self):
         return "{}".format(self.username)
 
+
 class UserProfile(models.Model):
     profile_pic = models.ImageField(upload_to="images/", blank=True, null=True, default="images/BlueHead.jpg")
     user = models.OneToOneField(CurrentUser, unique=True, on_delete=models.CASCADE, null=True)
@@ -23,6 +24,7 @@ class UserProfile(models.Model):
     github = models.CharField(default="", blank=True, max_length=255)
     instagram = models.CharField(default="", blank=True, max_length=255)
     linkedin = models.CharField(default="", blank=True, max_length=255)
+    resume = models.FileField(upload_to="files/", blank=True, null=True)
 
     quote = models.CharField(default="", blank=True, max_length=255)
 
@@ -32,26 +34,31 @@ class UserProfile(models.Model):
         # return self.bio
         return self.user.username
 
+
 class Experiences(models.Model):
-    user = models.OneToOneField(CurrentUser, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
+    profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
 
 
 class Section(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(default='Section', max_length=30)
     experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section')
 
 
 class Specific(models.Model):
-    image = models.ImageField(upload_to='media/', blank=True, null=True)
-    description = models.CharField(max_length=2000)
-    bullet_section = models.CharField(max_length=200)
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
+    description = models.CharField(default='This is what did', max_length=2000)
+    bullet_section = models.CharField(default='Bullet, points, are, great', max_length=200)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='specific')
 
     def get_bullet_list(self):
         return self.bullet_section.split(', ')
 
 
-
-
-
-
+class Education(models.Model):
+    image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
+    location = models.CharField(default='NA', max_length=50, null=True)
+    certification_name = models.CharField(default='NA', max_length=50)
+    description = models.CharField(default='NA', max_length=280)
+    month = models.CharField(default='01', max_length=2)
+    year = models.CharField(default='9999', max_length=4)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education')

@@ -122,3 +122,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'Pass'
+EMAIL_PORT = 587
+
+
+LOGIN_REDIRECT_URL =  'profile'
+LOGIN_URL = 'login'
