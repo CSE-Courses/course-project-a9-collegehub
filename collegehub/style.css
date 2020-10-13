@@ -1,6 +1,27 @@
 /*DESKTOP*/
 body {
-    -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: "Helvetica";
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 601px) {
+  #desktop {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -8,278 +29,288 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    font-family: "Helvetica";
-}
+  }
 
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  #mobile-body {
+    display: none;
+  }
+
+  #nav-logo {
     width: 100%;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid #008284;
+  }
+
+  .nav-item a {
+    color: white;
+    transition: color 0.5s;
+  }
+
+  .nav-item a:hover {
+    color: black;
+  }
+
+  #nav-name {
+    color: white;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+  }
+
+  #settings-logo {
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #000000;
+  }
+
+  #Outer-timeline {
+    /*background: linear-gradient(to right, #f95959, rgba(0, 184, 186, 0.04), #f95959) repeat;*/
+    background-color: white;
+    height: 90%;
+  }
+
+  #inner-timeline-left {
+    float: left;
+    width: 60%;
+    height: 100%;
+    overflow: auto;
+    padding: 30px 4rem 60px 11rem;
+  }
+
+  #inner-timeline-right {
+    background-color: #e3f2f4;
+    float: right;
+    height: 100%;
+    width: 40%;
+    overflow: auto;
+    padding: 30px 8rem 50px 2rem;
+  }
+
+  #inner-timeline-left::-webkit-scrollbar {
+    display: none;
+  }
+
+  #inner-timeline-right::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-profile {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 5px solid #000000;
+  }
+
+  #blog-write {
+    background-color: #dedede;
+    padding: 5px 5px 5px 25px;
+    width: 100%;
+    border-radius: 40px;
+    min-width: 80%;
+  }
+
+  .blog-ask {
+    display: inline-flex;
+    justify-content: left;
+  }
+
+  #template-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  .template {
+    position: relative;
+  }
+
+  .template:nth-child(2n) {
+    left: 20%;
+  }
+
+  .template:nth-child(2n + 1) {
+    right: 10%;
+  }
+
+  .mg-0 {
+    margin: 0;
+  }
+
+  /&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Account PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&/ #account {
+    width: 100%;
+    height: 90%;
+    padding: 50px;
+  }
+
+  #account-container {
+    /background-color: #626262;/ height: 100%;
+    padding: 30px;
+  }
+
+  #account-container-left {
+    float: left;
+    width: 20%;
+    height: 100%;
+  }
+
+  #account-container-right {
+    float: right;
+    width: 70%;
+    background-color: #eaeaea;
+    padding: 30px;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: -30px 0 30px 0 lightgrey;
+  }
+
+  .sub-headers {
+    width: 20%;
+  }
+
+  .account-forms {
+    padding: 15px;
+  }
+
+  .account-forms>div {
+    margin-bottom: 10px;
+  }
+
+  .header-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+    color: black;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+
+  .header-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #FCA311;
+  }
+
+  .header-item:hover {
+    background-color: rgba(252, 163, 17, 0.85);
+    color: white;
+    text-decoration: none;
+  }
+
+  #template-setting-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& INDEX PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+  #header {
+    height: 60vh;
+    opacity: 0.8;
+    background-image: url("images/wall_l1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  section:nth-child(2n) {
+    background-color: #f6d6ad;
+  }
+
+  section:nth-child(2n + 1) {
+    background-color: #eeecda;
+  }
+
+  #name-container {
+    text-align: center;
+  }
+
+  #name {
+    color: white;
+    font-size: 8vw;
+  }
+
+  .navigation {
+    background: #d64753;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding: 0 30px 0 30px;
+  }
+
+  .nav-list {
+    list-style-type: none;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .nav-list li {
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    margin: 0;
+  }
+
+  .nav-list li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: lighter;
+  }
+
+  #settings-logo i {
+    color: white;
+  }
+
+  #contact {
+    background-color: #eeecda;
+    margin-bottom: 20px;
+  }
+
+  #user-image {
+    height: 12rem;
+    width: 12rem;
+    margin: auto;
+    z-index: 2;
+    margin-top: -14vh;
+    margin-bottom: 3vh;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
 }
 
-@media screen and (min-width: 601px) {
-    #desktop{
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-    #mobile-body{
-        display: none;
-    }
-    #nav-logo{
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 10px solid #008284;
-    }
-    .nav-item a{
-        color: white;
-        transition: color 0.5s;
-    }
-    .nav-item a:hover{
-        color: black;
-    }
-    #nav-name{
-        color: white;
-        position:absolute;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%)
-    }
-    #settings-logo{
-        margin-right: 10px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 5px solid #000000;
-    }
-    #Outer-timeline {
-        /*background: linear-gradient(to right, #f95959, rgba(0, 184, 186, 0.04), #f95959) repeat;*/
-        background-color: white;
-        height: 90%;
-    }
-
-    #inner-timeline-left {
-        float: left;
-        width: 60%;
-        height: 100%;
-        overflow: auto;
-        padding: 30px 4rem 60px 11rem;
-    }
-
-    #inner-timeline-right {
-        background-color: #e3f2f4;
-        float: right;
-        height: 100%;
-        width: 40%;
-        overflow: auto;
-        padding: 30px 8rem 50px 2rem;
-    }
-    #inner-timeline-left::-webkit-scrollbar {
-        display: none;
-    }
-
-    #inner-timeline-right::-webkit-scrollbar {
-        display: none;
-    }
-    .card-profile{
-        margin-right: 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 5px solid #000000;
-    }
-    #blog-write{
-        background-color: #dedede;
-        padding: 5px 5px 5px 25px;
-        width: 100%;
-        border-radius: 40px;
-        min-width: 80%;
-    }
-    .blog-ask{
-        display: inline-flex;
-        justify-content: left;
-    }
-    #template-container{
-        display: inline-flex;
-        flex-wrap: wrap;
-    }
-    .template{
-        position: relative;
-    }
-
-    .template:nth-child(2n) {
-        left: 20%;
-    }
-
-    .template:nth-child(2n + 1) {
-        right: 10%;
-    }
-    .mg-0{
-        margin: 0;
-    }
-
-
-    /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& UNDECIDED &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-
-    #FA_Header{
-      text-align: center;
-      margin-left: 10%;
-      margin-right: 10%;
-      margin-bottom: 3%;
-
-        }
-
-      #FA_Footer{
-        padding-left: 50px;
-        padding-right: 50px;
-      }
-
-      #column{
-        padding: 20px;
-      }
-
-    .shades{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        /*width: 50px;*/
-    }
-    .account-header{
-        display: flex;
-        justify-content: space-between;
-    }
-    #template-heading{
-
-    }
-
-    .inner_left{
-      background: #fff8cd;
-      margin: 100px;
-      padding-top: 100px;
-      padding-left: 50px;
-      padding-right: 30%;
-      padding-bottom: 100px;
-
-    }
-
-
-    .list-group-item {
-      text-align: center;
-      background-color: #ff9642;
-      color: black;
-    }
-
-    .forms{
-      padding-left: 50px;
-    }
-
-    /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& INDEX PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-
-    #header{
-        height: 60vh;
-        opacity: 0.8;
-        background-image: url("images/wall_l1.jpg");
-        background-size: cover;
-        background-attachment: fixed;
-        padding-top: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 20px;
-    }
-
-    section:nth-child(2n) {
-
-        background-color: #f6d6ad;
-    }
-
-    section:nth-child(2n + 1) {
-        background-color: #eeecda;
-
-    }
-    #name-container{
-        text-align: center;
-    }
-    #name{
-        color: white;
-        font-size: 8vw;
-    }
-    .navigation{
-        background: #d64753;
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-        padding: 0 30px 0 30px;
-    }
-    .nav-list {
-        list-style-type: none;
-        font-size: 18px;
-        margin: 0;
-    }
-
-    .nav-list li {
-        display: inline-block;
-        padding: 5px 10px 5px 10px;
-        margin: 0;
-    }
-
-    .nav-list li a {
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: lighter;
-    }
-    #settings-logo i{
-       color: white;
-
-    }
-    #contact{
-        background-color: #eeecda;
-        margin-bottom: 20px;
-    }
-
-    #user-image{
-        height: 12rem;
-        width: 12rem;
-        margin: auto;
-        z-index: 2;
-        margin-top: -14vh;
-        margin-bottom: 3vh;
-        border-radius: 50%;
-        border: 3px solid white;
-    }
-}
 /*MOBILE DEVICES*/
 @media screen and (max-width: 600px) {
-    #desktop{
-        display: none;
-    }
-    #mobile-body {
-        background-color: #000000;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
-    #mobile-container{
-        position: absolute;
-        top: 20%;
-        color: white;
-        width: 100%;
-        text-align: center;
-    }
+  #desktop {
+    display: none;
+  }
+
+  #mobile-body {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  #mobile-container {
+    position: absolute;
+    top: 20%;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
 }
