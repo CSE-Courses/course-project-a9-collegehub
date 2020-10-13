@@ -70,16 +70,27 @@ def activate(request, uidb64, token):
     else:
         return redirect(reverse('not_confirmed'))
 
+
 class register_email_sent(TemplateView):
     template_name = "collegehub/register_email_sent.html"
+
 
 class register_confirmed(TemplateView):
     template_name = "collegehub/register_confirmed.html"
 
+
 class register_not_confirmed(TemplateView):
     template_name = "collegehub/unconfirmed.html"
 
- 
+
+class Account(TemplateView):
+    template_name = "collegehub/account.html"
+
+
+class Signup(TemplateView):
+    template_name = "collegehub/Signup.html"
+
+
 @login_required
 def profile(request):
     return render(request, 'templates/profile.html')
@@ -148,9 +159,20 @@ class Index(TemplateView):
     template_name = 'collegeHub/index.html'
 
 
+class Home(TemplateView):
+    template_name = 'collegeHub/home.html'
+
+
+class FAQ(TemplateView):
+    template_name = 'collegeHub/faq.html'
+
+
 #@login_required
 class Settings(TemplateView):
     template_name = 'collegeHub/settings.html'
+
+class Login(TemplateView):
+    template_name = 'collegeHub/login.html'
 
 
 class test_page(TemplateView):
