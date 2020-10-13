@@ -24,6 +24,7 @@ class UserProfile(models.Model):
     github = models.CharField(default="", blank=True, max_length=255)
     instagram = models.CharField(default="", blank=True, max_length=255)
     linkedin = models.CharField(default="", blank=True, max_length=255)
+    resume = models.FileField(upload_to="files/", blank=True, null=True)
 
     quote = models.CharField(default="", blank=True, max_length=255)
 

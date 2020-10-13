@@ -10,8 +10,6 @@ class SectionFrom(forms.ModelForm):
         model = Section
         fields = ('name', 'experiences')
 
-
-
 class SignupForm(UserCreationForm):
     class Meta:
         model = get_user_model()

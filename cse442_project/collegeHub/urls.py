@@ -13,5 +13,4 @@ urlpatterns = [
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
     path('emaiNotConfirmed/', views.register_not_confirmed.as_view(), name="not_confirmed"),
     path('activate/<uidb64>/<token>/', views.activate, name='activate')
-
 ]

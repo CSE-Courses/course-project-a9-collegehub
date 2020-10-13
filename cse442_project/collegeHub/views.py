@@ -122,6 +122,7 @@ def create_specific(request):
 def create_education(request):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
+        print(form.is_valid())
         if form.is_valid():
             image = form.data.get('image')
             location = form.data.get('location')
