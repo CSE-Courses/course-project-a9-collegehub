@@ -2,21 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Testing</title>
 </head>
 <body>
-<h1> Specific Test </h1>
+
+<h1> Section Test </h1>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-   {{ form.as_p }}
-  <button type="submit" id="submit-test3">Upload</button>
+   {{ sectionForm.as_p }}
+  <button type="submit" id="submit-section-test">Upload</button>
 </form>
+
+<h1> Specific Test </h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ specificForm.as_p }}
+    <button type="submit" id="submit-specific-test">Upload</button>
+</form>
+
+<h1> Education Test </h1>
+<form method="post">
+    {% csrf_token %}
+    {{ educationForm.as_p }}
+    <button type="submit" id="submit-education-test">Upload</button>
+</form>
+
 </body>
 <script>
-    $(".submit-test3").click(function(){
+    $(".submit-section-test").click(function(){
+
+    $.ajax({
+        url : '/section/',
+        type : 'post',
+        data : {
+            data : serializedData,
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+
+    })
+   })
+    $(".submit-specific-test").click(function(){
 
     $.ajax({
         url : '/specific/',
+        type : 'post',
+        data : {
+            data : serializedData,
+            csrfmiddlewaretoken: "{{ csrf_token }}",
+        },
+
+    })
+   })
+    $(".submit-education-test").click(function(){
+
+    $.ajax({
+        url : '/education/',
         type : 'post',
         data : {
             data : serializedData,
