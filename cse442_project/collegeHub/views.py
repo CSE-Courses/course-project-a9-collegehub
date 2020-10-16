@@ -8,7 +8,10 @@ from django.urls import reverse, reverse_lazy
 from collegeHub import models
 from .forms import SpecificForm
 from django.shortcuts import redirect
+<<<<<<< HEAD
 from djnago.contrib.auth.decorators import login_required
+=======
+>>>>>>> ca2ba7a9e20dc6f9013f11fa9e80a6fef7283bd8
 # Create your views here.
 
 
@@ -17,6 +20,7 @@ def register(user_request):
         form = UserCreationForm(user_request.POST)
         if form.is_valid():
             form.save()
+<<<<<<< HEAD
             username = form.cleaned_data.get('username')
             messages.success(user_request, f'Account created for {username}- redirecting to login')
         else:
@@ -27,6 +31,13 @@ def register(user_request):
 def profile(request):
     return render(request, 'templates\collegeHub/profile.html')
 
+=======
+            email = form.cleaned_data.get('email')
+            return redirect(reverse_lazy('index')) # add registration confirmation html
+    else:
+        form = UserCreationForm()
+        return render(user_request, 'collegeHub/registerTest.html',{'form':form})
+>>>>>>> ca2ba7a9e20dc6f9013f11fa9e80a6fef7283bd8
     
 
 def create_experience(user):

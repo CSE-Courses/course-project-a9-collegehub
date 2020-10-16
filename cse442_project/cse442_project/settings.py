@@ -124,3 +124,12 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL =  'profile'
+LOGIN_URL = 'login'
+
+#SMTP configurations
+EMAIL_BACKEND = 'django.core.mail.backend.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'emailaddress'
+EMAIL_HOST_PASSOWRD = 'password'
