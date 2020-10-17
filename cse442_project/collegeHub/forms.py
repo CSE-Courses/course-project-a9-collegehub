@@ -18,7 +18,7 @@ class SignupForm(UserCreationForm):
 class SpecificForm(forms.ModelForm):
     class Meta:
         model = Specific
-        fields = ('image', 'description', 'bullet_section', 'section')
+        fields = ('title', 'image', 'description', 'bullet_section', 'section', 'link')
 
 
 class EducationFrom(forms.ModelForm):
