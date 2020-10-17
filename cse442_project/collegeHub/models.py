@@ -45,9 +45,11 @@ class Section(models.Model):
 
 
 class Specific(models.Model):
+    title = models.CharField(default='Experience', max_length=50)
     image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
-    description = models.CharField(default='This is what did', max_length=2000)
+    description = models.CharField(default='This is what I did', max_length=2000)
     bullet_section = models.CharField(default='Bullet, points, are, great', max_length=200)
+    link = models.URLField(default='')
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='specific')
 
     def get_bullet_list(self):

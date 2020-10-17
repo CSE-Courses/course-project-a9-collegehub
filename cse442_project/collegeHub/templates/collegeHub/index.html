@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <!--logo icon / favicon-->
     <!--      <link rel="icon" href="images/logo.png">-->
-    <title>Name | CollegeHu</title>
+    <link rel="icon" href="{% static 'collegehub/images/favicon.ico' %}" type="image/icon type"/>
+    <title>Name | CollegeHub</title>
 </head>
 
 <body>
@@ -50,12 +51,12 @@
                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
                      style="background-color: #14213D; border-radius: 7px;">
-                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="../../static/collegehub/images/logo.png" id="settings-logo" alt="User name"></span>
+                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{% static 'collegehub/images/logo.png' %}" id="settings-logo" alt="User name"></span>
                         Full Name
                     </h4>
                     <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
                     <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
-                    <a class="dropdown-item" href="{% url 'settings' %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                    <a class="dropdown-item" href="{% url 'settings' username=user_profile.user %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
                     <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
@@ -120,7 +121,7 @@
 
     <main id="sections-container">
         <section id="about">
-            <img id="user-image" src="../../static/collegehub/images/logo.png" alt="User profile picture">
+            <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
             <div class="section-heading">
                 <h1>About</h1>
             </div>
@@ -168,21 +169,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form onsubmit="return false">
-                                <div class="form-group">
-                                    <label for="add_uniname">Uni Name</label>
-                                    <input type="text" class="form-control" id="add_uniname" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="add_major">Major</label>
-                                    <input type="text" class="form-control" id="add_major">
-                                </div>
-                                <div class="form-group">
-                                    <label for="add_year">Year graduated</label>
-                                    <input type="number" class="form-control" id="add_year">
-                                </div>
-                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="add_card()">Add</button>
-                            </form>
+                           <h1> Education Test </h1>
+<form method="post">
+    {% csrf_token %}
+    {{ educationForm.as_p }}
+    <button type="submit" id="submit-education-test">Upload</button>
+</form>
                         </div>
 
                     </div>
@@ -192,7 +184,7 @@
                 <div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="../../static/collegehub/images/preview.jpg" class="card-img" alt="edu-logo">
+                            <img src="{% static 'collegehub/images/preview.jpg' %}" class="card-img" alt="edu-logo">
                         </div>
                         <div class="col-md-8">
                             <div class="dropdown ">
@@ -355,29 +347,11 @@
                     </div>
                 </div>
             </div>
+
             <div id="experience-container">
-                <div class="card" style="width: 23rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Experience 1</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Links</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 23rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Experience 2</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Links</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 23rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Experience 3</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Links</a>
-                    </div>
-                </div>
+                {% include 'collegeHub/experiences.html' %}
             </div>
+
         </section>
         <section id="projects">
             <div class="section-heading">
