@@ -125,10 +125,10 @@ MEDIA_URL = '/media/'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'email'
-EMAIL_HOST_PASSWORD = 'Pass'
+EMAIL_HOST_USER = 'teamcollegehub@gmail.com'
+EMAIL_HOST_PASSWORD = 'collegehub@442'
 EMAIL_PORT = 587
 
 
-LOGIN_REDIRECT_URL =  'profile'
+LOGIN_REDIRECT_URL =  'index'
 LOGIN_URL = 'login'
