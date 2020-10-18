@@ -2,7 +2,7 @@
     {% if sections.count == 0 %}
         <h1>No Sections</h1>
     {% else %}
-        <h1 style="width: 100%">{{ section.name }}</h1>
+        <h1 style="width: 100%" id="section-{{ section.pk }}">{{ section.name }}</h1>
         {% for specific in section.specific.all %}
             {% if specific.count == 0 %}
                 <h1>No Specific</h1>
@@ -12,7 +12,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ specific.title }}</h5>
                         <p class="card-text">{{ specific.description }}</p>
-                        <a href="{{ specific.link }}" class="btn btn-primary">Links</a>
+                        {% if specific.link != '' %}
+                            <a href="{{ specific.link }}" class="btn btn-primary">Links</a>
+                        {% endif %}
                     </div>
                 </div>
 

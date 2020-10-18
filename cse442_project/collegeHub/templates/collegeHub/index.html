@@ -170,11 +170,11 @@
                         </div>
                         <div class="modal-body">
                            <h1> Education Test </h1>
-<form method="post">
-    {% csrf_token %}
-    {{ educationForm.as_p }}
-    <button type="submit" id="submit-education-test">Upload</button>
-</form>
+                            <form method="post" id="education-form">
+                                {% csrf_token %}
+                                {{ educationForm.as_p }}
+                                <button type="submit"> Upload </button>
+                            </form>
                         </div>
 
                     </div>
@@ -331,17 +331,23 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" id="experience_add_card" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="experience_add_cardLabel">Add Experience card</h5>
+                            <h5 class="modal-title" id="experience_add_cardLabel">Add a Section to Experience</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1> special form</h1>
+                            <h1> Create a Section </h1>
+                            <form method="post" id="section-form">
+                                {% csrf_token %}
+                                {{ sectionForm.as_p }}
+                                <button type="submit">Upload</button>
+                            </form>
                         </div>
 
                     </div>
@@ -550,7 +556,51 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+
 <script src="{% static 'collegeHub/script.js' %}"></script>
+<script>
+    const sectionForm = document.getElementById('section-form');
+    sectionForm.addEventListener("submit", submitSectionHandler);
+    function submitSectionHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-section' pk=experience.pk %}',
+            data: $("#section-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    alert('Form submitted successfully');
+                    var sec = $("<h1 style='width: 100%; id=\"section-"+response.section_pk+"'></h1>").text(response.name);
+                    $("#experience-container").append(sec)
+                }
+            }
+        })
+    }
+
+    $('.specific-form-submit').on('submit', function(e) {
+        e.preventDefault();
+        var form_id = this.id
+        var sec_pk = form_id.substring('specific-form-'.length)
+        $.ajax({
+            type: 'POST',
+            url: 'section/' + sec_pk,
+            data: $("#specific-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    alert('Form submitted successfully '+ sec_pk)
+
+                    $("#data-sec").append(sec)
+                }
+            }
+        })
+    });
+
+</script>
 </body>
 
 </html>
