@@ -565,9 +565,11 @@
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script>
     const sectionForm = document.getElementById('section-form');
+    console.log(sectionForm);
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
         e.preventDefault();
+
         $.ajax({
             type: 'POST',
             url: '{% url 'create-section' pk=experience.pk %}',
@@ -582,25 +584,36 @@
             }
         })
     }
+    {#'.specific-form-submit'#}
+    {#'specific-form'#}
+    var specificForms = document.getElementsByClassName("specific-form");
+    console.log(specificForms);
+      for (i = 0; i < specificForms.length; i++) {
+        specificForms[i].addEventListener("submit", submitSpecificHandler);
+      }
 
-    $('.specific-form-submit').on('submit', function(e) {
+    {#$(document).on('submit', 'form.specific-form', submitSpecificHandler);#}
+    function submitSpecificHandler(e){
         e.preventDefault();
-        var form_id = this.id
-        var sec_pk = form_id.substring('specific-form-'.length)
+        var form_id = this.id;
+        var sec_pk = form_id.substring('specific-form-'.length);
+        var url = '{% url 'specific-url' %}/'  + sec_pk
+        console.log('Test: ' + form_id +' '+ sec_pk+ ' : '+url);
         $.ajax({
             type: 'POST',
-            url: 'section/' + sec_pk,
-            data: $("#specific-form").serialize(),
+            url: url,
+            data: $('#'+form_id).serialize(),
             dataType: 'json',
             success: function (response) {
                 if(!response.fail){
-                    alert('Form submitted successfully '+ sec_pk)
+                    alert('Form submitted successfully ');
 
-                    $("#data-sec").append(sec)
+
                 }
             }
         })
-    });
+    }
+
 
 </script>
 </body>

@@ -51,7 +51,8 @@ class Section(models.Model):
 
 
 class Specific(models.Model):
-    title = models.CharField(default='Experience', max_length=50)
+    position = models.CharField(default='', max_length=50)
+    company = models.CharField(default='', max_length=50, blank=True, null=True)
     image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
     description = models.CharField(default='This is what I did', max_length=2000)
     bullet_section = models.CharField(default='Bullet, points, are, great', max_length=200)
@@ -62,7 +63,7 @@ class Specific(models.Model):
         return self.bullet_section.split(', ')
 
     def __str__(self):
-        return self.section.__str__() + ':  ' + self.title
+        return self.section.__str__() + ':  ' + self.position
 
 
 class Education(models.Model):
