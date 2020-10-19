@@ -307,8 +307,10 @@
                 <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>
             </div>
             <div class="ellipse-container">
-                <button type="button" data-toggle="modal" data-target="#experience_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+                <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
+
+            {# ********** RENAME TOPIC POP UP **********#}
             <div class="modal fade" id="experience_rename_section" tabindex="-1" aria-labelledby="experience_rename_sectionLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -331,8 +333,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="experience_add_card" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+            {# ********** ADD SECTION POP UP **********#}
+            <div class="modal fade" id="experience_add_subsection" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -342,11 +344,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1> Create a Section </h1>
+{#                            <h1> Create a Section </h1>#}
                             <form method="post" id="section-form">
                                 {% csrf_token %}
                                 {{ sectionForm.as_p }}
-                                <button type="submit">Upload</button>
+                                <button type="submit">Create</button>
                             </form>
                         </div>
 

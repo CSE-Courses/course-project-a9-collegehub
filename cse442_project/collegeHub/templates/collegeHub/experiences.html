@@ -1,24 +1,53 @@
 {% for section in experience.section.all %}
     {% if sections.count == 0 %}
-        <h1>No Sections</h1>
+        <h1>Click on + to add an Experience</h1>
     {% else %}
-        <h1 style="width: 100%" id="section-{{ section.pk }}">{{ section.name }}</h1>
-        {% for specific in section.specific.all %}
-            {% if specific.count == 0 %}
-                <h1>No Specific</h1>
-            {% else %}
-
-                <div class="card" style="width: 23rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ specific.title }}</h5>
-                        <p class="card-text">{{ specific.description }}</p>
-                        {% if specific.link != '' %}
-                            <a href="{{ specific.link }}" class="btn btn-primary">Links</a>
-                        {% endif %}
+{#        <h1 style="width: 100%" id="section-{{ section.pk }}">#}
+        <div class="sub-section">
+            <div class="sub-section-header">
+                 <div class="sub-section-heading">
+                    <h4 class="sub-section-heading-text" >
+                        {{ section.name }}
+                    </h4>
+                </div>
+                <button type="button" data-toggle="modal" data-target="#add-experience-specific-{{ section.pk }}" class="sub-section-button"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="modal fade" id="add-experience-specific-{{ section.pk }}" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="add-experience-specificLabel">Add an {{ section.name }} </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" id="section-form">
+                                {% csrf_token %}
+                                {{ specificForm.as_p }}
+                                <button type="submit">Create</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-            {% endif %}
-        {% endfor %}
+            </div>
+            <div class="sub-section-container">
+                 {% for specific in section.specific.all %}
+                    {% if specific.count == 0 %}
+                        <h1>Click on + to add an {{ section.name }}</h1>
+                    {% else %}
+                        <div class="card" style="width: 23rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ specific.title }}</h5>
+                                <p class="card-text">{{ specific.description }}</p>
+                                {% if specific.link != '' %}
+                                    <a href="{{ specific.link }}" class="btn btn-primary">Links</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 {% endfor %}
