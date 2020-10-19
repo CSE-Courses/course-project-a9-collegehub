@@ -1,7 +1,7 @@
-{% for section in experience.section.all %}
-    {% if sections.count == 0 %}
+{% if sections.count == 0 %}
         <h1>Click on + to add an Experience</h1>
-    {% else %}
+    {% endif %}
+{% for section in experience.section.all %}
         <div class="sub-section">
             <div class="sub-section-header">
                  <div class="sub-section-heading">
@@ -21,7 +21,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" id="specific-form">
+
+                            <form method="post" id="specific-form-{{ section.pk }}"  class="specific-form">
                                 {% csrf_token %}
                                 <div class="form-group row">
                                     <label for="id_position" class="col-sm-2 col-form-label">Position: </label>
@@ -57,41 +58,46 @@
                                         {{ specificForm.link }}
                                     </div>
                                 </div>
-                              <button Data-dismiss="modal" type="submit" class="btn btn-primary">Add</button>
+                              <button type="submit" class="btn btn-primary specific-form-submit">Add</button>
+
                             </form>
+
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sub-section-container">
                 <ul class="list-unstyled">
-                     {% for specific in section.specific.all %}
-                        {% if section.specific.count == 1 %}
+                    {% if section.specific.count == 0 %}
                             <li style="background-color: transparent" class="card">
                               <div class="card-body">
-                                Click on + to add an {{ section.name }}
+                                Click on + to add a(n) {{ section.name }}
                               </div>
                             </li>
-                        {% else %}
+                        {% endif %}
+                     {% for specific in section.specific.all %}
+
 {#                            NOTE for chris - change forms and add these fields position, company, ddescription. #}
 {#                            ANDD BELOW add template engines for titles and descriptions I left it so that u could see how it looks#}
                             <li class="media" style="margin: 10px 10px 18px 10px">
-                                <img src="{{ specific.image }}" class="mr-3" alt="...">
+                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb-1"> Position </h5>
-                                    <h7 class="mt-0 mb-1">Company</h7>
+                                    <h5 class="mt-0 mb-1"> {{specific.position}} </h5>
+                                    {% if specific.company != '' %}
+                                        <h7 class="mt-0 mb-1">{{specific.company}}</h7>
+                                    {% endif %}
                                     <p style="margin-bottom: 3px">
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                        {{ specific.description }}
                                     </p>
                                     {% if specific.link != '' %}
                                         <a href="{{ specific.link }}" class="btn btn-outline-danger">Link</a>
                                     {% endif %}
                                 </div>
                             </li>
-                        {% endif %}
+
                     {% endfor %}
                 </ul>
             </div>
         </div>
-    {% endif %}
+
 {% endfor %}

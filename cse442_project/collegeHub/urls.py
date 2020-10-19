@@ -8,12 +8,13 @@ urlpatterns = [
     path('signup/', views.Signup.as_view(), name='signup'),
     path('faq/', views.FAQ.as_view(), name='faq'),
     # path('home/', views.Home.as_view(), name='home'),
+
     path('section/<int:pk>', views.create_section, name='create-section'),
     path('specific/<int:pk>', views.create_specific, name='create-specific'),
     path('education', views.create_education, name='create-education'),
     path('profile/', views.profile, name='profile'),
     path('register/', views.register, name='register'),
-
+    path('specific', views.passer, name='specific-url'),
     path('test/', views.test_page.as_view(), name='test'),
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),

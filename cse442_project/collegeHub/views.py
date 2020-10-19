@@ -139,6 +139,10 @@ def create_section(request, pk):
         return
 
 
+def passer(request):
+    pass
+
+
 # @login_required
 def create_specific(request, pk):
     if request.method == 'POST':
@@ -147,7 +151,8 @@ def create_specific(request, pk):
             image = form.data.get('image')
             description = form.data.get('description')
             bullet_section = form.data.get('bullet_section')
-            title = form.data.get('title')
+            position = form.data.get('position')
+            company = form.data.get('company')
             link = form.data.get('link')
             new_specific = form.save()
 
@@ -156,7 +161,7 @@ def create_specific(request, pk):
             new_specific.save()
 
             return JsonResponse(
-                {'title': title, 'link': link, 'description': description, 'bullet_section': bullet_section,
+                {'position': position, 'company': company,'link': link, 'description': description, 'bullet_section': bullet_section,
                  'section_pk': section.pk, 'fail': False, 'experience_pk': new_specific.pk},
                 status=200)
         else:
