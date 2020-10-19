@@ -1,5 +1,9 @@
-{% if sections.count == 0 %}
-        <h1>Click on + to add an Experience</h1>
+{% if experience.section.count == 0 %}
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-section">
+              <div class="card-body">
+                    Click on + to add a section
+              </div>
+        </li>
     {% endif %}
 {% for section in experience.section.all %}
         <div class="sub-section">
@@ -66,10 +70,10 @@
                     </div>
                 </div>
             </div>
-            <div class="sub-section-container">
-                <ul class="list-unstyled">
+            <div class="sub-section-container" id="sub-section-container">
+                <ul class="list-unstyled" id="sub-section-list-{{ section.pk }}">
                     {% if section.specific.count == 0 %}
-                            <li style="background-color: transparent" class="card">
+                            <li style="background-color: transparent" class="card" id="no-specific">
                               <div class="card-body">
                                 Click on + to add a(n) {{ section.name }}
                               </div>
@@ -77,10 +81,8 @@
                         {% endif %}
                      {% for specific in section.specific.all %}
 
-{#                            NOTE for chris - change forms and add these fields position, company, ddescription. #}
-{#                            ANDD BELOW add template engines for titles and descriptions I left it so that u could see how it looks#}
                             <li class="media" style="margin: 10px 10px 18px 10px">
-                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">
+{#                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">#}
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1"> {{specific.position}} </h5>
                                     {% if specific.company != '' %}

@@ -350,7 +350,7 @@
                                     <label for="id_position" class="col-form-label">Type of Experience: </label>
                                         {{ sectionForm.name }}
                                 </div>
-                                <button Data-dismiss="modal" type="submit" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </div>
 
@@ -567,11 +567,10 @@
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script>
     const sectionForm = document.getElementById('section-form');
-    console.log(sectionForm);
+
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
         e.preventDefault();
-
         $.ajax({
             type: 'POST',
             url: '{% url 'create-section' pk=experience.pk %}',
@@ -579,17 +578,83 @@
             dataType: 'json',
             success: function (response) {
                 if(!response.fail){
-                    alert('Form submitted successfully');
-                    var sec = $("<h1 style='width: 100%; id=\"section-"+response.section_pk+"'></h1>").text(response.name);
-                    $("#experience-container").append(sec)
+                    try {
+                        document.getElementById('no-section').remove();
+                    }catch {}
+                    var section = '<div class="sub-section">\n' +
+                        '            <div class="sub-section-header">\n' +
+                        '                 <div class="sub-section-heading">\n' +
+                        '                    <h4 class="sub-section-heading-text" >\n' +
+                                                response.name +
+                        '                    </h4>\n' +
+                        '                </div>\n' +
+                        '                <button type="button" data-toggle="modal" data-target="#add-experience-specific-' + response.section_pk  + '" class="sub-section-button"><i class="fas fa-plus"></i></button>\n' +
+                        '            </div>\n' +
+                        '            <div class="modal fade" id="add-experience-specific-' + response.section_pk  + '" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">\n' +
+                        '                <div class="modal-dialog">\n' +
+                        '                    <div class="modal-content">\n' +
+                        '                        <div class="modal-header">\n' +
+                        '                            <h5 class="modal-title" id="add-experience-specificLabel">Add an ' + response.name  + ' </h5>\n' +
+                        '                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                        '                                <span aria-hidden="true">&times;</span>\n' +
+                        '                            </button>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="modal-body">\n' +
+                        '\n' +
+                        '                            <form method="post" id="specific-form-' + response.section_pk  + '"  class="specific-form">\n' +
+                        '                                {% csrf_token %}\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_position" class="col-sm-2 col-form-label">Position: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.position }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Company: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.company }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group">\n' +
+                        '                                    <label for="id_company" class="col-form-label">Description: </label>\n' +
+                        '                                    {{ specificForm.description }}\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Link: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.link }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                              <button type="submit" class="btn btn-primary specific-form-submit">Add</button>\n' +
+                        '\n' +
+                        '                            </form>\n' +
+                        '\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '            <div class="sub-section-container" id="sub-section-container">\n' +
+                        '                <ul id="sub-section-list-' + response.section_pk +'" class="list-unstyled">\n' +
+                        '                            <li style="background-color: transparent" class="card" id="no-specific">\n' +
+                        '                              <div class="card-body">\n' +
+                        '                                Click on + to add a(n) ' + response.name  + '\n' +
+                        '                              </div>\n' +
+                        '                            </li>\n' +
+                        '                </ul>\n' +
+                        '            </div>\n' +
+                        '        </div>';
+
+                     $("#experience-container").append(section);
+                     var elem_id = "specific-form-" + response.section_pk;
+
+                     var newForm = document.getElementById(elem_id);
+                     newForm.addEventListener("submit", submitSpecificHandler);
+
                 }
             }
         })
     }
-    {#'.specific-form-submit'#}
-    {#'specific-form'#}
     var specificForms = document.getElementsByClassName("specific-form");
-    console.log(specificForms);
       for (i = 0; i < specificForms.length; i++) {
         specificForms[i].addEventListener("submit", submitSpecificHandler);
       }
@@ -599,7 +664,7 @@
         e.preventDefault();
         var form_id = this.id;
         var sec_pk = form_id.substring('specific-form-'.length);
-        var url = '{% url 'specific-url' %}/'  + sec_pk
+        var url = '{% url 'specific-url' %}/'  + sec_pk;
         console.log('Test: ' + form_id +' '+ sec_pk+ ' : '+url);
         $.ajax({
             type: 'POST',
@@ -608,8 +673,25 @@
             dataType: 'json',
             success: function (response) {
                 if(!response.fail){
-                    alert('Form submitted successfully ');
 
+                    try {
+                        document.getElementById('no-specific').remove();
+                     }catch {}
+
+                    var specific = '<li class="media" style="margin: 10px 10px 18px 10px">\n';
+                        {#specific + '                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">\n' +#}
+                        specific += '<div class="media-body">\n';
+                        specific += ' <h5 class="mt-0 mb-1"> '+ response.position +'</h5>\n';
+                        if (response.company != '' && response.company != 'None'){
+                            specific += '<h7 class="mt-0 mb-1">'+ response.company +'</h7>\n';
+                        }
+                         specific += '<p style="margin-bottom: 3px">\n' + response.description +'\n'+ '</p>\n';
+                        if (response.link != ''){
+                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger">Link</a>\n';
+                            }
+                        specific += '</div>\n' + '</li>';
+
+                $("#sub-section-list-"+sec_pk).append(specific);
 
                 }
             }
