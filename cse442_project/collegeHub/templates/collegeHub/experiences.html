@@ -2,7 +2,6 @@
     {% if sections.count == 0 %}
         <h1>Click on + to add an Experience</h1>
     {% else %}
-{#        <h1 style="width: 100%" id="section-{{ section.pk }}">#}
         <div class="sub-section">
             <div class="sub-section-header">
                  <div class="sub-section-heading">
@@ -24,29 +23,41 @@
                         <div class="modal-body">
                             <form method="post" id="section-form">
                                 {% csrf_token %}
-                                {{ specificForm.as_p }}
-                                <button type="submit">Create</button>
+                                    {{ specificForm.as_p }}
+                                <button Data-dismiss="modal" type="submit">Create</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sub-section-container">
-                 {% for specific in section.specific.all %}
-                    {% if specific.count == 0 %}
-                        <h1>Click on + to add an {{ section.name }}</h1>
-                    {% else %}
-                        <div class="card" style="width: 23rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ specific.title }}</h5>
-                                <p class="card-text">{{ specific.description }}</p>
-                                {% if specific.link != '' %}
-                                    <a href="{{ specific.link }}" class="btn btn-primary">Links</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                <ul class="list-unstyled">
+                     {% for specific in section.specific.all %}
+                        {% if section.specific.count == 1 %}
+                            <li style="background-color: transparent" class="card">
+                              <div class="card-body">
+                                Click on + to add an {{ section.name }}
+                              </div>
+                            </li>
+                        {% else %}
+{#                            NOTE for chris - change forms and add these fields position, company, ddescription. #}
+{#                            ANDD BELOW add template engines for titles and descriptions I left it so that u could see how it looks#}
+                            <li class="media" style="margin: 10px 10px 18px 10px">
+                                <img src="{{ specific.image }}" class="mr-3" alt="...">
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1"> Position </h5>
+                                    <h7 class="mt-0 mb-1">Company</h7>
+                                    <p style="margin-bottom: 3px">
+                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                    </p>
+                                    {% if specific.link != '' %}
+                                        <a href="{{ specific.link }}" class="btn btn-outline-danger">Link</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     {% endif %}

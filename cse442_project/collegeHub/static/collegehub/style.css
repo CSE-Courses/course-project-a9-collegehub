@@ -486,7 +486,6 @@ html {
         }
         #experience{
             padding: 10px 100px 10px 100px;
-            background-color: #626262;
         }
         #experience-card-container{
             display: flex;
@@ -602,6 +601,7 @@ html {
         .sub-section-heading{
             width:100%;
             display: flex;
+            margin-left: 3px;
             align-items: center;
         }
         .sub-section-heading-text{
@@ -609,7 +609,6 @@ html {
             margin: 0;
         }
         #experience-container{
-            background-color: #972d3e;
             width: 100%;
         }
         #experience-container > div{
@@ -622,7 +621,9 @@ html {
             padding: 5px;
         }
         .sub-section{
-            background-color: #4774d6;
+            border: #dedede 1px solid;
+            border-radius: 0.5rem;
+            padding: 5px;
         }
         .sub-section-button{
             display: inline-block;
@@ -640,6 +641,9 @@ html {
         }
         .sub-section-container{
 
+        }
+        .specific{
+            margin: 5px;
         }
     }
 
