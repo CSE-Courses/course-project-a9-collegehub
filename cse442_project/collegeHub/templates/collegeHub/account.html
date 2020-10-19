@@ -14,44 +14,14 @@
     <!--    Animate on scroll (AOS)-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <!--logo icon / favicon-->
-    <!--    <link rel="icon" href="images/logo.png">-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
     <title>Settings | CollegeHub</title>
 </head>
 
 <body>
 <div id="desktop">
     <!--*************************************************CONTENT************************************************-->
-    <nav class="nav sticky-top" style="  background-size: 100%;background: linear-gradient(to right, #14213D, #14213D, #14213D) repeat;backdrop-filter: blur(10px);justify-content: space-between;padding: 5px 20px 0 20px;height: 50px">
-        <ul class="nav">
-            <li>
-                <div style="width: 90px; height: 90px;padding: 5px">
-                    <img src="../../static/collegehub/images/logo.png" id="nav-logo" alt="CollegeHub Logo">
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" style="color: whitesmoke; font-weight: lighter; font-size: 20px" href="#">Full Name</a>
-            </li>
-        </ul>
-        <span id="nav-name">
-            <img src="../../static/collegehub/images/CH_white.png" style="width: 45px; height: 45px">
-        </span>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' username=user_profile.user %}"><span> <i
-                        class="fas fa-user-circle"> </i> </span>Profile</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"  data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #14213D; border-radius: 7px">
-                    <h4 class="dropdown-header" style="font-size: large; color: white"> <span> <img src="../../static/collegehub/images/logo.png" id="settings-logo" alt="User name"></span>Full Name</h4>
-                    <a class="dropdown-item" href="{% url 'settings' username=user_profile.user %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
-                    <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+    {% include 'collegeHub/logged_in_nav.html' %}
     <div id="account">
         <div id="account-container">
             <div id="account-container-left">
