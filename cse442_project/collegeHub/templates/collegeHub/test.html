@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+</head>
+<body>
+
+<h3> Data </h3>
+<div id="data-sec">
+</div>
+<h3> -------------------- </h3>
+
+<h1> Section Test </h1>
+<form method="post" enctype="multipart/form-data" id="section-form">
+  {% csrf_token %}
+   {{ sectionForm.as_p }}
+  <button type="submit"> Upload </button>
+</form>
+
+<h1> Specific Test </h1>
+<form method="post" enctype="multipart/form-data" id="specific-form">
+    {% csrf_token %}
+    {{ specificForm.as_p }}
+    <button type="submit" id="submit-specific-test">Upload</button>
+</form>
+
+<h1> Education Test </h1>
+<form method="post" id="education-form">
+    {% csrf_token %}
+    {{ educationForm.as_p }}
+    <button type="submit">Upload</button>
+</form>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+<script>
+    const sectionForm = document.getElementById('section-form')
+    sectionForm.addEventListener("submit", submitSectionHandler);
+    function submitSectionHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-section' %}',
+            data: $("#section-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    alert('Form submitted successfully')
+                    var sec = $("<p></p>").text("Section Name: " + response.name);
+                    $("#data-sec").append(sec)
+                }
+            }
+        })
+    }
+
+    const specificForm = document.getElementById('specific-form')
+    specificForm.addEventListener("submit", submitSpecificHandler);
+    function submitSpecificHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-specific' %}',
+            data: $("#specific-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    alert('Form submitted successfully')
+                    var sec = $("<p></p>").text("Specific Name: " + response.title);
+                    $("#data-sec").append(sec)
+                }
+            }
+        })
+    }
+    {#    $(".submit-specific-test").click(function(){#}
+    {#    $.ajax({#}
+    {#        url : '/specific/',#}
+    {#        type : 'post',#}
+    {#        data : {#}
+    {#            data : serializedData,#}
+    {#            csrfmiddlewaretoken: "{{ csrf_token }}",#}
+    {#        },#}
+    {#        success : function(response){#}
+    {#            $("div[id=data-sec]").append('<p> Specific: ' + 'description: ' + response.description + 'bullet_section:'+ response.bullet_section +'</p>');#}
+    {#        }#}
+    {#    })#}
+    {#   })#}
+    {##}
+    {#    $(".submit-education-test").click(function(){#}
+    {#    $.ajax({#}
+    {#        url : '/education/',#}
+    {#        type : 'post',#}
+    {#        data : {#}
+    {#            data : serializedData,#}
+    {#            csrfmiddlewaretoken: "{{ csrf_token }}",#}
+    {#        },#}
+    {#        success : function(response){#}
+    {#            $("div[id=data-sec]").append('<p> Education: ' + 'location: ' + response.location + 'date: ' + response.month+'/'+response.year + '</p>');#}
+    {#        }#}
+    {#    })#}
+    {#   })#}
+    {##}
+    {# })#}
+</script>
+</html>

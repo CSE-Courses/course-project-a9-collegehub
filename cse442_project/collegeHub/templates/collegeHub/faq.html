@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+    <title>FAQ | CollegeHub</title>
+</head>
+<body>
+<div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    {% include 'collegeHub/logged_out_nav.html' %}
+    <div id="Outer-timeline" style="height: 100%;">
+        <div id="faq-container">
+            <h1 style="color: #14213D"> Frequently asked questions</h1>
+            <h5 style="font-weight: lighter; color: #626262">If you're new to Squarespace, this guide answers common questions about the platform, the services we offer, and how to get started.</h5>
+            <hr>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p style="">
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p>
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p>
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p>
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p>
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+            <div>
+                <h3 style="color: #FCA311"> question1</h3>
+                <p>
+                    When using button classes on  elements that are used to trigger in-page functionality (like collapsing content), rather than linking to new pages or sections within the current page, these links should be given a role="button" to appropriately convey their purpose to assistive technologies such as screen readers.
+                </p>
+            </div>
+        </div>
+        <div style="background-color: #14213D; text-align: center; height: 10rem; padding: 50px">
+            <h1 style="color: #FCA311"> Cant find what you are looking for </h1>
+            <a href="#" type="button" class="btn btn-outline-light btn-lg">Contact Us</a>
+            <br>
+        </div>
+    </div>
+    <!--*******************************************CONTENT************************************************-->
+</div>
+<div id="mobile-body">
+    <div id="mobile-container">
+        <img src="../../static/collegehub/images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="{% static 'collegeHub/script.js' %}"></script>
+<script>
+    AOS.init();
+</script>
+</body>
+</html>
