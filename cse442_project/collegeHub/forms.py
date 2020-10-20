@@ -5,23 +5,26 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Specific, Section, Education
 
 
-class SectionFrom(forms.ModelForm):
+class SectionForm(forms.ModelForm):
     class Meta:
         model = Section
-        fields = ('name', 'experiences')
+        fields = ('name',)
+
 
 class SignupForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('username','first_name', 'last_name', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
 
 class SpecificForm(forms.ModelForm):
     class Meta:
         model = Specific
-        fields = ('title', 'image', 'description', 'bullet_section', 'section', 'link')
+        fields = ('position', 'company', 'description', 'link')
+        # fields = ('position', 'image', 'description', 'bullet_section', 'section', 'link')
 
 
-class EducationFrom(forms.ModelForm):
+class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         fields = ('image', 'location', 'certification_name', 'description', 'month', 'year', 'profile')

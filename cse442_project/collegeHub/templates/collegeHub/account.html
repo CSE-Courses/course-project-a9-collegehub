@@ -3,224 +3,191 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!--    Style CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
-    <!--    fontawesome-->
-    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
-    <!--    Animate on scroll (AOS)-->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <!--logo icon / favicon-->
-    <!--    <link rel="icon" href="images/logo.png">-->
-    <title>Settings | CollegeHub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!--    Style CSS-->
+  <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
+  <!--    fontawesome-->
+  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+  <!--    Animate on scroll (AOS)-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!--logo icon / favicon-->
+  <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+  <title>Settings | CollegeHub</title>
 </head>
 
 <body>
-<div id="desktop">
+  <div id="desktop">
     <!--*************************************************CONTENT************************************************-->
-    <nav class="nav sticky-top" style="  background-size: 100%;background: linear-gradient(to right, #14213D, #14213D, #14213D) repeat;backdrop-filter: blur(10px);justify-content: space-between;padding: 5px 20px 0 20px;height: 50px">
-        <ul class="nav">
-            <li>
-                <div style="width: 90px; height: 90px;padding: 5px">
-                    <img src="../../static/collegehub/images/logo.png" id="nav-logo" alt="CollegeHub Logo">
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" style="color: whitesmoke; font-weight: lighter; font-size: 20px" href="#">Full Name</a>
-            </li>
-        </ul>
-        <span id="nav-name">
-            <img src="../../static/collegehub/images/CH_white.png" style="width: 45px; height: 45px">
-        </span>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' username=user_profile.user %}"><span> <i
-                        class="fas fa-user-circle"> </i> </span>Profile</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"  data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #14213D; border-radius: 7px">
-                    <h4 class="dropdown-header" style="font-size: large; color: white"> <span> <img src="../../static/collegehub/images/logo.png" id="settings-logo" alt="User name"></span>Full Name</h4>
-                    <a class="dropdown-item" href="{% url 'settings' username=user_profile.user %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
-                    <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+    {% include 'collegeHub/logged_in_nav.html' %}
     <div id="account">
-        <div id="account-container">
-            <div id="account-container-left">
-                <div style="display: flex; align-items: center; text-align: center;justify-content: center">
-                    <img src="../../static/collegehub/images/CH.png" style="width: 50px; height: 50px; margin-right: 20px" alt="CH logo">
-                    <h2 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h2>
-                </div>
-                <hr>
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list" href="#list-home" role="tab" aria-controls="username">General</a>
-                    <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="domain">Domain</a>
-                    <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>
-                    <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
-                    <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a>
-                </div>
-                <div style="margin-top: 60px">
-                    <p style="font-weight: lighter;color: #dedede; font-size: 10px">
-                        All personal information goes to our database securely handled by SQL lite.
-                        <br>
-                        Access our FAQ for any question
-                        <br>
-                        @ 2020 CollegeHub
-                    </p>
-                </div>
-            </div>
-            <div id="account-container-right">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-username-list">
-                            <h3 style="color: #14213D"> General Account Settings</h3>
-                            <hr>
-                            <form class="forms account-forms">
-                                <div class="form-row">
-                                    <div class="sub-headers">
-                                        <h6>Name</h6>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Full Name">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="sub-headers">
-                                        <h6>Username</h6>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="sub-headers">
-                                        <h6>Email</h6>
-                                    </div>
-                                    <div class="col">
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="sub-headers">
-                                        <h6>Password</h6>
-                                    </div>
-                                    <div class="col">
-                                        <input type="email" class="form-control" placeholder="New Password">
-                                    </div>
-                                </div>
-                                <div>
-                                    <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
-                                        * Password Must contain one upper case letter, a number and a symbol.
-                                    </p>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                            <h3 style="color: #14213D"> Domain Settings</h3>
-                            <hr>
-                            <form class="forms">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Domain Name</label>
-                                    <input type="email" class="form-control" id="domain" aria-describedby="domain" placeholder="Fullname@collegehub.com">
-                                    <small  class="form-text text-muted">Your domain will be unique.</small>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-                            <h3 style="color: #14213D"> Template Settings</h3>
-                            <hr>
-                            <div id="template-setting-container">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-                            <form>
-                                <div class="form-row align-items-center">
-                                    <div class="col-auto my-1">
-                                        <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
-                                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                            <option selected>Current Membership</option>
-                                            <option value="1">Premium</option>
-                                            <option value="2">Standard</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="list-schedule" role="tabpanel" aria-labelledby="list-schedule-list">
-                            <div class="card" style="width: 18rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Scheduler</h5>
-                                    <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="80" width="80"/></p>
-                                    <a href="#" class="btn btn-outline-danger">Coming Soon</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+      <div id="account-container">
+        <div id="account-container-left">
+          <div style="display: flex; align-items: center; text-align: center;justify-content: center">
+            <img src="../../static/collegehub/images/CH.png" style="width: 50px; height: 50px; margin-right: 20px" alt="CH logo">
+            <h2 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h2>
+          </div>
+          <hr>
+          <div class="list-group" id="list-tab" role="tablist">
+            <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list" href="#list-home" role="tab" aria-controls="username">General</a>
+            <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="domain">Domain</a>
+            <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>
+            <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
+            <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a>
+          </div>
+          <div style="margin-top: 60px">
+            <p style="font-weight: lighter;color: #dedede; font-size: 10px">
+              All personal information goes to our database securely handled by SQL lite.
+              <br>
+              Access our FAQ for any question
+              <br>
+              @ 2020 CollegeHub
+            </p>
+          </div>
         </div>
+        <div id="account-container-right">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-username-list">
+              <h3 style="color: #14213D"> General Account Settings</h3>
+              <hr>
+              <form class="forms account-forms">
+                <div class="form-row">
+                  <div class="sub-headers">
+                    <h6>Name</h6>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Full Name">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="sub-headers">
+                    <h6>Username</h6>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Username">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="sub-headers">
+                    <h6>Email</h6>
+                  </div>
+                  <div class="col">
+                    <input type="email" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="sub-headers">
+                    <h6>Password</h6>
+                  </div>
+                  <div class="col">
+                    <input type="email" class="form-control" placeholder="New Password">
+                  </div>
+                </div>
+                <div>
+                  <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
+                    * Password Must contain one upper case letter, a number and a symbol.
+                  </p>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+              <h3 style="color: #14213D"> Domain Settings</h3>
+              <hr>
+              <form class="forms">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Domain Name</label>
+                  <input type="email" class="form-control" id="domain" aria-describedby="domain" placeholder="Fullname@collegehub.com">
+                  <small class="form-text text-muted">Your domain will be unique.</small>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+              <h3 style="color: #14213D"> Template Settings</h3>
+              <hr>
+              <div id="template-setting-container">
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img-top template-setting-image" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img-top template-setting-image" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+              <form>
+                <div class="form-row align-items-center">
+                  <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                      <option selected>Current Membership</option>
+                      <option value="1">Premium</option>
+                      <option value="2">Standard</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="list-schedule" role="tabpanel" aria-labelledby="list-schedule-list">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Scheduler</h5>
+                  <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="80" width="80" /></p>
+                  <a href="#" class="btn btn-outline-danger">Coming Soon</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
-        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
+      <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
         background-size: 100%;
         background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
-            <span style="color: white">
-                @ 2020 CollegeHub
-            </span>
-            <span>
-                <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank" style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
-            </span>
-        </nav>
+        <span style="color: white">
+          @ 2020 CollegeHub
+        </span>
+        <span>
+          <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank" style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
+        </span>
+      </nav>
     </footer>
     <!--*******************************************CONTENT************************************************-->
-</div>
-<div id="mobile-body">
+  </div>
+  <div id="mobile-body">
     <div id="mobile-container">
-        <h1 style="font-weight: bold">CollegeHub</h1>
-        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
-        <h2 style="font-weight: lighter">COMING SOON</h2>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
-        <br>
-        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+      <h1 style="font-weight: bold">CollegeHub</h1>
+      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+      <h2 style="font-weight: lighter">COMING SOON</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
     </div>
-</div>
-<!-- JavaScript -->
-<!--<script src="script.js"></script>-->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="{% static 'collegeHub/script.js' %}"></script>
-<script>
+  </div>
+  <!-- JavaScript -->
+  <!--<script src="script.js"></script>-->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="{% static 'collegeHub/script.js' %}"></script>
+  <script>
     AOS.init();
-</script>
+  </script>
 </body>
 
 </html>

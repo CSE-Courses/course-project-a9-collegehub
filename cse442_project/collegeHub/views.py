@@ -5,11 +5,11 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
-from .forms import SignupForm, SpecificForm, SectionFrom, EducationFrom
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm
 
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -23,6 +23,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib.auth import models as auth_models
+
 
 # Create your views here.
 
@@ -107,7 +108,7 @@ class Signup(TemplateView):
     template_name = "collegehub/Signup.html"
 
 
-#@login_required
+# @login_required
 def profile(request):
     return render(request, 'templates/profile.html')
 
@@ -119,31 +120,49 @@ def create_experience(user):
 
 
 # @login_required
-def create_section(request):
+def create_section(request, pk):
     if request.method == 'POST':
-        form = SectionFrom(request.POST, request.FILES)
+        form = SectionForm(request.POST, request.FILES)
         if form.is_valid():
+
             name = form.data.get('name')
-            form.save()
-            return JsonResponse({'name': name, 'fail': False}, status=200)
+            new_section = form.save()
+
+            experience = get_object_or_404(models.Experiences, pk=pk)
+            new_section.experiences = experience
+            new_section.save()
+
+            return JsonResponse({'name': name, 'fail': False, 'section_pk': new_section.pk}, status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
     else:
         return
 
 
+def passer(request):
+    pass
+
+
 # @login_required
-def create_specific(request):
+def create_specific(request, pk):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.data.get('image')
             description = form.data.get('description')
             bullet_section = form.data.get('bullet_section')
-            section = form.data.get('section')
-            form.save()
+            position = form.data.get('position')
+            company = form.data.get('company')
+            link = form.data.get('link')
+            new_specific = form.save()
+
+            section = get_object_or_404(models.Section, pk=pk)
+            new_specific.section = section
+            new_specific.save()
+
             return JsonResponse(
-                {'description': description, 'bullet_section': bullet_section, 'section': section, 'fail': False},
+                {'position': position, 'company': company,'link': link, 'description': description, 'bullet_section': bullet_section,
+                 'section_pk': section.pk, 'fail': False, 'experience_pk': new_specific.pk},
                 status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
@@ -156,7 +175,7 @@ def create_specific(request):
 # @login_required
 def create_education(request):
     if request.method == 'POST':
-        form = EducationFrom(request.POST, request.FILES)
+        form = EducationForm(request.POST, request.FILES)
         print(form.is_valid())
         if form.is_valid():
             image = form.data.get('image')
@@ -170,9 +189,9 @@ def create_education(request):
                 {'description': description, 'location': location, 'certification_name': certification_name,
                  'month': month, 'year': year, 'fail': False}, status=200)
         else:
-            form = EducationFrom()
+            form = EducationForm()
     else:
-        form = EducationFrom()
+        form = EducationForm()
     return JsonResponse({}, status=200)
 
 
@@ -193,6 +212,9 @@ class Index(DetailView):
         context['user_profile'] = userProfile
         experience = userProfile.experience
         context['experience'] = experience
+        context['sectionForm'] = SectionForm()
+        context['specificForm'] = SpecificForm()
+        # context['educationForm'] = EducationForm()
         return context
 
 
@@ -205,6 +227,8 @@ class Index(DetailView):
 class Home(TemplateView):
     template_name = 'collegeHub/home.html'
 
+class temp1(TemplateView):
+    template_name = 'collegeHub/temp_1.html'
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
@@ -237,21 +261,9 @@ class test_page(TemplateView):
     template_name = 'collegeHub/test.html'
 
     def get(self, request):
-        secForm = SectionFrom(request.POST or None)
-        specForm = SpecificForm(request.POST or None)
-        eduForm = EducationFrom(request.POST or None)
+        secForm = SectionForm()
+        specForm = SpecificForm()
+        eduForm = EducationForm()
         context = {'sectionForm': secForm, 'specificForm': specForm, 'educationForm': eduForm}
         return render(request, 'collegeHub/test.html', context)
-
-    def post(self, request):
-        form = SectionFrom(request.POST, request.FILES)
-        if form.is_valid():
-            return create_section(request)
-        form = SpecificForm(request.POST, request.FILES)
-        if form.is_valid():
-            return create_specific(request)
-        form = EducationFrom(request.POST, request.FILES)
-        if form.is_valid():
-            return create_education(request)
-        return
 
