@@ -16,6 +16,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('specific', views.passer, name='specific-url'),
     path('test/', views.test_page.as_view(), name='test'),
+    path('temp1/', views.temp1.as_view(), name='temp1'),
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),

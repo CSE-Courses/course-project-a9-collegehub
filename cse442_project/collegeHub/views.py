@@ -227,6 +227,8 @@ class Index(DetailView):
 class Home(TemplateView):
     template_name = 'collegeHub/home.html'
 
+class temp1(TemplateView):
+    template_name = 'collegeHub/temp_1.html'
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
