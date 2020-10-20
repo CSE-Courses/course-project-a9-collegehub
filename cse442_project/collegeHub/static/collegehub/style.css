@@ -485,18 +485,19 @@ html {
             padding-top: 20px;
         }
         #experience{
-            padding: 10px 150px 10px 150px;
+            padding: 10px 100px 10px 100px;
         }
-        #experience-container{
+        #experience-card-container{
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             padding-top: 20px;
         }
-        #experience-container > div{
+        #experience-card-container > div{
             margin: 15px;
         }
+
         #projects{
             padding: 10px 50px 10px 50px;
         }
@@ -596,6 +597,68 @@ html {
             margin: -14vh auto 3vh;
             border-radius: 50%;
             border: 3px solid white;
+        }
+        .sub-section-heading{
+            width:100%;
+            display: flex;
+            margin-left: 3px;
+            align-items: center;
+        }
+        .sub-section-heading-text{
+            padding: 0;
+            margin: 0;
+        }
+        #experience-container{
+            width: 100%;
+        }
+        #experience-container > div{
+            margin: 15px;
+        }
+        .sub-section-header{
+            display: flex;
+            justify-content: space-between;
+
+            padding: 5px;
+        }
+        .sub-section{
+            border: #dedede 1px solid;
+            border-radius: 0.5rem;
+            padding: 5px;
+        }
+        .sub-section-button{
+            display: inline-block;
+            font-weight: 200;
+            color: #212529;
+            text-align: center;
+            -webkit-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: none;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
+        .sub-section-container{
+
+        }
+        .specific{
+            margin: 5px;
+        }
+        .form-group input{
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
         }
     }
 

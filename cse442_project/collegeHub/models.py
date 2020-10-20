@@ -38,22 +38,32 @@ class UserProfile(models.Model):
 class Experiences(models.Model):
     profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE, unique=True, null=True, related_name='experience')
 
+    def __str__(self):
+        return self.profile.__str__()
+
 
 class Section(models.Model):
     name = models.CharField(default='Section', max_length=30)
-    experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section')
+    experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section', null=True)
+
+    def __str__(self):
+        return self.experiences.__str__() + ':  ' + self.name
 
 
 class Specific(models.Model):
-    title = models.CharField(default='Experience', max_length=50)
+    position = models.CharField(default='', max_length=50)
+    company = models.CharField(default='', max_length=50, blank=True, null=True)
     image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
     description = models.CharField(default='This is what I did', max_length=2000)
     bullet_section = models.CharField(default='Bullet, points, are, great', max_length=200)
-    link = models.URLField(default='')
-    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='specific')
+    link = models.URLField(default='', blank=True)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='specific', null=True)
 
     def get_bullet_list(self):
         return self.bullet_section.split(', ')
+
+    def __str__(self):
+        return self.section.__str__() + ':  ' + self.position
 
 
 class Education(models.Model):
@@ -64,3 +74,6 @@ class Education(models.Model):
     month = models.CharField(default='01', max_length=2)
     year = models.CharField(default='9999', max_length=4)
     profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education')
+
+    def __str__(self):
+        return self.profile.__str__() + ':  ' + self.certification_name
