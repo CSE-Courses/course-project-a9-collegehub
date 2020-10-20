@@ -85,7 +85,7 @@
 {#                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">#}
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1"> {{specific.position}} </h5>
-                                    {% if specific.company != '' %}
+                                    {% if specific.company != None %}
                                         <h7 class="mt-0 mb-1">{{specific.company}}</h7>
                                     {% endif %}
                                     <p style="margin-bottom: 3px">
