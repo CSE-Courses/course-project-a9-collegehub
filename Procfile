@@ -1,0 +1,1 @@
+web: gunicorn cse442_project.wsgi 
