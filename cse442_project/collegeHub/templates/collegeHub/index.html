@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <!--logo icon / favicon-->
     <!--      <link rel="icon" href="images/logo.png">-->
-    <link rel="icon" href="{% static 'collegehub/images/favicon.ico' %}" type="image/icon type"/>
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
     <title>Name | CollegeHub</title>
 </head>
 
@@ -170,13 +170,12 @@
                         </div>
                         <div class="modal-body">
                            <h1> Education Test </h1>
-<form method="post">
-    {% csrf_token %}
-    {{ educationForm.as_p }}
-    <button type="submit" id="submit-education-test">Upload</button>
-</form>
+                            <form method="post" id="education-form">
+                                {% csrf_token %}
+                                {{ educationForm.as_p }}
+                                <button type="submit"> Upload </button>
+                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -213,7 +212,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                   <h3> add form for eddit</h3>
+                                   <h3> add form for edit</h3>
                                 </div>
 
                             </div>
@@ -307,8 +306,10 @@
                 <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>
             </div>
             <div class="ellipse-container">
-                <button type="button" data-toggle="modal" data-target="#experience_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+                <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
+
+            {# ********** RENAME TOPIC POP UP **********#}
             <div class="modal fade" id="experience_rename_section" tabindex="-1" aria-labelledby="experience_rename_sectionLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -331,17 +332,26 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="experience_add_card" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+            {# ********** ADD SECTION POP UP **********#}
+            <div class="modal fade" id="experience_add_subsection" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="experience_add_cardLabel">Add Experience card</h5>
+                            <h5 class="modal-title" id="experience_add_cardLabel">Add a Section to Experience</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1> special form</h1>
+{#                            <h1> Create a Section </h1>#}
+                            <form method="post" id="section-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="id_position" class="col-form-label">Type of Experience: </label>
+                                        {{ sectionForm.name }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
                         </div>
 
                     </div>
@@ -550,7 +560,146 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+
 <script src="{% static 'collegeHub/script.js' %}"></script>
+<script>
+    const sectionForm = document.getElementById('section-form');
+
+    sectionForm.addEventListener("submit", submitSectionHandler);
+    function submitSectionHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-section' pk=experience.pk %}',
+            data: $("#section-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    try {
+                        document.getElementById('no-section').remove();
+                    }catch {}
+                    var section = '<div class="sub-section">\n' +
+                        '            <div class="sub-section-header">\n' +
+                        '                 <div class="sub-section-heading">\n' +
+                        '                    <h4 class="sub-section-heading-text" >\n' +
+                                                response.name +
+                        '                    </h4>\n' +
+                        '                </div>\n' +
+                        '                <button type="button" data-toggle="modal" data-target="#add-experience-specific-' + response.section_pk  + '" class="sub-section-button"><i class="fas fa-plus"></i></button>\n' +
+                        '            </div>\n' +
+                        '            <div class="modal fade" id="add-experience-specific-' + response.section_pk  + '" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">\n' +
+                        '                <div class="modal-dialog">\n' +
+                        '                    <div class="modal-content">\n' +
+                        '                        <div class="modal-header">\n' +
+                        '                            <h5 class="modal-title" id="add-experience-specificLabel">Add an ' + response.name  + ' </h5>\n' +
+                        '                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                        '                                <span aria-hidden="true">&times;</span>\n' +
+                        '                            </button>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="modal-body">\n' +
+                        '\n' +
+                        '                            <form method="post" id="specific-form-' + response.section_pk  + '"  class="specific-form">\n' +
+                        '                                {% csrf_token %}\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_position" class="col-sm-2 col-form-label">Position: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.position }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Company: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.company }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group">\n' +
+                        '                                    <label for="id_company" class="col-form-label">Description: </label>\n' +
+                        '                                    {{ specificForm.description }}\n' +
+                        '                                </div>\n' +
+                        '                                <div class="form-group row">\n' +
+                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Link: </label>\n' +
+                        '                                    <div class="col-sm-10">\n' +
+                        '                                        {{ specificForm.link }}\n' +
+                        '                                    </div>\n' +
+                        '                                </div>\n' +
+                        '                              <button type="submit" class="btn btn-primary specific-form-submit">Add</button>\n' +
+                        '\n' +
+                        '                            </form>\n' +
+                        '\n' +
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '            <div class="sub-section-container" id="sub-section-container">\n' +
+                        '                <ul id="sub-section-list-' + response.section_pk +'" class="list-unstyled">\n' +
+                        '                            <li style="background-color: transparent" class="card" id="no-specific">\n' +
+                        '                              <div class="card-body">\n' +
+                        '                                Click on + to add a(n) ' + response.name  + '\n' +
+                        '                              </div>\n' +
+                        '                            </li>\n' +
+                        '                </ul>\n' +
+                        '            </div>\n' +
+                        '        </div>';
+
+                     $("#experience-container").append(section);
+                     var elem_id = "specific-form-" + response.section_pk;
+
+                     var newForm = document.getElementById(elem_id);
+                     newForm.addEventListener("submit", submitSpecificHandler);
+
+                }
+            }
+        })
+    }
+    var specificForms = document.getElementsByClassName("specific-form");
+      for (i = 0; i < specificForms.length; i++) {
+        specificForms[i].addEventListener("submit", submitSpecificHandler);
+      }
+
+    {#$(document).on('submit', 'form.specific-form', submitSpecificHandler);#}
+    function submitSpecificHandler(e){
+        e.preventDefault();
+        var form_id = this.id;
+        var sec_pk = form_id.substring('specific-form-'.length);
+        var url = '{% url 'specific-url' %}/'  + sec_pk;
+        console.log('Test: ' + form_id +' '+ sec_pk+ ' : '+url);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#'+form_id).serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+
+                    try {
+                        document.getElementById('no-specific').remove();
+                     }catch {}
+
+                    var specific = '<li class="media" style="margin: 10px 10px 18px 10px">\n';
+                        {#specific + '                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">\n' +#}
+                        specific += '<div class="media-body">\n';
+                        specific += ' <h5 class="mt-0 mb-1"> '+ response.position +'</h5>\n';
+                        if (response.company != '' && response.company != 'None'){
+                            specific += '<h7 class="mt-0 mb-1">'+ response.company +'</h7>\n';
+                        }
+                         specific += '<p style="margin-bottom: 3px">\n' + response.description +'\n'+ '</p>\n';
+                        if (response.link != ''){
+                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger">Link</a>\n';
+                            }
+                        specific += '</div>\n' + '</li>';
+
+                $("#sub-section-list-"+sec_pk).append(specific);
+
+                }
+            }
+        })
+    }
+
+
+</script>
 </body>
 
 </html>
