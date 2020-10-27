@@ -10,11 +10,13 @@ from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm
-
+from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -55,7 +57,7 @@ def register(user_request):
             return redirect(reverse('emailed'))  # add registration confirmation html
     else:
         form = SignupForm()
-        return render(user_request, 'collegeHub/registerTest.html', {'form': form})
+        return render(user_request, 'collegeHub/Signup.html', {'form': form})
 
 
 def activate(request, uidb64, token):
@@ -68,6 +70,13 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+
+        new_user_profile = UserProfile(user = user)
+        new_user_profile.save()
+        
+        new_user_experience = Experiences(profile = new_user_profile)
+        new_user_experience.save()
+
         # return redirect('home')
         return redirect(reverse('confirmed'))
     else:
@@ -104,8 +113,11 @@ class Account(DetailView):
         return context
 
 
-class Signup(TemplateView):
-    template_name = "collegehub/Signup.html"
+# class Signup(CreateView):
+#     form_class = SignupForm
+#     success_url = reverse_lazy('gsplit-login')
+
+#     template_name = "collegehub/Signup.html"
 
 
 # @login_required
@@ -259,9 +271,25 @@ class Settings(DetailView):
         return context
 
 
-class Login(TemplateView):
-    template_name = 'collegeHub/login.html'
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password= password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"Logged in")
+                print(request.user.username)
+                return redirect('index', username=request.user.username)
+            else:
+                messages.error(request, "Not a valid username or password. Please try again or confirm your account.")
+        else:
+             messages.error(request, "Not a valid username or password")
 
+    form = AuthenticationForm()
+    return render(request,'collegeHub/login.html', {"form":form})
 
 class test_page(TemplateView):
     template_name = 'collegeHub/test.html'

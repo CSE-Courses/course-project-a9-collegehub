@@ -30,7 +30,7 @@
                 </div>
                 <hr>
                 <div>
-                    <form>
+                    {% comment %} <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input style="background-color: #f0f0f0; border: none" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -44,7 +44,13 @@
                             <a href="#" style="padding: 0; margin: 0; color: #FCA311">Forgot your username or password?</a>
                         </div>
                         <button type="submit" style="background-color: #FCA311; color: #14213D; border-radius: 1.5rem" class="btn">Sign In</button>
-                    </form>
+                    </form> {% endcomment %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Login" class="btn btn-warning">
+            </form>
+
                 </div>
                 <br>
                 <br>
