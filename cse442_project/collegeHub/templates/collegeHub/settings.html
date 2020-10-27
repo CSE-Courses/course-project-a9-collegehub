@@ -27,11 +27,12 @@
             <div class="card mb-3" style="background-color: #E5E5E5; box-shadow: 30px 0 30px 0 lightgrey; border: none">
                 <div class="row no-gutters">
                     <div class="col-md-5">
-                        <img src="../../static/collegehub/images/preview.jpg" id="website-preview" alt="Website preview">
+                        <img src="../../static/collegehub/images/tp0-sample.png" id="website-preview" alt="Website preview">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Fullname.collegehub</b></h5>
+                          <a href="{% url 'index' username=user_profile.user %}"><h5 class="card-title"><b><span> {{ user_profile.user }}</span>.collegeHub</b></h5></a>
+
                             <p class="card-text">I am a software engineer blah bah blah, some few lines from about.</p>
                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
@@ -39,16 +40,16 @@
                 </div>
             </div>
             <hr>
-            <h1 id="template-heading" style="text-align: center; font-weight: lighter"> Templates</h1>
+            <h1 id="template-heading" style="text-align: center; font-weight: lighter"> Template Store</h1>
             <div id="template-container">
                 <div class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img" alt="...">
+                            <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <a href="{% url 'temp1' %}"><h5 class="card-title"> <b>Template Name </b></h5></a>
+                                <a href=""><h5 class="card-title"> <b>Default Template </b></h5></a>
                                 <p class="card-text">Shades:</p>
                                 <div class="shades">
                                     <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +75,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title"> <b>Template Name </b></h5>
+                              <a href="{% url 'temp1' %}"><h5 class="card-title"> <b>Template II</b></h5></a>
                                 <p class="card-text">Shades:</p>
                                 <div class="shades">
                                     <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +96,7 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <img src="../../static/collegehub/images/vertical_template.jpg" class="card-img" alt="...">
+                            <img src="../../static/collegehub/images/tp1-sample.png" class="card-img" alt="...">
                         </div>
                     </div>
                 </div>
