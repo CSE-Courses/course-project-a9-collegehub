@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('section/<int:pk>', views.create_section, name='create-section'),
     path('specific/<int:pk>', views.create_specific, name='create-specific'),
-    path('education', views.create_education, name='create-education'),
+    path('education/<int:pk>', views.create_education, name='create-education'),
     path('profile/', views.profile, name='profile'),
     path('register/', views.register, name='register'),
     path('specific', views.passer, name='specific-url'),

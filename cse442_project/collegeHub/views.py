@@ -173,23 +173,29 @@ def create_specific(request, pk):
 
 
 # @login_required
-def create_education(request):
+def create_education(request, pk):
     if request.method == 'POST':
         form = EducationForm(request.POST, request.FILES)
-        print(form.is_valid())
+        print('Form\'s valid:', form.is_valid())
         if form.is_valid():
-            image = form.data.get('image')
-            location = form.data.get('location')
+            # image = form.data.get('image')
+            institution = form.data.get('institution')
             certification_name = form.data.get('certification_name')
             description = form.data.get('description')
             month = form.data.get('month')
             year = form.data.get('year')
-            form.save()
+            new_education = form.save()
+
+            userprofile = get_object_or_404(models.UserProfile, pk=pk)
+            print('USER:', userprofile)
+            new_education.profile = userprofile
+            new_education.save()
+
             return JsonResponse(
-                {'description': description, 'location': location, 'certification_name': certification_name,
+                {'description': description, 'institution': institution, 'certification_name': certification_name,
                  'month': month, 'year': year, 'fail': False}, status=200)
         else:
-            form = EducationForm()
+            return JsonResponse({'fail': True}, status=200)
     else:
         form = EducationForm()
     return JsonResponse({}, status=200)
@@ -214,7 +220,7 @@ class Index(DetailView):
         context['experience'] = experience
         context['sectionForm'] = SectionForm()
         context['specificForm'] = SpecificForm()
-        # context['educationForm'] = EducationForm()
+        context['educationForm'] = EducationForm()
         return context
 
 

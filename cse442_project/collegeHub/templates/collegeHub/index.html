@@ -132,33 +132,33 @@
         <section id="education">
             <div class="section-heading">
                 <h1 id="education-heading-text">Education</h1>
-                <button type="button" class="option-button"  data-toggle="modal" data-target="#edu_rename_section"><i class="fas fa-pencil-alt"></i></button>
+{#                <button type="button" class="option-button"  data-toggle="modal" data-target="#edu_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
                 <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
-            <div class="modal fade" id="edu_rename_section" tabindex="-1" aria-labelledby="edu_rename_sectionLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="edu_rename_sectionLabel">Rename Section</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form onsubmit="return false">
-                                <div class="form-group">
-                                    <label for="edu_new_name">New Name</label>
-                                    <input type="text" class="form-control" id="edu_new_name" aria-describedby="emailHelp">
-                                </div>
-                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('education-heading-text','edu_new_name')">Rename</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+{#            <div class="modal fade" id="edu_rename_section" tabindex="-1" aria-labelledby="edu_rename_sectionLabel" aria-hidden="true">#}
+{#                <div class="modal-dialog">#}
+{#                    <div class="modal-content">#}
+{#                        <div class="modal-header">#}
+{#                            <h5 class="modal-title" id="edu_rename_sectionLabel">Rename Section</h5>#}
+{#                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                                <span aria-hidden="true">&times;</span>#}
+{#                            </button>#}
+{#                        </div>#}
+{#                        <div class="modal-body">#}
+{#                            <form onsubmit="return false">#}
+{#                                <div class="form-group">#}
+{#                                    <label for="edu_new_name">New Name</label>#}
+{#                                    <input type="text" class="form-control" id="edu_new_name" aria-describedby="emailHelp">#}
+{#                                </div>#}
+{#                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('education-heading-text','edu_new_name')">Rename</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             <div class="modal fade" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -180,77 +180,39 @@
                 </div>
             </div>
             <div id="education-container">
-                <div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="{% static 'collegehub/images/preview.jpg' %}" class="card-img" alt="edu-logo">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="dropdown ">
-                                <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="uni-Button">
-                                    <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>
-                                    <button class="dropdown-item"  onclick="removeme('uni')">Remove</button>
-                                </div>
-                            </div>
-                            <div class="card-body" >
-                                <h5 id="uniname" class="card-title">University at Buffalo</h5>
-                                <p id="major" class="card-text">Major: Computer Science</p>
-                                <p id="year" class="card-text"><small class="text-muted">2021</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="edit_card" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="edit_cardLabel">Add Education card</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                   <h3> add form for edit</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% include 'collegeHub/education.html' %}
             </div>
         </section>
         <section id="skills">
             <div class="section-heading">
                 <h1 id="skills-heading-text">Skills</h1>
-                <button type="button" class="option-button"  data-toggle="modal" data-target="#skills_rename_section"><i class="fas fa-pencil-alt"></i></button>
+{#                <button type="button" class="option-button"  data-toggle="modal" data-target="#skills_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
                 <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
-            <div class="modal fade" id="skills_rename_section" tabindex="-1" aria-labelledby="skills_rename_sectionLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="skills_rename_sectionLabel">Rename Section</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form onsubmit="return false">
-                                <div class="form-group">
-                                    <label for="skills_new_name">New Name</label>
-                                    <input type="text" class="form-control" id="skills_new_name" aria-describedby="emailHelp">
-                                </div>
-                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('skills-heading-text','skills_new_name')">Rename</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+{#            <div class="modal fade" id="skills_rename_section" tabindex="-1" aria-labelledby="skills_rename_sectionLabel" aria-hidden="true">#}
+{#                <div class="modal-dialog">#}
+{#                    <div class="modal-content">#}
+{#                        <div class="modal-header">#}
+{#                            <h5 class="modal-title" id="skills_rename_sectionLabel">Rename Section</h5>#}
+{#                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                                <span aria-hidden="true">&times;</span>#}
+{#                            </button>#}
+{#                        </div>#}
+{#                        <div class="modal-body">#}
+{#                            <form onsubmit="return false">#}
+{#                                <div class="form-group">#}
+{#                                    <label for="skills_new_name">New Name</label>#}
+{#                                    <input type="text" class="form-control" id="skills_new_name" aria-describedby="emailHelp">#}
+{#                                </div>#}
+{#                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('skills-heading-text','skills_new_name')">Rename</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -303,35 +265,35 @@
         <section id="experience">
             <div class="section-heading">
                 <h1 id="experience-heading-text">Experience</h1>
-                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>
+{#                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
                 <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
 
             {# ********** RENAME TOPIC POP UP **********#}
-            <div class="modal fade" id="experience_rename_section" tabindex="-1" aria-labelledby="experience_rename_sectionLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="experience_rename_sectionLabel">Rename Section</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form onsubmit="return false">
-                                <div class="form-group">
-                                    <label for="experience_new_name">New Name</label>
-                                    <input type="text" class="form-control" id="experience_new_name" aria-describedby="emailHelp">
-                                </div>
-                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('experience-heading-text','experience_new_name')">Rename</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+{#            <div class="modal fade" id="experience_rename_section" tabindex="-1" aria-labelledby="experience_rename_sectionLabel" aria-hidden="true">#}
+{#                <div class="modal-dialog">#}
+{#                    <div class="modal-content">#}
+{#                        <div class="modal-header">#}
+{#                            <h5 class="modal-title" id="experience_rename_sectionLabel">Rename Section</h5>#}
+{#                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                                <span aria-hidden="true">&times;</span>#}
+{#                            </button>#}
+{#                        </div>#}
+{#                        <div class="modal-body">#}
+{#                            <form onsubmit="return false">#}
+{#                                <div class="form-group">#}
+{#                                    <label for="experience_new_name">New Name</label>#}
+{#                                    <input type="text" class="form-control" id="experience_new_name" aria-describedby="emailHelp">#}
+{#                                </div>#}
+{#                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('experience-heading-text','experience_new_name')">Rename</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             {# ********** ADD SECTION POP UP **********#}
             <div class="modal fade" id="experience_add_subsection" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -366,33 +328,33 @@
         <section id="projects">
             <div class="section-heading">
                 <h1 id="projects-heading-text">Projects</h1>
-                <button type="button" class="option-button"  data-toggle="modal" data-target="#projects_rename_section"><i class="fas fa-pencil-alt"></i></button>
+{#                <button type="button" class="option-button"  data-toggle="modal" data-target="#projects_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
                 <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
-            <div class="modal fade" id="projects_rename_section" tabindex="-1" aria-labelledby="projects_rename_sectionLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="projects_rename_sectionLabel">Rename Section</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form onsubmit="return false">
-                                <div class="form-group">
-                                    <label for="projects_new_name">New Name</label>
-                                    <input type="text" class="form-control" id="projects_new_name" aria-describedby="emailHelp">
-                                </div>
-                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('projects-heading-text','projects_new_name')">Rename</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+{#            <div class="modal fade" id="projects_rename_section" tabindex="-1" aria-labelledby="projects_rename_sectionLabel" aria-hidden="true">#}
+{#                <div class="modal-dialog">#}
+{#                    <div class="modal-content">#}
+{#                        <div class="modal-header">#}
+{#                            <h5 class="modal-title" id="projects_rename_sectionLabel">Rename Section</h5>#}
+{#                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                                <span aria-hidden="true">&times;</span>#}
+{#                            </button>#}
+{#                        </div>#}
+{#                        <div class="modal-body">#}
+{#                            <form onsubmit="return false">#}
+{#                                <div class="form-group">#}
+{#                                    <label for="projects_new_name">New Name</label>#}
+{#                                    <input type="text" class="form-control" id="projects_new_name" aria-describedby="emailHelp">#}
+{#                                </div>#}
+{#                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('projects-heading-text','projects_new_name')">Rename</button>#}
+{#                            </form>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
             <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -697,6 +659,77 @@
             }
         })
     }
+
+
+    const educationForm = document.getElementById('education-form');
+educationForm.addEventListener("submit", submitEducationHandler);
+function submitEducationHandler(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '{% url 'create-education' pk=user_profile.pk %}',
+        data: $("#education-form").serialize(),
+        dataType: 'json',
+        success: function (response) {
+            if(!response.fail){
+                try {
+                    document.getElementById('no-education').remove();
+                }catch {}
+
+                var education = '<div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">\n' +
+                    '        <div class="row no-gutters">\n' +
+                    {#'            <div class="col-md-4">\n' +#}
+                    {#'                <img src="{% static \'collegehub/images/preview.jpg\' %}" class="card-img" alt="edu-logo">\n'#}
+                    {#'            </div>\n' +#}
+                    '            <div class="col-md-12">\n' +
+                    '                <div class="dropdown ">\n' +
+                    '                    <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
+                    '                        <i class="fas fa-ellipsis-v"></i>\n' +
+                    '                    </button>\n' +
+                    '                    <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
+                    '                        <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>\n' +
+                    '                        <button class="dropdown-item"  onclick="removeme(\'uni\')">Remove</button>\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="card-body" >\n';
+                    if (response.certification_name != ''){
+                        education += '<h5 id="major" class="card-title">'+ response.certification_name +'</h5>\n';
+                    }
+                    if (response.institution != ''){
+                        education += '<h6 id="uniname" class="card-text"> Institution: '+ response.institution + '</h6>\n';
+                    }
+                    if (response.institution != ''){
+                        education += '<h6 id="edu-descrption" class="card-text"> Description: '+ response.description + '</h6>\n';
+                    }
+
+                    education += '                    <p id="year" class="card-text"><small class="text-muted">Date: '+response.month+'/'+response.year+'</small></p>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <div class="modal fade" id="edit_card" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">\n' +
+                    '            <div class="modal-dialog">\n' +
+                    '                <div class="modal-content">\n' +
+                    '                    <div class="modal-header">\n' +
+                    '                        <h5 class="modal-title" id="edit_cardLabel">Add Education card</h5>\n' +
+                    '                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                    '                            <span aria-hidden="true">&times;</span>\n' +
+                    '                        </button>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="modal-body">\n' +
+                    '                       <h3> add form for edit</h3>\n' +
+                    '                    </div>\n' +
+                    '\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </div>';
+
+                $("#education-container").append(education);
+
+            }
+        }
+    })
+}
 
 
 </script>
