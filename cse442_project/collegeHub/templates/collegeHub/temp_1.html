@@ -83,8 +83,28 @@
               <div>
                 <h1> Education</h1>
               </div>
+              <div class="ellipse-container temp1-add-button">
+                <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+              </div>
               <hr>
+
+
               <div id="education-body">
+                <div class="modal fade" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Specific Form</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <ul class="list-unstyled">
                   <li class="media">
                     <img src="{% static 'collegehub/images/UB.jpg' %}" class="mr-3" alt="...">
@@ -109,8 +129,27 @@
               <div>
                 <h1> Skills </h1>
               </div>
+              <div class="ellipse-container temp1-add-button">
+                <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+              </div>
               <hr>
               <div class="skills-body">
+                <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="skills_add_cardLabel">Add Skills card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h1> special form</h1>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
                   <div class="card-header">Skill name</div>
                 </div>
@@ -125,12 +164,36 @@
             </div>
           </div>
           <div class="tab-pane" id="Experience" role="tabpanel">
+
             <div id="experience-container">
-              <div>
-                <h1> Experience </h1>
+              <br>
+              <h1> Experience </h1>
+
+
+              <div class="ellipse-container temp1-add-button">
+                <button type="button" data-toggle="modal" data-target="#experience_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
               </div>
+
               <hr>
               <div class="experience-body">
+
+                {# ********** ADD SECTION POP UP **********#}
+                <div class="modal fade" id="experience_add_card" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="experience_add_cardLabel">Add an Experience</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Specific Form</p>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                 <ul class="list-unstyled">
                   <li class="media">
                     <img src="{% static 'collegehub/images/work.png' %}" class="mr-3 work" alt="...">
@@ -195,12 +258,29 @@
           </div>
           <div class="tab-pane" id="Projects" role="tabpanel">
             <div id="project-container">
-                   <div>
-                        <h1> Projects </h1>
-                    </div>
-                  
+
+                      <h1> Projects </h1>
+              <div class="ellipse-container temp1-add-button">
+                <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+              </div>
               <hr>
                   <div class="project-body">
+                <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="projects_add_cardLabel">Add Projects card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h1> special form</h1>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
 
 
@@ -244,9 +324,27 @@
                    <div>
                         <h1> Contact </h1>
                     </div>
-                  
+              <div class="ellipse-container temp1-add-button">
+                <button type="button" data-toggle="modal" data-target="#contact_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+              </div>
               <hr>
                   <div class="experience-body">
+                <div class="modal fade" id="contact_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="projects_add_cardLabel">Add a conatct information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h1> special form</h1>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
 
 
@@ -285,7 +383,8 @@
                   </div>
 
                 </div>
-                    </div>
+                    
+              </div>
             </div>
           </div>
         </div>
