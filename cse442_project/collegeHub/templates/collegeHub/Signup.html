@@ -34,7 +34,7 @@
                         to recruiters</h6>
                 </div>
                 <br>
-                <form>
+                {% comment %} <form>
                     <div class="form-row" style="margin-bottom: 20px">
                         <div class="col">
                             <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
@@ -57,7 +57,14 @@
                     <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
                             class="btn">Sign Up
                     </button>
-                </form>
+                </form> {% endcomment %}
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Sign Up" class="btn btn-warning">
+            </form>
+
                 <br>
                 <div>
                     <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
