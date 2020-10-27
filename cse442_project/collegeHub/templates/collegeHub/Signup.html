@@ -20,11 +20,12 @@
 <body>
 <div id="desktop">
     <!--*************************************************CONTENT************************************************-->
-    <div id="Outer-timeline">
+    <div id="Outer-timeline-signup">
         <div id="signup-container">
             <div id="signup-form">
                 <div style="display: flex; align-items: center;">
-                    <img src="../../static/collegehub/images/CH.png" style="width: 50px; height: 50px; margin-right: 20px">
+                    <img src="../../static/collegehub/images/CH.png"
+                         style="width: 50px; height: 50px; margin-right: 20px">
                     <h1 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h1>
                 </div>
                 <hr>
@@ -34,43 +35,52 @@
                         to recruiters</h6>
                 </div>
                 <br>
-                {% comment %} <form>
+                <form method="POST">
+                    {% csrf_token %}
                     <div class="form-row" style="margin-bottom: 20px">
                         <div class="col">
-                            <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                                   placeholder="First name">
+                            {{ form.first_name }}
                         </div>
                         <div class="col">
-                            <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                                   placeholder="Last name">
+                            {{ form.last_name }}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                               placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                    <div class="form-sub-box">
+                        {{ form.username }}
+                        <small id="emailHelp" class="form-text text-muted">Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.</small>
                     </div>
-                    <div class="form-group">
-                        <input style="background-color: #f0f0f0; border: none " type="password" class="form-control"
-                               placeholder="Password (Min. 8 Characters)" aria-label="Password"
-                               aria-describedby="basic-addon1">
+                    <div class="form-sub-box">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-sub-box">
+                        {{ form.password1 }}
+                        <small id="emailHelp" style="color: #FCA311;" class="form-text">* Password Must be Min. 8 characters and contain one upper case letter, a number
+                            and a symbol.</small>
+                    </div>
+                    <div class="form-sub-box">
+                        {{ form.password2 }}
+                         <small id="emailHelp" class="form-text text-muted">
+                             Enter the same password as before, for verification.
+                         </small>
                     </div>
                     <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
                             class="btn">Sign Up
                     </button>
-                </form> {% endcomment %}
-
-            <form method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Sign Up" class="btn btn-warning">
-            </form>
-
+                </form>
                 <br>
-                <div>
-                    <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
-                        * Password Must contain one upper case letter, a number and a symbol.
-                    </p>
-                </div>
+<!--                <div>-->
+<!--                    <p style="font-weight: lighter;color: #FCA311; font-size: 15px">-->
+<!--                        * Your password can’t be too similar to your other personal information.-->
+<!--                        <br>-->
+<!--                        * Your password must contain at least 8 characters.-->
+<!--                        <br>-->
+<!--                        * Your password can’t be a commonly used password.-->
+<!--                        <br>-->
+<!--                        * Your password can’t be entirely numeric.-->
+<!--                        <br>-->
+<!--                    </p>-->
+<!--                </div>-->
                 <br>
                 <div>
                     <p style="font-weight: lighter;color: #dedede; font-size: 10px">
@@ -88,7 +98,8 @@
                 <div id="up">
                     <div style="display: flex; flex-wrap: wrap; padding: 70px 5vw 30px 5vw; justify-content: space-between; align-items: center; color: white">
                         <div class="feature-logo marg-20">
-                            <img src="../../static/collegehub/images/feature3-2.png" style="height: 100%; width: 100%" alt="feature">
+                            <img src="../../static/collegehub/images/feature3-2.png" style="height: 100%; width: 100%"
+                                 alt="feature">
                         </div>
                         <div class="feature-logo marg-20">
                             <img src="../../static/collegehub/images/feature2-2.png" style="height: 100%; width: 100%">

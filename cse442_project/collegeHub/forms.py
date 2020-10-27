@@ -18,21 +18,33 @@ class SignupForm(UserCreationForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["username"].label = "Username"
-        self.fields["email"].label = "Email address"
-        self.fields['first_name'].label = 'First Name'
-        self.fields['last_name'].label = 'Last Name'
+        self.fields["username"].widget.attrs['placeholder'] = "Username"
+        self.fields["username"].widget.attrs['id'] = "signup_Username"
+        self.fields["username"].widget.attrs['class'] = "form-control grey_field"
+
+        self.fields["email"].widget.attrs['placeholder'] = "Email address"
+        self.fields["email"].widget.attrs['class'] = "form-control grey_field"
+
+        self.fields['first_name'].widget.attrs['placeholder'] = 'First Name'
+        self.fields['first_name'].widget.attrs['class'] = 'form-control grey_field'
+
+        self.fields['last_name'].widget.attrs['placeholder'] = 'Last Name'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control grey_field'
+
+        self.fields['password1'].widget.attrs['placeholder'] = 'Password (Min. 8 Characters)'
+        self.fields['password1'].widget.attrs['class'] = 'form-control grey_field'
+
+        self.fields['password2'].widget.attrs['placeholder'] = 'Confirm Password'
+        self.fields['password2'].widget.attrs['class'] = 'form-control grey_field'
 
 
 class SpecificForm(forms.ModelForm):
     class Meta:
         model = Specific
         fields = ('position', 'company', 'description', 'link')
-        # fields = ('position', 'image', 'description', 'bullet_section', 'section', 'link')
 
 
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
-        # fields = ('image', 'institution', 'certification_name', 'description', 'month', 'year', 'profile')
         fields = ('institution', 'certification_name', 'description', 'month', 'year')

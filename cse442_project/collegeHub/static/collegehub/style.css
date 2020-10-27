@@ -371,21 +371,33 @@ html {
             object-fit: cover;
             overflow: hidden;
         }
+        #Outer-timeline-signup{
+            background-color: #ffffff;
+            height: 100%;
+        }
         #signup-container{
+            height: 100%;
             display: flex;
             justify-content: space-around;
         }
         #signup-form{
-            padding: 100px 150px 150px 150px;
+            padding: 50px 150px 0 150px;
             width: 60%;
         }
+        .grey_field{
+            border: none;
+            background-color: #f0f0f0;
+        }
+
         #signup-feature{
             width: 40%;
             text-align: center;
-
+        }
+        .form-sub-box{
+            margin-bottom: 1rem;
         }
         #back{
-            background-image: url("images/denys-nevozhai-JsdvKIcvAGo.jpg");
+            background-image: url("images/gabriel-izgi-cfQEO_1S0Rs.jpg");
             filter: blur(8px);
             height: 100%;
             z-index: -1;
@@ -395,7 +407,7 @@ html {
         }
         #up{
             position: absolute;
-            top: 50%;
+            top: 40%;
             left: 80%;
             width: 40%;
             transform: translate(-50%, -50%);
@@ -408,6 +420,23 @@ html {
         .marg-20{
             margin: 20px;
         }
+        #id_username{
+            border: none;
+            background-color: #f0f0f0;
+        }
+        #id_username:focus {
+            border-color: #FCA311;
+            box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
+        }
+        #id_password{
+            border: none;
+            background-color: #f0f0f0;
+        }
+        #id_password:focus {
+            border-color: #FCA311;
+            box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
+        }
+
         /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& FAQ PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
         #faq-container{
             padding: 120px;
