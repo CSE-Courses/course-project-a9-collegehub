@@ -68,12 +68,12 @@ class Specific(models.Model):
 
 class Education(models.Model):
     image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
-    location = models.CharField(default='NA', max_length=50, null=True)
-    certification_name = models.CharField(default='NA', max_length=50)
-    description = models.CharField(default='NA', max_length=280)
+    institution = models.CharField(default='', max_length=50, null=True)
+    certification_name = models.CharField(default='', max_length=50)
+    description = models.CharField(default='', max_length=280)
     month = models.CharField(default='01', max_length=2)
     year = models.CharField(default='9999', max_length=4)
-    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education')
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education', null=True, blank=True)
 
     def __str__(self):
         return self.profile.__str__() + ':  ' + self.certification_name

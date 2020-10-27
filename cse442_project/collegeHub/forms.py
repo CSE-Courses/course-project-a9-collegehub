@@ -27,4 +27,5 @@ class SpecificForm(forms.ModelForm):
 class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
-        fields = ('image', 'location', 'certification_name', 'description', 'month', 'year', 'profile')
+        # fields = ('image', 'institution', 'certification_name', 'description', 'month', 'year', 'profile')
+        fields = ('institution', 'certification_name', 'description', 'month', 'year')
