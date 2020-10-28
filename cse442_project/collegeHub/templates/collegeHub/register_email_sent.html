@@ -1,13 +1,131 @@
-<!DOCTYPE html>
+{%  load static %}
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!--logo icon / favicon-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+    <title>Verify | CollegeHub</title>
 </head>
+
 <body>
-<h1> Email has been sent to your account for verification</h1>
-
-</form>
+<div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    <nav class="fixed-top" style="box-shadow: 0 2px 2px 0 #ced4da;display: flex; background: linear-gradient(to right, #E5E5E5, #FFFFFF, #E5E5E5) repeat;justify-content: space-between;padding: 0 20px 0 20px;height: 60px" >
+        <ul class="nav " style="align-items: center">
+            <li class="nav-item" >
+                <div style="width: 50px; height: 50px;">
+                    <!--                    <svg width="125" height="110" viewBox="0 0 125 110" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                    <!--                        <path d="M78.7038 101.398C62.042 109.888 47.2954 111.453 34.4641 106.095C29.8877 104.162 25.2784 100.842 20.6362 96.137C15.9941 91.4316 11.6301 85.0694 7.54414 77.0503C3.45823 69.0313 1.09556 61.2004 0.456147 53.5577C-0.139566 45.7804 0.949364 38.9967 3.72294 33.2064C9.22977 22.2076 18.2202 13.5302 30.6943 7.17432C34.2584 5.35836 37.8922 3.89965 41.5958 2.79819C45.254 1.60763 48.0885 0.892911 50.0992 0.654031L52.9816 0.363817L53.2616 1.90462C45.977 2.58604 38.6816 4.78811 31.3753 8.51083C21.9306 13.3231 15.6115 20.4149 12.4179 29.7862C9.9218 36.7819 9.94091 45.1896 12.4752 55.0093C13.8592 60.5892 16.3899 66.9877 20.0672 74.2048C23.7446 81.422 28.1742 87.5824 33.356 92.6862C38.4925 97.7009 43.1017 101.02 47.1838 102.644C51.355 104.222 55.7657 104.949 60.4159 104.824C65.0207 104.61 68.505 104.07 70.8687 103.202C73.2324 102.334 75.9735 101.106 79.0921 99.517C82.2997 97.8826 85.7494 95.7321 89.4411 93.0654C93.1328 90.3988 95.8672 88.2761 97.6441 86.6973L100.241 84.1954L101.323 85.3277C95.7774 91.1837 88.2376 96.5406 78.7038 101.398Z" fill="black"/>-->
+                    <!--                        <path d="M112.859 4.00596L124.811 4.00225L124.842 104.802L112.89 104.806L112.875 58.438L66.0755 58.4525L66.0899 104.821L54.1379 104.824L54.1066 4.02422L66.0586 4.02051L66.075 57.0125L112.875 56.998L112.859 4.00596Z" fill="black"/>-->
+                    <!--                    </svg>-->
+                    <img src="{% static 'collegehub/images/CH.png'  %}" style="width: 100%; height: 100%">
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: black; font-family: 'Helvetica Neue'; font-size: 27px" href="{% url 'home' %}">College Hub</a>
+            </li>
+        </ul>
+        <ul class="nav " style=" align-items: center">
+            <li class="nav-item" style=" font-size: 20px">
+                <a class="nav-link" style="color: black;font-weight: lighter;" href="{% url 'login' %}"><span> <i
+                        class="fas fa-sign-in-alt"> </i> </span>Log In</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link signup" style="color: white" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="outer_reg">
+        <div id="inner_reg" style="padding: 100px 100px 40px 100px;">
+            <div style="margin-top: 10px">
+                <svg width="80" height="65" viewBox="0 0 125 110" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M78.7038 101.398C62.042 109.888 47.2954 111.453 34.4641 106.095C29.8877 104.162 25.2784 100.842 20.6362 96.137C15.9941 91.4316 11.6301 85.0694 7.54414 77.0503C3.45823 69.0313 1.09556 61.2004 0.456147 53.5577C-0.139566 45.7804 0.949364 38.9967 3.72294 33.2064C9.22977 22.2076 18.2202 13.5302 30.6943 7.17432C34.2584 5.35836 37.8922 3.89965 41.5958 2.79819C45.254 1.60763 48.0885 0.892911 50.0992 0.654031L52.9816 0.363817L53.2616 1.90462C45.977 2.58604 38.6816 4.78811 31.3753 8.51083C21.9306 13.3231 15.6115 20.4149 12.4179 29.7862C9.9218 36.7819 9.94091 45.1896 12.4752 55.0093C13.8592 60.5892 16.3899 66.9877 20.0672 74.2048C23.7446 81.422 28.1742 87.5824 33.356 92.6862C38.4925 97.7009 43.1017 101.02 47.1838 102.644C51.355 104.222 55.7657 104.949 60.4159 104.824C65.0207 104.61 68.505 104.07 70.8687 103.202C73.2324 102.334 75.9735 101.106 79.0921 99.517C82.2997 97.8826 85.7494 95.7321 89.4411 93.0654C93.1328 90.3988 95.8672 88.2761 97.6441 86.6973L100.241 84.1954L101.323 85.3277C95.7774 91.1837 88.2376 96.5406 78.7038 101.398Z"
+                                  fill="black"/>
+                            <path d="M112.859 4.00596L124.811 4.00225L124.842 104.802L112.89 104.806L112.875 58.438L66.0755 58.4525L66.0899 104.821L54.1379 104.824L54.1066 4.02422L66.0586 4.02051L66.075 57.0125L112.875 56.998L112.859 4.00596Z"
+                                  fill="black"/>
+                </svg>
+            </div>
+            <div>
+                <h1 style="font-size: 5vw; font-family: 'Helvetica Neue'; font-weight:lighter; margin:-30px 0 0 0";>
+                    Verify your email address!
+                </h1>
+            </div>
+            <div>
+                <h2>
+                    <span style="color: #93d62b"><i class="far fa-check-circle"></i></span> A verification link has been sent to your email account
+                </h2>
+            </div>
+            <div style="text-align: center; margin-top: 10px; display: flex; flex-direction: column; flex-wrap: wrap; align-items: center;">
+                <h3>
+                  <i class="far fa-envelope"></i>  Please check your inbox to verify!
+                </h3>
+            </div>
+            <div>
+                <p style="font-weight: lighter;color: #dedede; font-size: 10px">
+                        All personal information goes to our database securely handled by SQL lite.
+                        <br>
+                        Access our FAQ for any question
+                        <br>
+                        @ 2020 CollegeHub
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
+        background-size: 100%;
+        background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
+            <span style="color: white">
+                @ 2020 CollegeHub
+            </span>
+            <span>
+                <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank" style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
+            </span>
+        </nav>
+    </footer>
+    <!--*******************************************CONTENT************************************************-->
+</div>
+<div id="mobile-body">
+    <div id="mobile-container">
+        <img src="../../static/collegehub/images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="{% static 'collegeHub/script.js' %}"></script>
 </body>
-
 </html>
