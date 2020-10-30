@@ -2,7 +2,7 @@ from django import forms
 from .models import Specific
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
-from .models import Specific, Section, Education
+from .models import Specific, Section, Education, Skill
 
 
 class SectionForm(forms.ModelForm):
@@ -48,3 +48,9 @@ class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         fields = ('institution', 'certification_name', 'description', 'month', 'year')
+
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ('name', )

@@ -42,8 +42,16 @@ class Experiences(models.Model):
         return self.profile.__str__()
 
 
+class Skill(models.Model):
+    name = models.CharField(default='', max_length=30)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='skill', null=True, blank=True)
+
+    def __str__(self):
+        return self.profile.__str__() + ':  ' + self.name
+
+
 class Section(models.Model):
-    name = models.CharField(default='Section', max_length=30)
+    name = models.CharField(default='', max_length=30)
     experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section', null=True)
 
     def __str__(self):

@@ -1,0 +1,13 @@
+{% if user_profile.skill.count == 0 %}
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-skill">
+              <div class="card-body">
+                    Click on + to add a skill
+              </div>
+        </li>
+{% endif %}
+
+{% for skill in user_profile.skill.all %}
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{skill.name}}</div>
+    </div>
+{% endfor %}
