@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
-from .forms import SignupForm, SpecificForm, SectionForm, EducationForm
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm
 from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -233,6 +233,7 @@ class Index(DetailView):
         context['sectionForm'] = SectionForm()
         context['specificForm'] = SpecificForm()
         context['educationForm'] = EducationForm()
+        context['skillForm'] = SkillForm()
         return context
 
 
@@ -240,6 +241,25 @@ class Index(DetailView):
 #     userProfile = models.UserProfile.objects.get(username=username)
 #     context = {'user_profile': userProfile, 'experience': userProfile.experience}
 #     return render(template_name='collegeHub/index.html', context=context)
+
+
+def create_skill(request, pk):
+    if request.method == 'POST':
+        form = SkillForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            skill_name = form.data.get('name')
+            new_skill = form.save()
+
+            user_profile = get_object_or_404(models.UserProfile, pk=pk)
+            new_skill.profile = user_profile
+            new_skill.save()
+
+            return JsonResponse({'name': skill_name, 'fail': False, 'skill_pk': new_skill.pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
 
 
 class Home(TemplateView):

@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education
+from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill
 from collegeHub.views import create_experience
 import requests
 # Create your tests here.
@@ -114,3 +114,30 @@ class EducationTest(TestCase):
                          self.userProfile.user.username)
 
 
+class SkillTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='testuser',
+                                        email='email@email.com',
+                                        password='password1234')
+        self.user.save()
+        self.userProfile = UserProfile.objects.create(user=self.user)
+        self.userProfile.save()
+
+    def test_skill_links_to_profile(self):
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+
+        # Can get experience from section
+        self.assertEqual(Skill.objects.filter(pk=1).get(pk=1).profile, self.userProfile)
+
+    def test_multiple_skill_to_one_profile(self):
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+
+        # Can get experience from section
+        self.assertEqual(Skill.objects.filter(pk=1).get(pk=1).profile.user.username,
+                         self.userProfile.user.username)
+        self.assertEqual(Skill.objects.filter(pk=2).get(pk=2).profile.user.username,
+                         self.userProfile.user.username)

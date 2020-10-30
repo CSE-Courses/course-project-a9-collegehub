@@ -125,7 +125,7 @@
             <div class="section-heading">
                 <h1>About</h1>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Vivamus viverra quis mauris sed tempus. A elit.
             </p>
         </section>
@@ -191,76 +191,38 @@
             <div class="ellipse-container">
                 <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
             </div>
-{#            <div class="modal fade" id="skills_rename_section" tabindex="-1" aria-labelledby="skills_rename_sectionLabel" aria-hidden="true">#}
-{#                <div class="modal-dialog">#}
-{#                    <div class="modal-content">#}
-{#                        <div class="modal-header">#}
-{#                            <h5 class="modal-title" id="skills_rename_sectionLabel">Rename Section</h5>#}
-{#                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
-{#                                <span aria-hidden="true">&times;</span>#}
-{#                            </button>#}
-{#                        </div>#}
-{#                        <div class="modal-body">#}
-{#                            <form onsubmit="return false">#}
-{#                                <div class="form-group">#}
-{#                                    <label for="skills_new_name">New Name</label>#}
-{#                                    <input type="text" class="form-control" id="skills_new_name" aria-describedby="emailHelp">#}
-{#                                </div>#}
-{#                                <button data-dismiss="modal"  type="submit" class="btn btn-primary" onclick="rename_section('skills-heading-text','skills_new_name')">Rename</button>#}
-{#                            </form>#}
-{#                        </div>#}
-{##}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+
+
             <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="skills_add_cardLabel">Add Skills card</h5>
+                            <h5 class="modal-title" id="skills_add_cardLabel">Add Skill card</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                           <h1> special form</h1>
+
+                           <form method="post" id="skill-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="id_position" class="col-form-label"> Skill Name: </label>
+                                        {{ skillForm.name }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+
                         </div>
 
                     </div>
                 </div>
             </div>
+
             <div id="skills-container">
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
-                <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header">Skill name</div>
-                </div>
+                {% include 'collegeHub/skills.html' %}
             </div>
+
         </section>
         <section id="experience">
             <div class="section-heading">
@@ -731,7 +693,32 @@ function submitEducationHandler(e){
     })
 }
 
+    const skillForm = document.getElementById('skill-form');
 
+    skillForm.addEventListener("submit", submitSkillHandler);
+    function submitSkillHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-skill' pk=user_profile.pk %}',
+            data: $("#skill-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+
+                    try {
+                        document.getElementById('no-skill').remove();
+                    }catch {}
+
+                    var skill = '<div class="card text-white bg-success mb-3" style="max-width: 18rem;">\n' +
+                        '        <div class="card-header">'+ response.name +'</div>\n    </div>';
+
+                    $("#skills-container").append(skill);
+
+                }
+            }
+        })
+    }
 </script>
 </body>
 
