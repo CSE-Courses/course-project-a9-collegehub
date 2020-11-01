@@ -73,7 +73,7 @@ def activate(request, uidb64, token):
 
         new_user_profile = UserProfile(user = user)
         new_user_profile.save()
-        
+
         new_user_experience = Experiences(profile = new_user_profile)
         new_user_experience.save()
 
@@ -248,6 +248,12 @@ class Home(TemplateView):
 class temp1(TemplateView):
     template_name = 'collegeHub/temp_1.html'
 
+class temp0(TemplateView):
+    template_name = 'collegeHub/temp_0.html'
+
+class temp2(TemplateView):
+    template_name = 'collegeHub/temp_2.html'
+
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
 
@@ -300,4 +306,3 @@ class test_page(TemplateView):
         eduForm = EducationForm()
         context = {'sectionForm': secForm, 'specificForm': specForm, 'educationForm': eduForm}
         return render(request, 'collegeHub/test.html', context)
-

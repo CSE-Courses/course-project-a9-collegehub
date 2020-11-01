@@ -17,6 +17,10 @@ urlpatterns = [
     path('specific', views.passer, name='specific-url'),
     path('test/', views.test_page.as_view(), name='test'),
     path('temp1/', views.temp1.as_view(), name='temp1'),
+    path('temp0/', views.temp0.as_view(), name='temp0'),
+    path('temp2/', views.temp2.as_view(), name='temp2'),
+
+
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
@@ -32,7 +36,7 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "collegeHub/password_reset_form.html"), name = "password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "collegeHub/password_reset_done.html"), name  = "password_reset_complete"),
- 
+
     path('<slug:username>/', views.Index.as_view(), name='index'),
 
 
