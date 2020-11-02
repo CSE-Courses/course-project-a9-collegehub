@@ -1,6 +1,27 @@
 /*DESKTOP*/
 body {
-    -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: "Helvetica";
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 601px) {
+  #desktop {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -8,78 +29,160 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    font-family: "Helvetica";
-}
+  }
 
-html {
-    margin: 0;
-    padding: 0;
+  #mobile-body {
+    display: none;
+  }
+
+  #Outer-timeline {
+    background-color: white;
     height: 100%;
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
+  }
+
+  section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section:nth-child(2n) {
+    background-color: #f7dad9;
+  }
+
+  section:nth-child(2n + 1) {
+    background-color: #fcf1f1;
+  }
+
+  .section-heading {
+    text-align: center;
+    width: 30%;
+    background-color: #c1c1c1;
+    /*height: 100%;*/
+  }
+
+  .section-container {
+    width: 70%;
+    padding: 30px;
+  }
+
+  .navigation {
+    background: #892cdc;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding: 0 30px 0 30px;
+  }
+
+  .nav-list {
+    list-style-type: none;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .nav-list li {
+    display: inline-block;
+    padding: 5px 10px 5px 10px;
+    margin: 0;
+    color: black;
+  }
+
+  .nav-list li a {
+    color: white;
+    text-decoration: none;
+    font-weight: lighter;
+  }
+
+  #about {
+    padding-top: 37px;
+    text-align: center;
+  }
+
+  .section-heading-text {
+    padding: 20%;
+    text-align: center;
+    color: white;
+  }
+
+  .section-heading {
+    background: #595b83;
+  }
+
+  #user-image {
+    height: 12rem;
+    width: 12rem;
+    z-index: 2;
+    margin: -14vh auto 3vh;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: absolute;
+    right: 45%;
+    top: 79%;
+  }
+
+  .education {
+    margin-top: 250px;
+    padding-top: 250px;
+  }
+
+  .education-card{
+    margin-top: 25%;
+    margin-left: 50px;
+  }
+
+  #education-body{
+    /* margin-top: 290px; */
+  }
+
+  #f_name {
+    position: absolute;
+    top: 75%;
+    right: 60%;
+  }
+
+  #l_name {
+    position: absolute;
+    top: 75%;
+    right: 30%;
+
+  }
+
+  #Contact{
+    /* padding: 50px; */
+  }
+
+  .FA_Header{
+      text-align: center;
+      margin-left: 17%;
+      margin-right: 10%;
+
+
+  }
+
+  footer{
+    padding-top: 30px;
+  }
 }
 
-    @media screen and (min-width: 601px) {
-        #desktop {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-        }
-
-        #mobile-body {
-            display: none;
-        }
-        #Outer-timeline {
-            background-color: white;
-            height: 100%;
-        }
-         section {
-            display: flex;
-             justify-content: space-between;
-        }
-
-        section:nth-child(2n) {
-            background-color: #9e9b9b29;
-        }
-
-        section:nth-child(2n + 1) {
-            background-color: white;
-        }
-        .section-heading{
-            text-align: center;
-            width: 30%;
-            background-color: #c1c1c1;
-            /*height: 100%;*/
-
-        }
-        .section-container{
-            width: 70%;
-            padding: 30px;
-        }
-    }
 /*MOBILE DEVICES*/
 @media screen and (max-width: 600px) {
-    #desktop {
-        display: none;
-    }
+  #desktop {
+    display: none;
+  }
 
-    #mobile-body {
-        background-color: #000000;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
+  #mobile-body {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
 
-    #mobile-container {
-        position: absolute;
-        top: 20%;
-        color: white;
-        width: 100%;
-        text-align: center;
-    }
+  #mobile-container {
+    position: absolute;
+    top: 20%;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
 }

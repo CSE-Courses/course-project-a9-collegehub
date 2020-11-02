@@ -276,6 +276,8 @@ class temp1(TemplateView):
 class temp2(TemplateView):
     template_name = 'collegeHub/temp_2.html'
 
+class temp3(TemplateView):
+    template_name = 'collegeHub/temp_3.html'
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
