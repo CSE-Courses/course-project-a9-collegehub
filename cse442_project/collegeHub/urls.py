@@ -7,6 +7,7 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
     path('faq/', views.FAQ.as_view(), name='faq'),
+    path('cal/', views.cal.as_view(), name='calendar'),
     # path('home/', views.Home.as_view(), name='home'),
 
     path('section/<int:pk>', views.create_section, name='create-section'),

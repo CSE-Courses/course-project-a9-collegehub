@@ -271,6 +271,9 @@ class temp1(TemplateView):
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
 
+class cal(TemplateView):
+    template_name = 'collegeHub/change_list.html'
+
 
 # @login_required
 class Settings(DetailView):
