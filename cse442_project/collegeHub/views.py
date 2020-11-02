@@ -10,7 +10,7 @@ from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm
-from .models import UserProfile, Experiences, Education
+from .models import UserProfile, Experiences, Education, IndividualScheduler
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -130,7 +130,6 @@ def create_experience(user):
     experiences = models.Experiences(profile=user)
     experiences.save()
 
-
 # @login_required
 def create_section(request, pk):
     if request.method == 'POST':
@@ -247,6 +246,9 @@ class Home(TemplateView):
 
 class temp1(TemplateView):
     template_name = 'collegeHub/temp_1.html'
+
+class calendar(TemplateView):
+    template_name = 'collegeHub/change_list.html'
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
