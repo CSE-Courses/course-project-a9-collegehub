@@ -35,7 +35,7 @@
                         to recruiters</h6>
                 </div>
                 <br>
-                <form method="POST">
+                <form  enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     {{  u_form }}
                     {{  p_form }}
