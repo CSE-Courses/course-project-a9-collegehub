@@ -37,37 +37,10 @@
                 <br>
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="form-row" style="margin-bottom: 20px">
-                        <div class="col">
-                            {{ form.first_name }}
-                        </div>
-                        <div class="col">
-                            {{ form.last_name }}
-                        </div>
-                    </div>
-                    <div class="form-sub-box">
-                        {{ form.username }}
-                        <small id="emailHelp" class="form-text text-muted">Required. 150 characters or fewer. Letters,
-                            digits and @/./+/-/_ only.</small>
-                    </div>
-                    <div class="form-sub-box">
-                        {{ form.email }}
-                    </div>
-                    <div class="form-sub-box">
-                        {{ form.password1 }}
-                        <small id="emailHelp" style="color: #FCA311;" class="form-text">* Password Must be Min. 8 characters and contain one upper case letter, a number
-                            and a symbol.</small>
-                    </div>
-                    <div class="form-sub-box">
-                        {{ form.password2 }}
-                         <small id="emailHelp" class="form-text text-muted">
-                             Enter the same password as before, for verification.
-                         </small>
-                    </div>
-                    {{ p_form }}
-                    <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
-                            class="btn">Sign Up
-                    </button>
+                    {{  u_form }}
+                    {{  p_form }}
+
+                    <input type="submit" value="Edit" class="btn btn-default">
                 </form>
                 <br>
 <!--                <div>-->
