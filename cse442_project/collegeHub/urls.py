@@ -7,11 +7,13 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
     path('faq/', views.FAQ.as_view(), name='faq'),
+    path('cal/', views.cal.as_view(), name='calendar'),
     # path('home/', views.Home.as_view(), name='home'),
 
     path('section/<int:pk>', views.create_section, name='create-section'),
     path('specific/<int:pk>', views.create_specific, name='create-specific'),
     path('education/<int:pk>', views.create_education, name='create-education'),
+    path('skill/<int:pk>', views.create_skill, name='create-skill'),
     path('profile/', views.profile, name='profile'),
     # path('register/', views.register, name='register'),
     path('specific', views.passer, name='specific-url'),
