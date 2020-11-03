@@ -373,6 +373,9 @@ def login_request(request):
     return render(request, 'collegeHub/login.html', {"form": form})
 
 
+class error404(TemplateView):
+    template_name = 'collegeHub/404error.html'
+
 class test_page(TemplateView):
     template_name = 'collegeHub/test.html'
 

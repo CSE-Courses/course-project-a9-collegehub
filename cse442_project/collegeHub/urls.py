@@ -22,7 +22,7 @@ urlpatterns = [
     path('temp1/', views.temp1.as_view(), name='temp1'),
     path('temp2/', views.temp2.as_view(), name='temp2'),
     path('temp3/', views.temp3.as_view(), name='temp3'),
-
+    path('404/', views.error404.as_view(), name='404'),
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
