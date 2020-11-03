@@ -7,6 +7,7 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
     path('faq/', views.FAQ.as_view(), name='faq'),
+    path('cal/', views.cal.as_view(), name='calendar'),
     # path('home/', views.Home.as_view(), name='home'),
 
     path('section/<int:pk>', views.create_section, name='create-section'),
@@ -38,8 +39,8 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "collegeHub/password_reset_form.html"), name = "password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "collegeHub/password_reset_done.html"), name  = "password_reset_complete"),
 
+    path('edit_profile/', views.EditProfile, name = 'edit_profile'),
+
     path('<slug:username>/', views.Index.as_view(), name='index'),
-
-
 
 ]

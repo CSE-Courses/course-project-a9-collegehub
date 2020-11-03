@@ -9,6 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm
 from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
@@ -33,13 +34,29 @@ from django.contrib.auth import models as auth_models
 def register(user_request):
     if user_request.method == 'POST':
         form = SignupForm(user_request.POST)
+        p_form = UserProfileForm(user_request.POST)
+        print(p_form)
         if form.is_valid():
             user = form.save(commit=False)
+            profile = p_form.save(commit=False)
+
+            if 'profile_pic' in user_request.FILES:
+                print('got a picture')
+                profile.profile_pic = user_request.FILES['profile_pic']
+            if 'resume' in user_request.FILES:
+                print('got a picture')
+                profile.resume = user_request.FILES['resume']
+                
+            profile.user = user
             user.is_active = False
+            new_user_experience = Experiences(profile = profile)
+
             user.save()
+            profile.save()
+            new_user_experience.save()
+
             current_site = get_current_site(user_request)
             mail_subject = 'Activate your account.'
-
             message = render_to_string('collegehub/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -58,7 +75,8 @@ def register(user_request):
             return redirect(reverse('emailed'))
     else:
         form = SignupForm()
-        return render(user_request, 'collegeHub/Signup.html', {'form': form})
+        p_form = UserProfileForm()
+        return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
 
 
 def activate(request, uidb64, token):
@@ -72,16 +90,44 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
 
-        new_user_profile = UserProfile(user=user)
-        new_user_profile.save()
+        #
+        # new_user_profile = UserProfile(user=user)
+        # new_user_profile.save()
+        #
+        # new_user_experience = Experiences(profile=new_user_profile)
+        # new_user_experience.save()
 
-        new_user_experience = Experiences(profile=new_user_profile)
-        new_user_experience.save()
 
         # return redirect('home')
         return redirect(reverse('confirmed'))
     else:
         return redirect(reverse('not_confirmed'))
+
+
+def EditProfile(request):
+    if request.method == "POST":
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            print(request.FILES)
+            if 'profile_pic' in request.FILES:
+                print('got a picture')
+                profile.profile_pic = request.FILES['profile_pic']
+            if 'resume' in request.FILES:
+                print('got a picture')
+                profile.resume = request.FILES['resume']
+            user.save()
+            profile.save()
+            return redirect('index', username=request.user.username)
+    else:
+        profile_form = UserProfileForm(instance=request.user.userprofile)
+        user_form = UserEditForm(instance=request.user)
+
+        return render(request, 'collegeHub/edit_profile.html', {'u_form': user_form,
+                                                           'p_form': profile_form})
 
 
 class register_email_sent(TemplateView):
@@ -281,6 +327,9 @@ class temp3(TemplateView):
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
+
+class cal(TemplateView):
+    template_name = 'collegeHub/change_list.html'
 
 
 # @login_required

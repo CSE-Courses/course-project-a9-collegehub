@@ -1,6 +1,8 @@
 from django import forms
 from .models import Specific
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from .models import Specific, Section, Education, Skill
 
@@ -9,6 +11,19 @@ class SectionForm(forms.ModelForm):
     class Meta:
         model = Section
         fields = ('name',)
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('bio', 'profile_pic', 'occupation', 'location', 'github', 'linkedin', 'instagram','resume', 'quote' ,)
+
+
+class UserEditForm(UserChangeForm):
+    password = None
+
+    class Meta:
+        fields = ("username", "first_name","last_name", "email",)
+        model = get_user_model()
 
 
 class SignupForm(UserCreationForm):
