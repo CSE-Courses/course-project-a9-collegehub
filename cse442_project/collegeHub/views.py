@@ -9,11 +9,8 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
-<<<<<<< HEAD
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, UserProfileForm, UserEditForm
-=======
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm
->>>>>>> dev
 from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
