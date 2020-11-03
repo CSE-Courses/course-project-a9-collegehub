@@ -71,7 +71,8 @@ def register(user_request):
             email.send()
             print("here")
             # return HttpResponse('Please confirm your email address to complete the registration')
-            return redirect(reverse('emailed'))  # add registration confirmation html
+            # add registration confirmation html
+            return redirect(reverse('emailed'))
     else:
         form = SignupForm()
         p_form = UserProfileForm()
@@ -88,6 +89,15 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+
+        #
+        # new_user_profile = UserProfile(user=user)
+        # new_user_profile.save()
+        #
+        # new_user_experience = Experiences(profile=new_user_profile)
+        # new_user_experience.save()
+
+
         # return redirect('home')
         return redirect(reverse('confirmed'))
     else:
@@ -210,7 +220,7 @@ def create_specific(request, pk):
             new_specific.save()
 
             return JsonResponse(
-                {'position': position, 'company': company,'link': link, 'description': description, 'bullet_section': bullet_section,
+                {'position': position, 'company': company, 'link': link, 'description': description, 'bullet_section': bullet_section,
                  'section_pk': section.pk, 'fail': False, 'experience_pk': new_specific.pk},
                 status=200)
         else:
@@ -302,8 +312,18 @@ def create_skill(request, pk):
 class Home(TemplateView):
     template_name = 'collegeHub/home.html'
 
+class temp0(TemplateView):
+    template_name = 'collegeHub/temp_0.html'
+
+
 class temp1(TemplateView):
     template_name = 'collegeHub/temp_1.html'
+
+class temp2(TemplateView):
+    template_name = 'collegeHub/temp_2.html'
+
+class temp3(TemplateView):
+    template_name = 'collegeHub/temp_3.html'
 
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
@@ -333,23 +353,25 @@ class Settings(DetailView):
 
 def login_request(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data = request.POST)
+        form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username = username, password= password)
+            user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 messages.info(request, f"Logged in")
                 print(request.user.username)
                 return redirect('index', username=request.user.username)
             else:
-                messages.error(request, "Not a valid username or password. Please try again or confirm your account.")
+                messages.error(
+                    request, "Not a valid username or password. Please try again or confirm your account.")
         else:
-             messages.error(request, "Not a valid username or password")
+            messages.error(request, "Not a valid username or password")
 
     form = AuthenticationForm()
-    return render(request,'collegeHub/login.html', {"form":form})
+    return render(request, 'collegeHub/login.html', {"form": form})
+
 
 class test_page(TemplateView):
     template_name = 'collegeHub/test.html'
@@ -358,6 +380,6 @@ class test_page(TemplateView):
         secForm = SectionForm()
         specForm = SpecificForm()
         eduForm = EducationForm()
-        context = {'sectionForm': secForm, 'specificForm': specForm, 'educationForm': eduForm}
+        context = {'sectionForm': secForm,
+                   'specificForm': specForm, 'educationForm': eduForm}
         return render(request, 'collegeHub/test.html', context)
-

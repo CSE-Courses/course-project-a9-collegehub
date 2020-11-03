@@ -1,0 +1,116 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sauptik Saha</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp3.css'%}">
+    <link rel="icon" href="favicon (1).ico">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,400;0,500;1,100;1,200;1,300&family=Sacramento&display=swap" rel="stylesheet">
+  </head>
+
+  <header>
+    <!--    Navigation bar-->
+    <nav class="navigation">
+      <ul class="nav-list text-center ">
+
+        <li>
+          <a class="nav-text" href="#about"> About </a>
+        </li>
+        <li>
+          <a class="nav-text" href="#education">Education</a>
+        </li>
+        <li>
+          <a class="nav-text" href="#skills"> Skills </a>
+        </li>
+        <li>
+          <a class="nav-text" href="#experience">Experience</a>
+        </li>
+        <li>
+          <a class="nav-text" href="#projects">Projects</a>
+        </li>
+        <li>
+          <a class="nav-text" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item dropdown" style="float: right;">
+          <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #14213D; border-radius: 7px;">
+            <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{% static 'collegehub/images/logo.png' %}" id="settings-logo" alt="User name"></span>
+              Full Name
+            </h4>
+            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
+            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
+            <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+            <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <body>
+    <div class="top-container">
+      <img class="top-cloud" src="{% static 'collegehub/images/cloud.png' %}" alt="cloud">
+      <h1>I'm John Doe.</h1>
+      <h2><p>An Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p></h2>
+      <img class="bottom-cloud" src="{% static 'collegehub/images/cloud.png' %}" alt="cloud">
+      <img src="{% static 'collegehub/images/mountain.png' %}" alt="mountain">
+    </div>
+
+    <div class="middle-container">
+      <div class="profile">
+        <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="Profile Picture" style="width:200px;height:200px;">
+        <h2>Hello.</h2>
+        <p class="intro">I am a Computer Science student at the University at Buffalo, SUNY. <em>I am actively seeking internship opportunities for 2021.</em></p>
+      </div>
+      <hr>
+      <div class="skills">
+        <h2>My Skills.</h2>
+        <div class="skill-row">
+          <img class="code-image" src="giphy.gif" alt="coding gif">
+          <h3>Programming Experience</h3>
+          <p>Having a passion for computer science, I am proficient in languages like <em>Scala, Python, HTML5, CSS3 and Javascript.</em> Through projects like Genetic Algorithm, a MMO game, and building websites, I have acquired knowledge to be able to contribute to the real world as I keep learning.</p>
+        </div>
+        <div class="skill-row">
+          <img class="other-skills" src="giphy (1).gif" alt="dancing gif">
+          <h3>Other Skills</h3>
+          <p>Being a dancer and a soccer player, I have always been a team player. Having held presidential positions and winning competions, I have shown leadership skills. Being a memeber of a professional fraternity I also exercise professionalism and have great presentation skills.</p>
+        </div>
+      </div>
+      <hr>
+      <div class="contact-me">
+        <h2>Get In Touch</h2>
+        <h3>If you love efficiency and creativity as much as I do.</h3>
+        <p>Let's talk about some awesome ideas over a freshly brewed Cup or Pint! :)</p>
+        <hr>
+        <a class="btn" href="mailto:sauptik07@gmail.com">CONTACT ME</a>
+      </div>
+    </div>
+
+
+    <div class="bottom-container">
+      <a class="footer-link" href="https://www.linkedin.com/in/sauptik-saha-07/">LinkedIn</a>
+      <a class="footer-link" href="https://github.com/Sauptik07">Github</a>
+      <a class="footer-link" href="https://medium.com/error-404-adaptability-and-flexibility-for-future">Medium</a>
+      <p class="copy-right">© 2020 Sauptik Saha.</p>
+    </div>
+
+    <div id="mobile-body">
+      <div id="mobile-container">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+      </div>
+    </div>
+
+  </body>
+</html>

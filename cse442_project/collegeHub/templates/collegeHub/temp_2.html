@@ -1,0 +1,360 @@
+{%  load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!--    Style CSS-->
+  <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+  <!--    fontawesome-->
+  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+  <!--    Animate on scroll (AOS)-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!--logo icon / favicon-->
+  <!--    <link rel="icon" href="images/logo.png">-->
+  <title> Template-2 | CollegeHub</title>
+</head>
+
+<body>
+  <div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    <div id="Outer-timeline">
+      <header>
+        <!--    Navigation bar-->
+        <nav class="navigation">
+          <ul class="nav-list text-center ">
+
+            <li>
+              <a class="nav-text" href="#about"> About </a>
+            </li>
+            <li>
+              <a class="nav-text" href="#education">Education</a>
+            </li>
+            <li>
+              <a class="nav-text" href="#skills"> Skills </a>
+            </li>
+            <li>
+              <a class="nav-text" href="#experience">Experience</a>
+            </li>
+            <li>
+              <a class="nav-text" href="#projects">Projects</a>
+            </li>
+            <li>
+              <a class="nav-text" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item dropdown" style="float: right;">
+              <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #14213D; border-radius: 7px;">
+                <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{% static 'collegehub/images/logo.png' %}" id="settings-logo" alt="User name"></span>
+                  Full Name
+                </h4>
+                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
+                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
+                <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+
+      </header>
+
+
+      <section id="about">
+        <div class="section-heading">
+          <h2 class="section-heading-text"> About</h2>
+        </div>
+        <div class="section-container" id="about-container">
+          <div class="card">
+            <div class="card-header">
+              Quote
+            </div>
+            <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                  consequat.
+                </p>
+                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <div class="name-background" id="name-container">
+        <!-- First name last name and picture -->
+        <h1 id="f_name"> First Name</h1>
+        <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
+        <h1 id="l_name"> Last Name</h1>
+
+      </div>
+
+      <h3>
+        <a href="#"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
+        <a href="#"><span><i class="fa fa-facebook-square FA_Header" style="font-size:36px"></i></span> </a>
+        <a href="#"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
+
+      </h3>
+
+      <main id="sections-container">
+        <section id="name-section">
+          <div class="name-background" id="name-container">
+            <!-- First name last name and picture -->
+            <!-- <h1 id="f_name"> First Name</h1>
+              <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
+              <h1 id="l_name"> Last Name</h1> -->
+
+          </div>
+        </section>
+
+        <section id="Education">
+
+          <div class="section-container" id="Education-container">
+            <div class="row">
+              <div class="card education-card" style="width: 18rem;">
+                <img src="{% static 'collegehub/images/UB.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Education 1</h5>
+                  <p class="card-text">Major.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Minor</li>
+                  <li class="list-group-item">Year</li>
+                  <li class="list-group-item">GPA</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+
+              <div class="card education-card" style="width: 18rem;">
+                <img src="{% static 'collegehub/images/UB.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Education 2</h5>
+                  <p class="card-text">Major.</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Minor</li>
+                  <li class="list-group-item">Year</li>
+                  <li class="list-group-item">GPA</li>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="section-heading education">
+            <h1 class="section-heading-text"> Education</h1>
+          </div>
+        </section>
+        <section id="Skills">
+          <div class="section-heading">
+            <h1 class="section-heading-text"> Skills</h1>
+          </div>
+          <div class="section-container" id="Skills-container">
+            <div class="row">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 1</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 2</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 3</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 4</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 5</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Skill 6</div>
+                <div class="card-body">
+                  <h5 class="card-title">---</h5>
+                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="Experience">
+          <div class="section-container" id="Experience-container">
+            <div class="card-deck">
+              <div class="card">
+                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Experience 1</h5>
+                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated x days ago</small>
+                </div>
+              </div>
+              <div class="card">
+                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Experience 2</h5>
+                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated x days ago</small>
+                </div>
+              </div>
+              <div class="card">
+                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Experience 3</h5>
+                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated x days ago</small>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="section-heading">
+            <h1 class="section-heading-text"> Experience</h1>
+          </div>
+        </section>
+        <section id="Projects">
+          <div class="section-heading">
+            <h1 class="section-heading-text"> Projects</h1>
+          </div>
+          <div class="section-container" id="Projects-container">
+            <div class="row row-cols-1 row-cols-md-3">
+              <div class="col mb-4">
+                <div class="card h-100">
+                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Project 1</h5>
+                    <p class="card-text">Loren ipsum.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-4">
+                <div class="card h-100">
+                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Project 2</h5>
+                    <p class="card-text">Loren ipsumd.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col mb-4">
+                <div class="card h-100">
+                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Project 3</h5>
+                    <p class="card-text">Loren ipsum.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="Contact">
+          <div class="section-container" id="Contact-container">
+            <div class="card-group">
+              <div class="card">
+                <img src="{% static 'collegehub/images/mail.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Email</h5>
+                  <p class="card-text">LorenIpsum@xyz.com.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+              <div class="card">
+                <img src="{% static 'collegehub/images/mail.png' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Phone Number</h5>
+                  <p class="card-text">###-###-####.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="section-heading">
+            <h1 class="section-heading-text"> Contact</h1>
+          </div>
+        </section>
+
+      </main>
+      <footer>
+        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #52057b 5%, #52057b 34%);
+          background-size: 100%;
+          background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
+          <span style="color: white">
+            @ 2020 CollegeHub
+          </span>
+
+        </nav>
+      </footer>
+    </div>
+
+    <!--*******************************************CONTENT************************************************-->
+  </div>
+  <div id="mobile-body">
+    <div id="mobile-container">
+      <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+      <h1 style="font-weight: bold">CollegeHub</h1>
+      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+      <h2 style="font-weight: lighter">COMING SOON</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <!--<script src="script.js"></script>-->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
