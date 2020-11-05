@@ -49,5 +49,6 @@
       </option>
     </inspection_tool>
     <inspection_tool class="XmlDuplicatedId" enabled="false" level="ERROR" enabled_by_default="false" />
+    <inspection_tool class="XmlInvalidId" enabled="false" level="ERROR" enabled_by_default="false" />
   </profile>
 </component>
