@@ -317,57 +317,32 @@
 {#                    </div>#}
 {#                </div>#}
 {#            </div>#}
+
             <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="projects_add_cardLabel">Add Projects card</h5>
+                            <h5 class="modal-title" id="projects_add_cardLabel">Add Project card</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1> special form</h1>
+                            <form method="post" id="project-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                        {{ projectForm }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
                         </div>
 
                     </div>
                 </div>
             </div>
-            <div id="projects-container">
-                <div class="card">
-                    <div class="card-header">
-                        Project 1
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        Project 2
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                        </blockquote>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        Project 3
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-                        </blockquote>
-                    </div>
-                </div>
 
+            <div id="projects-container">
+                {% include 'collegeHub/projects.html' %}
             </div>
         </section>
         <!--     **************   DONT REMOVE THIS COMMENT SECTION ***************-->
@@ -660,7 +635,7 @@ function submitEducationHandler(e){
                     if (response.institution != ''){
                         education += '<h6 id="uniname" class="card-text"> Institution: '+ response.institution + '</h6>\n';
                     }
-                    if (response.institution != ''){
+                    if (response.description != ''){
                         education += '<h6 id="edu-descrption" class="card-text"> Description: '+ response.description + '</h6>\n';
                     }
 
@@ -719,6 +694,47 @@ function submitEducationHandler(e){
             }
         })
     }
+
+    const projectForm = document.getElementById('project-form');
+
+    projectForm.addEventListener("submit", submitProjectHandler);
+    function submitProjectHandler(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'create-project' pk=user_profile.pk %}',
+            data: $("#project-form").serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    try {
+                        document.getElementById('no-project').remove();
+                    }catch {}
+
+                    var project = '<div class="card">\n' +
+                        '        <div class="card-header">\n' + response.name +
+                        '        </div>\n' +
+                        '        <div class="card-body">\n' +
+                        '            <blockquote class="blockquote mb-0">\n' +
+                        '                <p>' + response.description + '</p>\n' +
+                        '                <footer class="blockquote-footer">\n';
+
+                    if (response.month != ''){
+                        project += response.month +'/';
+                    }
+
+                    project += response.year + '                </footer>\n' +
+                        '            </blockquote>\n' +
+                        '        </div>\n' +
+                        '    </div>';
+                    console.log(project)
+                    $("#projects-container").append(project);
+
+                }else{alert('Form was not filled in correctly, please enter the required information')}
+            }
+        })
+    }
+
 </script>
 </body>
 

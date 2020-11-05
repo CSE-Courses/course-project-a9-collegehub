@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
-from .models import Specific, Section, Education, Skill
+from .models import Specific, Section, Education, Skill, Project
 
 
 class SectionForm(forms.ModelForm):
@@ -69,3 +69,10 @@ class SkillForm(forms.ModelForm):
     class Meta:
         model = Skill
         fields = ('name', )
+
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'description', 'month', 'year')
+

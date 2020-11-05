@@ -90,6 +90,7 @@ class Education(models.Model):
     def __str__(self):
         return self.profile.__str__() + ':  ' + self.certification_name
 
+
 class IndividualScheduler(models.Model):
     day = models.DateField(u'Day of the event', help_text=u'Day of the event')
     start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
@@ -134,3 +135,15 @@ class IndividualScheduler(models.Model):
     def get_html_url(self):
         url = reverse('individualschedule_edit', args = (self.id,))
         return f'<p>{self.title}</p><a href="{url}">edit</a>'
+
+
+class Project(models.Model):
+    name = models.CharField(default='', max_length=50)
+    description = models.CharField(default='This is what I did', max_length=2000)
+    image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='project', null=True, blank=True)
+    month = models.CharField(default='', max_length=2, blank=True, null=True)
+    year = models.CharField(default='9999', max_length=4)
+
+    def __str__(self):
+        return self.profile.__str__() + ':  ' + self.name

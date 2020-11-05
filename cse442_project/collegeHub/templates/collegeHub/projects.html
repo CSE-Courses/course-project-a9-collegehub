@@ -1,0 +1,27 @@
+{% load static %}
+{% if user_profile.project.count == 0 %}
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
+              <div class="card-body">
+                    Click on + to add a project
+              </div>
+        </li>
+{% endif %}
+
+{% for project in user_profile.project.all %}
+    <div class="card">
+        <div class="card-header">
+            {{project.name}}
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{project.description}}</p>
+                <footer class="blockquote-footer">
+                    {% if project.month != None %}
+                        {{project.month}} /
+                    {% endif %}
+                    {{ project.year }}
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+{% endfor %}

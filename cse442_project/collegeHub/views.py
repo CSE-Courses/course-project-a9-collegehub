@@ -9,8 +9,8 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 
-from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, UserProfileForm, UserEditForm
-from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm
+from .forms import UserProfileForm, UserEditForm
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm
 from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -203,6 +203,32 @@ def passer(request):
 
 
 # @login_required
+def create_project(request, pk):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            # image = form.data.get('image')
+            name = form.data.get('name')
+            description = form.data.get('description')
+            month = form.data.get('month')
+            year = form.data.get('year')
+            new_project = form.save()
+
+            userprofile = get_object_or_404(models.UserProfile, pk=pk)
+            new_project.profile = userprofile
+            new_project.save()
+
+            return JsonResponse(
+                {'description': description, 'name': name,
+                 'month': month, 'year': year, 'fail': False}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        form = ProjectForm()
+    return JsonResponse({}, status=200)
+
+
+# @login_required
 def create_specific(request, pk):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
@@ -281,6 +307,7 @@ class Index(DetailView):
         context['specificForm'] = SpecificForm()
         context['educationForm'] = EducationForm()
         context['skillForm'] = SkillForm()
+        context['projectForm'] = ProjectForm()
         return context
 
 
