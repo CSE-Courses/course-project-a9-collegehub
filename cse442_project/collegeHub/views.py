@@ -39,7 +39,6 @@ def register(user_request):
         if form.is_valid():
             user = form.save(commit=False)
             profile = p_form.save(commit=False)
-
             if 'profile_pic' in user_request.FILES:
                 print('got a picture')
                 profile.profile_pic = user_request.FILES['profile_pic']
@@ -77,6 +76,7 @@ def register(user_request):
         form = SignupForm()
         p_form = UserProfileForm()
         return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
+
 
 
 def activate(request, uidb64, token):
@@ -140,6 +140,8 @@ class register_confirmed(TemplateView):
 
 class register_not_confirmed(TemplateView):
     template_name = "collegehub/unconfirmed.html"
+
+
 
 
 class Account(DetailView):

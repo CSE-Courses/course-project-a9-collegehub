@@ -7,6 +7,46 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Specific, Section, Education, Skill, Project
 
 
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+        'class': 'form-control grey_field',
+        'placeholder': 'Email',
+        'type': 'email',
+        'name': 'email'
+        }))
+
+class SetPasswordForm(forms.Form):
+    error_messages = {
+        'password_mismatch': ("The two password fields didn't match."),
+    }
+    new_password1 = forms.CharField(label=("New password"),
+                                    widget=forms.PasswordInput(attrs={'class':'form-control grey_field' }))
+    new_password2 = forms.CharField(label=("New password confirmation"),
+                                    widget=forms.PasswordInput(attrs={'class':'form-control grey_field'}))
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(SetPasswordForm, self).__init__(*args, **kwargs)
+
+    def clean_new_password2(self):
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError(
+                    self.error_messages['password_mismatch'],
+                    code='password_mismatch',
+                )
+        return password2
+
+    def save(self, commit=True):
+        self.user.set_password(self.cleaned_data['new_password1'])
+        if commit:
+            self.user.save()
+        return self.user
+
 class SectionForm(forms.ModelForm):
     class Meta:
         model = Section
@@ -17,12 +57,27 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('bio', 'profile_pic', 'occupation', 'location', 'github', 'linkedin', 'instagram','resume', 'quote' ,)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
+        self.fields["bio"].widget.attrs['id'] = "bio"
+        self.fields["bio"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["occupation"].widget.attrs['class'] = "form-control grey_field"
+        self.fields['location'].widget.attrs['placeholder'] = 'Where Do you live?'
+        self.fields['location'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['linkedin'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
+        self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
+
 
 class UserEditForm(UserChangeForm):
     password = None
 
     class Meta:
-        fields = ("username", "first_name","last_name", "email",)
+        fields = ("username", "first_name", "last_name", "email",)
         model = get_user_model()
 
 
