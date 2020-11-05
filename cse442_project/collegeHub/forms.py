@@ -1,7 +1,7 @@
 from django import forms
 from .models import Specific
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm
 from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from .models import Specific, Section, Education, Skill, Project
