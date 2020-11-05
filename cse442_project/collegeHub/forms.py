@@ -57,12 +57,27 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('bio', 'profile_pic', 'occupation', 'location', 'github', 'linkedin', 'instagram','resume', 'quote' ,)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
+        self.fields["bio"].widget.attrs['id'] = "bio"
+        self.fields["bio"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["occupation"].widget.attrs['class'] = "form-control grey_field"
+        self.fields['location'].widget.attrs['placeholder'] = 'Where Do you live?'
+        self.fields['location'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['linkedin'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
+        self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
+
 
 class UserEditForm(UserChangeForm):
     password = None
 
     class Meta:
-        fields = ("username", "first_name","last_name", "email",)
+        fields = ("username", "first_name", "last_name", "email",)
         model = get_user_model()
 
 
