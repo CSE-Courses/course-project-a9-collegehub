@@ -79,6 +79,7 @@ def register(user_request):
         return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
 
 
+
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))

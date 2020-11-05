@@ -476,6 +476,7 @@ html {
     box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
   }
 
+
   .marg-20 {
     margin: 20px;
   }
@@ -791,6 +792,8 @@ html {
     text-align: center;
     justify-content: space-evenly;
   }
+
+
 
   myhr {
     border: 0;
