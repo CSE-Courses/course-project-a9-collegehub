@@ -1,5 +1,6 @@
 from django import forms
-from .models import Specific
+from .models import Specific, Event
+from django.forms import ModelForm, DateInput
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Specific, Section, Education, UserProfile
@@ -69,3 +70,4 @@ class SkillForm(forms.ModelForm):
     class Meta:
         model = Skill
         fields = ('name', )
+

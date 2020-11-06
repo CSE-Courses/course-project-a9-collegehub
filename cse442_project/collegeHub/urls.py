@@ -7,9 +7,7 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
     path('faq/', views.FAQ.as_view(), name='faq'),
-    path('cal/', views.cal.as_view(), name='calendar'),
-    # path('home/', views.Home.as_view(), name='home'),
-
+    #path('cal/', views.cal.as_view(), name='cal'),
     path('section/<int:pk>', views.create_section, name='create-section'),
     path('specific/<int:pk>', views.create_specific, name='create-specific'),
     path('education/<int:pk>', views.create_education, name='create-education'),
@@ -32,7 +30,6 @@ urlpatterns = [
     path('account/<slug:username>/', views.Account.as_view(), name='account'),
     path('settings/<slug:username>/', views.Settings.as_view(), name='settings'),
     path('logout/', auth_views.LogoutView.as_view(template_name='templates/logout.html'), name='logout'),
-
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "collegeHub/password_reset.html"), name = "reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),

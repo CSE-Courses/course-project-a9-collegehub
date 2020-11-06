@@ -11,7 +11,7 @@ from collegeHub import models
 
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm
-from .models import UserProfile, Experiences, Education
+from .models import UserProfile, Experiences, Education, Event
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -27,6 +27,17 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib.auth import models as auth_models
 
+from datetime import datetime, date
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views import generic
+from django.utils.safestring import mark_safe
+from datetime import timedelta
+import calendar
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -176,6 +187,10 @@ def profile(request):
 def create_experience(user):
     experiences = models.Experiences(profile=user)
     experiences.save()
+
+def create_event(user):
+    event = models.Event(profile = user)
+    event.save()
 
 
 # @login_required
@@ -329,7 +344,8 @@ class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
 
 class cal(TemplateView):
-    template_name = 'collegeHub/change_list.html'
+    template_name = 'collegeHub/calendar.html'
+
 
 
 # @login_required

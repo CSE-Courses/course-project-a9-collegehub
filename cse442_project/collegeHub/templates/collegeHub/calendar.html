@@ -1,0 +1,14 @@
+{% extends 'collegeHub/base.html' %}
+
+{% block content %}
+<div class="clearfix">
+    <span class="left m-2" style="font-size: 20px;">Welcome, {{ request.user }}</span>
+    <a class="btn btn-info right" href="{% url 'logout' %}"> Logout </a>
+	<a class="btn btn-info right mr-2" href="{% url 'cse442_project:calendar' %}?{{ next_month }} "> Next Month >> </a>
+    <a class="btn btn-info right mr-2" href="{% url 'cse442_project:calendar' %}?{{ prev_month }}"> << Previous Month </a>
+    <a class="btn btn-info right mr-2" href="{% url 'cse442_project:event_new' %}"> + New Event </a>
+</div>
+<div style="color: blueviolet;">
+    {{ calendar }}
+</div>
+{% endblock %}
