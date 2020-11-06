@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill
-from collegeHub.views import create_experience
+from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill, Event
+from collegeHub.views import create_experience, create_event
 import requests
 # Create your tests here.
 
@@ -27,6 +27,17 @@ class ExperienceTest(TestCase):
         self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1).profile.user.email, self.user.email)
         # Get experience from user
         self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1), self.UserProfile.experience)
+
+class EventTest(TestCase):
+    def setup(self):
+        self.user = User.objects.create(username='testuser',
+                                        email='email@email.com',
+                                        password='password1234')
+        self.user.save()
+        self.UserProfile = UserProfile.objects.create(user=self.user)
+        self.UserProfile.save()
+        self.event = Event.objects.create(profile=self.UserProfile)
+        self.experience.save()
 
 
 class SectionTest(TestCase):
