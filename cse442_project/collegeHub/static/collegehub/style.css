@@ -64,7 +64,7 @@ html {
     height: 300px;
     z-index: 3;
     position: absolute;
-    left: -110%
+    right: 50%;
   }
 
   .zoomr img:hover {
@@ -279,6 +279,45 @@ html {
     flex-wrap: wrap;
     justify-content: space-around;
   }
+
+  .card-img {
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .zoom {
+    transition: transform 0.5s;
+  }
+
+  .zoom:hover {
+    transform: scale(2);
+    z-index: 3;
+  }
+
+  /* .zoomr {
+    transition: transform 0.5s;
+  } */
+
+  /* .zoomr:hover {
+    transform: scale(2) translateX(-210%);
+    z-index: 3;
+  } */
+
+  .zoom img:hover {
+    width: 400px;
+    height: 300px;
+    z-index: 3;
+    position: absolute;
+    left: -110%
+  }
+
+  /* .zoomr img:hover {
+    width: 400px;
+    height: 300px;
+    z-index: 3;
+    position: absolute;
+    top: 0;
+  } */
 
   /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Home PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
   .signup {
