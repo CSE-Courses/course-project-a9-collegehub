@@ -107,9 +107,9 @@
               <h3 style="color: #14213D"> Template Settings</h3>
               <hr>
               <div id="template-setting-container">
-                <div class="card-group">
+                <div class="template-setting-container-box">
                   <div class="card">
-                    <div class="templateZoom zoom">
+                    <div class="templateZoom zoomAccount">
                       <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
@@ -118,8 +118,14 @@
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Toggle to choose.</label>
+                  </div>
+                </div>
+                <div class="template-setting-container-box">
                   <div class="card">
-                    <div class="templateZoom zoom">
+                    <div class="templateZoom zoomAccount">
                       <img src="{% static 'collegehub/images/tp1-sample2.png' %}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
@@ -128,8 +134,14 @@
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                    <label class="custom-control-label" for="customSwitch2">Toggle to choose.</label>
+                  </div>
+                </div>
+                <div class="template-setting-container-box">
                   <div class="card">
-                    <div class="templateZoom zoom">
+                    <div class="templateZoom zoomAccount">
                       <img src="{% static 'collegehub/images/tp-2sample.png' %}" class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
@@ -138,18 +150,10 @@
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                   </div>
-                </div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                  <label class="custom-control-label" for="customSwitch1">Toggle to choose.</label>
-                </div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                  <label class="custom-control-label" for="customSwitch2">Toggle to choose.</label>
-                </div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                  <label class="custom-control-label" for="customSwitch3">Toggle to choose.</label>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                    <label class="custom-control-label" for="customSwitch3">Toggle to choose.</label>
+                  </div>
                 </div>
               </div>
             </div>

@@ -41,6 +41,16 @@ html {
     height: 100%;
   }
 
+  .zoomAccount {
+    transition: transform 0.5s;
+  }
+
+  .zoomAccount:hover {
+    transform: scale(2);
+    z-index: 3;
+    position: absolute;
+  }
+
   .zoom {
     transition: transform 0.5s;
   }
@@ -64,7 +74,7 @@ html {
     height: 300px;
     z-index: 3;
     position: absolute;
-    right: 50%;
+    left: -110%;
   }
 
   .zoomr img:hover {
@@ -277,47 +287,13 @@ html {
   #template-setting-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
-  .card-img {
-    object-fit: cover;
-    height: 100%;
+  .template-setting-container-box {
+    width: 15rem;
+    text-align: center;
   }
-
-  .zoom {
-    transition: transform 0.5s;
-  }
-
-  .zoom:hover {
-    transform: scale(2);
-    z-index: 3;
-  }
-
-  /* .zoomr {
-    transition: transform 0.5s;
-  } */
-
-  /* .zoomr:hover {
-    transform: scale(2) translateX(-210%);
-    z-index: 3;
-  } */
-
-  .zoom img:hover {
-    width: 400px;
-    height: 300px;
-    z-index: 3;
-    position: absolute;
-    left: -110%
-  }
-
-  /* .zoomr img:hover {
-    width: 400px;
-    height: 300px;
-    z-index: 3;
-    position: absolute;
-    top: 0;
-  } */
 
   /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Home PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
   .signup {
