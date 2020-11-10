@@ -1,0 +1,62 @@
+{% load static %}
+{% if user_profile.education.count == 0 %}
+                {% if user.username == user_profile.user.username%}
+
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
+              <div class="card-body">
+                    Click on + to add an education
+              </div>
+        </li>
+        {% endif %}
+{% endif %}
+
+{% for education in user_profile.education.all %}
+    <div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">
+        <div class="row no-gutters">
+{#            <div class="col-md-4">#}
+{#                <img src="{{ education.image }}" class="card-img" alt="edu-logo">#}
+{#            </div>#}
+            <div class="col-md-12">
+                <div class="dropdown ">
+                {% if user.username == user_profile.user.username%}
+
+                    <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    {% endif %}
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>
+                        <button class="dropdown-item"  onclick="removeme('uni')">Remove</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 id="major" class="card-title"> {{ education.certification_name }}</h5>
+                    {% if education.institution != None %}
+                        <h6 id="uniname" class="card-text">Institution: {{ education.institution }}</h6>
+                    {% endif %}
+                    {% if education.description != None %}
+                        <h6 id="edu-descrption" class="card-text">Description: {{ education.description }}</h6>
+                    {% endif %}
+                    <p id="year" class="card-text"><small class="text-muted">Date: {{ education.month }}/{{ education.year }}</small></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edit_card" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_cardLabel">Add Education card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <h3> add form for edit</h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

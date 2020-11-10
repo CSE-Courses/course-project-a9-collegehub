@@ -8,13 +8,17 @@ from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import SignupForm, SpecificForm, SectionForm, EducationForm
-
+from .forms import UserProfileForm, UserEditForm
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm
+from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -31,13 +35,28 @@ from django.contrib.auth import models as auth_models
 def register(user_request):
     if user_request.method == 'POST':
         form = SignupForm(user_request.POST)
+        p_form = UserProfileForm(user_request.POST)
+        print(p_form)
         if form.is_valid():
             user = form.save(commit=False)
+            profile = p_form.save(commit=False)
+            if 'profile_pic' in user_request.FILES:
+                print('got a picture')
+                profile.profile_pic = user_request.FILES['profile_pic']
+            if 'resume' in user_request.FILES:
+                print('got a picture')
+                profile.resume = user_request.FILES['resume']
+                
+            profile.user = user
             user.is_active = False
+            new_user_experience = Experiences(profile = profile)
+
             user.save()
+            profile.save()
+            new_user_experience.save()
+
             current_site = get_current_site(user_request)
             mail_subject = 'Activate your account.'
-
             message = render_to_string('collegehub/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -52,10 +71,13 @@ def register(user_request):
             email.send()
             print("here")
             # return HttpResponse('Please confirm your email address to complete the registration')
-            return redirect(reverse('emailed'))  # add registration confirmation html
+            # add registration confirmation html
+            return redirect(reverse('emailed'))
     else:
         form = SignupForm()
-        return render(user_request, 'collegeHub/registerTest.html', {'form': form})
+        p_form = UserProfileForm()
+        return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
+
 
 
 def activate(request, uidb64, token):
@@ -68,10 +90,45 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+
+        #
+        # new_user_profile = UserProfile(user=user)
+        # new_user_profile.save()
+        #
+        # new_user_experience = Experiences(profile=new_user_profile)
+        # new_user_experience.save()
+
+
         # return redirect('home')
         return redirect(reverse('confirmed'))
     else:
         return redirect(reverse('not_confirmed'))
+
+@login_required
+def EditProfile(request):
+    if request.method == "POST":
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            print(request.FILES)
+            if 'profile_pic' in request.FILES:
+                print('got a picture')
+                profile.profile_pic = request.FILES['profile_pic']
+            if 'resume' in request.FILES:
+                print('got a picture')
+                profile.resume = request.FILES['resume']
+            user.save()
+            profile.save()
+            return redirect('index', username=request.user.username)
+    else:
+        profile_form = UserProfileForm(instance=request.user.userprofile)
+        user_form = UserEditForm(instance=request.user)
+
+        return render(request, 'collegeHub/edit_profile.html', {'u_form': user_form,
+                                                           'p_form': profile_form})
 
 
 class register_email_sent(TemplateView):
@@ -86,7 +143,9 @@ class register_not_confirmed(TemplateView):
     template_name = "collegehub/unconfirmed.html"
 
 
-class Account(DetailView):
+
+
+class Account(LoginRequiredMixin, DetailView):
     model = models.UserProfile
     template_name = "collegehub/account.html"
 
@@ -104,22 +163,25 @@ class Account(DetailView):
         return context
 
 
-class Signup(TemplateView):
-    template_name = "collegehub/Signup.html"
+# class Signup(CreateView):
+#     form_class = SignupForm
+#     success_url = reverse_lazy('gsplit-login')
+
+#     template_name = "collegehub/Signup.html"
 
 
-# @login_required
+@login_required
 def profile(request):
     return render(request, 'templates/profile.html')
 
 
-# @login_required
+@login_required
 def create_experience(user):
     experiences = models.Experiences(profile=user)
     experiences.save()
 
 
-# @login_required
+@login_required
 def create_section(request, pk):
     if request.method == 'POST':
         form = SectionForm(request.POST, request.FILES)
@@ -143,7 +205,33 @@ def passer(request):
     pass
 
 
-# @login_required
+@login_required
+def create_project(request, pk):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            # image = form.data.get('image')
+            name = form.data.get('name')
+            description = form.data.get('description')
+            month = form.data.get('month')
+            year = form.data.get('year')
+            new_project = form.save()
+
+            userprofile = get_object_or_404(models.UserProfile, pk=pk)
+            new_project.profile = userprofile
+            new_project.save()
+
+            return JsonResponse(
+                {'description': description, 'name': name,
+                 'month': month, 'year': year, 'fail': False}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        form = ProjectForm()
+    return JsonResponse({}, status=200)
+
+
+@login_required
 def create_specific(request, pk):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
@@ -161,7 +249,7 @@ def create_specific(request, pk):
             new_specific.save()
 
             return JsonResponse(
-                {'position': position, 'company': company,'link': link, 'description': description, 'bullet_section': bullet_section,
+                {'position': position, 'company': company, 'link': link, 'description': description, 'bullet_section': bullet_section,
                  'section_pk': section.pk, 'fail': False, 'experience_pk': new_specific.pk},
                 status=200)
         else:
@@ -172,24 +260,30 @@ def create_specific(request, pk):
     # return JsonResponse({}, status=200)
 
 
-# @login_required
-def create_education(request):
+@login_required
+def create_education(request, pk):
     if request.method == 'POST':
         form = EducationForm(request.POST, request.FILES)
-        print(form.is_valid())
+        print('Form\'s valid:', form.is_valid())
         if form.is_valid():
-            image = form.data.get('image')
-            location = form.data.get('location')
+            # image = form.data.get('image')
+            institution = form.data.get('institution')
             certification_name = form.data.get('certification_name')
             description = form.data.get('description')
             month = form.data.get('month')
             year = form.data.get('year')
-            form.save()
+            new_education = form.save()
+
+            userprofile = get_object_or_404(models.UserProfile, pk=pk)
+            print('USER:', userprofile)
+            new_education.profile = userprofile
+            new_education.save()
+
             return JsonResponse(
-                {'description': description, 'location': location, 'certification_name': certification_name,
+                {'description': description, 'institution': institution, 'certification_name': certification_name,
                  'month': month, 'year': year, 'fail': False}, status=200)
         else:
-            form = EducationForm()
+            return JsonResponse({'fail': True}, status=200)
     else:
         form = EducationForm()
     return JsonResponse({}, status=200)
@@ -214,7 +308,9 @@ class Index(DetailView):
         context['experience'] = experience
         context['sectionForm'] = SectionForm()
         context['specificForm'] = SpecificForm()
-        # context['educationForm'] = EducationForm()
+        context['educationForm'] = EducationForm()
+        context['skillForm'] = SkillForm()
+        context['projectForm'] = ProjectForm()
         return context
 
 
@@ -224,18 +320,52 @@ class Index(DetailView):
 #     return render(template_name='collegeHub/index.html', context=context)
 
 
+@login_required
+def create_skill(request, pk):
+    if request.method == 'POST':
+        form = SkillForm(request.POST, request.FILES)
+        if form.is_valid():
+
+            skill_name = form.data.get('name')
+            new_skill = form.save()
+
+            user_profile = get_object_or_404(models.UserProfile, pk=pk)
+            new_skill.profile = user_profile
+            new_skill.save()
+
+            return JsonResponse({'name': skill_name, 'fail': False, 'skill_pk': new_skill.pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+
 class Home(TemplateView):
     template_name = 'collegeHub/home.html'
+
+class temp0(TemplateView):
+    template_name = 'collegeHub/temp_0.html'
+
 
 class temp1(TemplateView):
     template_name = 'collegeHub/temp_1.html'
 
+class temp2(TemplateView):
+    template_name = 'collegeHub/temp_2.html'
+
+class temp3(TemplateView):
+    template_name = 'collegeHub/temp_3.html'
+
 class FAQ(TemplateView):
     template_name = 'collegeHub/faq.html'
 
+class cal(TemplateView):
+    template_name = 'collegeHub/change_list.html'
 
-# @login_required
-class Settings(DetailView):
+
+
+
+class Settings(LoginRequiredMixin, DetailView):
     model = models.UserProfile
     template_name = 'collegeHub/settings.html'
 
@@ -253,9 +383,30 @@ class Settings(DetailView):
         return context
 
 
-class Login(TemplateView):
-    template_name = 'collegeHub/login.html'
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"Logged in")
+                print(request.user.username)
+                return redirect('index', username=request.user.username)
+            else:
+                messages.error(
+                    request, "Not a valid username or password. Please try again or confirm your account.")
+        else:
+            messages.error(request, "Not a valid username or password")
 
+    form = AuthenticationForm()
+    return render(request, 'collegeHub/login.html', {"form": form})
+
+
+class error404(TemplateView):
+    template_name = 'collegeHub/404error.html'
 
 class test_page(TemplateView):
     template_name = 'collegeHub/test.html'
@@ -264,6 +415,6 @@ class test_page(TemplateView):
         secForm = SectionForm()
         specForm = SpecificForm()
         eduForm = EducationForm()
-        context = {'sectionForm': secForm, 'specificForm': specForm, 'educationForm': eduForm}
+        context = {'sectionForm': secForm,
+                   'specificForm': specForm, 'educationForm': eduForm}
         return render(request, 'collegeHub/test.html', context)
-

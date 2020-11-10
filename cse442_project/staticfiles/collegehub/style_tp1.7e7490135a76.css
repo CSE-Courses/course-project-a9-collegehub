@@ -1,0 +1,153 @@
+/*DESKTOP*/
+body {
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: "Helvetica";
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+@media screen and (min-width: 601px) {
+  #desktop {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  #mobile-body {
+    display: none;
+  }
+
+  /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& TEMP_1 PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
+  #Outer-timeline-tp1 {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  #left-timeline {
+    width: 25%;
+    background-color: #eaeaea;
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #right-timeline {
+    padding: 30px;
+    width: 75%;
+  }
+
+  #user-image-tp1 {
+    margin-bottom: 10px;
+    height: 12rem;
+    width: 12rem;
+    z-index: 2;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+
+  #about-container {
+    padding: 30px 10px 30px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 45rem;
+  }
+
+  #footer {
+    background-color: #972d3e;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  #education-container {
+    padding: 40px;
+  }
+
+  .header-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    background-color: #fff;
+    color: black;
+    text-decoration: none;
+    border-radius: 0.5rem;
+  }
+
+  .header-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #fc1140;
+  }
+
+  .header-item:hover {
+    background-color: rgba(252, 17, 99, 0.8);
+    color: white;
+    text-decoration: none;
+  }
+
+  #skills-container-tp1 {
+    padding: 40px;
+  }
+
+  .work {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .template-setting-image{
+    width: 4rem;
+    height: 3rem;
+  }
+
+  .temp1-add-button{
+    position:absolute;
+    right: 10%;
+    top: 10%;
+  }
+
+}
+
+/*MOBILE DEVICES*/
+@media screen and (max-width: 600px) {
+  #desktop {
+    display: none;
+  }
+
+  #mobile-body {
+    background-color: #000000;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  #mobile-container {
+    position: absolute;
+    top: 20%;
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+}

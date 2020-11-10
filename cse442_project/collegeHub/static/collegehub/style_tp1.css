@@ -121,6 +121,13 @@ html {
     width: 4rem;
     height: 3rem;
   }
+
+  .temp1-add-button{
+    position:absolute;
+    right: 10%;
+    top: 10%;
+  }
+
 }
 
 /*MOBILE DEVICES*/

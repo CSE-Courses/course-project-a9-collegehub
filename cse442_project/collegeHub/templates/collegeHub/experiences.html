@@ -1,9 +1,13 @@
 {% if experience.section.count == 0 %}
+                    {% if user.username == user_profile.user.username%}
+
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-section">
+        
               <div class="card-body">
                     Click on + to add a section
               </div>
         </li>
+        {% endif %}
     {% endif %}
 {% for section in experience.section.all %}
         <div class="sub-section">
@@ -13,7 +17,10 @@
                         {{ section.name }}
                     </h4>
                 </div>
+                                    {% if user.username == user_profile.user.username%}
+
                 <button type="button" data-toggle="modal" data-target="#add-experience-specific-{{ section.pk }}" class="sub-section-button"><i class="fas fa-plus"></i></button>
+           {% endif %}
             </div>
             <div class="modal fade" id="add-experience-specific-{{ section.pk }}" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">
                 <div class="modal-dialog">

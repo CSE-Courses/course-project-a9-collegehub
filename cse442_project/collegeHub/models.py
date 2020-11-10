@@ -1,6 +1,10 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth import models as auth_models
+from django.core.exceptions import ValidationError
+from django.urls import reverse
 # Create your models here.
 
 
@@ -42,8 +46,16 @@ class Experiences(models.Model):
         return self.profile.__str__()
 
 
+class Skill(models.Model):
+    name = models.CharField(default='', max_length=30)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='skill', null=True, blank=True)
+
+    def __str__(self):
+        return self.profile.__str__() + ':  ' + self.name
+
+
 class Section(models.Model):
-    name = models.CharField(default='Section', max_length=30)
+    name = models.CharField(default='', max_length=30)
     experiences = models.ForeignKey(Experiences, on_delete=models.CASCADE, related_name='section', null=True)
 
     def __str__(self):
@@ -68,12 +80,65 @@ class Specific(models.Model):
 
 class Education(models.Model):
     image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
-    location = models.CharField(default='NA', max_length=50, null=True)
-    certification_name = models.CharField(default='NA', max_length=50)
-    description = models.CharField(default='NA', max_length=280)
+    institution = models.CharField(default='', max_length=50, null=True)
+    certification_name = models.CharField(default='', max_length=50)
+    description = models.CharField(default='', max_length=280)
     month = models.CharField(default='01', max_length=2)
     year = models.CharField(default='9999', max_length=4)
-    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education')
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='education', null=True, blank=True)
 
     def __str__(self):
         return self.profile.__str__() + ':  ' + self.certification_name
+
+
+class Event(models.Model):
+    user =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='scheduling', null=True, blank=True)
+    title = models.CharField(max_length=200, unique=True, blank = True, null = True)
+    day = models.DateField(u'Day of the event', help_text=u'Day of the event')
+    start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
+    end_time = models.TimeField(u'Final time', help_text=u'Final time')
+    notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
+ 
+    class Meta:
+        verbose_name = u'Scheduling'
+        verbose_name_plural = u'Scheduling'
+ 
+    def check_overlap(self, fixed_start, fixed_end, new_start, new_end):
+        overlap = False
+        if new_start == fixed_end or new_end == fixed_start:    #edge case
+            overlap = False
+        elif (new_start >= fixed_start and new_start <= fixed_end) or (new_end >= fixed_start and new_end <= fixed_end): #innner limits
+            overlap = True
+        elif new_start <= fixed_start and new_end >= fixed_end: #outter limits
+            overlap = True
+ 
+        return overlap
+ 
+    def get_absolute_url(self):
+        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
+        return u'<a href="%s">%s</a>' % (url, str(self.start_time))
+ 
+    def clean(self):
+        if self.end_time <= self.start_time:
+            raise ValidationError('Ending times must be after starting times')
+ 
+        events = Event.objects.filter(day=self.day)
+        if events.exists():
+            for event in events:
+                if self.check_overlap(event.start_time, event.end_time, self.start_time, self.end_time):
+                    raise ValidationError(
+                        'There is an overlap with another event: ' + str(event.day) + ', ' + str(
+                            event.start_time) + '-' + str(event.end_time))
+
+
+
+class Project(models.Model):
+    name = models.CharField(default='', max_length=50)
+    description = models.CharField(default='This is what I did', max_length=2000)
+    image = models.ImageField(default='media/right-arrow.png', upload_to='media/', blank=True, null=True)
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='project', null=True, blank=True)
+    month = models.CharField(default='', max_length=2, blank=True, null=True)
+    year = models.CharField(default='9999', max_length=4)
+
+    def __str__(self):
+        return self.profile.__str__() + ':  ' + self.name

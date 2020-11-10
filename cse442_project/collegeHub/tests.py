@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education
-from collegeHub.views import create_experience
+from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill, Event
+from collegeHub.views import create_experience, create_event
 import requests
 # Create your tests here.
 
@@ -27,6 +27,17 @@ class ExperienceTest(TestCase):
         self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1).profile.user.email, self.user.email)
         # Get experience from user
         self.assertEqual(Experiences.objects.filter(pk=1).get(pk=1), self.UserProfile.experience)
+
+class EventTest(TestCase):
+    def setup(self):
+        self.user = User.objects.create(username='testuser',
+                                        email='email@email.com',
+                                        password='password1234')
+        self.user.save()
+        self.UserProfile = UserProfile.objects.create(user=self.user)
+        self.UserProfile.save()
+        self.event = Event.objects.create(profile=self.UserProfile)
+        self.experience.save()
 
 
 class SectionTest(TestCase):
@@ -114,3 +125,30 @@ class EducationTest(TestCase):
                          self.userProfile.user.username)
 
 
+class SkillTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='testuser',
+                                        email='email@email.com',
+                                        password='password1234')
+        self.user.save()
+        self.userProfile = UserProfile.objects.create(user=self.user)
+        self.userProfile.save()
+
+    def test_skill_links_to_profile(self):
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+
+        # Can get experience from section
+        self.assertEqual(Skill.objects.filter(pk=1).get(pk=1).profile, self.userProfile)
+
+    def test_multiple_skill_to_one_profile(self):
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+        self.skill = Skill.objects.create(profile=self.userProfile)
+        self.skill.save()
+
+        # Can get experience from section
+        self.assertEqual(Skill.objects.filter(pk=1).get(pk=1).profile.user.username,
+                         self.userProfile.user.username)
+        self.assertEqual(Skill.objects.filter(pk=2).get(pk=2).profile.user.username,
+                         self.userProfile.user.username)

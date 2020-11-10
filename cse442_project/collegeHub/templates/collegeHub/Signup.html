@@ -16,15 +16,33 @@
     <!--logo icon / favicon-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
     <title>Sign Up | CollegeHub</title>
+    <style>
+        .field {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .field input {
+            margin-bottom: 8px;
+        }
+
+        label {
+            margin: 0;
+        }
+        #bio{
+            height: calc(3rem + .75rem + 2px);
+        }
+    </style>
 </head>
 <body>
 <div id="desktop">
     <!--*************************************************CONTENT************************************************-->
-    <div id="Outer-timeline">
+    <div id="Outer-timeline-signup">
         <div id="signup-container">
             <div id="signup-form">
                 <div style="display: flex; align-items: center;">
-                    <img src="../../static/collegehub/images/CH.png" style="width: 50px; height: 50px; margin-right: 20px">
+                    <img src="../../static/collegehub/images/CH.png"
+                         style="width: 50px; height: 50px; margin-right: 20px">
                     <h1 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h1>
                 </div>
                 <hr>
@@ -34,36 +52,110 @@
                         to recruiters</h6>
                 </div>
                 <br>
-                <form>
+                <form enctype="multipart/form-data" method="POST">
+                    {% csrf_token %}
                     <div class="form-row" style="margin-bottom: 20px">
                         <div class="col">
-                            <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                                   placeholder="First name">
+                            {{ form.first_name }}
                         </div>
                         <div class="col">
-                            <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                                   placeholder="Last name">
+                            {{ form.last_name }}
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input style="background-color: #f0f0f0; border: none" type="text" class="form-control"
-                               placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                    <div class="form-sub-box">
+                        {{ form.username }}
+                        <small id="emailHelp" class="form-text text-muted">Required. 150 characters or fewer. Letters,
+                            digits and @/./+/-/_ only.</small>
                     </div>
-                    <div class="form-group">
-                        <input style="background-color: #f0f0f0; border: none " type="password" class="form-control"
-                               placeholder="Password (Min. 8 Characters)" aria-label="Password"
-                               aria-describedby="basic-addon1">
+                    <div class="form-sub-box">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-sub-box">
+                        {{ form.password1 }}
+                        <small id="emailHelp" style="color: #FCA311;" class="form-text">* Password Must be Min. 8
+                            characters and contain one upper case letter, a number
+                            and a symbol.</small>
+                    </div>
+                    <div class="form-sub-box">
+                        {{ form.password2 }}
+                        <small id="emailHelp" class="form-text text-muted">
+                            Enter the same password as before, for verification.
+                        </small>
+                    </div>
+                    <button type="button" class="btn  btn-outline-warning" data-toggle="modal"
+                            data-target="#exampleModal">
+                        Complete Profile
+                    </button>
+                    <hr>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><i class="far fa-id-card"></i> Edit Profile</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div style="display: flex; flex-wrap: wrap; flex-direction: column; justify-content: space-evenly">
+                                        {{ p_form.non_field_errors }}
+                                        <div style="margin-bottom: 5px">
+                                            {{ p_form.bio }}
+                                        </div>
+                                        <div class="field">
+                                            <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-user-md"></i> Occupation: </label>
+                                            {{ p_form.occupation }}
+                                        </div>
+                                        <div class="field">
+                                            <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-search-location"></i> Location: </label>
+                                            {{ p_form.occupation }}
+                                        </div>
+                                        <div class="field">
+                                            <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-quote-right"></i> Quote: </label>
+                                            {{ p_form.quote }}
+                                        </div>
+                                        <div class="field" style="margin-top: 10px">
+                                            <h5 style="margin: 0"><i class="fas fa-hashtag"></i> Social Media</h5>
+                                            <div class="field" style="padding: 5px 20px 5px 20px">
+                                                <label for="{{ p_form.github.}}"><i class="fab fa-github"></i> Github: </label>
+                                                {{ p_form.github }}
+                                                <label for="{{ p_form.linkedin.id_for_label }}"><i class="fab fa-linkedin-in"></i> LinkedIn: </label>
+                                                {{ p_form.linkedin }}
+                                                <label for="{{ p_form.instagram.id_for_label }}"><i class="fab fa-instagram"></i> Instagram: </label>
+                                                {{ p_form.instagram }}
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-portrait"></i>&ensp;Profile Picture</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                {{ p_form.profile_pic}}
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file...</label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroupFileAddon01"><i class="fas fa-file"></i>&ensp;Resume</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                {{ p_form.resume}}
+                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                    file...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
                             class="btn">Sign Up
                     </button>
                 </form>
-                <br>
-                <div>
-                    <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
-                        * Password Must contain one upper case letter, a number and a symbol.
-                    </p>
-                </div>
                 <br>
                 <div>
                     <p style="font-weight: lighter;color: #dedede; font-size: 10px">
@@ -81,7 +173,8 @@
                 <div id="up">
                     <div style="display: flex; flex-wrap: wrap; padding: 70px 5vw 30px 5vw; justify-content: space-between; align-items: center; color: white">
                         <div class="feature-logo marg-20">
-                            <img src="../../static/collegehub/images/feature3-2.png" style="height: 100%; width: 100%" alt="feature">
+                            <img src="../../static/collegehub/images/feature3-2.png" style="height: 100%; width: 100%"
+                                 alt="feature">
                         </div>
                         <div class="feature-logo marg-20">
                             <img src="../../static/collegehub/images/feature2-2.png" style="height: 100%; width: 100%">
