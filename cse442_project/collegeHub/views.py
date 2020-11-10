@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm
@@ -143,8 +144,8 @@ class register_not_confirmed(TemplateView):
 
 
 
-@login_required
-class Account(DetailView):
+
+class Account(LoginRequiredMixin, DetailView):
     model = models.UserProfile
     template_name = "collegehub/account.html"
 
@@ -362,9 +363,9 @@ class cal(TemplateView):
     template_name = 'collegeHub/change_list.html'
 
 
-# @login_required
-@login_required
-class Settings(DetailView):
+
+
+class Settings(LoginRequiredMixin, DetailView):
     model = models.UserProfile
     template_name = 'collegeHub/settings.html'
 
