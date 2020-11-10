@@ -51,15 +51,24 @@
                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
                      style="background-color: #14213D; border-radius: 7px;">
+                {% if user.is_authenticated %}
+
                     <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{{user.userprofile.profile_pic.url}}" id="settings-logo" alt="User name"></span>
                         {{ user.first_name }} {{user.last_name }}
                     </h4>
-                    {% if user.username == user_profile.user.username%}
+                    {% endif %}
+                    {% if user.username == user_profile.user.username and user.is_authenticated%}
                     <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
                     <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
                     {% endif %}
-                    <a class="dropdown-item" href="{% url 'settings' username=user_profile.user %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
-                    <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                    {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Login</a>
+
+                    {% endif %}
+                    
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
                 </div>
@@ -137,7 +146,7 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#edu_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
-                {% if user.username == user_profile.user.username%}
+                {% if user.username == user_profile.user.username and user.is_authenticated%}
                 <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
                 {% endif %}
             </div>
@@ -193,7 +202,7 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#skills_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
-                {% if user.username == user_profile.user.username%}
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
 
                 <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
                 {% endif %}
@@ -237,7 +246,7 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
-                                {% if user.username == user_profile.user.username%}
+                                {% if user.username == user_profile.user.username and user.is_authenticated%}
 
                 <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
            {% endif %}
@@ -303,7 +312,7 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#projects_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
-                                {% if user.username == user_profile.user.username%}
+                                {% if user.username == user_profile.user.username and user.is_authenticated%}
 
                 <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
             {% endif %}
@@ -478,7 +487,7 @@
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script>
     const sectionForm = document.getElementById('section-form');
-    let current_user = {% if user.username == user_profile.user.username %} true {% else %}false {% endif %}
+    let current_user = {% if user.username == user_profile.user.username  and user.is_authenticated %} true {% else %}false {% endif %}
     console.log(current_user)
 
     sectionForm.addEventListener("submit", submitSectionHandler);
@@ -637,10 +646,12 @@ function submitEducationHandler(e){
                     {#'            </div>\n' +#}
                     '            <div class="col-md-12">\n' +
                     '                <div class="dropdown ">\n' +
+                    
                     '                    <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
                     '                        <i class="fas fa-ellipsis-v"></i>\n' +
                     '                    </button>\n' +
-                    '                    <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
+                    
+                   '                    <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
                     '                        <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>\n' +
                     '                        <button class="dropdown-item"  onclick="removeme(\'uni\')">Remove</button>\n' +
                     '                    </div>\n' +
