@@ -31,9 +31,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                          <a href="{% url 'index' username=user_profile.user %}"><h5 class="card-title"><b><span> {{ user_profile.user }}</span>.collegeHub</b></h5></a>
+                          <a href="{% url 'index' username=user_profile.user %}"><h5 class="card-title"><b><span> {{ user_profile.user |lower }}</span>.collegeHub</b></h5></a>
 
-                            <p class="card-text">I am a software engineer blah bah blah, some few lines from about.</p>
+                            <p class="card-text">{{user_profile.bio}}</p>
                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                     </div>
@@ -201,8 +201,8 @@
                     </div>
                 </div>
                 <div class="card-body" style="font-size: 15px">
-                    <p class="card-text mg-0"><span><i class="fas fa-user"></i> </span> <b>Username:</b> Fullname</p>
-                    <p class="card-text mg-0"><span> <i class="fas fa-globe-americas"></i></span>  <b>Domain:</b> Fullname.collegehub.com</p>
+                    <p class="card-text mg-0"><span><i class="fas fa-user"></i> </span> <b>Username:</b> {{user_profile.user}}</p>
+                    <p class="card-text mg-0"><span> <i class="fas fa-globe-americas"></i></span>  <b>Domain:</b> {{user_profile.user | lower}}.collegehub.com</p>
                     <p class="card-text mg-0"> <span><i class="fas fa-scroll"></i></span>  <b>Template:</b> Template_name</p>
                     <p class="card-text mg-0"> <span><i class="fas fa-certificate"></i></span> <b>Premium:</b> No</p>
                     <p class="card-text mg-0"> <span> <i class="fas fa-calendar-alt"></i></span>  <b>Schedule:</b> Public</p>

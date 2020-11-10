@@ -144,6 +144,7 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 LOGIN_REDIRECT_URL =  'index'
 LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL =  'home'
 
 LOGGING = {
     'version': 1,
