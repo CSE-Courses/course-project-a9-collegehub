@@ -54,8 +54,10 @@
                     <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{{user.userprofile.profile_pic.url}}" id="settings-logo" alt="User name"></span>
                         {{ user.first_name }} {{user.last_name }}
                     </h4>
+                    {% if user.username == user_profile.user.username%}
                     <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
                     <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
+                    {% endif %}
                     <a class="dropdown-item" href="{% url 'settings' username=user_profile.user %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
                     <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                     <div class="dropdown-divider"></div>
@@ -135,7 +137,9 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#edu_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
+                {% if user.username == user_profile.user.username%}
                 <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+                {% endif %}
             </div>
 {#            <div class="modal fade" id="edu_rename_section" tabindex="-1" aria-labelledby="edu_rename_sectionLabel" aria-hidden="true">#}
 {#                <div class="modal-dialog">#}
@@ -189,7 +193,10 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#skills_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
+                {% if user.username == user_profile.user.username%}
+
                 <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+                {% endif %}
             </div>
 
 
@@ -230,7 +237,10 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
+                                {% if user.username == user_profile.user.username%}
+
                 <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
+           {% endif %}
             </div>
 
             {# ********** RENAME TOPIC POP UP **********#}
@@ -293,7 +303,10 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#projects_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
+                                {% if user.username == user_profile.user.username%}
+
                 <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
+            {% endif %}
             </div>
 {#            <div class="modal fade" id="projects_rename_section" tabindex="-1" aria-labelledby="projects_rename_sectionLabel" aria-hidden="true">#}
 {#                <div class="modal-dialog">#}
@@ -465,6 +478,8 @@
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script>
     const sectionForm = document.getElementById('section-form');
+    let current_user = {% if user.username == user_profile.user.username %} true {% else %}false {% endif %}
+    console.log(current_user)
 
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
@@ -479,6 +494,9 @@
                     try {
                         document.getElementById('no-section').remove();
                     }catch {}
+
+    
+
                     var section = '<div class="sub-section">\n' +
                         '            <div class="sub-section-header">\n' +
                         '                 <div class="sub-section-heading">\n' +

@@ -1,10 +1,13 @@
 {% load static %}
 {% if user_profile.education.count == 0 %}
+                {% if user.username == user_profile.user.username%}
+
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
               <div class="card-body">
                     Click on + to add an education
               </div>
         </li>
+        {% endif %}
 {% endif %}
 
 {% for education in user_profile.education.all %}
@@ -15,9 +18,13 @@
 {#            </div>#}
             <div class="col-md-12">
                 <div class="dropdown ">
+                {% if user.username == user_profile.user.username%}
+
                     <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
+                    {% endif %}
                     <div class="dropdown-menu" aria-labelledby="uni-Button">
                         <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>
                         <button class="dropdown-item"  onclick="removeme('uni')">Remove</button>
