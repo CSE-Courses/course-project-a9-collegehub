@@ -51,8 +51,8 @@
                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
                      style="background-color: #14213D; border-radius: 7px;">
-                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{% static 'collegehub/images/logo.png' %}" id="settings-logo" alt="User name"></span>
-                        Full Name
+                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{{user.userprofile.profile_pic.url}}" id="settings-logo" alt="User name"></span>
+                        {{ user.first_name }} {{user.last_name }}
                     </h4>
                     <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
                     <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
@@ -109,24 +109,24 @@
     <!--header-->
     <header id="header">
         <div id="name-container">
-            <h1 id="name"> {{ user_profile.user }}</h1>
+            <h1 id="name"> {{ user_profile.user.first_name }} {{user_profile.user.last_name }}</h1>
+            <h3 style="color : white;"> {{ user_profile.user }}</h3>
             <!--            add social links here too right under the name-->
             <h3>
-                <a href="#"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
-                <a href="#"><span><i class="fa fa-facebook-square FA_Header" style="font-size:36px"></i></span> </a>
-                <a href="#"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="{{ user_profile.linkedin}}"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="{{user_profile.github}}"><span><i class="fa fa-github-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="{{user_profile.instagram}}"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
             </h3>
         </div>
     </header>
 
     <main id="sections-container">
         <section id="about">
-            <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
+            <img id="user-image" src="{{user_profile.profile_pic.url}}" alt="User profile picture">
             <div class="section-heading">
                 <h1>About</h1>
             </div>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Vivamus viverra quis mauris sed tempus. A elit.
+            <p> {{user_profile.bio}}
             </p>
         </section>
         <section id="education">
@@ -409,12 +409,11 @@
                     Reach me at
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">LinkedIn</a>
+                    
+                    <a href="{{user_profile.linkedin}}" class="btn btn-primary"> linkedin </a>
                 </div>
                 <div class="card-footer text-muted">
-                    Email@uffalo.edu
+                    {{user_profile.email}}
                 </div>
             </div>
         </div>
