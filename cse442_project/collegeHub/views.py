@@ -103,7 +103,7 @@ def activate(request, uidb64, token):
     else:
         return redirect(reverse('not_confirmed'))
 
-
+@login_required
 def EditProfile(request):
     if request.method == "POST":
         user_form = UserEditForm(request.POST, instance=request.user)
@@ -143,7 +143,7 @@ class register_not_confirmed(TemplateView):
 
 
 
-
+@login_required
 class Account(DetailView):
     model = models.UserProfile
     template_name = "collegehub/account.html"
@@ -169,18 +169,18 @@ class Account(DetailView):
 #     template_name = "collegehub/Signup.html"
 
 
-# @login_required
+@login_required
 def profile(request):
     return render(request, 'templates/profile.html')
 
 
-# @login_required
+@login_required
 def create_experience(user):
     experiences = models.Experiences(profile=user)
     experiences.save()
 
 
-# @login_required
+@login_required
 def create_section(request, pk):
     if request.method == 'POST':
         form = SectionForm(request.POST, request.FILES)
@@ -204,7 +204,7 @@ def passer(request):
     pass
 
 
-# @login_required
+@login_required
 def create_project(request, pk):
     if request.method == 'POST':
         form = ProjectForm(request.POST, request.FILES)
@@ -230,7 +230,7 @@ def create_project(request, pk):
     return JsonResponse({}, status=200)
 
 
-# @login_required
+@login_required
 def create_specific(request, pk):
     if request.method == 'POST':
         form = SpecificForm(request.POST, request.FILES)
@@ -259,7 +259,7 @@ def create_specific(request, pk):
     # return JsonResponse({}, status=200)
 
 
-# @login_required
+@login_required
 def create_education(request, pk):
     if request.method == 'POST':
         form = EducationForm(request.POST, request.FILES)
@@ -319,6 +319,7 @@ class Index(DetailView):
 #     return render(template_name='collegeHub/index.html', context=context)
 
 
+@login_required
 def create_skill(request, pk):
     if request.method == 'POST':
         form = SkillForm(request.POST, request.FILES)
@@ -362,6 +363,7 @@ class cal(TemplateView):
 
 
 # @login_required
+@login_required
 class Settings(DetailView):
     model = models.UserProfile
     template_name = 'collegeHub/settings.html'
