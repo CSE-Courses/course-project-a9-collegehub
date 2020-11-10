@@ -1,10 +1,12 @@
 {% load static %}
 {% if user_profile.project.count == 0 %}
+    {% if user.username == user_profile.user.username%}
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
               <div class="card-body">
                     Click on + to add a project
               </div>
         </li>
+        {% endif %}
 {% endif %}
 
 {% for project in user_profile.project.all %}
