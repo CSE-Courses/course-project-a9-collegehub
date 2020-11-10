@@ -41,6 +41,16 @@ html {
     height: 100%;
   }
 
+  .zoomAccount {
+    transition: transform 0.5s;
+  }
+
+  .zoomAccount:hover {
+    transform: scale(2);
+    z-index: 3;
+    position: absolute;
+  }
+
   .zoom {
     transition: transform 0.5s;
   }
@@ -64,7 +74,7 @@ html {
     height: 300px;
     z-index: 3;
     position: absolute;
-    left: -110%
+    left: -110%;
   }
 
   .zoomr img:hover {
@@ -277,7 +287,12 @@ html {
   #template-setting-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+  }
+
+  .template-setting-container-box {
+    width: 15rem;
+    text-align: center;
   }
 
   /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& Home PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
@@ -475,7 +490,6 @@ html {
     border-color: #FCA311;
     box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
   }
-
 
   .marg-20 {
     margin: 20px;
@@ -792,8 +806,6 @@ html {
     text-align: center;
     justify-content: space-evenly;
   }
-
-
 
   myhr {
     border: 0;
