@@ -40,6 +40,18 @@ html {
         object-fit: cover;
         height: 100%;
     }
+
+    .tp-card{
+        display: flex;
+        width: 800px;
+        justify-content: space-between;
+    }
+    .tp-info{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
     #template-heading{
         text-align: center;
         font-weight: lighter;
@@ -183,7 +195,6 @@ html {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        /*width: 50px;*/
     }
 
     .account-header {

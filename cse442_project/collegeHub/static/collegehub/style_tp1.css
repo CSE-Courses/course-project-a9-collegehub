@@ -284,7 +284,8 @@ html {
         border: #dedede 1px solid;
         border-radius: 0.5rem;
         padding: 5px;
-
+        margin-bottom: 10px;
+        box-shadow: 30px 0 35px 0 lightgrey;
     }
      .sub-section-header {
         display: flex;
@@ -293,11 +294,43 @@ html {
          margin-bottom: 15px;
     }
      .experience-body{
-         height: 80%;
+         height: 90%;
+         padding: 30px 60px 20px 0;
          overflow: scroll;
      }
      #project-container{
          padding: 0 40px 40px 40px;
+     }
+     #contact-container{
+         padding: 0 40px 40px 40px;
+         background-color: #ffe2e2;
+         background: linear-gradient(50deg, #ffc7c7 0%, #ffe2e2 74%);
+         height: 100%;
+     }
+     .contact-body{
+         padding: 20px;
+     }
+     #number{
+         color: #8785a2;
+         font-size: 2rem;
+     }
+     #email{
+         color: #8785a2;
+         font-size: 2rem;
+     }
+     .rechme{
+         background: linear-gradient(50deg, #625d8f 0%, #857eca 74%);
+          -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        font-size: 2rem;
+     }
+     #contact-me{
+         display: flex;
+         align-items: center;
+         padding: 0 100px 0 30px;
+     }
+     #address{
+         margin-left: 10rem;
      }
      .project-body{
          display: flex;
@@ -306,6 +339,22 @@ html {
          align-items: center;
          padding: 30px;
      }
+     .contact-button {
+    background: transparent;
+    font-size: 0.95rem;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 2px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 0.8em 0.8em 0.78em;
+    transition: background 0.8s;
+}
 }
 
 /*MOBILE DEVICES*/
