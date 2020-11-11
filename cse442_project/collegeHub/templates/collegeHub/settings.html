@@ -23,7 +23,7 @@
     <!--*************************************************CONTENT************************************************-->
     {% include 'collegeHub/logged_in_nav.html' %}
     <div id="Outer-timeline">
-        <div id="inner-timeline-left">
+        <div id="inner-timeline-left" >
             <div class="card mb-3" style="background-color: #E5E5E5; box-shadow: 30px 0 30px 0 lightgrey; border: none">
                 <div class="row no-gutters">
                     <div class="col-md-5">
@@ -40,16 +40,35 @@
                 </div>
             </div>
             <hr>
-            <h1 id="template-heading" style="text-align: center; font-weight: lighter"> Template Store</h1>
-            <div id="template-container">
+            <h1 id="template-heading" > Template Store</h1>
+            <div id="template-container" >
                 <div class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4 zoom">
-                            <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img" alt="...">
-                        </div>
+                        <a class="col-md-4 zoom" type="button" data-toggle="modal" data-target="#tp0">
+                          <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img" alt="Default template">
+                        </a>
+                        <div class="modal fade" id="tp0" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img" alt="Default template">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="{% url 'temp0' %}" type="button" class="btn btn-primary">Visit</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                              <a href="{% url 'temp0' %}"><h5 class="card-title"> <b>Default Template</b></h5></a>
+                              <a href="{% url 'temp0' %}"><h5 class="card-title"> <b> Template 0</b></h5></a>
                                 <p class="card-text">Shades:</p>
                                 <div class="shades">
                                     <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +85,7 @@
                                     </svg>
                                 </div>
                                 <br>
-                                <p class="card-text"><small class="text-muted">Major related name</small></p>
+                                <p class="card-text"><small class="text-muted">Vertical Template</small></p>
                             </div>
                         </div>
                     </div>
@@ -95,16 +114,54 @@
                                 <p class="card-text"><small class="text-muted">Major related name</small></p>
                             </div>
                         </div>
-                        <div class="col-md-4 zoomr">
-                            <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img" alt="...">
-                        </div>
+                        <a class="col-md-4 zoom" type="button" data-toggle="modal" data-target="#tp1">
+                          <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img" alt="Default template">
+                        </a>
+                        <div class="modal fade" id="tp1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img" alt="Default template">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="{% url 'temp1' %}" type="button" class="btn btn-primary">Visit</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                     </div>
                 </div>
                 <div class="card mb-3 template" style="max-width: 540px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4 zoom">
-                            <img src="{% static 'collegehub/images/tp-2sample.png' %}" class="card-img" alt="...">
-                        </div>
+                        <a class="col-md-4 zoom" type="button" data-toggle="modal" data-target="#tp2">
+                          <img src="{% static 'collegehub/images/tp-2sample.png' %}" class="card-img" alt="Default template">
+                        </a>
+                        <div class="modal fade" id="tp2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <img src="{% static 'collegehub/images/tp-2sample.png' %}" class="card-img" alt="Default template">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <a href="{% url 'temp2' %}" type="button" class="btn btn-primary">Visit</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                         <div class="col-md-8">
                             <div class="card-body">
                               <a href="{% url 'temp2' %}"><h5 class="card-title"> <b>Template III</b></h5></a>
@@ -129,75 +186,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-3 template" style="max-width: 540px;">
-                    <div class="row no-gutters">
-
-                        <div class="col-md-8">
-                            <div class="card-body">
-                              <a href="{% url 'temp3' %}"><h5 class="card-title"> <b>Template IV</b></h5></a>
-                                <p class="card-text">Shades:</p>
-                                <div class="shades">
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#ff8c94" d="M50,-28.8C63.2,-6.1,71.1,19.8,61.9,39.2C52.7,58.5,26.3,71.4,5,68.5C-16.3,65.6,-32.6,46.9,-44.7,25.9C-56.7,4.9,-64.6,-18.4,-56.4,-38.3C-48.2,-58.1,-24.1,-74.4,-2.9,-72.8C18.4,-71.1,36.8,-51.5,50,-28.8Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#ffaaa6" d="M60.2,-49.7C74.6,-29.9,80.7,-5,72.6,11.1C64.6,27.2,42.4,34.7,23.3,41.1C4.2,47.6,-12,53,-25.6,48.3C-39.3,43.6,-50.5,28.8,-51.9,14.2C-53.3,-0.4,-45,-14.8,-34.8,-33.8C-24.5,-52.7,-12.2,-76.1,5.3,-80.3C22.9,-84.5,45.7,-69.6,60.2,-49.7Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70"  viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#ffd3b5" d="M47.6,-42.9C57.8,-25.2,59.5,-5.6,57.2,16.5C54.9,38.6,48.6,63.3,35.5,67.1C22.3,71,2.2,54,-16.1,41.9C-34.5,29.8,-51.2,22.7,-53.7,12.1C-56.2,1.6,-44.4,-12.2,-33.1,-30.2C-21.8,-48.2,-10.9,-70.3,3.9,-73.4C18.7,-76.5,37.4,-60.6,47.6,-42.9Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#dcedc2" d="M37.6,-25.8C48.5,-16.2,57.1,-0.6,54,12.1C50.9,24.8,36.1,34.5,18.4,46C0.7,57.5,-19.8,70.7,-36.8,66.4C-53.8,62.1,-67.1,40.2,-68,20.2C-68.9,0.1,-57.3,-18.2,-43.9,-28.4C-30.5,-38.5,-15.2,-40.6,-1,-39.8C13.3,-39,26.6,-35.4,37.6,-25.8Z" transform="translate(100 100)" />
-                                    </svg>
-                                </div>
-                                <br>
-                                <p class="card-text"><small class="text-muted">Major related name</small></p>
-                            </div>
-                        </div>
-                        <div class="col-md-4 zoomr">
-                            <img src="../../static/collegehub/images/vertical_template1.jpg" class="card-img" alt="...">
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 template" style="max-width: 540px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4 zoom">
-                            <img src="../../static/collegehub/images/vertical_template.jpg" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title"> <b>Template Name </b></h5>
-                                <p class="card-text">Shades:</p>
-                                <div class="shades">
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#eeeeee" d="M50,-28.8C63.2,-6.1,71.1,19.8,61.9,39.2C52.7,58.5,26.3,71.4,5,68.5C-16.3,65.6,-32.6,46.9,-44.7,25.9C-56.7,4.9,-64.6,-18.4,-56.4,-38.3C-48.2,-58.1,-24.1,-74.4,-2.9,-72.8C18.4,-71.1,36.8,-51.5,50,-28.8Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#d72323" d="M60.2,-49.7C74.6,-29.9,80.7,-5,72.6,11.1C64.6,27.2,42.4,34.7,23.3,41.1C4.2,47.6,-12,53,-25.6,48.3C-39.3,43.6,-50.5,28.8,-51.9,14.2C-53.3,-0.4,-45,-14.8,-34.8,-33.8C-24.5,-52.7,-12.2,-76.1,5.3,-80.3C22.9,-84.5,45.7,-69.6,60.2,-49.7Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70"  viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#3a4750" d="M47.6,-42.9C57.8,-25.2,59.5,-5.6,57.2,16.5C54.9,38.6,48.6,63.3,35.5,67.1C22.3,71,2.2,54,-16.1,41.9C-34.5,29.8,-51.2,22.7,-53.7,12.1C-56.2,1.6,-44.4,-12.2,-33.1,-30.2C-21.8,-48.2,-10.9,-70.3,3.9,-73.4C18.7,-76.5,37.4,-60.6,47.6,-42.9Z" transform="translate(100 100)" />
-                                    </svg>
-                                    <svg width="70" height="70" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#303841" d="M37.6,-25.8C48.5,-16.2,57.1,-0.6,54,12.1C50.9,24.8,36.1,34.5,18.4,46C0.7,57.5,-19.8,70.7,-36.8,66.4C-53.8,62.1,-67.1,40.2,-68,20.2C-68.9,0.1,-57.3,-18.2,-43.9,-28.4C-30.5,-38.5,-15.2,-40.6,-1,-39.8C13.3,-39,26.6,-35.4,37.6,-25.8Z" transform="translate(100 100)" />
-                                    </svg>
-                                </div>
-                                <br>
-                                <p class="card-text"><small class="text-muted">Major related name</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div id="inner-timeline-right">
-            <div class="card account-card">
+            <div class="card account-card" style="border-radius: 1rem">
                 <div class="card-header account-header" style="font-size: 30px;">
                     <div class="account-tab">
                         <span><i class="fas fa-user-edit" style="margin-right: 10px"></i></span>Account
                     </div>
                     <div class="account-tab">
-                        <a href="{% url 'account' username=user_profile.user%}" class="btn btn-outline-warning">Edit</a>
+                        <a href="{% url 'account' username=user_profile.user%}" style="border-radius: 1rem" class="btn btn-outline-warning">Edit</a>
                     </div>
                 </div>
                 <div class="card-body" style="font-size: 15px">
@@ -222,7 +220,7 @@
         </div>
     </div>
     <footer>
-        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
+        <nav class="navbar fixed-bottom navbar-light" style="background-size: 100%;background: linear-gradient(to right, #14213D, #265883, #14213D);
         background-size: 100%;
         background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
             <span style="color: white">

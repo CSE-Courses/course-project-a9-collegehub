@@ -10,8 +10,8 @@
 {% endif %}
 
 {% for project in user_profile.project.all %}
-    <div class="card">
-        <div class="card-header">
+    <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;">
+        <div class="card-header" style="font-weight: bold;">
             {{project.name}}
         </div>
         <div class="card-body">

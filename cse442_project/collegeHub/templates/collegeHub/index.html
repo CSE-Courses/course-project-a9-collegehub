@@ -17,7 +17,7 @@
     <!--logo icon / favicon-->
     <!--      <link rel="icon" href="images/logo.png">-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
-    <title>Name | CollegeHub</title>
+    <title>{{ user_profile.user }} | CollegeHub</title>
 </head>
 
 <body>
@@ -50,25 +50,24 @@
                 <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
-                     style="background-color: #14213D; border-radius: 7px;">
+                     style="background-image: linear-gradient(50deg, #14213D 0%, #265883 74%); border-radius: 7px;">
                 {% if user.is_authenticated %}
-
                     <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{{user.userprofile.profile_pic.url}}" id="settings-logo" alt="User name"></span>
                         {{ user.first_name }} {{user.last_name }}
                     </h4>
-                    {% endif %}
-                    {% if user.username == user_profile.user.username and user.is_authenticated%}
+                {% endif %}
+                {% if user.username == user_profile.user.username and user.is_authenticated%}
                     <a type="button" class="dropdown-item"   data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
                     <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove" ><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
-                    {% endif %}
-                    {% if user.is_authenticated %}
+                {% endif %}
+                {% if user.is_authenticated %}
                     <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
                     <a class="dropdown-item" href="{% url 'logout' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                     {% else %}
                     <a class="dropdown-item" href="{% url 'login' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Login</a>
 
-                    {% endif %}
-                    
+                {% endif %}
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
                 </div>
@@ -134,9 +133,6 @@
     <main id="sections-container">
         <section id="about">
             <img id="user-image" src="{{user_profile.profile_pic.url}}" alt="User profile picture">
-            <div class="section-heading">
-                <h1>About</h1>
-            </div>
             <p> {{user_profile.bio}}
             </p>
         </section>
@@ -207,8 +203,6 @@
                 <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"> <i class="fas fa-plus"></i></button>
                 {% endif %}
             </div>
-
-
             <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -246,10 +240,9 @@
 {#                <button type="button" class="option-button"  data-toggle="modal" data-target="#experience_rename_section"><i class="fas fa-pencil-alt"></i></button>#}
             </div>
             <div class="ellipse-container">
-                                {% if user.username == user_profile.user.username and user.is_authenticated%}
-
+            {% if user.username == user_profile.user.username and user.is_authenticated%}
                 <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"> <i class="fas fa-plus"></i></button>
-           {% endif %}
+            {% endif %}
             </div>
 
             {# ********** RENAME TOPIC POP UP **********#}
@@ -300,7 +293,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="experience-container">
                 {% include 'collegeHub/experiences.html' %}
             </div>
@@ -431,8 +423,8 @@
                     Reach me at
                 </div>
                 <div class="card-body">
-                    
-                    <a href="{{user_profile.linkedin}}" class="btn btn-primary"> linkedin </a>
+
+                    <a href="{{user_profile.linkedin}}" class="btn btn-primary"> linkedIn </a>
                 </div>
                 <div class="card-footer text-muted">
                     {{user_profile.email}}
@@ -441,7 +433,7 @@
         </div>
     </section>
     <footer>
-        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #b83b5e 5%, #b83b5e 34%);
+        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(to right, #8a082c, #ec2760, #8a082c);;
         background-size: 100%;
         background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
         <span style="color: white">
@@ -504,14 +496,14 @@
                         document.getElementById('no-section').remove();
                     }catch {}
 
-    
+
 
                     var section = '<div class="sub-section">\n' +
                         '            <div class="sub-section-header">\n' +
                         '                 <div class="sub-section-heading">\n' +
-                        '                    <h4 class="sub-section-heading-text" >\n' +
+                        '                    <h2 class="sub-section-heading-text" >\n' +
                                                 response.name +
-                        '                    </h4>\n' +
+                        '                    </h2>\n' +
                         '                </div>\n' +
                         '                <button type="button" data-toggle="modal" data-target="#add-experience-specific-' + response.section_pk  + '" class="sub-section-button"><i class="fas fa-plus"></i></button>\n' +
                         '            </div>\n' +
@@ -606,13 +598,13 @@
                     var specific = '<li class="media" style="margin: 10px 10px 18px 10px">\n';
                         {#specific + '                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">\n' +#}
                         specific += '<div class="media-body">\n';
-                        specific += ' <h5 class="mt-0 mb-1"> '+ response.position +'</h5>\n';
+                        specific += ' <h4 class="mt-0 mb-1"> '+ response.position +'</h4>\n';
                         if (response.company != '' && response.company != 'None'){
-                            specific += '<h7 class="mt-0 mb-1">'+ response.company +'</h7>\n';
+                            specific += '<h6 class="mt-0 mb-1">'+ response.company +'</h6>\n';
                         }
                          specific += '<p style="margin-bottom: 3px">\n' + response.description +'\n'+ '</p>\n';
                         if (response.link != ''){
-                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger">Link</a>\n';
+                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger"  style="border-radius: 4rem">Link</a>\n';
                             }
                         specific += '</div>\n' + '</li>';
 
@@ -639,18 +631,18 @@ function submitEducationHandler(e){
                     document.getElementById('no-education').remove();
                 }catch {}
 
-                var education = '<div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">\n' +
+                var education = '<div class="card mb-3 marg-20 edu-card" id="uni" style="width: 540px;border-radius: 1rem">\n' +
                     '        <div class="row no-gutters">\n' +
                     {#'            <div class="col-md-4">\n' +#}
                     {#'                <img src="{% static \'collegehub/images/preview.jpg\' %}" class="card-img" alt="edu-logo">\n'#}
                     {#'            </div>\n' +#}
                     '            <div class="col-md-12">\n' +
                     '                <div class="dropdown ">\n' +
-                    
+
                     '                    <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
                     '                        <i class="fas fa-ellipsis-v"></i>\n' +
                     '                    </button>\n' +
-                    
+
                    '                    <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
                     '                        <button class="dropdown-item"  data-toggle="modal" data-target="#edit_card">Edit</button>\n' +
                     '                        <button class="dropdown-item"  onclick="removeme(\'uni\')">Remove</button>\n' +
@@ -658,13 +650,13 @@ function submitEducationHandler(e){
                     '                </div>\n' +
                     '                <div class="card-body" >\n';
                     if (response.certification_name != ''){
-                        education += '<h5 id="major" class="card-title">'+ response.certification_name +'</h5>\n';
+                        education += '<h5 id="uniname" class="card-text">'+ response.institution + '</h5>\n';
                     }
                     if (response.institution != ''){
-                        education += '<h6 id="uniname" class="card-text"> Institution: '+ response.institution + '</h6>\n';
+                        education += '<h6 id="major" class="card-title">'+ response.certification_name +'</h6>\n';
                     }
                     if (response.description != ''){
-                        education += '<h6 id="edu-descrption" class="card-text"> Description: '+ response.description + '</h6>\n';
+                        education += '<h6 id="edu-descrption" class="card-text"> '+ response.description + '</h6>\n';
                     }
 
                     education += '                    <p id="year" class="card-text"><small class="text-muted">Date: '+response.month+'/'+response.year+'</small></p>\n' +
@@ -713,8 +705,8 @@ function submitEducationHandler(e){
                         document.getElementById('no-skill').remove();
                     }catch {}
 
-                    var skill = '<div class="card text-white bg-success mb-3" style="max-width: 18rem;">\n' +
-                        '        <div class="card-header">'+ response.name +'</div>\n    </div>';
+                    var skill = '<div class="card text-white bg-success mb-3" style="border-radius: 4rem;background-image: linear-gradient(50deg, #6a2c70 0%, #b44cbe 74%);max-width: 18rem;">\n' +
+                        '        <div class="skill-header">'+ response.name +'</div>\n    </div>';
 
                     $("#skills-container").append(skill);
 
@@ -739,8 +731,8 @@ function submitEducationHandler(e){
                         document.getElementById('no-project').remove();
                     }catch {}
 
-                    var project = '<div class="card">\n' +
-                        '        <div class="card-header">\n' + response.name +
+                    var project = '<div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;">\n' +
+                        '        <div class="card-header" style="font-weight: bold">\n' + response.name +
                         '        </div>\n' +
                         '        <div class="card-body">\n' +
                         '            <blockquote class="blockquote mb-0">\n' +

@@ -10,7 +10,7 @@
 {% endif %}
 
 {% for skill in user_profile.skill.all %}
-    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-        <div class="card-header">{{skill.name}}</div>
+    <div class="card text-white bg-success mb-3" style="border-radius: 4rem;background-image: linear-gradient(50deg, #6a2c70 0%, #b44cbe 74%);max-width: 18rem;">
+        <div class="skill-header">{{skill.name}}</div>
     </div>
 {% endfor %}
