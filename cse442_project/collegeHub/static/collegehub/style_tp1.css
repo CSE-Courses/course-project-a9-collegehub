@@ -53,13 +53,14 @@ html {
         justify-content: space-between;
     }
 
-    #tp1settingsicon{
+    #tp1settingsicon {
         color: #ffe2e2;
         font-size: 20px;
-        transition: transform 0.3s ease,font-size 0.3s ease;
+        transition: transform 0.3s ease, font-size 0.3s ease;
     }
-     #tp1settingsicon:hover{
-         transform: rotate(90deg) scale(1.5);
+
+    #tp1settingsicon:hover {
+        transform: rotate(90deg) scale(1.5);
         color: #ffe2e2;
     }
 
@@ -71,19 +72,19 @@ html {
         color: white;
         font-size: 20px;
         text-decoration: none;
-        transition: background-color 0.2s ease-in-out,  color 0.2s ease-in-out, font-size 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, font-size 0.2s ease-in-out;
     }
 
     .left-timeline-item:hover {
         background-color: #ffe2e2;
         color: black;
-        font-size : 25px;
+        font-size: 25px;
         text-decoration: none;
     }
 
     .left-timeline-item.active {
         z-index: 2;
-        font-size : 25px;
+        font-size: 25px;
         color: #fff;
         background-color: #ffc7c7;
     }
@@ -105,57 +106,65 @@ html {
 
     #about-container {
         padding: 30px 10px 30px 10px;
-        text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         height: 100%;
     }
-    #whoami{
+
+    #whoami {
         background-size: 100%;
         background: linear-gradient(50deg, #ff7f7f 0%, #ffc7c7 74%) repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
         font-size: 6rem;
     }
+
     #footer {
         display: flex;
         justify-content: space-evenly;
     }
-    .social_links{
+
+    .social_links {
         display: flex;
         justify-content: space-evenly;
     }
-    .social_links a{
+
+    .social_links a {
         font-size: 5rem;
-          background-size: 100%;
+        background-size: 100%;
         background: linear-gradient(50deg, #625d8f 0%, #857eca 74%) repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
     }
-    .side-headings{
-         background-size: 100%;
+
+    .side-headings {
+        background-size: 100%;
         background: linear-gradient(50deg, #ff7f7f 0%, #ffc7c7 74%) repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
         font-size: 4rem;
     }
-    .side-header{
+
+    .side-header {
         display: flex;
         justify-content: space-between;
         align-content: center;
         vertical-align: center;
     }
-     .ellipse-container {
+
+    .ellipse-container {
         display: flex;
-         align-items: center;
-         vertical-align: center;
+        align-items: center;
+        vertical-align: center;
     }
-    .edu-logo{
+
+    .edu-logo {
         border-radius: 2rem;
         width: 10vw;
         height: 10vw;
     }
+
     #education-container {
         padding: 0 40px 40px 40px;
     }
@@ -183,10 +192,11 @@ html {
     }
 
     #skills-container-tp1 {
-         padding: 0 40px 40px 40px;
+        padding: 0 40px 40px 40px;
     }
-    #experience-container{
-         padding: 0 40px 40px 40px;
+
+    #experience-container {
+        padding: 0 40px 40px 40px;
     }
 
     .work {
@@ -198,7 +208,8 @@ html {
         width: 4rem;
         height: 3rem;
     }
-     .option-button {
+
+    .option-button {
         float: right;
         display: inline-block;
         font-weight: 200;
@@ -213,12 +224,14 @@ html {
         font-size: 1.5rem;
         line-height: 1.5;
         border-radius: .25rem;
-         transition: font-size 0.1s ease;
+        transition: font-size 0.1s ease;
     }
+
     .option-button:hover {
         font-size: 2.5rem;
     }
-     .sub-section-button {
+
+    .sub-section-button {
         float: right;
         display: inline-block;
         font-weight: 200;
@@ -233,53 +246,61 @@ html {
         font-size: 1.5rem;
         line-height: 1;
         border-radius: .25rem;
-         transition: font-size 0.1s ease;
+        transition: font-size 0.1s ease;
     }
+
     .sub-section-button:hover {
         font-size: 1.5rem;
     }
 
-    .edu-card{
+    .edu-card {
         background: linear-gradient(50deg, #f6f6f6 0%, #fff8f8 74%) repeat;
         border-radius: 3rem;
         padding: 15px;
         box-shadow: 30px 0 35px 0 lightgrey;
         margin-bottom: 15px;
     }
-    .exp-card{
+
+    .exp-card {
         padding: 15px;
     }
-    .skills-body{
+
+    .skills-body {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-    .skill-bar{
+
+    .skill-bar {
         background: linear-gradient(50deg, #625d8f 0%, #857eca 74%);
         color: white;
         border-radius: 3rem;
         text-align: center;
     }
-    .skill-bar div{
+
+    .skill-bar div {
         padding: .75rem 1.25rem;
         margin-bottom: 0;
     }
+
     .sub-section-heading {
         width: 100%;
         display: flex;
         margin-left: 3px;
         align-items: center;
     }
+
     .sub-section-heading-text {
 
         padding: 0;
         margin: 0;
         background-image: linear-gradient(50deg, #6a2c70 0%, #8785a2 74%);
         background-size: 100%;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
     }
+
     .sub-section {
         border: #dedede 1px solid;
         border-radius: 0.5rem;
@@ -287,74 +308,86 @@ html {
         margin-bottom: 10px;
         box-shadow: 30px 0 35px 0 lightgrey;
     }
-     .sub-section-header {
+
+    .sub-section-header {
         display: flex;
         justify-content: space-between;
         padding: 5px;
-         margin-bottom: 15px;
+        margin-bottom: 15px;
     }
-     .experience-body{
-         height: 90%;
-         padding: 30px 60px 20px 0;
-         overflow: scroll;
-     }
-     #project-container{
-         padding: 0 40px 40px 40px;
-     }
-     #contact-container{
-         padding: 0 40px 40px 40px;
-         background-color: #ffe2e2;
-         background: linear-gradient(50deg, #ffc7c7 0%, #ffe2e2 74%);
-         height: 100%;
-     }
-     .contact-body{
-         padding: 20px;
-     }
-     #number{
-         color: #8785a2;
-         font-size: 2rem;
-     }
-     #email{
-         color: #8785a2;
-         font-size: 2rem;
-     }
-     .rechme{
-         background: linear-gradient(50deg, #625d8f 0%, #857eca 74%);
-          -webkit-background-clip: text;
+
+    .experience-body {
+        height: 90%;
+        padding: 30px 60px 20px 0;
+        overflow: scroll;
+    }
+
+    #project-container {
+        padding: 0 40px 40px 40px;
+    }
+
+    #contact-container {
+        padding: 0 40px 40px 40px;
+        background-color: #ffe2e2;
+        background: linear-gradient(50deg, #ffc7c7 0%, #ffe2e2 74%);
+        height: 100%;
+    }
+
+    .contact-body {
+        padding: 20px;
+    }
+
+    #number {
+        color: #8785a2;
+        font-size: 2rem;
+    }
+
+    #email {
+        color: #8785a2;
+        font-size: 2rem;
+    }
+
+    .rechme {
+        background: linear-gradient(50deg, #625d8f 0%, #857eca 74%);
+        -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
         font-size: 2rem;
-     }
-     #contact-me{
-         display: flex;
-         align-items: center;
-         padding: 0 100px 0 30px;
-     }
-     #address{
-         margin-left: 10rem;
-     }
-     .project-body{
-         display: flex;
-         flex-direction: column;
-         justify-content: space-evenly;
-         align-items: center;
-         padding: 30px;
-     }
-     .contact-button {
-    background: transparent;
-    font-size: 0.95rem;
-    border-width: 2px;
-    border-color: white;
-    border-style: solid;
-    border-radius: 2px;
-    color: white;
-    font-family: sans-serif;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    line-height: 1;
-    padding: 0.8em 0.8em 0.78em;
-    transition: background 0.8s;
-}
+    }
+
+    #contact-me {
+        display: flex;
+        align-items: center;
+        padding: 0 100px 0 30px;
+    }
+
+    #address {
+        margin-left: 10rem;
+    }
+
+    .project-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 30px;
+    }
+
+    .contact-button {
+        background: transparent;
+        font-size: 0.95rem;
+        border-width: 2px;
+        border-color: white;
+        border-style: solid;
+        border-radius: 2px;
+        color: white;
+        font-family: sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        padding: 0.8em 0.8em 0.78em;
+        transition: background 0.8s;
+    }
 }
 
 /*MOBILE DEVICES*/
