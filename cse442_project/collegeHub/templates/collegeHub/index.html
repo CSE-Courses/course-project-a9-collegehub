@@ -53,7 +53,7 @@
                      style="background-image: linear-gradient(50deg, #14213D 0%, #265883 74%); border-radius: 7px;">
                 {% if user.is_authenticated %}
                     <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{{user.userprofile.profile_pic.url}}" id="settings-logo" alt="User name"></span>
-                        {{ user.first_name }} {{user.last_name }}
+                        {{ user_profile.user }}
                     </h4>
                 {% endif %}
                 {% if user.username == user_profile.user.username and user.is_authenticated%}
@@ -120,13 +120,8 @@
     <header id="header">
         <div id="name-container">
             <h1 id="name"> {{ user_profile.user.first_name }} {{user_profile.user.last_name }}</h1>
-            <h3 style="color : white;"> {{ user_profile.user }}</h3>
             <!--            add social links here too right under the name-->
-            <h3>
-                <a href="{{ user_profile.linkedin}}"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
-                <a href="{{user_profile.github}}"><span><i class="fa fa-github-square FA_Header" style="font-size:36px"></i></span> </a>
-                <a href="{{user_profile.instagram}}"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
-            </h3>
+
         </div>
     </header>
 
@@ -424,7 +419,11 @@
                 </div>
                 <div class="card-body">
 
-                    <a href="{{user_profile.linkedin}}" class="btn btn-primary"> linkedIn </a>
+                     <h3 class="social_links">
+                <a href="{{ user_profile.linkedin}}"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="{{user_profile.github}}"><span><i class="fa fa-github-square FA_Header" style="font-size:36px"></i></span> </a>
+                <a href="{{user_profile.instagram}}"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
+            </h3>
                 </div>
                 <div class="card-footer text-muted">
                     {{user_profile.email}}

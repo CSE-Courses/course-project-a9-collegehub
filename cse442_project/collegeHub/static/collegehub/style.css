@@ -36,21 +36,26 @@ html {
     }
 
     /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& SETTINGS PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-    .card-img {
-        object-fit: cover;
-        height: 100%;
-    }
+    /*.card-img {*/
+    /*    object-fit: cover;*/
+    /*    height: 100%;*/
+    /*}*/
 
     .tp-card{
+        max-width: 42vw;
         display: flex;
-        width: 800px;
-        justify-content: space-between;
+        background-color: #2bc4ad;
     }
     .tp-info{
-        width: 40%;
+        padding: 10px;
+        width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+    #tp-img-container{
+        text-align: center;
+        width: 70%;
     }
     #template-heading{
         text-align: center;
@@ -59,7 +64,6 @@ html {
         background: linear-gradient(50deg, #fc1111 0%, #ff862a 74%) repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
-
     }
 
     .zoomAccount {
@@ -171,12 +175,13 @@ html {
         display: inline-flex;
         flex-wrap: wrap;
         justify-content: center;
+        flex-direction: column;
     }
 
     .template {
         background-color: #E5E5E5;
         border: none;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .template:nth-child(2n) {
@@ -482,7 +487,11 @@ html {
         border-color: #FCA311;
         box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
     }
-
+    .social_links{
+        color: white;
+        display: flex;
+        justify-content: space-evenly;
+    }
     .marg-20 {
         margin: 20px;
     }
