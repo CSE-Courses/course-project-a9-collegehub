@@ -40,24 +40,26 @@ html {
     /*    object-fit: cover;*/
     /*    height: 100%;*/
     /*}*/
-
-    .tp-card{
-        max-width: 42vw;
+    .tp-card {
+        width: 40rem;
         display: flex;
         background-color: #2bc4ad;
     }
-    .tp-info{
+
+    .tp-info {
         padding: 10px;
         width: 30%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    #tp-img-container{
+
+    #tp-img-container {
         text-align: center;
-        width: 70%;
+        width: 80%;
     }
-    #template-heading{
+
+    #template-heading {
         text-align: center;
         font-weight: lighter;
         background-size: 100%;
@@ -92,14 +94,6 @@ html {
         border: 7px solid #FCA311;
     }
 
-    .nav-item a {
-        color: white;
-        transition: color 0.5s;
-    }
-
-    .nav-item a:hover {
-        color: #FCA311;
-    }
 
     #nav-name {
         color: white;
@@ -200,6 +194,7 @@ html {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+
     }
 
     .account-header {
@@ -408,11 +403,12 @@ html {
     }
 
     /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& LOGIN PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
-    .messages{
+    .messages {
         list-style: none;
         padding: 0;
         color: red;
     }
+
     #login-container {
         display: flex;
         height: 100%;
@@ -487,11 +483,18 @@ html {
         border-color: #FCA311;
         box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
     }
-    .social_links{
+
+    .social_links {
         color: white;
         display: flex;
         justify-content: space-evenly;
     }
+
+    .white {
+        color: white;
+    }
+
+
     .marg-20 {
         margin: 20px;
     }
@@ -523,15 +526,11 @@ html {
 
     /*&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& INDEX PAGE &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&*/
     #header {
-        height: 60vh;
-        opacity: 0.8;
-        background-image: url("images/wall_l1.jpg");
+        height: 100vh;
+        opacity: 0.95;
+        background-image: url("images/red_marble.jpg");
         background-size: cover;
         background-attachment: fixed;
-        padding-top: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .FA_Header {
@@ -563,7 +562,7 @@ html {
         float: right;
         display: inline-block;
         font-weight: 200;
-        color: #212529;
+        color: #b0be27;
         text-align: center;
         vertical-align: middle;
         -webkit-user-select: none;
@@ -574,10 +573,11 @@ html {
         font-size: 1.5rem;
         line-height: 1.5;
         border-radius: .25rem;
+        margin-top: 15px;
     }
 
     #education {
-        padding: 10px 150px 20px 150px;
+        padding: 10px 120px 20px 120px;
     }
 
     #education-container {
@@ -591,9 +591,10 @@ html {
     #skills {
         padding: 10px 200px 20px 200px;
     }
-    .skill-header{
-            padding: .75rem 1.25rem;
-            margin-bottom: 0;
+
+    .skill-header {
+        padding: .75rem 1.25rem;
+        margin-bottom: 0;
     }
 
     #skills-container {
@@ -664,41 +665,92 @@ html {
     section:nth-child(2n) {
         background-color: white;
     }
-    #uniname{
+
+    #uniname {
         font-weight: bold;
     }
-    #major{
-        color: #ee6832;
+
+    #major {
+        color: #a20a0a;
     }
+
     section:nth-child(2n + 1) {
         background-color: #9e9b9b29;
     }
-    .edu-card{
-            box-shadow: -30px 0 30px 0 lightgrey;
+
+    .edu-card {
+        box-shadow: -30px 0 30px 0 lightgrey;
     }
+
+    #social_links_tp0 {
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .social_links_circle {
+        color: white;
+        font-size: 2rem;
+        transition: color 0.2s ease;
+    }
+
+    .social_links_circle:hover {
+        color: #d0de2f;
+    }
+
     #name-container {
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        padding: 4rem 9rem 0 9rem;
+    }
+
+    #info_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 40px;
+        width: 45%;
+        color: white;
+    }
+
+    #aboutme {
+        font-family: "Poppins", Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1.75em;
     }
 
     #name {
         color: white;
-        font-size: 8vw;
+        font-size: 4vw;
+        font-weight: bold;
     }
 
     .navigation {
-        background-image: linear-gradient(to right, #8a082c, #ec2760, #8a082c);
+        border: #d0de2f 2px solid;
+        background-color: rgba(208, 222, 47, 0.51);
+        backdrop-filter: blur(10px);
         position: fixed;
+        border-radius: 3rem;
         top: 0;
         right: 0;
         left: 0;
         z-index: 1030;
-        padding: 0 30px 0 30px;
+        height: 3rem;
+        padding: 0 30px 0 0;
+        margin: 20px;
     }
 
     .nav-list {
         list-style-type: none;
         font-size: 18px;
         margin: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .nav-list li {
@@ -708,9 +760,15 @@ html {
     }
 
     .nav-list li a {
-        color: #ffffff;
+        color: #000000;
         text-decoration: none;
-        font-weight: lighter;
+        font-weight: bold;
+        transition: color 0.3s ease, font-size 0.1s;
+    }
+
+    .nav-list li > a:hover {
+        color: #3d430d;
+        font-size: 2rem;
     }
 
     #settings-logo i {
@@ -718,20 +776,108 @@ html {
     }
 
     #contact {
-        background-image: linear-gradient(50deg, #e5632a 0%, #f08a5d 74%);
+        background-image: url("images/red_marble.jpg");
+        background-size: cover;
+        background-attachment: fixed;
     }
 
-    #contact-container > div {
-        margin: 40px;
+    #contact_section_container {
+        width: 100%;
+        height: 80%;
+        padding: 20px;
+        /*background-color: #8a082c;*/
+        justify-content: center;
+        display: flex;
     }
+
 
     #user-image {
-        height: 12rem;
-        width: 12rem;
+        height: 20rem;
+        width: 20rem;
         z-index: 2;
-        margin: -14vh auto 3vh;
         border-radius: 50%;
-        border: 3px solid white;
+        border: 1rem solid white;
+        box-shadow: 0 0 150px 0 rgba(50, 0, 0, 0.93);
+    }
+
+    #contact_heading {
+        font-weight: bold;
+        font-size: 4rem;
+        background-image: linear-gradient(50deg, #c6ad03 0%, #edff00 74%);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+    }
+
+    .signature {
+        font-family: 'Arizonia', Helvetica, sans-serif, cursive;
+        font-weight: bold;
+        font-size: 6rem;
+        color: white;
+        transform: rotate(-30deg);
+    }
+
+    #aboutme_list {
+        list-style: none;
+        margin: 0 -20px;
+        padding: 0;
+        font-size: 0;
+    }
+
+    #aboutme_list li {
+        margin: 0 0 6px;
+        padding: 0 20px;
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        font-size: 19px;
+        font-weight: 600;
+        color: white;
+    }
+
+    #signature_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 40%;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .ln {
+        text-decoration: none;
+        color: white;
+    }
+
+    .ln:hover {
+        color: #FCA311;
+    }
+
+    #resume {
+        border: #edff00 2px solid;
+        border-radius: 3rem;
+        padding: 20px;
+        color: white;
+    }
+
+    #contact_info {
+        width: 60%;
+        height: 100%;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+
+    .blur {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(5px);
     }
 
     .sub-section-heading {
@@ -740,13 +886,15 @@ html {
         margin-left: 3px;
         align-items: center;
     }
-    .section-heading h1{
-    background-image: linear-gradient(50deg, #8a082c 0%, #ec2760 74%);
-    background-size: 100%;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
-        font-size: 3rem;
+
+    .section-heading h1 {
+        font-weight: bold;
+        background-image: linear-gradient(50deg, #8a082c 0%, #ec2760 74%);
+        background-size: 100%;
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        font-size: 4rem;
     }
 
     .sub-section-heading-text {
@@ -755,9 +903,9 @@ html {
         margin: 0;
         background-image: linear-gradient(50deg, #6a2c70 0%, #ff5611 74%);
         background-size: 100%;
-    background-repeat: repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
     }
 
     #experience-container {
@@ -845,7 +993,28 @@ html {
         background-color: #e7e7e7;
         height: 1px;
     }
+
+    .edu-card-img {
+        border-radius: 1rem;
+    }
+    .dropdown-item{
+        color: white;
+    }
+    .temp-title{
+        text-decoration: none;
+        background-size: 100%;
+        background: linear-gradient(50deg, #fc1111 0%, #ff862a 74%) repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        margin: 1rem;
+        font-weight: bold;
+    }
+    .temp-title:hover{
+        color: #FCA311;
+        text-decoration: none;
+    }
 }
+
 
 /*MOBILE DEVICES*/
 @media screen and (max-width: 600px) {

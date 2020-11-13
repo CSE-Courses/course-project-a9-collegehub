@@ -91,7 +91,6 @@ html {
 
     #right-timeline {
         background-color: #f6f6f6;
-        padding: 30px;
         width: 75%;
     }
 
@@ -104,12 +103,33 @@ html {
         border: 3px solid white;
     }
 
-    #about-container {
-        padding: 30px 10px 30px 10px;
+    #About {
+        /*background-color: #636a70;*/
+    }
+
+    .about-container {
+        display: flex;
+        height: 100%;
+    }
+
+    .marble {
+        background-image: url("images/purple_marble.jpg");
+        height: 100%;
+        width: 50%;
+    }
+
+    .blur {
+        backdrop-filter: blur(2px);
+        height: 100%;
+        width: 100%;
+    }
+
+    #about-info {
+        padding: 50px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        height: 100%;
+        justify-content: space-evenly;
+        width: 50%;
     }
 
     #whoami {
@@ -118,6 +138,8 @@ html {
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
         font-size: 6rem;
+        font-weight: bold;
+        line-height: 5.2rem;
     }
 
     #footer {
@@ -127,11 +149,11 @@ html {
 
     .social_links {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
 
     .social_links a {
-        font-size: 5rem;
+        font-size: 3rem;
         background-size: 100%;
         background: linear-gradient(50deg, #625d8f 0%, #857eca 74%) repeat;
         -webkit-background-clip: text;
@@ -328,23 +350,29 @@ html {
 
     #contact-container {
         padding: 0 40px 40px 40px;
-        background-color: #ffe2e2;
         background: linear-gradient(50deg, #ffc7c7 0%, #ffe2e2 74%);
         height: 100%;
+        display: flex;
     }
 
     .contact-body {
         padding: 20px;
+        display: flex;
+        height: 100%;
+    }
+    #contact_container_left{
+        width: 50%;
+        height: 100%;
     }
 
     #number {
         color: #8785a2;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     #email {
         color: #8785a2;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .rechme {
@@ -356,12 +384,15 @@ html {
 
     #contact-me {
         display: flex;
-        align-items: center;
-        padding: 0 100px 0 30px;
+        flex-direction: column;
+        justify-content: left;
+    }
+    #contact-me div {
+        margin-bottom: 10px;
     }
 
     #address {
-        margin-left: 10rem;
+        margin-top: 2rem;
     }
 
     .project-body {
@@ -376,10 +407,10 @@ html {
         background: transparent;
         font-size: 0.95rem;
         border-width: 2px;
-        border-color: white;
+        border-color: #8785a2;
         border-style: solid;
         border-radius: 2px;
-        color: white;
+        color: #8785a2;
         font-family: sans-serif;
         font-weight: 700;
         text-decoration: none;
