@@ -1,17 +1,16 @@
 {% load static %}
 {% if user_profile.education.count == 0 %}
-                {% if user.username == user_profile.user.username%}
-
+    {% if user.username == user_profile.user.username%}
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
               <div class="card-body">
                     Click on + to add an education
               </div>
         </li>
-        {% endif %}
+    {% endif %}
 {% endif %}
 
 {% for education in user_profile.education.all %}
-    <div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">
+    <div class="card mb-3 marg-20 edu-card" id="uni" style="width: 540px;border-radius: 1rem">
         <div class="row no-gutters">
 {#            <div class="col-md-4">#}
 {#                <img src="{{ education.image }}" class="card-img" alt="edu-logo">#}
@@ -19,9 +18,7 @@
             <div class="col-md-12">
                 <div class="dropdown ">
                 {% if user.username == user_profile.user.username%}
-
                     <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                     {% endif %}
@@ -31,12 +28,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h5 id="major" class="card-title"> {{ education.certification_name }}</h5>
                     {% if education.institution != None %}
-                        <h6 id="uniname" class="card-text">Institution: {{ education.institution }}</h6>
+                        <h5 id="uniname" class="card-text">{{ education.institution }}</h5>
                     {% endif %}
+                    <h6 id="major" class="card-title"> {{ education.certification_name }}</h6>
                     {% if education.description != None %}
-                        <h6 id="edu-descrption" class="card-text">Description: {{ education.description }}</h6>
+                        <h6 id="edu-descrption" class="card-text">{{ education.description }}</h6>
                     {% endif %}
                     <p id="year" class="card-text"><small class="text-muted">Date: {{ education.month }}/{{ education.year }}</small></p>
                 </div>

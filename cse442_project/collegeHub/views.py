@@ -392,7 +392,7 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, f"Logged in")
+                # messages.info(request, f"Logged in")
                 print(request.user.username)
                 return redirect('index', username=request.user.username)
             else:

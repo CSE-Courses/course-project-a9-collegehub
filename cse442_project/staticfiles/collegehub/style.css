@@ -54,6 +54,7 @@ html {
     transition: transform 0.5s;
   }
 
+
   .zoomr:hover {
     transform: scale(2) translateX(-210%);
     z-index: 3;

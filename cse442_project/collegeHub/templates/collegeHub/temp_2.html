@@ -3,358 +3,338 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <!--    Style CSS-->
-  <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
-  <!--    fontawesome-->
-  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
-  <!--    Animate on scroll (AOS)-->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!--logo icon / favicon-->
-  <!--    <link rel="icon" href="images/logo.png">-->
-  <title> Template-2 | CollegeHub</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <!--    <link rel="icon" href="images/logo.png">-->
+    <title> Template-2 | CollegeHub</title>
 </head>
 
 <body>
-  <div id="desktop">
+<div id="desktop">
     <!--*************************************************CONTENT************************************************-->
-    <div id="Outer-timeline">
-      <header>
-        <!--    Navigation bar-->
-        <nav class="navigation">
-          <ul class="nav-list text-center ">
+    <div id="Outer_timeline_template3">
+        <nav>
+            <nav class="navigation">
+                <ul class="nav-list text-center ">
+                    <li style="text-align: left;font-size: 20px; color: #FFD700">
+                        Allison<br>Fragner
+                    </li>
+                    <div>
+                        <li>
+                            <a href="#"> Home </a>
+                        </li>
+                        <li>
+                            <a href="#about"> About </a>
+                        </li>
+                        <li>
+                            <a href="#education">Education</a>
+                        </li>
+                        <li>
+                            <a href="#skills"> Skills </a>
+                        </li>
+                        <li>
+                            <a href="#experience">Experience</a>
+                        </li>
+                        <li>
+                            <a href="#projects">Projects</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a data-offset="-235,40" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-cog"></i></a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                                 style="background-color: #585e64; border-radius: 7px;">
+                                <h4 class="dropdown-header" style="font-size: large; color: #68d3c5">
+                                    Allison Fragner
+                                </h4>
+                                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i
+                                        class="fas fa-plus-square"></i> </span>Add</a>
+                                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i
+                                        class="fas fa-minus-square"></i> </span>Remove</a>
+                                <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                                <a class="dropdown-item" href="{% url 'home' %}"><span> <i
+                                        class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" style="color: #68d3c5" href="#">Copyright CollegHub @ 2020</a>
+                            </div>
+                        </li>
+                    </div>
 
-            <li>
-              <a class="nav-text" href="#about"> About </a>
-            </li>
-            <li>
-              <a class="nav-text" href="#education">Education</a>
-            </li>
-            <li>
-              <a class="nav-text" href="#skills"> Skills </a>
-            </li>
-            <li>
-              <a class="nav-text" href="#experience">Experience</a>
-            </li>
-            <li>
-              <a class="nav-text" href="#projects">Projects</a>
-            </li>
-            <li>
-              <a class="nav-text" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item dropdown" style="float: right;">
-              <a data-offset="-155,20" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #14213D; border-radius: 7px;">
-                <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img src="{% static 'collegehub/images/logo.png' %}" id="settings-logo" alt="User name"></span>
-                  Full Name
-                </h4>
-                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i class="fas fa-plus-square"></i> </span>Add</a>
-                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i class="fas fa-minus-square"></i> </span>Remove</a>
-                <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
-                <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item disabled" href="#">Copyright CollegHub @ 2020</a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-
-
-      </header>
-
-
-      <section id="about">
-        <div class="section-heading">
-          <h2 class="section-heading-text"> About</h2>
-        </div>
-        <div class="section-container" id="about-container">
-          <div class="card">
-            <div class="card-header">
-              Quote
-            </div>
-            <div class="card-body">
-              <blockquote class="blockquote mb-0">
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                  consequat.
-                </p>
-                <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-
-      </section>
-      <div class="name-background" id="name-container">
-        <!-- First name last name and picture -->
-        <h1 id="f_name"> First Name</h1>
-        <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
-        <h1 id="l_name"> Last Name</h1>
-
-      </div>
-
-      <h3>
-        <a href="#"><span><i class="fa fa-linkedin-square FA_Header" style="font-size:36px"></i></span> </a>
-        <a href="#"><span><i class="fa fa-facebook-square FA_Header" style="font-size:36px"></i></span> </a>
-        <a href="#"><span><i class="fa fa-instagram FA_Header" style="font-size:36px"></i></span> </a>
-
-      </h3>
-
-      <main id="sections-container">
-        <section id="name-section">
-          <div class="name-background" id="name-container">
-            <!-- First name last name and picture -->
-            <!-- <h1 id="f_name"> First Name</h1>
-              <img id="user-image" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
-              <h1 id="l_name"> Last Name</h1> -->
-
-          </div>
-        </section>
-
-        <section id="Education">
-
-          <div class="section-container" id="Education-container">
-            <div class="row">
-              <div class="card education-card" style="width: 18rem;">
-                <img src="{% static 'collegehub/images/UB.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Education 1</h5>
-                  <p class="card-text">Major.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Minor</li>
-                  <li class="list-group-item">Year</li>
-                  <li class="list-group-item">GPA</li>
                 </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
-                </div>
-              </div>
-
-              <div class="card education-card" style="width: 18rem;">
-                <img src="{% static 'collegehub/images/UB.jpg' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Education 2</h5>
-                  <p class="card-text">Major.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Minor</li>
-                  <li class="list-group-item">Year</li>
-                  <li class="list-group-item">GPA</li>
-                </ul>
-                <div class="card-body">
-                  <a href="#" class="card-link">Card link</a>
-                  <a href="#" class="card-link">Another link</a>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="section-heading education">
-            <h1 class="section-heading-text"> Education</h1>
-          </div>
-        </section>
-        <section id="Skills">
-          <div class="section-heading">
-            <h1 class="section-heading-text"> Skills</h1>
-          </div>
-          <div class="section-container" id="Skills-container">
-            <div class="row">
-              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 1</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 2</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 3</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="row">
-              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 4</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-              <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 5</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-              <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                <div class="card-header">Skill 6</div>
-                <div class="card-body">
-                  <h5 class="card-title">---</h5>
-                  <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="Experience">
-          <div class="section-container" id="Experience-container">
-            <div class="card-deck">
-              <div class="card">
-                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Experience 1</h5>
-                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated x days ago</small>
-                </div>
-              </div>
-              <div class="card">
-                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Experience 2</h5>
-                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated x days ago</small>
-                </div>
-              </div>
-              <div class="card">
-                <img src="{% static 'collegehub/images/work.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Experience 3</h5>
-                  <p class="card-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">Last updated x days ago</small>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="section-heading">
-            <h1 class="section-heading-text"> Experience</h1>
-          </div>
-        </section>
-        <section id="Projects">
-          <div class="section-heading">
-            <h1 class="section-heading-text"> Projects</h1>
-          </div>
-          <div class="section-container" id="Projects-container">
-            <div class="row row-cols-1 row-cols-md-3">
-              <div class="col mb-4">
-                <div class="card h-100">
-                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Project 1</h5>
-                    <p class="card-text">Loren ipsum.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col mb-4">
-                <div class="card h-100">
-                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Project 2</h5>
-                    <p class="card-text">Loren ipsumd.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col mb-4">
-                <div class="card h-100">
-                  <img src="{% static 'collegehub/images/giphy1.gif' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Project 3</h5>
-                    <p class="card-text">Loren ipsum.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="Contact">
-          <div class="section-container" id="Contact-container">
-            <div class="card-group">
-              <div class="card">
-                <img src="{% static 'collegehub/images/mail.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Email</h5>
-                  <p class="card-text">LorenIpsum@xyz.com.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-              <div class="card">
-                <img src="{% static 'collegehub/images/mail.png' %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Phone Number</h5>
-                  <p class="card-text">###-###-####.</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="section-heading">
-            <h1 class="section-heading-text"> Contact</h1>
-          </div>
-        </section>
-
-      </main>
-      <footer>
-        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #52057b 5%, #52057b 34%);
-          background-size: 100%;
-          background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
-          <span style="color: white">
-            @ 2020 CollegeHub
-          </span>
-
+            </nav>
         </nav>
-      </footer>
+        <div id="sections">
+            <div id="profile_pic_left">
+                <img src="{% static 'collegehub/images/blue_marble.jpg' %}">
+            </div>
+            <div id="header">
+                <div id="circle">
+                    <h1><span>Allison<br>Fragner </span></h1>
+                </div>
+                <div id="header_container">
+                    <div style="color: #68d3c5; font-weight: bold; margin-bottom: 10px">
+                        Computer Science
+                    </div>
+                    <div class="about-me">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+
+                    </div>
+                    <div>
+                        <a id="contact_me_b" href="contact">
+                            Contact me
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="about" class="section">
+                <div class="section_heading">
+                    About Me
+                </div>
+                <div id="about_container">
+                    <div class="about-me" style="margin-bottom: 35px; padding: 0">
+                        Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue
+                        blandit
+                        nunc, eu sollicitudin urna dolor sagittis lacus. Pellentesque posuere. Praesent turpis. Aenean
+                        posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
+                        lacus.
+                    </div>
+                    <div>
+                        <ul id="aboutme_list">
+                            <li><strong> <span style="color: #68d3c5;font-weight: bold"> Age: </span> </strong> <span> 22 </span>
+                            </li>
+                            <li><strong> <span style="color: #68d3c5;font-weight: bold"> phone number: </span> </strong>
+                                <span> (716)-999-9999 </span></li>
+                            <li><strong> <span style="color: #68d3c5;font-weight: bold"> email: </span> </strong> <span> college@university.com </span>
+                            </li>
+                            <li><strong> <span style="color: #68d3c5;font-weight: bold"> address: </span> </strong>
+                                <span> 7878 heaven st </span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div id="education" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Education
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Studied at
+                </div>
+                <div id="education_container">
+                    <div class="card" style="color: white;width: 38vw;background-color: transparent; border: none">
+                        <div class="card-body" style="padding: 0">
+                            <h5 class="card-title" style="color: white; font-weight: bold">University at Buffalo</h5>
+                            <h6 class="card-subtitle mb-2" style="color: #68d3c5;">Computer Science</h6>
+                            <p class="card-text" style="font-weight: lighter">Some quick example text to build on the
+                                card title and make up the bulk
+                                of the card's content.</p>
+                            <a href="#" class="mylink">link</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="skills" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Skills
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    What I can do
+                </div>
+                <div id="skills_container">
+                    <div class="skill_circle">
+                        <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                        skill
+                    </div>
+                    <div class="skill_circle">
+                        <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                        skill
+                    </div>
+                    <div class="skill_circle">
+                        <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                        skill
+                    </div>
+                    <div class="skill_circle">
+                        <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                        skill
+                    </div>
+                    <div class="skill_circle">
+                        <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                        skill
+                    </div>
+                </div>
+
+            </div>
+            <div id="experience" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Experience
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    I worked at
+                </div>
+                <div id="experience_container">
+                    <div class="sub-section">
+                        <div class="sub-section_heading">
+                            Internship
+                        </div>
+                        <div class="card" style="color: white;width: 38vw;background-color: transparent; border: none">
+                            <div class="card-body" style="padding: 0">
+                                <h5 class="card-title" style="color: white; font-weight: bold">Software Engineer
+                                    Intern</h5>
+                                <h6 class="card-subtitle mb-2" style="color: #68d3c5;">Amazon</h6>
+                                <p class="card-text" style="font-weight: lighter">Some quick example text to build on
+                                    the
+                                    card title and make up the bulk
+                                    of the card's content.</p>
+                                <a href="#" class="mylink">link</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub-section">
+                        <div class="sub-section_heading">
+                            Concerts
+                        </div>
+                        <div class="card" style="color: white;width: 38vw;background-color: transparent; border: none">
+                            <div class="card-body" style="padding: 0">
+                                <h5 class="card-title" style="color: white; font-weight: bold">Guitarist</h5>
+                                <h6 class="card-subtitle mb-2" style="color: #68d3c5;">Youtube Event</h6>
+                                <p class="card-text" style="font-weight: lighter">Some quick example text to build on
+                                    the
+                                    card title and make up the bulk
+                                    of the card's content.</p>
+                                <a href="#" class="mylink">link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="projects" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Projects
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Latest Work
+                </div>
+                <div id="projects_container">
+                    <div class="card text-center project" style="background-color: transparent">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #68d3c5; font-weight: bold">Project Name</h5>
+                            <p class="card-text" style="font-weight: lighter">This card has a regular title and short
+                                paragraphy of text below
+                                it.</p>
+                            <p class="card-text"><small class="text-muted">January 2020</small></p>
+                        </div>
+                    </div>
+                    <div class="card text-center project" style="background-color: transparent">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #68d3c5; font-weight: bold">Project Name</h5>
+                            <p class="card-text" style="font-weight: lighter">This card has a regular title and short
+                                paragraphy of text below
+                                it.</p>
+                            <p class="card-text"><small class="text-muted">January 2020</small></p>
+                        </div>
+                    </div>
+                    <div class="card text-center project" style="background-color: transparent">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #68d3c5; font-weight: bold">Project Name</h5>
+                            <p class="card-text" style="font-weight: lighter">This card has a regular title and short
+                                paragraphy of text below
+                                it.</p>
+                            <p class="card-text"><small class="text-muted">January 2020</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Contact
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Let's Talk
+                </div>
+                <div id="contact_container">
+                    <div id="contact_me_container">
+                        <div style="font-weight: bold;font-size: 24px">Allison Fragner</div>
+                        <div class="blue" style="">Computer &amp; Science</div>
+                        <br>
+                        <br>
+                        <ul>
+                            <li><strong> <span class="blue"> Age: </span> </strong> <span style="font-weight: lighter"> 21 </span></li>
+                            <li><strong> <span class="blue"> Address: </span> </strong> <span style="font-weight: lighter">  Heaven st </span>
+                            </li>
+                            <li><strong> <span class="blue"> Phone: </span> </strong> <span style="font-weight: lighter"> (716)-666-9999 </span>
+                            </li>
+                            <li><strong> <span class="blue"> E-mail: </span> </strong> <span style="font-weight: lighter"> college@univesity.com </span>
+                            </li>
+                        </ul>
+                        <div class="signature">Allison Fragner</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="social_links">
+            <a class="social_links_circle">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="social_links_circle">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a class="social_links_circle">
+                <i class="fa fa-linkedin FA_Header"></i>
+            </a>
+            <a class="social_links_circle">
+                <i class="far fa-envelope FA_Header"></i>
+            </a>
+        </div>
     </div>
-
     <!--*******************************************CONTENT************************************************-->
-  </div>
-  <div id="mobile-body">
+</div>
+<div id="mobile-body">
     <div id="mobile-container">
-      <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
-      <h1 style="font-weight: bold">CollegeHub</h1>
-      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
-      <h2 style="font-weight: lighter">COMING SOON</h2>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
-      <br>
-      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+        <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
     </div>
-  </div>
-  <!-- JavaScript -->
-  <!--<script src="script.js"></script>-->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="script.js"></script>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </body>
 
 </html>
