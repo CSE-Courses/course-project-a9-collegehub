@@ -41,6 +41,6 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "collegeHub/password_reset_done.html"), name  = "password_reset_complete"),
     path('create_event/', views.create_event, name  = "create_event"),
     path('events/', views.events.as_view(), name  = "events"),
-    # path('edit_profile/', views.EditProfile, name='edit_profile'),
+    path('group_email/', views.group_invitation, name='group_email'),
     path('<slug:username>/', views.Index.as_view(), name='index'),
 ]
