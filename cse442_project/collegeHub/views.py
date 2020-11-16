@@ -29,8 +29,10 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import models as auth_models
 from django.contrib import messages
 
-
-
+from ics import Calendar
+from ics import Event as eve
+import tempfile
+import io
 # Create your views here.
 
 
@@ -166,6 +168,19 @@ def create_event(request):
             event = event_form.save(commit=False)
             profile = get_object_or_404(UserProfile, pk= request.user.userprofile.pk)
             print(event)
+
+            c = Calendar()
+            e = eve()
+            e.name = event.title
+            e.begin = event.start_time
+            e.end = event.end_time
+            e.organizer = request.user.first_name
+            e.description = event.notes
+            c.events.add(e)
+
+            ics_file = io.StringIO()
+            ics_file.writelines(c)
+
             event.user = profile
             print("sending email")
             current_site = get_current_site(request)
@@ -180,9 +195,10 @@ def create_event(request):
             email = EmailMessage(
                 email_subject, message, to=[to_email]
             )
+            email.attach('event.ics', ics_file.getvalue(), 'text/calendar')
             email.send()
-            x = event.save()
-            print(x)
+            print(ics_file.getvalue())
+            event.save()
             return redirect('events')
         else:
             return redirect('create_event')
