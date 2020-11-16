@@ -1,9 +1,8 @@
 from django.test import TestCase, Client
-from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill, Event
-from collegeHub.views import create_experience, create_event
+from collegeHub.models import Experiences, Specific, Section, User, UserProfile, Education, Skill, Project, Event
+from collegeHub.views import create_experience
 import requests
 # Create your tests here.
-
 
 class ExperienceTest(TestCase):
     def setUp(self):
@@ -151,4 +150,33 @@ class SkillTest(TestCase):
         self.assertEqual(Skill.objects.filter(pk=1).get(pk=1).profile.user.username,
                          self.userProfile.user.username)
         self.assertEqual(Skill.objects.filter(pk=2).get(pk=2).profile.user.username,
+                         self.userProfile.user.username)
+
+
+class ProjectTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='testuser',
+                                        email='email@email.com',
+                                        password='password1234')
+        self.user.save()
+        self.userProfile = UserProfile.objects.create(user=self.user)
+        self.userProfile.save()
+
+    def test_project_links_to_profile(self):
+        self.progress = Project.objects.create(profile=self.userProfile)
+        self.progress.save()
+
+        # Can get experience from section
+        self.assertEqual(Project.objects.filter(pk=1).get(pk=1).profile, self.userProfile)
+
+    def test_multiple_skill_to_one_profile(self):
+        self.progress = Project.objects.create(profile=self.userProfile)
+        self.progress.save()
+        self.progress = Project.objects.create(profile=self.userProfile)
+        self.progress.save()
+
+        # Can get experience from section
+        self.assertEqual(Project.objects.filter(pk=1).get(pk=1).profile.user.username,
+                         self.userProfile.user.username)
+        self.assertEqual(Project.objects.filter(pk=2).get(pk=2).profile.user.username,
                          self.userProfile.user.username)

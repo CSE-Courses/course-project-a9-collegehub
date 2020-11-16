@@ -218,8 +218,8 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
 
+                        <div class="modal-body">
                            <form method="post" id="skill-form">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -228,7 +228,6 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </form>
-
                         </div>
 
                     </div>
@@ -488,7 +487,7 @@
 <script>
     const sectionForm = document.getElementById('section-form');
     let current_user = {% if user.username == user_profile.user.username  and user.is_authenticated %} true {% else %}false {% endif %}
-    console.log(current_user)
+    console.log(current_user);
 
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
@@ -506,10 +505,10 @@
 
     
 
-                    var section = '<div class="sub-section">\n' +
+                    var section = '<div class="sub-section" id="sub-section-'+response.section_pk+'">\n' +
                         '            <div class="sub-section-header">\n' +
                         '                 <div class="sub-section-heading">\n' +
-                        '                    <h4 class="sub-section-heading-text" >\n' +
+                        '                    <h4 class="sub-section-heading-text" id="sub-section-'+response.section_pk+'-name">\n' +
                                                 response.name +
                         '                    </h4>\n' +
                         '                </div>\n' +
@@ -603,16 +602,16 @@
                         document.getElementById('no-specific').remove();
                      }catch {}
 
-                    var specific = '<li class="media" style="margin: 10px 10px 18px 10px">\n';
+                    var specific = '<li class="media" style="margin: 10px 10px 18px 10px" id="specific-'+response.experience_pk+'">\n';
                         {#specific + '                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">\n' +#}
                         specific += '<div class="media-body">\n';
-                        specific += ' <h5 class="mt-0 mb-1"> '+ response.position +'</h5>\n';
+                        specific += ' <h5 class="mt-0 mb-1" id="specific-'+response.experience_pk+'-position"> '+ response.position +'</h5>\n';
                         if (response.company != '' && response.company != 'None'){
-                            specific += '<h7 class="mt-0 mb-1">'+ response.company +'</h7>\n';
+                            specific += '<h7 class="mt-0 mb-1" id="specific-'+response.experience_pk+'-company">'+ response.company +'</h7>\n';
                         }
-                         specific += '<p style="margin-bottom: 3px">\n' + response.description +'\n'+ '</p>\n';
+                         specific += '<p style="margin-bottom: 3px" id="specific-'+response.experience_pk+'-description">\n' + response.description +'\n'+ '</p>\n';
                         if (response.link != ''){
-                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger">Link</a>\n';
+                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger" id="specific-'+response.experience_pk+'-link">Link</a>\n';
                             }
                         specific += '</div>\n' + '</li>';
 
@@ -622,6 +621,7 @@
             }
         })
     }
+
 
 
     const educationForm = document.getElementById('education-form');
@@ -639,7 +639,7 @@ function submitEducationHandler(e){
                     document.getElementById('no-education').remove();
                 }catch {}
 
-                var education = '<div class="card mb-3 marg-20 edu-card" id="uni" style="max-width: 440px;">\n' +
+                var education = '<div class="card mb-3 marg-20 edu-card" id="education-'+response.education_pk+'" style="max-width: 440px;">\n' +
                     '        <div class="row no-gutters">\n' +
                     {#'            <div class="col-md-4">\n' +#}
                     {#'                <img src="{% static \'collegehub/images/preview.jpg\' %}" class="card-img" alt="edu-logo">\n'#}
@@ -658,16 +658,16 @@ function submitEducationHandler(e){
                     '                </div>\n' +
                     '                <div class="card-body" >\n';
                     if (response.certification_name != ''){
-                        education += '<h5 id="major" class="card-title">'+ response.certification_name +'</h5>\n';
+                        education += '<h5 id="major" class="card-title" id="education-'+response.education_pk+'-certification_name">'+ response.certification_name +'</h5>\n';
                     }
                     if (response.institution != ''){
-                        education += '<h6 id="uniname" class="card-text"> Institution: '+ response.institution + '</h6>\n';
+                        education += '<h6 id="uniname" class="card-text" id="education-'+response.education_pk+'-institution"> Institution: '+ response.institution + '</h6>\n';
                     }
                     if (response.description != ''){
-                        education += '<h6 id="edu-descrption" class="card-text"> Description: '+ response.description + '</h6>\n';
+                        education += '<h6 id="edu-descrption" class="card-text" id="education-'+response.education_pk+'-description"> Description: '+ response.description + '</h6>\n';
                     }
 
-                    education += '                    <p id="year" class="card-text"><small class="text-muted">Date: '+response.month+'/'+response.year+'</small></p>\n' +
+                    education += '                    <p id="year" class="card-text"><small class="text-muted" id="education-'+response.education_pk+'-date">Date: '+response.month+'/'+response.year+'</small></p>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
@@ -713,8 +713,8 @@ function submitEducationHandler(e){
                         document.getElementById('no-skill').remove();
                     }catch {}
 
-                    var skill = '<div class="card text-white bg-success mb-3" style="max-width: 18rem;">\n' +
-                        '        <div class="card-header">'+ response.name +'</div>\n    </div>';
+                    var skill = '<div class="card text-white bg-success mb-3" style="max-width: 18rem;" id="skill-'+response.skill_pk+'">\n' +
+                        '        <div class="card-header" id="skill-'+response.skill_pk+'-name">'+ response.name +'</div>\n    </div>';
 
                     $("#skills-container").append(skill);
 
@@ -739,19 +739,20 @@ function submitEducationHandler(e){
                         document.getElementById('no-project').remove();
                     }catch {}
 
-                    var project = '<div class="card">\n' +
-                        '        <div class="card-header">\n' + response.name +
+                    var project = '<div class="card" id="project-'+response.project_pk+'">\n' +
+                        '        <div class="card-header" id="project-'+response.project_pk+'-name">\n' + response.name +
                         '        </div>\n' +
                         '        <div class="card-body">\n' +
                         '            <blockquote class="blockquote mb-0">\n' +
-                        '                <p>' + response.description + '</p>\n' +
-                        '                <footer class="blockquote-footer">\n';
+                        '                <p id="project-'+response.project_pk+'-description">' + response.description + '</p>\n' +
+                        '                <footer class="blockquote-footer" id="project-'+response.project_pk+'-date">\n';
 
                     if (response.month != ''){
                         project += response.month +'/';
                     }
 
-                    project += response.year + '                </footer>\n' +
+                    project += response.year + '\n' +
+                        '                </footer>\n' +
                         '            </blockquote>\n' +
                         '        </div>\n' +
                         '    </div>';
@@ -763,6 +764,100 @@ function submitEducationHandler(e){
         })
     }
 
+    var deletionForms = document.getElementsByClassName("delete-object-form");
+    for (i = 0; i < deletionForms.length; i++) {
+        deletionForms[i].addEventListener("submit", submitDeleteHandler);
+      }
+    function submitDeleteHandler(e){
+        e.preventDefault();
+        var form_id = this.id;
+        var split_string = form_id.split("-");
+        var obj_type = split_string[1];
+        var obj_pk = split_string[2];
+        if(obj_type == 'education'){
+            var url = '{% url 'delete-education' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'section'){
+             var url = '{% url 'delete-section' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'specific'){
+             var url = '{% url 'delete-specific' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'skill'){
+             var url = '{% url 'delete-skill' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'project'){
+            var url = '{% url 'delete-project' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#'+form_id).serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    if (obj_type == 'section'){
+                        $("#sub-"+obj_type+'-'+obj_pk).remove();
+                    }else{
+                        $("#"+obj_type+'-'+obj_pk).remove();
+                    }
+
+                }
+            }
+        })
+    }
+
+    var editForms = document.getElementsByClassName("edit-object-form");
+    for (i = 0; i < editForms.length; i++) {
+        editForms[i].addEventListener("submit", submitEditHandler);
+      }
+    function submitEditHandler(e){
+        e.preventDefault();
+        var form_id = this.id;
+        var split_string = form_id.split("-");
+        var obj_type = split_string[1];
+        var obj_pk = split_string[2];
+        if(obj_type == 'education'){
+            var url = '{% url 'edit-education' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'section'){
+             var url = '{% url 'edit-section' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'specific'){
+             var url = '{% url 'edit-specific' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'skill'){
+             var url = '{% url 'edit-skill' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }else if(obj_type == 'project'){
+            var url = '{% url 'edit-project' pk=1%}';
+            url = url.slice(0, -1) + obj_pk;
+        }
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#'+form_id).serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    console.log('Edit form sent');
+                    if (obj_type == 'section'){
+
+                    }else if (obj_type == 'specific'){
+
+                    }else if (obj_type == 'education'){
+
+                    }else if (obj_type == 'skill'){
+
+                    }else if (obj_type == 'project'){
+
+                    }
+
+                }
+            }
+        })
+    }
 </script>
 </body>
 

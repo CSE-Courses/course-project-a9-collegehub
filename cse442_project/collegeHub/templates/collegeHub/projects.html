@@ -1,21 +1,64 @@
 {% load static %}
 {% if user_profile.project.count == 0 %}
+    {% if user.username == user_profile.user.username %}
+
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
               <div class="card-body">
                     Click on + to add a project
               </div>
         </li>
+    {% endif %}
 {% endif %}
 
 {% for project in user_profile.project.all %}
-    <div class="card">
-        <div class="card-header">
+    <div class="card" id="project-{{ project.pk }}">
+     {% if user.username == user_profile.user.username%}
+        <div class="dropdown ">
+            <button type="button" class="option-button" id="project-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="project-Button">
+                <button class="dropdown-item"  data-toggle="modal" data-target="#edit_project_card_{{ project.pk }}">Edit</button>
+                <form method="post" id="remove-project-{{ project.pk }}" class="delete-object-form">
+                    {% csrf_token %}
+                    {{ deleteProjectForm.as_p }}
+                    <button type="submit" class="dropdown-item">Remove</button>
+                </form>
+            </div>
+        </div>
+
+         <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}"> Edit Project card </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                       <form method="post" id="edit-project-{{ project.pk }}-form" class="edit-object-form">
+                                {% csrf_token %}
+                                {{ projectForm.as_p }}
+                           <button type="submit"> Edit </button>
+                       </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+     {% endif %}
+        <div class="card-header" id="project-{{ project.pk }}-name">
             {{project.name}}
         </div>
         <div class="card-body">
             <blockquote class="blockquote mb-0">
-                <p>{{project.description}}</p>
-                <footer class="blockquote-footer">
+                <p id="project-{{ project.pk }}-description">{{project.description}}</p>
+                <footer class="blockquote-footer" id="project-{{ project.pk }}-date">
                     {% if project.month != None %}
                         {{project.month}} /
                     {% endif %}

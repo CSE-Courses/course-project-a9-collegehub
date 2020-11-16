@@ -10,17 +10,59 @@
         {% endif %}
     {% endif %}
 {% for section in experience.section.all %}
-        <div class="sub-section">
+        <div class="sub-section" id="sub-section-{{ section.pk }}">
             <div class="sub-section-header">
                  <div class="sub-section-heading">
-                    <h4 class="sub-section-heading-text" >
+                    <h4 class="sub-section-heading-text" id="sub-section-{{ section.pk }}-name">
                         {{ section.name }}
                     </h4>
                 </div>
-                                    {% if user.username == user_profile.user.username%}
+
+           {% if user.username == user_profile.user.username %}
 
                 <button type="button" data-toggle="modal" data-target="#add-experience-specific-{{ section.pk }}" class="sub-section-button"><i class="fas fa-plus"></i></button>
+
+
+                <div class="dropdown ">
+                    <button type="button" class="option-button" id="section-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="section-Button">
+                        <button class="dropdown-item"  data-toggle="modal" data-target="#edit_sub-section_card_{{ section.pk }}">Edit</button>
+                        <form method="post" id="remove-section-{{ section.pk }}" class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteSectionForm.as_p }}
+                            <button type="submit" class="dropdown-item">Remove</button>
+                        </form>
+                     </div>
+                </div>
+
+               <div class="modal fade" id="edit_sub-section_card_{{ section.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit_sub_section_cardLabel_{{ section.pk }}"> Edit Section card </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                               <form method="post" id="edit-section-{{ section.pk }}-form" class="edit-object-form">
+                                        {% csrf_token %}
+                                        {{ sectionForm.as_p }}
+                                   <button type="submit"> Edit </button>
+                               </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
            {% endif %}
+
             </div>
             <div class="modal fade" id="add-experience-specific-{{ section.pk }}" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -87,23 +129,64 @@
                             </li>
                         {% endif %}
                      {% for specific in section.specific.all %}
+                         <div id="specific-{{ specific.pk }}">
+                            {% if user.username == user_profile.user.username%}
+                                    <div class="dropdown ">
+                                        <button type="button" class="option-button" id="specific-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <li class="media" style="margin: 10px 10px 18px 10px">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+
+                                        <div class="dropdown-menu" aria-labelledby="specific-Button">
+                                            <button class="dropdown-item"  data-toggle="modal" data-target="#edit_specific_card_{{ specific.pk }}">Edit</button>
+                                            <form method="post" id="remove-specific-{{ specific.pk }}" class="delete-object-form">
+                                                {% csrf_token %}
+                                                {{ deleteSpecificForm.as_p }}
+                                                <button type="submit" class="dropdown-item">Remove</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="edit_specific_card_{{ specific.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="edit_specific_cardLabel_{{ specific.pk }}"> Edit Specific card </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                   <form method="post" id="edit-specific-{{ specific.pk }}-form" class="edit-object-form">
+                                                            {% csrf_token %}
+                                                            {{ specificForm.as_p }}
+                                                       <button type="submit"> Edit </button>
+                                                   </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                            {% endif %}
+                            <li class="media" style="margin: 10px 10px 18px 10px" >
+
 {#                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">#}
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb-1"> {{specific.position}} </h5>
+                                    <h5 class="mt-0 mb-1" id="specific-{{ specific.pk }}-position"> {{specific.position}} </h5>
                                     {% if specific.company != None %}
-                                        <h7 class="mt-0 mb-1">{{specific.company}}</h7>
+                                        <h7 class="mt-0 mb-1" id="specific-{{ specific.pk }}-company">{{specific.company}}</h7>
                                     {% endif %}
-                                    <p style="margin-bottom: 3px">
+                                    <p style="margin-bottom: 3px" id="specific-{{ specific.pk }}-description">
                                         {{ specific.description }}
                                     </p>
                                     {% if specific.link != '' %}
-                                        <a href="{{ specific.link }}" class="btn btn-outline-danger">Link</a>
+                                        <a href="{{ specific.link }}" class="btn btn-outline-danger" id="specific-{{ specific.pk }}-link">Link</a>
                                     {% endif %}
                                 </div>
                             </li>
-
+                         </div>
                     {% endfor %}
                 </ul>
             </div>

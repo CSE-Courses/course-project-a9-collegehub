@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm
+from .forms import DeleteEducationForm, DeleteProjectForm, DeleteSectionForm, DeleteSkillForm, DeleteSpecificForm
+from .forms import EditSpecificForm, EditSectionForm, EditEducationForm, EditSkillForm, EditProjectForm
 from .models import UserProfile, Experiences, Education
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -223,12 +225,163 @@ def create_project(request, pk):
 
             return JsonResponse(
                 {'description': description, 'name': name,
-                 'month': month, 'year': year, 'fail': False}, status=200)
+                 'month': month, 'year': year, 'fail': False, 'project_pk':new_project.pk}, status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
     else:
         form = ProjectForm()
     return JsonResponse({}, status=200)
+
+
+@login_required
+def delete_specific(request, pk):
+
+    if request.method == 'POST':
+        specific = get_object_or_404(models.Specific, id=pk)
+        form = DeleteSpecificForm(request.POST)
+        if form.is_valid():
+            specific.delete()
+            return JsonResponse({'fail': False}, status=200)
+        return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def delete_section(request, pk):
+    if request.method == 'POST':
+        section = get_object_or_404(models.Section, id=pk)
+        form = DeleteSectionForm(request.POST)
+        if form.is_valid():
+            section.delete()
+            return JsonResponse({'fail': False}, status=200)
+        return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def delete_education(request, pk):
+    if request.method == 'POST':
+        education = get_object_or_404(models.Education, id=pk)
+        form = DeleteEducationForm(request.POST)
+        if form.is_valid():
+            education.delete()
+            return JsonResponse({'fail': False}, status=200)
+        return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def delete_skill(request, pk):
+    if request.method == 'POST':
+        skill = get_object_or_404(models.Skill, id=pk)
+        form = DeleteSkillForm(request.POST)
+        if form.is_valid():
+            skill.delete()
+            return JsonResponse({'fail': False}, status=200)
+        return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def delete_project(request, pk):
+    if request.method == 'POST':
+        project = get_object_or_404(models.Project, id=pk)
+        form = DeleteProjectForm(request.POST)
+        if form.is_valid():
+            project.delete()
+            return JsonResponse({'fail': False}, status=200)
+        return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def edit_specific(request, pk):
+    if request.method == 'POST':
+        specific = get_object_or_404(models.Specific, id=pk)
+        form = EditSpecificForm(request.POST, instance=specific)
+        if form.is_valid():
+            image = form.data.get('image')
+            description = form.data.get('description')
+            bullet_section = form.data.get('bullet_section')
+            position = form.data.get('position')
+            company = form.data.get('company')
+            link = form.data.get('link')
+            form.save()
+            return JsonResponse(
+                {'position': position, 'company': company, 'link': link, 'description': description,
+                 'bullet_section': bullet_section, 'fail': False, 'specific_pk': specific.pk},
+                status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def edit_section(request, pk):
+    if request.method == 'POST':
+        section = get_object_or_404(models.Section, id=pk)
+        form = EditSectionForm(request.POST, instance=section)
+        if form.is_valid():
+            name = form.data.get('name')
+
+            form.save()
+            return JsonResponse({'name': name, 'fail': False, 'section_pk': pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def edit_education(request, pk):
+    if request.method == 'POST':
+        education = get_object_or_404(models.Education, id=pk)
+        form = EditEducationForm(request.POST, instance=education)
+        if form.is_valid():
+            institution = form.data.get('institution')
+            certification_name = form.data.get('certification_name')
+            description = form.data.get('description')
+            month = form.data.get('month')
+            year = form.data.get('year')
+            form.save()
+            return JsonResponse(
+                {'description': description, 'institution': institution, 'certification_name': certification_name,
+                 'month': month, 'year': year, 'fail': False, 'education_pk': pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def edit_skill(request, pk):
+    if request.method == 'POST':
+        skill = get_object_or_404(models.Skill, id=pk)
+        form = EditSkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            name = form.data.get('name')
+            form.save()
+            return JsonResponse({'name': name, 'fail': False, 'skill_pk': pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def edit_project(request, pk):
+    if request.method == 'POST':
+        project = get_object_or_404(models.Project, id=pk)
+        form = EditProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            name = form.data.get('name')
+            description = form.data.get('description')
+            month = form.data.get('month')
+            year = form.data.get('year')
+            form.save()
+            return JsonResponse({'name': name, 'fail': False, 'project_pk': pk,
+                                 'description': description, 'month': month, 'year': year}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
 
 
 @login_required
@@ -281,7 +434,7 @@ def create_education(request, pk):
 
             return JsonResponse(
                 {'description': description, 'institution': institution, 'certification_name': certification_name,
-                 'month': month, 'year': year, 'fail': False}, status=200)
+                 'month': month, 'year': year, 'fail': False, 'education_pk': new_education.pk}, status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
     else:
@@ -306,11 +459,18 @@ class Index(DetailView):
         context['user_profile'] = userProfile
         experience = userProfile.experience
         context['experience'] = experience
+
         context['sectionForm'] = SectionForm()
         context['specificForm'] = SpecificForm()
         context['educationForm'] = EducationForm()
         context['skillForm'] = SkillForm()
         context['projectForm'] = ProjectForm()
+
+        context['deleteSkillForm'] = DeleteSkillForm()
+        context['deleteSectionForm'] = DeleteSectionForm()
+        context['deleteProjectForm'] = DeleteProjectForm()
+        context['deleteEducationForm'] = DeleteEducationForm()
+        context['deleteEducationForm'] = DeleteSpecificForm()
         return context
 
 

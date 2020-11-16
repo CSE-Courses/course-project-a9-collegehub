@@ -6,6 +6,30 @@ from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from .models import Specific, Section, Education, Skill, Project
 
+class DeleteSpecificForm(forms.ModelForm):
+    class Meta:
+        model = Specific
+        fields = []
+
+class DeleteSectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = []
+
+class DeleteEducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = []
+
+class DeleteSkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = []
+
+class DeleteProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = []
 
 class UserPasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
@@ -47,10 +71,6 @@ class SetPasswordForm(forms.Form):
             self.user.save()
         return self.user
 
-class SectionForm(forms.ModelForm):
-    class Meta:
-        model = Section
-        fields = ('name',)
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
@@ -108,6 +128,12 @@ class SignupForm(UserCreationForm):
         self.fields['password2'].widget.attrs['class'] = 'form-control grey_field'
 
 
+class SectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = ('name',)
+
+
 class SpecificForm(forms.ModelForm):
     class Meta:
         model = Specific
@@ -131,3 +157,32 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ('name', 'description', 'month', 'year')
 
+
+class EditSectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = ('name',)
+
+
+class EditSpecificForm(forms.ModelForm):
+    class Meta:
+        model = Specific
+        fields = ('position', 'company', 'description', 'link')
+
+
+class EditEducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = ('institution', 'certification_name', 'description', 'month', 'year')
+
+
+class EditSkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ('name', )
+
+
+class EditProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('name', 'description', 'month', 'year')
