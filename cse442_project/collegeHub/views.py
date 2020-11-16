@@ -200,6 +200,34 @@ class events(LoginRequiredMixin, ListView):
         print(x)
         return x
     
+def group_invitation(request):
+    if request.method == "POST":
+        print(request.POST)
+        str_emails = request.POST.get('emails')
+        emails = str_emails.split(',')
+        event = {'title':  request.POST.get('title'), 'start_time' :  request.POST.get('start_time'), 'end_time':  request.POST.get('end_time'), 'notes':  request.POST.get('notes') }
+        print(emails)
+        print(event)
+        for x in emails:
+            print(x)
+            email_subject = f'REMINDER: New Group Event'
+            message = render_to_string('collegehub/group_scheduler.html', {
+                'title' : event['title'],
+                'start_time': event['start_time'],
+                'end_time': event['end_time'],
+                'notes': event['notes'],
+                'requester': str(request.user.first_name + " " + request.user.last_name) 
+            })
+            print(message)
+            to_email = x
+            email = EmailMessage(
+                email_subject, message, to=[to_email]
+            )
+            success = email.send()
+        return HttpResponse('sent mails')
+    else:
+        return render(request, 'collegeHub/group_email_form.html')
+
 
 class register_email_sent(TemplateView):
     template_name = "collegehub/register_email_sent.html"

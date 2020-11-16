@@ -1,0 +1,34 @@
+{% load static %}
+{% load materializecss %}
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Mayank J.</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=no"/>
+
+</head>
+<body style="background-color : #C9A690">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col l12 m12 s12">
+            <h1 class="black-text">New Event</h1>
+            <form method="POST" action="{% url 'group_email' %}" id="group" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" class="form-control" placeholder="emails" name="emails" >
+                <input type="text" class="form-control" placeholder="title" name="title" >
+                <input type="text" class="form-control" placeholder="start_time" name="start_time" >
+                <input type="text" class="form-control" placeholder="end_time" name="end_time" >
+                <input type="text" class="form-control" placeholder="notes" name="notes" >
+                <input type="submit" value="Create" class="btn btn-primary btn-large">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
