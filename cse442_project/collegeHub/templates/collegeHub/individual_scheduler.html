@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hi {{ user.first_name }},
+
+You have recently created a new event. Here are the details. 
+
+Event Title: {{event.title}}
+Event Start time: {{event.start_time}}
+Event End time: {{event.end_time}}
+Event Notes: {{event.notes}}
+
+You can also view your events at http://{{ domain }}{% url 'events' %}
+
+Thank You,
+Team CollegeHub.
+
+{% endautoescape %}

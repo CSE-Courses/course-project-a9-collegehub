@@ -11,8 +11,8 @@ from collegeHub import models
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserProfileForm, UserEditForm
-from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm
-from .models import UserProfile, Experiences, Education
+from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm
+from .models import UserProfile, Experiences, Education, Event, User
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -27,6 +27,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.contrib.auth import models as auth_models
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -73,6 +75,9 @@ def register(user_request):
             # return HttpResponse('Please confirm your email address to complete the registration')
             # add registration confirmation html
             return redirect(reverse('emailed'))
+        else:
+            messages.error(user_request, 'Invalid form.')
+            return redirect('signup')
     else:
         form = SignupForm()
         p_form = UserProfileForm()
@@ -107,29 +112,94 @@ def activate(request, uidb64, token):
 @login_required
 def EditProfile(request):
     if request.method == "POST":
-        user_form = UserEditForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
-        if user_form.is_valid():
-            user = user_form.save(commit=False)
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            print(request.FILES)
-            if 'profile_pic' in request.FILES:
-                print('got a picture')
-                profile.profile_pic = request.FILES['profile_pic']
-            if 'resume' in request.FILES:
-                print('got a picture')
-                profile.resume = request.FILES['resume']
-            user.save()
-            profile.save()
-            return redirect('index', username=request.user.username)
+        if 'account' in request.POST:
+            user_form = UserEditForm(request.POST, instance=request.user)
+            if user_form.is_valid():
+                print(user_form)
+                user_form.save()
+                messages.success(request, "Successfully changed account")
+                return redirect('account' )
+            else:
+                messages.error(request, 'Error : Please check all fields approriately')
+                return redirect('account' )
+
+        elif 'profile' in request.POST:
+
+            print('received profile settings')
+            profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
+            if profile_form.is_valid():
+
+                print(profile_form)
+                profile_form.save()
+                messages.success(request, "Successfully changed profile")
+                return redirect('account' )
+            else:
+                messages.error(request, 'Error : Please check all fields approriately')
+                return redirect('account' )
+        # if user_form.is_valid():
+        #     user = user_form.save(commit=False)
+        #     profile = profile_form.save(commit=False)
+        #     profile.user = user
+        #     print(request.FILES)
+        #     if 'profile_pic' in request.FILES:
+        #         print('got a picture')
+        #         profile.profile_pic = request.FILES['profile_pic']
+        #     if 'resume' in request.FILES:
+        #         print('got a picture')
+        #         profile.resume = request.FILES['resume']
+        #     user.save()
+        #     profile.save()
+        #     return redirect('index', username=request.user.username)
     else:
         profile_form = UserProfileForm(instance=request.user.userprofile)
         user_form = UserEditForm(instance=request.user)
+        url_form = str(request.user) + "." + str(get_current_site(request)) 
+        return render(request, 'collegeHub/account.html', {'u_form': user_form,
+                                                           'p_form': profile_form,
+                                                           'url_form' : url_form.lower()})
 
-        return render(request, 'collegeHub/edit_profile.html', {'u_form': user_form,
-                                                           'p_form': profile_form})
+def create_event(request):
+    if request.method == "POST":
+        event_form = EventForm(request.POST)
+        print(event_form)
+        if event_form.is_valid():
+            event = event_form.save(commit=False)
+            profile = get_object_or_404(UserProfile, pk= request.user.userprofile.pk)
+            print(event)
+            event.user = profile
+            print("sending email")
+            current_site = get_current_site(request)
+            email_subject = f'REMINDER: New event {event.title}'
+            message = render_to_string('collegehub/individual_scheduler.html', {
+                'user': request.user,
+                'domain': current_site.domain,
+                'event': event
+            })
 
+            to_email = request.user.email
+            email = EmailMessage(
+                email_subject, message, to=[to_email]
+            )
+            email.send()
+            x = event.save()
+            print(x)
+            return redirect('events')
+        else:
+            return redirect('create_event')
+    else:
+        form = EventForm()
+        return render(request, 'collegeHub/create_event.html', { 'form' : form})
+
+class events(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'collegeHub/events.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        x =  queryset.filter(user__user__username__iexact=self.request.user.username)
+        print(x)
+        return x
+    
 
 class register_email_sent(TemplateView):
     template_name = "collegehub/register_email_sent.html"
@@ -145,22 +215,22 @@ class register_not_confirmed(TemplateView):
 
 
 
-class Account(LoginRequiredMixin, DetailView):
-    model = models.UserProfile
-    template_name = "collegehub/account.html"
+# class Account(LoginRequiredMixin, DetailView):
+#     model = models.UserProfile
+#     template_name = "collegehub/account.html"
 
-    def get_object(self):
-        username = self.kwargs.get('username')
-        user = auth_models.User.objects.get(username=username)
-        return get_object_or_404(models.UserProfile, user=user)
+#     def get_object(self):
+#         username = self.kwargs.get('username')
+#         user = auth_models.User.objects.get(username=username)
+#         return get_object_or_404(models.UserProfile, user=user)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        username = self.kwargs.get('username')
-        usr = auth_models.User.objects.get(username=username)
-        userProfile = models.UserProfile.objects.get(user=usr)
-        context['user_profile'] = userProfile
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         username = self.kwargs.get('username')
+#         usr = auth_models.User.objects.get(username=username)
+#         userProfile = models.UserProfile.objects.get(user=usr)
+#         context['user_profile'] = userProfile
+#         return context
 
 
 # class Signup(CreateView):
