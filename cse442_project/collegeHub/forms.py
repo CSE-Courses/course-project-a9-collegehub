@@ -4,7 +4,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordResetForm
 from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
-from .models import Specific, Section, Education, Skill, Project
+from django.contrib.admin import widgets
+
+from .models import Specific, Section, Education, Skill, Project, Event
 
 
 class UserPasswordResetForm(PasswordResetForm):
@@ -52,14 +54,20 @@ class SectionForm(forms.ModelForm):
         model = Section
         fields = ('name',)
 
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ('title', 'start_time', 'end_time', 'notes')
+       
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('bio', 'profile_pic', 'occupation', 'location', 'github', 'linkedin', 'instagram','resume', 'quote' ,)
+        fields = ( 'bio','occupation', 'location', 'github', 'linkedin', 'instagram',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
+        # self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
         self.fields["bio"].widget.attrs['id'] = "bio"
         self.fields["bio"].widget.attrs['class'] = "form-control grey_field"
         self.fields["occupation"].widget.attrs['class'] = "form-control grey_field"
@@ -67,10 +75,10 @@ class UserProfileForm(forms.ModelForm):
         self.fields['location'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
-        self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'
+        # self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['linkedin'].widget.attrs['class'] = 'form-control grey_field'
-        self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
-        self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
+        # self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
+        # self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
 
 
 class UserEditForm(UserChangeForm):
@@ -80,7 +88,14 @@ class UserEditForm(UserChangeForm):
         fields = ("username", "first_name", "last_name", "email",)
         model = get_user_model()
 
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.fields["username"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["first_name"].widget.attrs['class'] = "form-control grey_field"
+        self.fields['last_name'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['email'].widget.attrs['class'] = 'form-control grey_field'
+     
 class SignupForm(UserCreationForm):
     class Meta:
         model = get_user_model()

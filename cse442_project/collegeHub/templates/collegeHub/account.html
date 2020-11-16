@@ -32,10 +32,12 @@
           <hr>
           <div class="list-group" id="list-tab" role="tablist">
             <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list" href="#list-home" role="tab" aria-controls="username">General</a>
+            <a class="header-item list-group-item-action" id="list-general-list" data-toggle="list" href="#list-general" role="tab" aria-controls="username">Profile</a>
             <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="domain">Domain</a>
             <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>
-            <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
-            <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a>
+            <a class="header-item" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">Password Reset</a>
+            {% comment %} <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
+            <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a> {% endcomment %}
           </div>
           <div style="margin-top: 60px">
             <p style="font-weight: lighter;color: #dedede; font-size: 10px">
@@ -48,60 +50,59 @@
           </div>
         </div>
         <div id="account-container-right">
+        {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-username-list">
               <h3 style="color: #14213D"> General Account Settings</h3>
               <hr>
-              <form class="forms account-forms">
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Name</h6>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="Full Name">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Username</h6>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="Username">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Email</h6>
-                  </div>
-                  <div class="col">
-                    <input type="email" class="form-control" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Password</h6>
-                  </div>
-                  <div class="col">
-                    <input type="email" class="form-control" placeholder="New Password">
-                  </div>
-                </div>
-                <div>
-                  <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
-                    * Password Must contain one upper case letter, a number and a symbol.
-                  </p>
-                </div>
-              </form>
+              {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+              <form class="forms account-forms" enctype="multipart/form-data" method="POST">
+                                  {% csrf_token %}
+
+                {{u_form}}
+              <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
+                            class="btn" value="account" name ='account'>Edit Account
+                    </button>                
+                    </form>
+              {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+
             </div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-              <h3 style="color: #14213D"> Domain Settings</h3>
+      <div class="tab-pane fade show" id="list-general" role="tabpanel" aria-labelledby="list-general-list">
+              <h3 style="color: #14213D"> Profile Settings</h3>
               <hr>
+              {% comment %} form for profile settings ----------------------------------------------------------------------  {% endcomment %}
+              <form  lass="forms account-forms" enctype="multipart/form-data" method="POST">
+                                  {% csrf_token %}
+
+           {{p_form}}
+            <button type="submit" style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
+                            class="btn" value="profile" name ='profile'}>Edit Profile
+                    </button>              
+                    </form>
+              {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+
+            </div>
+
+
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+              <h3 style="color: #14213D"> Domain Details</h3>
+              <hr>
+              {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
               <form class="forms">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Domain Name</label>
-                  <input type="email" class="form-control" id="domain" aria-describedby="domain" placeholder="Fullname@collegehub.com">
-                  <small class="form-text text-muted">Your domain will be unique.</small>
+                  <input type="email" class="form-control" id="domain" aria-describedby="domain" placeholder="{{url_form}}" value= {{url_form}} disabled>
+                  <small class="form-text text-muted">Your domain is unique to your username.</small>
                 </div>
               </form>
+              {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
+
             </div>
             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
               <h3 style="color: #14213D"> Template Settings</h3>
@@ -156,6 +157,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+             <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
+              <h3 style="color: #14213D"> Password Reset</h3>
+              <hr>
+              {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
+              <form class="forms">
+                <div class="form-group">
+                  <a href={% url 'reset_password'%}><label for="exampleInputEmail1">Reset Password Here</label></a>
+                </div>
+              </form>
+              {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
+
             </div>
             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
               <form>

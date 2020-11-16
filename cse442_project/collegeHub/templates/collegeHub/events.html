@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing Event Form</title>
+</head>
+<body>
+<h1>Testing Event Form</h1>
+         {% for event in event_list %}
+         <ul>
+            <li>  Event : {{event.title}}</br> TIMINGS: {{event.start_time}} to {{event.end_time}}</br> NOTES: {{event.notes}} </ul>
+         </ul>
+         {% endfor %}
+</body>
+</html>

@@ -49,9 +49,15 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
                      style="background-image: linear-gradient(50deg, #86911a 0%, #d0de2f 74%); border-radius: 0.5rem 3rem 0.5rem 0.5rem;">
                     {% if user.is_authenticated %}
-                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> <img
-                            src=" {{user.userprofile.profile_pic.url}} " id="settings-logo" alt="User name"></span>
-                        {{ user_profile.user }}
+                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> 
+                  
+                    {% if user.userprofile.profile_pic.url %}
+                    <img src=" {{user.userprofile.profile_pic.url}} " id="settings-logo" alt="User name"></span>
+                    {% else%}
+                    <img src=" {% static 'collegehub/images/BlueHead.jpg'%} " id="settings-logo" alt="User name"></span>
+                    {% endif %}
+                    
+                        {{ user.username }}
                     </h4>
                     {% endif %}
                     {% if user.username == user_profile.user.username and user.is_authenticated%}
@@ -126,7 +132,15 @@
     <header id="header">
         <div class="blur">
             <div id="name-container">
-                <img id="user-image" src="{{user_profile.profile_pic.url}}" alt="User profile picture">
+                {% if user_profile.profile_pic.url %}
+                    <img id="user-image" src="{{user_profile.profile_pic.url}}" alt="User profile picture">
+
+                {% else%}
+                    <img id="user-image" src="{% static 'collegehub/images/BlueHead.jpg'%}" alt="User profile picture">
+
+                {% endif %}
+                
+                
                 <div id="info_container">
                     <h3 id="name">
                         {{ user_profile.user.first_name }} {{user_profile.user.last_name }}
@@ -333,7 +347,7 @@
                             </li>
                             <li><strong> <span style="color: #edff00;font-weight: bold"> phone number: </span> </strong>
                                 <span> (716)-999-9999 </span></li>
-                            <li><strong> <span style="color: #edff00;font-weight: bold"> email: </span> </strong> <span> college@university.com </span>
+                            <li><strong> <span style="color: #edff00;font-weight: bold"> email: </span> </strong> <span> {{ user_profile.user.email}} </span>
                             </li>
                             <li><strong> <span style="color: #edff00;font-weight: bold"> address: </span> </strong>
                                 <span> 7878 heaven st </span></li>
@@ -349,7 +363,7 @@
                         <a class="social_links_circle" style="font-size: 4rem;" href="{{ user_profile.linkedin}}">
                             <i class="fa fa-linkedin FA_Header"></i>
                         </a>
-                        <a class="social_links_circle" style="font-size: 4rem;" href="mailto:{{user_profile.email}}">
+                        <a class="social_links_circle" style="font-size: 4rem;" href="mailto:{{user_profile.user.email}}">
                             <i class="far fa-envelope FA_Header"></i>
                         </a>
                     </div>

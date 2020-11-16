@@ -31,7 +31,7 @@ urlpatterns = [
     path('emaiNotConfirmed/', views.register_not_confirmed.as_view(), name="not_confirmed"),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('login/', auth_views.LoginView.as_view(template_name='templates/login.html'), name='login'),
-    path('account/<slug:username>/', views.Account.as_view(), name='account'),
+    path('account/', views.EditProfile, name='account'),
     path('settings/<slug:username>/', views.Settings.as_view(), name='settings'),
     path('logout/', auth_views.LogoutView.as_view(template_name='templates/logout.html'), name='logout'),
 
@@ -39,9 +39,8 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view( template_name = "collegeHub/password_reset_form.html", form_class=SetPasswordForm), name = "password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name = "collegeHub/password_reset_done.html"), name  = "password_reset_complete"),
-
-    path('edit_profile/', views.EditProfile, name='edit_profile'),
-
+    path('create_event/', views.create_event, name  = "create_event"),
+    path('events/', views.events.as_view(), name  = "events"),
+    # path('edit_profile/', views.EditProfile, name='edit_profile'),
     path('<slug:username>/', views.Index.as_view(), name='index'),
-
 ]
