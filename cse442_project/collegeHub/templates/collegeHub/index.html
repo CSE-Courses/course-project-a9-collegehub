@@ -49,14 +49,14 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
                      style="background-image: linear-gradient(50deg, #86911a 0%, #d0de2f 74%); border-radius: 0.5rem 3rem 0.5rem 0.5rem;">
                     {% if user.is_authenticated %}
-                    <h4 class="dropdown-header" style="font-size: large; color: white"><span> 
-                  
+                    <h4 class="dropdown-header" style="font-size: large; color: white"><span>
+
                     {% if user.userprofile.profile_pic.url %}
                     <img src=" {{user.userprofile.profile_pic.url}} " id="settings-logo" alt="User name"></span>
                     {% else%}
                     <img src=" {% static 'collegehub/images/BlueHead.jpg'%} " id="settings-logo" alt="User name"></span>
                     {% endif %}
-                    
+
                         {{ user.username }}
                     </h4>
                     {% endif %}
@@ -139,8 +139,8 @@
                     <img id="user-image" src="{% static 'collegehub/images/BlueHead.jpg'%}" alt="User profile picture">
 
                 {% endif %}
-                
-                
+
+
                 <div id="info_container">
                     <h3 id="name">
                         {{ user_profile.user.first_name }} {{user_profile.user.last_name }}
@@ -190,11 +190,14 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1> Education Test </h1>
                             <form method="post" id="education-form">
                                 {% csrf_token %}
-                                {{ educationForm.as_p }}
-                                <button type="submit"> Upload</button>
+                                <div class="form-group">
+                                  {{ educationForm }}
+                                </div>
+                                <!-- {{ educationForm.as_p }} -->
+                                <!-- <button type="submit">Upload</button> -->
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </div>
                     </div>
