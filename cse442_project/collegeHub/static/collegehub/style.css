@@ -666,11 +666,11 @@ html {
         background-color: white;
     }
 
-    #uniname {
+    .uniname {
         font-weight: bold;
     }
 
-    #major {
+    .major {
         color: #a20a0a;
     }
 

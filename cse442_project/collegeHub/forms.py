@@ -146,3 +146,28 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ('name', 'description', 'month', 'year')
 
+
+class DeleteSpecificForm(forms.ModelForm):
+    class Meta:
+        model = Specific
+        fields = []
+
+class DeleteSectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = []
+
+class DeleteEducationForm(forms.ModelForm):
+    class Meta:
+        model = Education
+        fields = []
+
+class DeleteSkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = []
+
+class DeleteProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = []

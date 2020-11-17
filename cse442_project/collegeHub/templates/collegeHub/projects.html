@@ -10,14 +10,14 @@
 {% endif %}
 
 {% for project in user_profile.project.all %}
-    <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;">
-        <div class="card-header" style="font-weight: bold;">
+    <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;" id="project-{{ project.pk }}">
+        <div class="card-header" style="font-weight: bold;" id="project-{{ project.pk }}-name">
             {{project.name}}
         </div>
         <div class="card-body">
             <blockquote class="blockquote mb-0">
-                <p>{{project.description}}</p>
-                <footer class="blockquote-footer">
+                <p id="project-{{ project.pk }}-description">{{project.description}}</p>
+                <footer class="blockquote-footer" id="project-{{ project.pk }}-date">
                     {% if project.month != None %}
                         {{project.month}} /
                     {% endif %}

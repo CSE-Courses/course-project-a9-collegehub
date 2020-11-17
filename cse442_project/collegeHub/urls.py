@@ -16,6 +16,18 @@ urlpatterns = [
     path('education/<int:pk>', views.create_education, name='create-education'),
     path('skill/<int:pk>', views.create_skill, name='create-skill'),
     path('project/<int:pk>', views.create_project, name='create-project'),
+    path('deleteEducation/<int:pk>', views.delete_education, name='delete-education'),
+    path('deleteSection/<int:pk>', views.delete_section, name='delete-section'),
+    path('deleteSpecific/<int:pk>', views.delete_specific, name='delete-specific'),
+    path('deleteSkill/<int:pk>', views.delete_skill, name='delete-skill'),
+    path('deleteProject/<int:pk>', views.delete_project, name='delete-project'),
+    path('editEducation/<int:pk>', views.edit_education, name='edit-education'),
+    path('editSection/<int:pk>', views.edit_section, name='edit-section'),
+    path('editSpecific/<int:pk>', views.edit_specific, name='edit-specific'),
+    path('editSkill/<int:pk>', views.edit_skill, name='edit-skill'),
+    path('editProject/<int:pk>', views.edit_project, name='edit-project'),
+
+
     path('profile/', views.profile, name='profile'),
     # path('register/', views.register, name='register'),
     path('specific', views.passer, name='specific-url'),
