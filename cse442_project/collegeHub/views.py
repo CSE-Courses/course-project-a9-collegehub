@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm
 from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm
-from .models import UserProfile, Experiences, Education, Event, User
+from .models import UserProfile, Experiences, Education, Event, User, Post
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -689,3 +689,15 @@ def edit_project(request, pk):
             return JsonResponse({'fail': True}, status=200)
     else:
         return
+
+
+def blog_all(request):
+    
+    context = {
+        'posts': Post.objects.all()
+    }
+
+    return render(request, 'collegeHub/blog_all.html', context)
+
+def blog_about(request):
+    return render(request, 'collegeHub/blog_about.html', {'title': 'About'})

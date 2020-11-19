@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import models as auth_models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.utils import timezone
 # Create your models here.
 
 
@@ -109,3 +110,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.profile.__str__() + ':  ' + self.name
+
+class Post(models.Model):
+    title = models.CharField(max_length = 100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default = timezone.now)  
+    profile =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.title
