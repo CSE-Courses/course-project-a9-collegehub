@@ -1,8 +1,8 @@
 {% if experience.section.count == 0 %}
 {% if user.username == user_profile.user.username%}
 <li style="background-color: transparent; font-size: 24px" class="card" id="no-section">
-    <div class="card-body">
-        Click on + to add a section
+    <div class="card-body" style="font-weight: lighter; text-align: center">
+        Click on + to add a type of Experience
     </div>
 </li>
 {% endif %}
@@ -17,7 +17,45 @@
         </div>
         {% if user.username == user_profile.user.username%}
         <button type="button" data-toggle="modal" data-target="#add-experience-specific-{{ section.pk }}"
-                class="sub-section-button"><i class="fas fa-plus"></i></button>
+                class="sub-section-button" style="font-size: 20px; color: #8a082c"><i class="fas fa-plus"></i></button>
+        <button type="button" style="margin: 0; padding: 10px" class="option-button " id="uni-Button"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="uni-Button">
+            <button class="dropdown-item" style="color: black" data-toggle="modal"
+                    data-target="#edit_section_card_{{ section.pk }}">Edit
+            </button>
+            <form method="post" id="remove-section-{{ section.pk }}-form" class="delete-object-form">
+                {% csrf_token %}
+                {{ deleteSectionForm }}
+                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+            </form>
+        </div>
+        <div class="modal fade" id="edit_section_card_{{ section.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_section_cardLabel_{{ section.pk }}">Edit Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="edit-section-{{ section.pk }}-form" class="edit-object-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ sectionForm }}
+                            </div>
+                            <button type="submit" class="btn btn-primary"> Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% endif %}
     </div>
     <div class="modal fade" id="add-experience-specific-{{ section.pk }}" tabindex="-1"
@@ -50,30 +88,6 @@
                             <label for="id_company" class="col-form-label">Description: </label>
                             {{ specificForm.description }}
                         </div>
-                        {#
-                        <div class="form-group row">#}
-                            {# <label for="id_company" class="col-sm-2 col-form-label">Section: </label>#}
-                            {#
-                            <div class="col-sm-10">#}
-                                {# {{ specificForm.section }}#}
-                                {#
-                            </div>
-                            #}
-                            {#
-                        </div>
-                        #}
-                        {#
-                        <div class="form-group row">#}
-                            {# <label for="id_company" class="col-sm-2 col-form-label">Icon/Image: </label>#}
-                            {#
-                            <div class="col-sm-10">#}
-                                {# {{ specificForm.image }}#}
-                                {#
-                            </div>
-                            #}
-                            {#
-                        </div>
-                        #}
                         <div class="form-group row">
                             <label for="id_company" class="col-sm-2 col-form-label">Link: </label>
                             <div class="col-sm-10">
@@ -81,9 +95,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary specific-form-submit">Add</button>
-
                     </form>
-
                 </div>
             </div>
         </div>
@@ -91,29 +103,68 @@
     <div class="sub-section-container" id="sub-section-container">
         <ul class="list-unstyled" id="sub-section-list-{{ section.pk }}">
             {% if section.specific.count == 0 %}
-            <li style="background-color: transparent" class="card" id="no-specific">
-                <div class="card-body">
-                    Click on + to add a(n) {{ section.name }}
+            <li style="background-color: transparent; border: none" class="card" id="no-specific">
+                <div class="card-body" style="padding: 0 0 0 0.6rem">
+                    Click on + to add {{ section.name }}
                 </div>
             </li>
             {% endif %}
             {% for specific in section.specific.all %}
-
             <li class="media" style="margin: 10px 10px 18px 10px" id="specific-{{ specific.pk }}">
-              {#   <img src="{% static 'collegehub/images/blue_marble.jpg' %}" class="mr-3 edu-card-img" alt="..."  width="150" height="100"> #}
+                {# <img src="{% static 'collegehub/images/blue_marble.jpg' %}" class="mr-3 edu-card-img" alt="..." #}
+                        {# width="150" height="100"> #}
                 <div class="media-body">
-                    <h4 class="mt-0 mb-1" style="font-weight: bold" id="specific-{{ specific.pk }}-position"> {{specific.position}} </h4>
+                    <div style="display: flex;" class="edit_mode">
+                        <h4 class=" mt-0 mb-1 "
+                            id="specific-{{ specific.pk }}-position" data-toggle="modal"
+                            data-target="#edit_specific_card_{{ specific.pk }}" type="submit">
+                            {{specific.position}}
+                        </h4>
+                        <form method="post" id="remove-specific-{{ specific.pk }}-form" class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteSpecificForm }}
+                            <button type="submit" class="remove_exp_card" style=""><i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </div>
                     {% if specific.company != None %}
-                    <h6 class="mt-0 mb-1" style="color: #9cae00" id="specific-{{ specific.pk }}-company">{{specific.company}}</h6>
+                    <h5 class="mt-0 mb-1" style="color: #9cae00" id="specific-{{ specific.pk }}-company">
+                        {{specific.company}}</h5>
                     {% endif %}
                     <p style="margin-bottom: 10px; font-weight: lighter" id="specific-{{ specific.pk }}-description">
                         {{ specific.description }}
                     </p>
                     {% if specific.link != '' %}
-                    <a href="{{ specific.link }}" class="btn btn-outline-danger" style="border-radius: 4rem" id="specific-{{ specific.pk }}-link"><i
+                    <a href="{{ specific.link }}" class="btn btn-outline-danger" style="border-radius: 4rem"
+                       id="specific-{{ specific.pk }}-link"><i
                             class="fas fa-external-link-square-alt" aria-hidden="true"> </i> Link</a>
                     {% endif %}
                 </div>
+                <div class="modal fade" id="edit_specific_card_{{ specific.pk }}" tabindex="-1"
+                     aria-labelledby="edit_cardLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit_specific_cardLabel_{{ specific.pk }}">Edit Skill</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form method="post" id="edit-specific-{{ specific.pk }}-form" class="edit-object-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ specificForm }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"> Edit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </li>
 
             {% endfor %}

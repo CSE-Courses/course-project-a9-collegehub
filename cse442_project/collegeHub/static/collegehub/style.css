@@ -897,6 +897,55 @@ html {
         font-size: 4rem;
     }
 
+    .remove_exp_card {
+        color: #8a082c;
+        padding: 0;
+        margin: 0 0 0 40px;
+        font-size: 20px;
+        transform: scale(1);
+        display: inline-block;
+        font-weight: 200;
+        text-align: center;
+        -webkit-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: none;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: transform 0.2s ease;
+    }
+
+    .remove_exp_card:hover {
+        transform: scale(2);
+    }
+
+    .edit_mode h4 {
+        font-weight: bold;
+        color: #666666;
+        font-size: 24px;
+        transition: font-size 0.1s ease;
+    }
+
+    .edit_mode h4:hover {
+        font-size: 28px;
+        color: #8a082c;
+        animation: wiggle 150ms infinite;
+        animation-timing-function: linear;
+
+    }
+
+    @keyframes wiggle {
+        0% {
+            transform: rotate(2deg) translate(2px, 0);
+        }
+        50% {
+            transform: rotate(-1deg) translate(-2px, 0);;
+        }
+        100% {
+            transform: rotate(2deg) translate(2px, 0);;
+        }
+    }
+
     .sub-section-heading-text {
 
         padding: 0;
@@ -997,10 +1046,12 @@ html {
     .edu-card-img {
         border-radius: 1rem;
     }
-    .dropdown-item{
+
+    .dropdown-item {
         color: white;
     }
-    .temp-title{
+
+    .temp-title {
         text-decoration: none;
         background-size: 100%;
         background: linear-gradient(50deg, #fc1111 0%, #ff862a 74%) repeat;
@@ -1009,7 +1060,8 @@ html {
         margin: 1rem;
         font-weight: bold;
     }
-    .temp-title:hover{
+
+    .temp-title:hover {
         color: #FCA311;
         text-decoration: none;
     }
