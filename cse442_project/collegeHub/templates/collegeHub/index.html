@@ -60,12 +60,12 @@
                         {{ user.username }}
                     </h4>
                     {% endif %}
-                    {% if user.username == user_profile.user.username and user.is_authenticated%}
-                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i
-                            class="fas fa-plus-square"></i> </span>Add</a>
-                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i
-                            class="fas fa-minus-square"></i> </span>Remove</a>
-                    {% endif %}
+<!--                    {% if user.username == user_profile.user.username and user.is_authenticated%}-->
+<!--                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i-->
+<!--                            class="fas fa-plus-square"></i> </span>Add</a>-->
+<!--                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i-->
+<!--                            class="fas fa-minus-square"></i> </span>Remove</a>-->
+<!--                    {% endif %}-->
                     {% if user.is_authenticated %}
                     <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i
                             class="fas fa-cog"></i> </span>Settings</a>
@@ -167,7 +167,6 @@
             </div>
         </div>
     </header>
-
     <main id="sections-container">
         <section id="education">
             <div class="section-heading">
@@ -195,8 +194,6 @@
                                 <div class="form-group">
                                   {{ educationForm }}
                                 </div>
-                                <!-- {{ educationForm.as_p }} -->
-                                <!-- <button type="submit">Upload</button> -->
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </div>
@@ -270,7 +267,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {# <h1> Create a Section </h1>#}
                             <form method="post" id="section-form">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -280,7 +276,6 @@
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

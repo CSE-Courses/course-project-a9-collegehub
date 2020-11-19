@@ -2,7 +2,7 @@
 {% if user_profile.education.count == 0 %}
     {% if user.username == user_profile.user.username%}
         <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
-              <div class="card-body">
+              <div class="card-body" style="font-weight: lighter; text-align: center">
                     Click on + to add an education
               </div>
         </li>
@@ -24,11 +24,11 @@
                         </button>
 
                          <div class="dropdown-menu" aria-labelledby="uni-Button">
-                            <button class="dropdown-item"  data-toggle="modal" data-target="#edit_education_card_{{ education.pk }}">Edit</button>
+                            <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_education_card_{{ education.pk }}">Edit</button>
                             <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
                                 {% csrf_token %}
-                                {{ deleteEducationForm.as_p }}
-                                <button type="submit" class="dropdown-item">Remove</button>
+                                {{ deleteEducationForm}}
+                                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
                             </form>
                         </div>
                     </div>
@@ -47,8 +47,10 @@
                                 <div class="modal-body">
                                    <form method="post" id="edit-education-{{ education.pk }}-form" class="edit-object-form">
                                             {% csrf_token %}
-                                            {{ educationForm.as_p }}
-                                       <button type="submit"> Edit </button>
+                                       <div class="form-group">
+                                  {{ educationForm }}
+                                </div>
+                                       <button type="submit" class="btn btn-primary"> Edit </button>
                                    </form>
                                 </div>
 

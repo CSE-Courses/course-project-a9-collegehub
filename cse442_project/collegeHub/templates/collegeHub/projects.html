@@ -1,29 +1,70 @@
 {% load static %}
 {% if user_profile.project.count == 0 %}
-    {% if user.username == user_profile.user.username%}
-        <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
-              <div class="card-body">
-                    Click on + to add a project
-              </div>
-        </li>
-        {% endif %}
+{% if user.username == user_profile.user.username%}
+<li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
+    <div class="card-body" style="font-weight: lighter; text-align: center">
+        Click on + to add a project
+    </div>
+</li>
+{% endif %}
 {% endif %}
 
 {% for project in user_profile.project.all %}
-    <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;" id="project-{{ project.pk }}">
-        <div class="card-header" style="font-weight: bold;" id="project-{{ project.pk }}-name">
+<div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem" id="project-{{ project.pk }}">
+    <div class="card-header" id="project-{{ project.pk }}-name" style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
+        <span style="font-weight: bold;font-size: 24px; color:#cbe206;">
             {{project.name}}
+        </span>
+        <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="uni-Button">
+            <button class="dropdown-item" style="color: black" data-toggle="modal"
+                    data-target="#edit_project_card_{{ project.pk }}">Edit
+            </button>
+            <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                {% csrf_token %}
+                {{ deleteProjectForm }}
+                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+            </form>
         </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p id="project-{{ project.pk }}-description">{{project.description}}</p>
-                <footer class="blockquote-footer" id="project-{{ project.pk }}-date">
-                    {% if project.month != None %}
-                        {{project.month}} /
-                    {% endif %}
-                    {{ project.year }}
-                </footer>
-            </blockquote>
+        <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="edit-project-{{ project.pk }}-form" class="edit-object-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ projectForm }}
+                            </div>
+                            <button type="submit" class="btn btn-primary"> Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
+
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p id="project-{{ project.pk }}-description" style="font-weight: lighter">{{project.description}}</p>
+            <footer class="blockquote-footer" id="project-{{ project.pk }}-date">
+                {% if project.month != None %}
+                {{project.month}} /
+                {% endif %}
+                {{ project.year }}
+            </footer>
+        </blockquote>
+    </div>
+
+</div>
 {% endfor %}
