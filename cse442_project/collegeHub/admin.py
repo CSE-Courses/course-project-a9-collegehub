@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.contrib import admin
 from collegeHub.models import Section, Specific, Experiences, User, UserProfile, Education, Skill, Event, \
-    Project
+    Project, Post
 import datetime
 import calendar
 from django.urls import reverse
@@ -59,3 +59,4 @@ admin.site.register(Event)
 admin.site.register(Education)
 admin.site.register(Skill)
 admin.site.register(Project)
+admin.site.register(Post)
