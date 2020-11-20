@@ -76,52 +76,6 @@
             </li>
         </ul>
     </nav>
-    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addLabel">Add a Section</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form onsubmit="return false">
-                        <div class="form-group">
-                            <label for="new_section_name">Section Name</label>
-                            <input type="text" class="form-control" id="new_section_name" aria-describedby="emailHelp">
-                        </div>
-                        <button data-dismiss="modal" type="submit" class="btn btn-primary" onclick="section_add()">Add
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="remove" tabindex="-1" aria-labelledby="removeLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="removeLabel">Remove a Section</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form onsubmit="return false">
-                        <div class="form-group">
-                            <label for="remove_section_name">Section Name to remove</label>
-                            <input type="text" class="form-control" id="remove_section_name"
-                                   aria-describedby="emailHelp">
-                        </div>
-                        <button data-dismiss="modal" type="submit" class="btn btn-primary" onclick="remove_section()">
-                            Remove
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--header-->
     <header id="header">
         <div class="blur">
@@ -167,8 +121,8 @@
                     <div class="row no-gutters">
                         <div class="col-md-12">
                             <div class="card-body">
-                                <h5 id="uniname" class="card-text">University at Buffalo</h5>
-                                <h6 id="major" class="card-title"> Computer Science</h6>
+                                <h5 id="uniname" class="card-text uniname">University at Buffalo</h5>
+                                <h6 id="major" class="card-title major"> Computer Science</h6>
                                 <h6 id="edu-descrption" class="card-text">Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -217,7 +171,8 @@
                     <div class="sub-section-container" id="sub-section-container">
                         <ul class="list-unstyled" id="sub-section-list-{{ section.pk }}">
                             <li class="media" style="margin: 10px 10px 18px 10px">
-                                <img src="{% static 'collegehub/images/blue_marble.jpg' %}" class="mr-3 edu-card-img" alt="..."
+                                <img src="{% static 'collegehub/images/blue_marble.jpg' %}" class="mr-3 edu-card-img"
+                                     alt="..."
                                      width="150" height="100">
                                 <div class="media-body">
                                     <h4 class="mt-0 mb-1" style="font-weight: bold"> Software Intern </h4>
@@ -245,13 +200,16 @@
                 <h1 id="projects-heading-text">Projects</h1>
             </div>
             <div id="projects-container">
-                <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;">
-                    <div class="card-header" style="font-weight: bold;">
+                <div class="card"
+                     style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem"
+                     id="project-{{ project.pk }}">
+                    <div class="card-header" id="project-{{ project.pk }}-name"
+                         style="font-weight: bold;font-size: 24px;color:#cbe206;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
                         Vision Assist
                     </div>
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            <p style="font-weight: lighter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                                 reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>

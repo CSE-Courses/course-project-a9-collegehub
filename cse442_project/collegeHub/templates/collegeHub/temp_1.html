@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <!--logo icon / favicon-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
-    <title> Template-1 | CollegeHub</title>
+    <title> Scarlet Estevez | CollegeHub</title>
 </head>
 
 <body>
@@ -47,11 +47,7 @@
                         <a data-offset="-155,20" href="#" id="tp1settingsicon" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                         <div class="dropdown-menu" style="background-color: #ffe2e2">
-                            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i
-                                    class="fas fa-plus-square"></i> </span>Add</a>
-                            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i
-                                    class="fas fa-minus-square"></i> </span>Remove</a>
-                            <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                            <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                         </div>

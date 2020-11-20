@@ -48,7 +48,6 @@
                 <div class="tp-card template">
                     <div class="tp-info">
                         <a href="{% url 'temp0' %}" class="temp-title"><h5 ><b> Red Marble</b></h5></a>
-                        <p class="card-text">Shades:</p>
                         <div class="shades">
                             <svg width="70" height="70" viewBox="0 0 200 200"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +85,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Red Marble</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -118,7 +117,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Purple Candy</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -137,8 +136,7 @@
                         </div>
                     </div>
                     <div class="tp-info">
-                        <a href="{% url 'temp1' %}" class="temp-title"><h5><b> Purple Candy</b></h5></a>
-                        <p class="card-text">Shades:</p>
+                        <a href="{% url 'temp1' %}" class="temp-title"><h5 style="font-size: 18px;padding: 0;margin: 0"><b> Purple Candy</b></h5></a>
                         <div class="shades">
                             <svg width="70" height="70" viewBox="0 0 200 200"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -171,7 +169,6 @@
                 <div class="tp-card template">
                     <div class="tp-info">
                         <a href="{% url 'temp2' %}" class="temp-title"><h5><b> Subtle Blue</b></h5></a>
-                        <p class="card-text">Shades:</p>
                         <div class="shades" >
                              <svg width="70" height="70" viewBox="0 0 200 200"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -193,7 +190,7 @@
                                     </svg>
                                     <svg width="70" height="70" viewBox="0 0 200 200"
                                          xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="#FFD700"
+                                        <path fill="#ffffff"
                                               d="M37.6,-25.8C48.5,-16.2,57.1,-0.6,54,12.1C50.9,24.8,36.1,34.5,18.4,46C0.7,57.5,-19.8,70.7,-36.8,66.4C-53.8,62.1,-67.1,40.2,-68,20.2C-68.9,0.1,-57.3,-18.2,-43.9,-28.4C-30.5,-38.5,-15.2,-40.6,-1,-39.8C13.3,-39,26.6,-35.4,37.6,-25.8Z"
                                               transform="translate(100 100)"/>
                                     </svg>
@@ -202,21 +199,21 @@
                     <div id="tp-img-container">
                         <a class="tp-img" type="button" data-toggle="modal" data-target="#tp3">
                             <img src="{% static 'collegehub/images/template3.png' %}" class="card-img"
-                                 alt="Default template">
+                                 alt="Subtle Blue">
                         </a>
                         <div class="modal fade" id="tp3" data-backdrop="static" data-keyboard="false" tabindex="-1"
                              aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="staticBackdropLabel">Template 0</h5>
+                                        <h5 class="modal-title" id="staticBackdropLabel">Subtle Blue</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <img src="{% static 'collegehub/images/template3.png' %}" class="card-img"
-                                             alt="Default template">
+                                             alt="Subtle Blue template">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
@@ -229,6 +226,66 @@
 
 
                     </div>
+                </div>
+                <div class="tp-card template">
+                     <div id="tp-img-container">
+                        <a class="tp-img" type="button" data-toggle="modal" data-target="#tp4">
+                            <img src="{% static 'collegehub/images/template4.png' %}" class="card-img"
+                                 alt="Book">
+                        </a>
+                        <div class="modal fade" id="tp4" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Book</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{% static 'collegehub/images/template4.png' %}" class="card-img"
+                                             alt="Book template">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <a href="{% url 'temp3' %}" type="button" class="btn btn-primary">Visit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tp-info">
+                        <a href="{% url 'temp3' %}" class="temp-title"><h5><b> Book</b></h5></a>
+                        <div class="shades">
+                            <svg width="70" height="70" viewBox="0 0 200 200"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#ffd42d"
+                                      d="M50,-28.8C63.2,-6.1,71.1,19.8,61.9,39.2C52.7,58.5,26.3,71.4,5,68.5C-16.3,65.6,-32.6,46.9,-44.7,25.9C-56.7,4.9,-64.6,-18.4,-56.4,-38.3C-48.2,-58.1,-24.1,-74.4,-2.9,-72.8C18.4,-71.1,36.8,-51.5,50,-28.8Z"
+                                      transform="translate(100 100)"/>
+                            </svg>
+                            <svg width="70" height="70" viewBox="0 0 200 200"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#ffffff"
+                                      d="M60.2,-49.7C74.6,-29.9,80.7,-5,72.6,11.1C64.6,27.2,42.4,34.7,23.3,41.1C4.2,47.6,-12,53,-25.6,48.3C-39.3,43.6,-50.5,28.8,-51.9,14.2C-53.3,-0.4,-45,-14.8,-34.8,-33.8C-24.5,-52.7,-12.2,-76.1,5.3,-80.3C22.9,-84.5,45.7,-69.6,60.2,-49.7Z"
+                                      transform="translate(100 100)"/>
+                            </svg>
+                            <svg width="70" height="70" viewBox="0 0 200 200"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#2a2a2a"
+                                      d="M47.6,-42.9C57.8,-25.2,59.5,-5.6,57.2,16.5C54.9,38.6,48.6,63.3,35.5,67.1C22.3,71,2.2,54,-16.1,41.9C-34.5,29.8,-51.2,22.7,-53.7,12.1C-56.2,1.6,-44.4,-12.2,-33.1,-30.2C-21.8,-48.2,-10.9,-70.3,3.9,-73.4C18.7,-76.5,37.4,-60.6,47.6,-42.9Z"
+                                      transform="translate(100 100)"/>
+                            </svg>
+                            <svg width="70" height="70" viewBox="0 0 200 200"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#a8a8a8"
+                                      d="M37.6,-25.8C48.5,-16.2,57.1,-0.6,54,12.1C50.9,24.8,36.1,34.5,18.4,46C0.7,57.5,-19.8,70.7,-36.8,66.4C-53.8,62.1,-67.1,40.2,-68,20.2C-68.9,0.1,-57.3,-18.2,-43.9,-28.4C-30.5,-38.5,-15.2,-40.6,-1,-39.8C13.3,-39,26.6,-35.4,37.6,-25.8Z"
+                                      transform="translate(100 100)"/>
+                            </svg>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
