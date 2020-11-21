@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% if title %}
+            <title>My Blogs - {{ title }} </title>
+        {% else %}
+            <title>My Blogs  </title>
+        {% endif %}
+    </head>
+    <body>
+        {% for post in posts %}
+            <h1>{{post.title}} </h1>
+            <p>By {{post.profile}} on {{post.date_posted}}</p>
+            <p>{{ post.content }}</p>
+        {% endfor %}
+    </body>
+</html>
