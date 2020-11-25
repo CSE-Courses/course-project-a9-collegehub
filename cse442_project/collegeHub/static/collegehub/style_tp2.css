@@ -60,11 +60,9 @@ html {
 
 
     #sections {
-        z-index: 2;
         width: 49%;
         height: 100%;
         background-color: #373b40;
-        position: relative;
         margin-top: 50px;
         margin-left: 45%;
         margin-right: 92px;
@@ -158,10 +156,32 @@ html {
     .section_heading {
         color: white;
         margin: 0 0 10px;
-        max-width: 70%;
         font-size: 55px;
         line-height: 1.2;
         font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ellipse-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .option-button {
+        float: right;
+        display: inline-block;
+        font-weight: 200;
+        color: white;
+        -webkit-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: none;
+        padding: .375rem .75rem;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        border-radius: .25rem;
     }
 
 
@@ -172,7 +192,7 @@ html {
         top: 0;
         right: 0;
         left: 0;
-        z-index: 1030;
+        z-index: 110;
         height: 5rem;
         padding: 0 30px 0 0;
         margin: 40px;
@@ -290,7 +310,7 @@ html {
     #skills_container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-evenly;
         padding-top: 30px;
     }
 
@@ -302,6 +322,7 @@ html {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 10px;
     }
 
     .spin {
@@ -338,6 +359,36 @@ html {
         padding: 5px 10px 0 10px;
     }
 
+    .sub-section_heading_buttons {
+        background-color: #2bc4ad;
+        color: black;
+        font-weight: bold;
+        position: absolute;
+        border-radius: 3rem;
+        margin-top: -45px;
+        margin-left: 400px;
+        height: 2rem;
+        padding: 5px 10px 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sub-section-button {
+        display: inline-block;
+        font-weight: 200;
+        color: black;
+        text-align: center;
+        -webkit-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+    }
+
+
     #projects_container {
         margin-top: 30px;
 
@@ -354,7 +405,8 @@ html {
         padding: 50px;
 
     }
-    .blue{
+
+    .blue {
         color: #68e0cf;
     }
 
@@ -365,11 +417,13 @@ html {
         border: 1px solid #585d65;
         border-radius: 30px;
     }
-    #contact_me_container ul{
+
+    #contact_me_container ul {
         list-style: none;
         padding: 0;
     }
-    .signature{
+
+    .signature {
         font-family: 'Arizonia', Helvetica, sans-serif, cursive;
         font-weight: bold;
         font-size: 30px;

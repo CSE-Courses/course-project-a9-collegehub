@@ -1,0 +1,576 @@
+{%  load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <!--    Style CSS-->
+  <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+  <!--    fontawesome-->
+  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+  <!--    Animate on scroll (AOS)-->
+  <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!--logo icon / favicon-->
+  <!--    <link rel="icon" href="images/logo.png">-->
+  <title> Allison Fragner | CollegeHub</title>
+</head>
+
+<body>
+  <div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    <div id="Outer_timeline_template3">
+      <nav>
+        <nav class="navigation">
+          <ul class="nav-list text-center ">
+            <li style="text-align: left;font-size: 20px; color: #68d3c5">
+              Allison<br>Fragner
+            </li>
+            <div>
+              <li>
+                <a href="#"> Home </a>
+              </li>
+              <li>
+                <a href="#about"> About </a>
+              </li>
+              <li>
+                <a href="#education">Education</a>
+              </li>
+              <li>
+                <a href="#skills"> Skills </a>
+              </li>
+              <li>
+                <a href="#experience">Experience</a>
+              </li>
+              <li>
+                <a href="#projects">Projects</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a data-offset="-235,40" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: #585e64; border-radius: 7px;">
+                  <h4 class="dropdown-header" style="font-size: large; color: #68d3c5">
+                    Allison Fragner
+                  </h4>
+                  <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                  <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" style="color: #68d3c5" href="#">Copyright CollegHub @ 2020</a>
+                </div>
+              </li>
+            </div>
+
+          </ul>
+        </nav>
+      </nav>
+      <div id="sections">
+        <div id="profile_pic_left">
+          <img src="{% static 'collegehub/images/blue_marble.jpg' %}">
+        </div>
+        <div id="header">
+          <div id="circle">
+            <h1><span>Allison<br>Fragner </span></h1>
+          </div>
+          <div id="header_container">
+            <div style="color: #68d3c5; font-weight: bold; margin-bottom: 10px">
+              Computer Science
+            </div>
+            <div class="about-me">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+
+            </div>
+            <div>
+              <a id="contact_me_b" href="contact">
+                Contact me
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="about" class="section">
+          <div class="section_heading">
+            About Me
+          </div>
+          <div id="about_container">
+            <div class="about-me" style="margin-bottom: 35px; padding: 0">
+              Pellentesque posuere. Praesent turpis. Aenean posuere, tortor sed cursus feugiat, nunc augue
+              blandit
+              nunc, eu sollicitudin urna dolor sagittis lacus. Pellentesque posuere. Praesent turpis. Aenean
+              posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
+              lacus.
+            </div>
+            <div>
+              <ul id="aboutme_list">
+                <li><strong> <span style="color: #68d3c5;font-weight: bold"> Age: </span> </strong> <span> 22 </span>
+                </li>
+                <li><strong> <span style="color: #68d3c5;font-weight: bold"> phone number: </span> </strong>
+                  <span> (716)-999-9999 </span></li>
+                <li><strong> <span style="color: #68d3c5;font-weight: bold"> email: </span> </strong> <span> college@university.com </span>
+                </li>
+                <li><strong> <span style="color: #68d3c5;font-weight: bold"> address: </span> </strong>
+                  <span> 7878 heaven st </span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="education" class="section">
+          <div class="section_heading" style="margin: 0; ">
+            <div>Education</div>
+            <div class="ellipse-container">
+              <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"><i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="modal fade" style="top: 116px" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  EDUCATION FORM
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="color: #68d3c5; font-weight: bold">
+            Studied at
+          </div>
+          <div id="education_container">
+            <div class="card edu-card" id="education-{{ education.pk }}" style="color: white;width: 38vw;background-color: transparent; margin-bottom: 20px; border: none">
+              <div class="card-body" style="padding: 0">
+                <div class="dropdown ">
+                  <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v"></i>
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="uni-Button">
+                    <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_education_card_{{ education.pk }}">Edit
+                    </button>
+                    <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
+                      {% csrf_token %}
+                      {{ deleteEducationForm}}
+                      <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                    </form>
+                  </div>
+                </div>
+                <h5 id="education-{{ education.pk }}-institution" class="uniname" style="color: white; font-weight: bold">University at Buffalo</h5>
+                <h6 id="education-{{ education.pk }}-certification_name" class="card-subtitle major mb-2" style="color: #68d3c5;">Computer Science</h6>
+                <p id="education-{{ education.pk }}-description" class="card-text edu-description" style="font-weight: lighter">Some quick example text to
+                  build on the
+                  card title and make up the bulk
+                  of the card's content.</p>
+                <p id="education-{{ education.pk }}-date" class="card-text year"><small class="text-muted">Date:
+                    {{ education.month }}/{{ education.year }}</small></p>
+
+                <a href="#" class="mylink">link</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div id="skills" class="section">
+          <div class="section_heading" style="margin: 0; ">
+            <div>Skills</div>
+            <div class="ellipse-container">
+              <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button">
+                <i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="skills_add_cardLabel">Add Skill card</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                  <form method="post" id="skill-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="id_position" class="col-form-label"> Skill Name: </label>
+                      {{ skillForm.name }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div style="color: #68d3c5; font-weight: bold">
+            What I can do
+          </div>
+          <div id="skills_container">
+            <div>
+              <div type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="skill_circle" id="skill-{{ skill.pk }}">
+                <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
+                <div class="skill-header" id="skill-{{ skill.pk }}-name" style="color: white">tg</div>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="uni-Button">
+                <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_skill_card_{{ skill.pk }}">Edit
+                </button>
+                <form method="post" id="remove-skill-{{ skill.pk }}-form" class="delete-object-form">
+                  {% csrf_token %}
+                  {{ deleteSkillForm }}
+                  <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                </form>
+              </div>
+              <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                        Skill</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form method="post" id="edit-skill-{{ skill.pk }}-form" class="edit-object-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ skillForm }}
+                        </div>
+                        <button type="submit" class="btn btn-primary"> Edit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div id="experience" class="section">
+          <div class="section_heading" style="margin: 0; ">
+            <div>Experience</div>
+            <div class="ellipse-container">
+              <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button">
+                <i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="modal fade" id="experience_add_subsection" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="experience_add_cardLabel">Add a Section to Experience</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" id="section-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="id_position" class="col-form-label">Type of Experience: </label>
+                      {{ sectionForm.name }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="color: #68d3c5; font-weight: bold">
+            I worked at
+          </div>
+          <div id="experience_container">
+            <div class="sub-section" id="sub-section-{{ section.pk }}">
+              <div class="sub-section_heading" id="sub-section-{{ section.pk }}-name">
+                Internship
+              </div>
+              <div class="sub-section_heading_buttons">
+                <button type="button" data-toggle="modal" data-target="#add-experience-specific-{{ section.pk }}" class="sub-section-button" style="font-size: 20px;"><i class="fas fa-plus"></i></button>
+                <button type="button" style="margin-top: -10px" class="option-button " id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="uni-Button">
+                  <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_section_card_{{ section.pk }}">Edit
+                  </button>
+                  <form method="post" id="remove-section-{{ section.pk }}-form" class="delete-object-form">
+                    {% csrf_token %}
+                    {{ deleteSectionForm }}
+                    <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                  </form>
+                </div>
+              </div>
+              <div class="modal fade" id="add-experience-specific-{{ section.pk }}" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="add-experience-specificLabel">Add an {{ section.name
+                                            }} </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <form method="post" id="specific-form-{{ section.pk }}" class="specific-form">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                          <label for="id_position" class="col-sm-2 col-form-label">Position: </label>
+                          <div class="col-sm-10">
+                            {{ specificForm.position }}
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="id_company" class="col-sm-2 col-form-label">Company: </label>
+                          <div class="col-sm-10">
+                            {{ specificForm.company }}
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="id_company" class="col-form-label">Description: </label>
+                          {{ specificForm.description }}
+                        </div>
+                        <div class="form-group row">
+                          <label for="id_company" class="col-sm-2 col-form-label">Link: </label>
+                          <div class="col-sm-10">
+                            {{ specificForm.link }}
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary specific-form-submit">Add
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="edit_section_card_{{ section.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edit_section_cardLabel_{{ section.pk }}">Edit
+                        experiecnce</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" id="edit-section-{{ section.pk }}-form" class="edit-object-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ sectionForm }}
+                        </div>
+                        <button type="submit" class="btn btn-primary"> Edit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sub-section-container" id="sub-section-container">
+                <div class="card " id="specific-{{ specific.pk }}" style="color: white;width: 38vw; margin-top:20px;background-color: transparent; border: none">
+                  <div class="card-body" style="padding: 0">
+                    <h5 class="card-title" id="specific-{{ specific.pk }}-position" data-toggle="modal" data-target="#edit_specific_card_{{ specific.pk }}" style="color: white; font-weight: bold">Software Engineer
+                      Intern</h5>
+                    <form method="post" id="remove-specific-{{ specific.pk }}-form" class="delete-object-form">
+                      {% csrf_token %}
+                      {{ deleteSpecificForm }}
+                      <button type="submit" class="remove_exp_card" style=""><i class="far fa-trash-alt"></i></button>
+                    </form>
+                    <h6 class="card-subtitle mb-2" style="color: #68d3c5;">Amazon</h6>
+                    <p class="card-text" style="font-weight: lighter">Some quick example text to build
+                      on
+                      the
+                      card title and make up the bulk
+                      of the card's content.</p>
+                    <a href="#" class="mylink">link</a>
+                    <div class="modal fade" id="edit_specific_card_{{ specific.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="edit_specific_cardLabel_{{ specific.pk }}">Edit Skill</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                          <div class="modal-body">
+                            <form method="post" id="edit-specific-{{ specific.pk }}-form" class="edit-object-form">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                {{ specificForm }}
+                              </div>
+                              <button type="submit" class="btn btn-primary"> Edit</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div id="projects" class="section">
+          <div class="section_heading" style="margin: 0; ">
+            <div>Project</div>
+            <div class="ellipse-container">
+              <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button">
+                <i class="fas fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="projects_add_cardLabel">Add Project card</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" id="project-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      {{ projectForm }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div style="color: #68d3c5; font-weight: bold">
+            Latest Work
+          </div>
+          <div id="projects_container">
+            <div class="card text-center project" id="project-{{ project.pk }}" style="background-color: transparent">
+              <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="uni-Button">
+                <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_project_card_{{ project.pk }}">Edit
+                </button>
+                <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                  {% csrf_token %}
+                  {{ deleteProjectForm }}
+                  <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                </form>
+              </div>
+              <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                        Project</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" id="edit-project-{{ project.pk }}-form" class="edit-object-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ projectForm }}
+                        </div>
+                        <button type="submit" class="btn btn-primary"> Edit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="color: #68d3c5; font-weight: bold">Project Name</h5>
+                <p class="card-text" style="font-weight: lighter">This card has a regular title and short
+                  paragraphy of text below
+                  it.</p>
+                <p class="card-text"><small class="text-muted">January 2020</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="contact" class="section">
+          <div class="section_heading" style="margin: 0">
+            Contact
+          </div>
+          <div style="color: #68d3c5; font-weight: bold">
+            Let's Talk
+          </div>
+          <div id="contact_container">
+            <div id="contact_me_container">
+              <div style="font-weight: bold;font-size: 24px">Allison Fragner</div>
+              <div class="blue" style="">Computer &amp; Science</div>
+              <br>
+              <br>
+              <ul>
+                <li><strong> <span class="blue"> Age: </span> </strong> <span style="font-weight: lighter"> 21 </span>
+                </li>
+                <li><strong> <span class="blue"> Address: </span> </strong> <span style="font-weight: lighter"> Heaven st </span>
+                </li>
+                <li><strong> <span class="blue"> Phone: </span> </strong> <span style="font-weight: lighter"> (716)-666-9999 </span>
+                </li>
+                <li><strong> <span class="blue"> E-mail: </span> </strong> <span style="font-weight: lighter"> college@univesity.com </span>
+                </li>
+              </ul>
+              <div class="signature">Allison Fragner</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div id="social_links">
+        <a class="social_links_circle">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a class="social_links_circle">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="social_links_circle">
+          <i class="fa fa-linkedin FA_Header"></i>
+        </a>
+        <a class="social_links_circle">
+          <i class="far fa-envelope FA_Header"></i>
+        </a>
+      </div>
+    </div>
+    <!--*******************************************CONTENT************************************************-->
+  </div>
+  <div id="mobile-body">
+    <div id="mobile-container">
+      <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+      <h1 style="font-weight: bold">CollegeHub</h1>
+      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+      <h2 style="font-weight: lighter">COMING SOON</h2>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+      <br>
+      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+  </div>
+  <!-- JavaScript -->
+  <!--<script src="script.js"></script>-->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</body>
+
+</html>
