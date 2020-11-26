@@ -11,8 +11,8 @@
 
 {% for project in user_profile.project.all %}
 <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem" id="project-{{ project.pk }}">
-    <div class="card-header" id="project-{{ project.pk }}-name" style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
-        <span style="font-weight: bold;font-size: 24px; color:#cbe206;">
+    <div class="card-header" style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
+        <span style="font-weight: bold;font-size: 24px; color:#cbe206;" id="project-{{ project.pk }}-name">
             {{project.name}}
         </span>
         <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button" data-toggle="dropdown"

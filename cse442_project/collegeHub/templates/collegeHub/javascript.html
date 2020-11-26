@@ -3,7 +3,6 @@
 <script>
     const sectionForm = document.getElementById('section-form');
     let current_user = {% if user.username == user_profile.user.username  and user.is_authenticated %} true {% else %}false {% endif %}
-    console.log(current_user);
 
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
@@ -22,73 +21,132 @@
 
 
                     var section = '<div class="sub-section" id="sub-section-'+response.section_pk+'">\n' +
-                        '            <div class="sub-section-header">\n' +
-                        '                 <div class="sub-section-heading">\n' +
-                        '                    <h4 class="sub-section-heading-text" id="sub-section-'+response.section_pk+'-name">\n' +
-                                                response.name +
-                        '                    </h4>\n' +
+                        '    <div class="sub-section-header">\n' +
+                        '        <div class="sub-section-heading">\n' +
+                        '            <h2 class="sub-section-heading-text" id="sub-section-'+response.section_pk+'-name">\n' +
+                        '                '+response.name+'\n' +
+                        '            </h2>\n' +
+                        '        </div>\n' +
+                            '        <button type="button" data-toggle="modal" data-target="#add-experience-specific-'+response.section_pk+'"\n'
+                            +
+                            '                class="sub-section-button" style="font-size: 20px; color: #8a082c"><i class="fas fa-plus"></i></button>\n'
+                            +
+                            '        <button type="button" style="margin: 0; padding: 10px" class="option-button " id="uni-Button"\n'
+                            +
+                            '                data-toggle="dropdown"\n'+
+                            '                aria-haspopup="true" aria-expanded="false">\n'+
+                            '            <i class="fas fa-ellipsis-v"></i>\n'+
+                            '        </button>\n'+
+                            '        <div class="dropdown-menu" aria-labelledby="uni-Button">\n'+
+                            '            <button class="dropdown-item" style="color: black" data-toggle="modal"\n'+
+                            '                    data-target="#edit_section_card_'+response.section_pk+'">Edit\n'+
+                            '            </button>\n'+
+                            '            <form method="post" id="remove-section-'+response.section_pk+'-form" class="delete-object-form">\n'
+                            +
+                            '                {% csrf_token %}\n'+
+                            '                ' + '{{ deleteSectionForm.as_p }}' + '\n'+
+                            '                <button type="submit" class="dropdown-item" style="color: black">Remove</button>\n'
+                            +
+                            '            </form>\n'+
+                            '        </div>\n'+
+                            '        <div class="modal fade" id="edit_section_card_'+response.section_pk+'" tabindex="-1" aria-labelledby="edit_cardLabel"\n'
+                            +
+                            '             aria-hidden="true">\n'+
+                            '            <div class="modal-dialog">\n'+
+                            '                <div class="modal-content">\n'+
+                            '                    <div class="modal-header">\n'+
+                            '                        <h5 class="modal-title" id="edit_section_cardLabel_'+response.section_pk+'">Edit Project</h5>\n'
+                            +
+                            '                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n'
+                            +
+                            '                            <span aria-hidden="true">&times;</span>\n'+
+                            '                        </button>\n'+
+                            '                    </div>\n'+
+                            '                    <div class="modal-body">\n'+
+                            '                        <form method="post" id="edit-section-'+response.section_pk+'-form" class="edit-object-form">\n'
+                            +
+                            '                            {% csrf_token %}\n'+
+                            '                            <div class="form-group">\n'+
+                            '                               <div class="form-group">\n' +
+                            '                                <label for="id_name">Name:</label><input type="text" name="name" maxlength="30" required="" id="id_name">\n' +
+                            '                               </div>'+
+                            '                            </div>\n'+
+                            '                            <button type="submit" class="btn btn-primary"> Edit</button>\n'
+                            +
+                            '                        </form>\n'+
+                            '                    </div>\n'+
+                            '                </div>\n'+
+                            '            </div>\n'+
+                            '        </div>\n'+
+                            '\n'+
+                        '    </div>\n' +
+                        '    <div class="modal fade" id="add-experience-specific-'+response.section_pk+'" tabindex="-1"\n' +
+                        '         aria-labelledby="add-experience-specificLabel" aria-hidden="true">\n' +
+                        '        <div class="modal-dialog">\n' +
+                        '            <div class="modal-content">\n' +
+                        '                <div class="modal-header">\n' +
+                        '                    <h5 class="modal-title" id="add-experience-specificLabel">Add an '+response.name+' </h5>\n' +
+                        '                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                        '                        <span aria-hidden="true">&times;</span>\n' +
+                        '                    </button>\n' +
                         '                </div>\n' +
-                        '                <button type="button" data-toggle="modal" data-target="#add-experience-specific-' + response.section_pk  + '" class="sub-section-button"><i class="fas fa-plus"></i></button>\n' +
-                        '            </div>\n' +
-                        '            <div class="modal fade" id="add-experience-specific-' + response.section_pk  + '" tabindex="-1" aria-labelledby="add-experience-specificLabel" aria-hidden="true">\n' +
-                        '                <div class="modal-dialog">\n' +
-                        '                    <div class="modal-content">\n' +
-                        '                        <div class="modal-header">\n' +
-                        '                            <h5 class="modal-title" id="add-experience-specificLabel">Add an ' + response.name  + ' </h5>\n' +
-                        '                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
-                        '                                <span aria-hidden="true">&times;</span>\n' +
-                        '                            </button>\n' +
+                        '                <div class="modal-body">\n' +
+                        '\n' +
+                        '                    <form method="post" id="specific-form-'+response.section_pk+'" class="specific-form">\n' +
+                        '                        {% csrf_token %}\n' +
+                        '                        <div class="form-group row">\n' +
+                        '                            <label for="id_position" class="col-sm-2 col-form-label">Position: </label>\n' +
+                        '                            <div class="col-sm-10">\n' +
+                        '                                {{ specificForm.position }}\n' +
+                        '                            </div>\n' +
                         '                        </div>\n' +
-                        '                        <div class="modal-body">\n' +
-                        '\n' +
-                        '                            <form method="post" id="specific-form-' + response.section_pk  + '"  class="specific-form">\n' +
-                        '                                {% csrf_token %}\n' +
-                        '                                <div class="form-group row">\n' +
-                        '                                    <label for="id_position" class="col-sm-2 col-form-label">Position: </label>\n' +
-                        '                                    <div class="col-sm-10">\n' +
-                        '                                        {{ specificForm.position }}\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
-                        '                                <div class="form-group row">\n' +
-                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Company: </label>\n' +
-                        '                                    <div class="col-sm-10">\n' +
-                        '                                        {{ specificForm.company }}\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
-                        '                                <div class="form-group">\n' +
-                        '                                    <label for="id_company" class="col-form-label">Description: </label>\n' +
-                        '                                    {{ specificForm.description }}\n' +
-                        '                                </div>\n' +
-                        '                                <div class="form-group row">\n' +
-                        '                                    <label for="id_company" class="col-sm-2 col-form-label">Link: </label>\n' +
-                        '                                    <div class="col-sm-10">\n' +
-                        '                                        {{ specificForm.link }}\n' +
-                        '                                    </div>\n' +
-                        '                                </div>\n' +
-                        '                              <button type="submit" class="btn btn-primary specific-form-submit">Add</button>\n' +
-                        '\n' +
-                        '                            </form>\n' +
-                        '\n' +
+                        '                        <div class="form-group row">\n' +
+                        '                            <label for="id_company" class="col-sm-2 col-form-label">Company: </label>\n' +
+                        '                            <div class="col-sm-10">\n' +
+                        '                                {{ specificForm.company }}\n' +
+                        '                            </div>\n' +
                         '                        </div>\n' +
-                        '                    </div>\n' +
+                        '                        <div class="form-group">\n' +
+                        '                            <label for="id_company" class="col-form-label">Description: </label>\n' +
+                        '                            {{ specificForm.description }}\n' +
+                        '                        </div>\n' +
+                        '                        <div class="form-group row">\n' +
+                        '                            <label for="id_company" class="col-sm-2 col-form-label">Link: </label>\n' +
+                        '                            <div class="col-sm-10">\n' +
+                        '                                {{ specificForm.link }}\n' +
+                        '                            </div>\n' +
+                        '                        </div>\n' +
+                        '                        <button type="submit" class="btn btn-primary specific-form-submit">Add</button>\n' +
+                        '                    </form>\n' +
                         '                </div>\n' +
                         '            </div>\n' +
-                        '            <div class="sub-section-container" id="sub-section-container">\n' +
-                        '                <ul id="sub-section-list-' + response.section_pk +'" class="list-unstyled">\n' +
-                        '                            <li style="background-color: transparent" class="card" id="no-specific">\n' +
-                        '                              <div class="card-body">\n' +
-                        '                                Click on + to add a(n) ' + response.name  + '\n' +
-                        '                              </div>\n' +
-                        '                            </li>\n' +
-                        '                </ul>\n' +
-                        '            </div>\n' +
-                        '        </div>';
+                        '        </div>\n' +
+                        '    </div>\n' +
+                        '    <div class="sub-section-container" id="sub-section-container">\n' +
+                        '        <ul class="list-unstyled" id="sub-section-list-'+response.section_pk+'">\n' +
+                            '            <li style="background-color: transparent; border: none" class="card" id="no-specific">\n'
+                            +
+                            '                <div class="card-body" style="padding: 0 0 0 0.6rem">\n'+
+                            '                    Click on + to add '+response.name+'\n'+
+                            '                </div>\n'+
+                            '            </li>\n'+
+                        '        </ul>\n' +
+                        '    </div>\n' +
+                        '</div>';
 
                      $("#experience-container").append(section);
                      var elem_id = "specific-form-" + response.section_pk;
 
                      var newForm = document.getElementById(elem_id);
                      newForm.addEventListener("submit", submitSpecificHandler);
+
+                     elem_id = "edit-section-" + response.section_pk +"-form";
+                     newForm = document.getElementById(elem_id);
+                     newForm.addEventListener("submit", submitEditHandler);
+
+                     elem_id = 'remove-section-'+response.section_pk+'-form';
+                     newForm = document.getElementById(elem_id);
+                     newForm.addEventListener("submit", submitDeleteHandler);
 
                 }
             }
@@ -105,7 +163,6 @@
         var form_id = this.id;
         var sec_pk = form_id.substring('specific-form-'.length);
         var url = '{% url 'specific-url' %}/'  + sec_pk;
-        console.log('Test: ' + form_id +' '+ sec_pk+ ' : '+url);
         $.ajax({
             type: 'POST',
             url: url,
@@ -118,21 +175,85 @@
                         document.getElementById('no-specific').remove();
                      }catch {}
 
-                    var specific = '<li class="media" style="margin: 10px 10px 18px 10px" id="specific-'+response.experience_pk+'">\n';
-                        {#specific + '                                <img src="{{ specific.image.url }}" class="mr-3" alt="..." width="250" height="200">\n' +#}
-                        specific += '<div class="media-body">\n';
-                        specific += ' <h5 class="mt-0 mb-1" id="specific-'+response.experience_pk+'-position"> '+ response.position +'</h5>\n';
-                        if (response.company != '' && response.company != 'None'){
-                            specific += '<h7 class="mt-0 mb-1" id="specific-'+response.experience_pk+'-company">'+ response.company +'</h7>\n';
+                    var specific = '            <li class="media" style="margin: 10px 10px 18px 10px" id="specific-'+response.specific_pk+'">\n'
+                        +
+                        '                {# <img src="{% static \'collegehub/images/blue_marble.jpg\' %}" class="mr-3 edu-card-img" alt="..." #}\n'
+                        +
+                        '                        {# width="150" height="100"> #}\n'+
+                        '                <div class="media-body">\n'+
+                        '                    <div style="display: flex;" class="edit_mode">\n'+
+                        '                        <h4 class=" mt-0 mb-1 "\n'+
+                        '                            id="specific-'+response.specific_pk+'-position" data-toggle="modal"\n'+
+                        '                            data-target="#edit_specific_card_'+response.specific_pk+'" type="submit">\n'
+                        +
+                        '                            '+response.position+'\n'+
+                        '                        </h4>\n'+
+                        '                        <form method="post" id="remove-specific-'+response.specific_pk+'-form" class="delete-object-form">\n'
+                        +
+                        '                            {% csrf_token %}\n'+
+                        '                            ' + '{{ deleteSpecificForm.as_p }}' + '\n'+
+                        '                            <button type="submit" class="remove_exp_card" style=""><i class="far fa-trash-alt"></i></button>\n'
+                        +
+                        '                        </form>\n'+
+                        '                    </div>\n';
+                        if(response.company!='' && response != 'None'){
+                             specific += '                    <h5 class="mt-0 mb-1" style="color: #9cae00" id="specific-'+response.specific_pk+'-company">\n'
+                            +
+                            '                        '+response.company+'</h5>\n';
                         }
-                         specific += '<p style="margin-bottom: 3px" id="specific-'+response.experience_pk+'-description">\n' + response.description +'\n'+ '</p>\n';
-                        if (response.link != ''){
-                            specific+='<a href="'+ response.link +'" class="btn btn-outline-danger" id="specific-'+response.experience_pk+'-link">Link</a>\n';
-                            }
-                        specific += '</div>\n' + '</li>';
+                        specific += '                    <p style="margin-bottom: 10px; font-weight: lighter" id="specific-'+response.specific_pk+'-description">\n' +
+                        '                        '+response.description+'\n'+
+                        '                    </p>\n';
+                        if(response.link != '' && response.link != '/' && response.link != 'None' && response.link != '\\'){
+                            specific += '                    <a href="'+response.link+'" class="btn btn-outline-danger" style="border-radius: 4rem"\n' +
+                            '                       id="specific-'+response.specific_pk+'-link"><i\n'+
+                            '                            class="fas fa-external-link-square-alt" aria-hidden="true"> </i> Link</a>\n';
+                        }
+                       specific += '                </div>\n'+
+                        '                <div class="modal fade" id="edit_specific_card_'+response.specific_pk+'" tabindex="-1"\n'
+                        +
+                        '                     aria-labelledby="edit_cardLabel"\n'+
+                        '                     aria-hidden="true">\n'+
+                        '                    <div class="modal-dialog">\n'+
+                        '                        <div class="modal-content">\n'+
+                        '\n'+
+                        '                            <div class="modal-header">\n'+
+                        '                                <h5 class="modal-title" id="edit_specific_cardLabel_'+response.specific_pk+'">Edit Skill</h5>\n'
+                        +
+                        '                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n'
+                        +
+                        '                                    <span aria-hidden="true">&times;</span>\n'+
+                        '                                </button>\n'+
+                        '                            </div>\n'+
+                        '\n'+
+                        '                            <div class="modal-body">\n'+
+                        '                                <form method="post" id="edit-specific-'+response.specific_pk+'-form" class="edit-object-form">\n'
+                        +
+                        '                                    {% csrf_token %}\n'+
+                        '<div class="form-group">\n' +
+                           '                                        <label for="id_position">Position:</label><input type="text" name="position" maxlength="50" required="" id="id_position">\n' +
+                           '<label for="id_company">Company:</label><input type="text" name="company" maxlength="50" id="id_company">\n' +
+                           '<label for="id_description">Description:</label><input type="text" name="description" value="This is what I did" maxlength="2000" required="" id="id_description">\n' +
+                           '<label for="id_link">Link:</label><input type="url" name="link" maxlength="200" id="id_link">\n' +
+                           '                                    </div>'+
+                        '                                    <button type="submit" class="btn btn-primary"> Edit</button>\n'
+                        +
+                        '                                </form>\n'+
+                        '                            </div>\n'+
+                        '                        </div>\n'+
+                        '                    </div>\n'+
+                        '                </div>\n'+
+                        '\n'+
+                        '            </li>\n';
 
                 $("#sub-section-list-"+sec_pk).append(specific);
+                var elem_id = "edit-specific-" + response.specific_pk +"-form";
+                var newForm = document.getElementById(elem_id);
+                newForm.addEventListener("submit", submitEditHandler);
 
+                elem_id = 'remove-specific-'+response.specific_pk+'-form';
+                newForm = document.getElementById(elem_id);
+                newForm.addEventListener("submit", submitDeleteHandler);
                 }
             }
         })
@@ -168,11 +289,11 @@ function submitEducationHandler(e){
                         '                        </button>\n'+
                         '\n'+
                         '                         <div class="dropdown-menu" aria-labelledby="uni-Button">\n'+
-                        '                            <button class="dropdown-item"  data-toggle="modal" data-target="#edit_education_card_'+response.education_pk+'">Edit</button>\n' +
+                        '                            <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_education_card_'+response.education_pk+'">Edit</button>\n' +
                         '                            <form method="post" id="remove-education-'+response.education_pk+'-form" class="delete-object-form">\n' +
                         '                                {% csrf_token %} \n'+
                         '                                ' + '{{ deleteEducationForm.as_p }}' + ' \n'+
-                        '                                <button type="submit" class="dropdown-item"> Remove </button>\n'+
+                        '                                <button type="submit" class="dropdown-item" style="color: black"> Remove </button>\n'+
                         '                            </form>\n'+
                         '                        </div>\n'+
                         '                    </div>\n'+
@@ -251,11 +372,55 @@ function submitEducationHandler(e){
                         document.getElementById('no-skill').remove();
                     }catch {}
 
-                    var skill = '<div class="card text-white bg-success mb-3" style="max-width: 18rem;" id="skill-'+response.skill_pk+'">\n' +
-                        '        <div class="card-header" id="skill-'+response.skill_pk+'-name">'+ response.name +'</div>\n    </div>';
+                    var skill = '<div class="card mb-3" style="align-items:center;display: flex;flex-direction:row;justify-content:space-between;border-radius: 4rem;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);max-width: 18rem; border: #9da724 3px solid" id="skill-'+response.skill_pk+'">\n' +
+                        '    <div class="skill-header" id="skill-'+response.skill_pk+'-name" style="color: white">'+response.name+'</div>\n' +
+                        '    <button type="button" style="margin: 0" class="option-button" id="uni-Button" data-toggle="dropdown"\n' +
+                        '            aria-haspopup="true" aria-expanded="false">\n' +
+                        '        <i class="fas fa-ellipsis-v"></i>\n' +
+                        '    </button>\n' +
+                        '    <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
+                        '        <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_skill_card_'+response.skill_pk+'">Edit</button>\n' +
+                        '        <form method="post" id="remove-skill-'+response.skill_pk+'-form" class="delete-object-form">\n' +
+                        '            {% csrf_token %}\n' +
+                        '            '+ '{{ deleteSkillForm.as_p }}' +'\n' +
+                        '            <button type="submit" class="dropdown-item" style="color: black">Remove</button>\n' +
+                        '        </form>\n' +
+                        '    </div>\n' +
+                        '    <div class="modal fade" id="edit_skill_card_'+response.skill_pk+'" tabindex="-1" aria-labelledby="edit_cardLabel"\n' +
+                        '         aria-hidden="true">\n' +
+                        '        <div class="modal-dialog">\n' +
+                        '            <div class="modal-content">\n' +
+                        '\n' +
+                        '                <div class="modal-header">\n' +
+                        '                    <h5 class="modal-title" id="edit_skill_cardLabel_'+response.skill_pk+'">Edit Skill</h5>\n' +
+                        '                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                        '                        <span aria-hidden="true">&times;</span>\n' +
+                        '                    </button>\n' +
+                        '                </div>\n' +
+                        '\n' +
+                        '                <div class="modal-body">\n' +
+                        '                   <form method="post" id="edit-skill-'+response.skill_pk+'-form" class="edit-object-form">\n' +
+                        '                            {% csrf_token %}\n' +
+                        '                <div class="form-group">\n' +
+                        '                  <label for="id_name">Name:</label><input type="text" name="name" maxlength="30" required="" id="id_name">\n' +
+                        '                </div>' +
+                        '                       <button type="submit" class="btn btn-primary"> Edit </button>\n' +
+                        '                   </form>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
+                        '        </div>\n' +
+                        '    </div>\n' +
+                        '</div>';
 
                     $("#skills-container").append(skill);
 
+                    var elem_id = "edit-skill-" + response.skill_pk + "-form";
+                    var newForm = document.getElementById(elem_id);
+                    newForm.addEventListener("submit", submitEditHandler);
+
+                    elem_id = 'remove-skill-' + response.skill_pk + '-form';
+                    newForm = document.getElementById(elem_id);
+                    newForm.addEventListener("submit", submitDeleteHandler);
                 }
             }
         })
@@ -277,26 +442,77 @@ function submitEducationHandler(e){
                         document.getElementById('no-project').remove();
                     }catch {}
 
-                    var project = '<div class="card" id="project-'+response.project_pk+'">\n' +
-                        '        <div class="card-header" id="project-'+response.project_pk+'-name">\n' + response.name +
+                    var project = '<div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem" id="project-'+response.project_pk+'">\n' +
+                        '    <div class="card-header" style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">\n' +
+                        '        <span style="font-weight: bold;font-size: 24px; color:#cbe206;" id="project-'+response.project_pk+'-name">\n' +
+                        '            '+response.name+'\n' +
+                        '        </span>\n' +
+                        '        <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button" data-toggle="dropdown"\n' +
+                        '                aria-haspopup="true" aria-expanded="false">\n' +
+                        '            <i class="fas fa-ellipsis-v"></i>\n' +
+                        '        </button>\n' +
+                        '        <div class="dropdown-menu" aria-labelledby="uni-Button">\n' +
+                        '            <button class="dropdown-item" style="color: black" data-toggle="modal"\n' +
+                        '                    data-target="#edit_project_card_'+response.project_pk+'">Edit\n' +
+                        '            </button>\n' +
+                        '            <form method="post" id="remove-project-'+response.project_pk+'-form" class="delete-object-form">\n' +
+                        '                {% csrf_token %}\n' +
+                        '                '+ '{{ deleteProjectForm.as_p }}' +'\n' +
+                        '                <button type="submit" class="dropdown-item" style="color: black">Remove</button>\n' +
+                        '            </form>\n' +
                         '        </div>\n' +
-                        '        <div class="card-body">\n' +
-                        '            <blockquote class="blockquote mb-0">\n' +
-                        '                <p id="project-'+response.project_pk+'-description">' + response.description + '</p>\n' +
-                        '                <footer class="blockquote-footer" id="project-'+response.project_pk+'-date">\n';
-
-                    if (response.month != ''){
-                        project += response.month +'/';
-                    }
-
-                    project += response.year + '\n' +
-                        '                </footer>\n' +
-                        '            </blockquote>\n' +
+                        '        <div class="modal fade" id="edit_project_card_'+response.project_pk+'" tabindex="-1" aria-labelledby="edit_cardLabel"\n' +
+                        '             aria-hidden="true">\n' +
+                        '            <div class="modal-dialog">\n' +
+                        '                <div class="modal-content">\n' +
+                        '                    <div class="modal-header">\n' +
+                        '                        <h5 class="modal-title" id="edit_project_cardLabel_'+response.project_pk+'">Edit Project</h5>\n' +
+                        '                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
+                        '                            <span aria-hidden="true">&times;</span>\n' +
+                        '                        </button>\n' +
+                        '                    </div>\n' +
+                        '                    <div class="modal-body">\n' +
+                        '                        <form method="post" id="edit-project-'+response.project_pk+'-form" class="edit-object-form">\n' +
+                        '                            {% csrf_token %}\n' +
+                        '                           <div class="form-group">\n' +
+                        '                                <label for="id_name">Name:</label><input type="text" name="name" maxlength="50" required="" id="id_name">\n' +
+                        '<label for="id_description">Description:</label><input type="text" name="description" value="This is what I did" maxlength="2000" required="" id="id_description">\n' +
+                        '<label for="id_month">Month:</label><input type="text" name="month" maxlength="2" id="id_month">\n' +
+                        '<label for="id_year">Year:</label><input type="text" name="year" value="9999" maxlength="4" required="" id="id_year">\n' +
+                        '                            </div>'+
+                        '                            <button type="submit" class="btn btn-primary"> Edit</button>\n' +
+                        '                        </form>\n' +
+                        '                    </div>\n' +
+                        '                </div>\n' +
+                        '            </div>\n' +
                         '        </div>\n' +
-                        '    </div>';
+                        '\n' +
+                        '    </div>\n' +
+                        '\n' +
+                        '    <div class="card-body">\n' +
+                        '        <blockquote class="blockquote mb-0">\n' +
+                        '            <p id="project-'+response.project_pk+'-description" style="font-weight: lighter">'+response.description+'</p>\n' +
+                        '            <footer class="blockquote-footer" id="project-'+response.project_pk+'-date">\n';
+                        if (response.month != '' && response.month != 'None'){
+                            project += '                '+response.month+' / ';
+                        }
+                        project += response.year+'\n' +
+                        '            </footer>\n' +
+                        '        </blockquote>\n' +
+                        '    </div>\n' +
+                        '\n' +
+                        '</div>';
+
                     console.log(project);
                     $("#projects-container").append(project);
 
+                    var elem_id = "edit-project-" + response.project_pk + "-form";
+                    var newForm = document.getElementById(elem_id);
+                    newForm.addEventListener("submit", submitEditHandler);
+
+                    elem_id = 'remove-project-' + response.project_pk + '-form';
+                    newForm = document.getElementById(elem_id);
+                    newForm.addEventListener("submit", submitDeleteHandler);
                 }else{alert('Form was not filled in correctly, please enter the required information')}
             }
         })
@@ -306,7 +522,6 @@ function submitEducationHandler(e){
     for (i = 0; i < deletionForms.length; i++) {
         deletionForms[i].addEventListener("submit", submitDeleteHandler);
       }
-    console.log('{% url 'delete-education' pk=1%}');
     function submitDeleteHandler(e){
         e.preventDefault();
         var form_id = this.id;
@@ -339,6 +554,7 @@ function submitEducationHandler(e){
                     if (obj_type == 'section'){
                         $("#sub-"+obj_type+'-'+obj_pk).remove();
                     }else{
+                        console.log("#"+obj_type+'-'+obj_pk);
                         $("#"+obj_type+'-'+obj_pk).remove();
                     }
 
@@ -380,9 +596,8 @@ function submitEducationHandler(e){
             dataType: 'json',
             success: function (response) {
                 if(!response.fail){
-                    console.log('Edit form sent');
                     if (obj_type == 'section'){
-                        document.getElementById(obj_type+'-'+obj_pk+'-'+'name').innerText = response.name;
+                        document.getElementById('sub-'+obj_type+'-'+obj_pk+'-'+'name').innerText = response.name;
 
                     }else if (obj_type == 'specific'){
                         document.getElementById(obj_type+'-'+obj_pk+'-'+'position').innerText = response.position;
@@ -411,11 +626,13 @@ function submitEducationHandler(e){
                         document.getElementById(obj_type+'-'+obj_pk+'-'+'name').innerText = response.name;
                         document.getElementById(obj_type+'-'+obj_pk+'-'+'description').innerText = response.description;
                         if(response.month != '' && response.month != 'None') {
-                            document.getElementById(obj_type + '-' + obj_pk + '-' + 'month').innerText = response.month / response.year;
-                        }else{
-                            document.getElementById(obj_type + '-' + obj_pk + '-' + 'month').innerText = response.year;
-
-                        }
+                            console.log('YOO');
+                            document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText = response.month + '/' + response.year;
+                         }else{
+                            console.log('Yeerr');
+                            console.log( document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText);
+                            document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText = response.year;
+                         }
 
 
 
