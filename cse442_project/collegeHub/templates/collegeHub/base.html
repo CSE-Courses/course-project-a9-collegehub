@@ -28,13 +28,13 @@
 
 <body>
 
-    {% if user.userprofile.template_number == 0%}
+    {% if userprofile.template_number == 0 %}
         {% include 'collegeHub/index.html' %}
-    {% elif  user.userprofile.template_number == 1 %}
+    {% elif  userprofile.template_number == 1 %}
         {% include 'collegeHub/purple-candy.html' %}
-    {% elif  user.userprofile.template_number == 2 %}
+    {% elif  userprofile.template_number == 2 %}
         {% include 'collegeHub/subtle-blue.html' %}
-    {% elif  user.userprofile.template_number == 3 %}
+    {% elif  userprofile.template_number == 3 %}
 {#        {% include 'collegeHub/book.html' %}#}
     {% endif %}
 </body>
