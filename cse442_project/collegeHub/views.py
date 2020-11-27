@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm
-from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm
+from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm, ChooseTemplateForm
 from .models import UserProfile, Experiences, Education, Event, User, Post
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -501,8 +501,6 @@ class cal(TemplateView):
     template_name = 'collegeHub/change_list.html'
 
 
-
-
 class Settings(LoginRequiredMixin, DetailView):
     model = models.UserProfile
     template_name = 'collegeHub/settings.html'
@@ -518,6 +516,7 @@ class Settings(LoginRequiredMixin, DetailView):
         usr = auth_models.User.objects.get(username=username)
         userProfile = models.UserProfile.objects.get(user=usr)
         context['user_profile'] = userProfile
+        context['chooseTemplateForm'] = ChooseTemplateForm
         return context
 
 
@@ -685,6 +684,20 @@ def edit_skill(request, pk):
             name = form.data.get('name')
             form.save()
             return JsonResponse({'name': name, 'fail': False, 'skill_pk': pk}, status=200)
+        else:
+            return JsonResponse({'fail': True}, status=200)
+    else:
+        return
+
+@login_required
+def choose_template(request, temp):
+    if request.method == 'POST':
+        profile = models.UserProfile.objects.filter(user=request.user).first()
+        form = ChooseTemplateForm(request.POST, instance=profile)
+        if form.is_valid() and -1 < temp < 4:
+            profile.template_number = temp
+            profile.save()
+            return JsonResponse({'temp_number': temp, 'fail': False}, status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
     else:

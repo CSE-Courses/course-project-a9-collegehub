@@ -44,8 +44,10 @@
             <div class="btn-group dropup">
               <a data-offset="-155,20" href="#" id="tp1settingsicon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
               <div class="dropdown-menu" style="background-color: #ffe2e2">
+                  {% if user.username == user_profile.user.username and user.is_authenticated %}
                 <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
-                <div class="dropdown-divider"></div>
+                {% endif %}
+                  <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
               </div>
             </div>

@@ -95,8 +95,12 @@
                                              alt="Default template">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
+                                        <form method="post" id="choose-temp-0" class="choose-temp-form">
+                                            {% csrf_token %}
+                                            {{ chooseTemplateForm }}
+                                            <button type="submit" class="btn btn-secondary" id="temp-0">Select Template</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <a href="{% url 'temp0' %}" type="button" class="btn btn-primary">Visit</a>
                                     </div>
                                 </div>
@@ -127,6 +131,11 @@
                                              alt="Default template">
                                     </div>
                                     <div class="modal-footer">
+                                        <form method="post" id="choose-temp-1" class="choose-temp-form">
+                                            {% csrf_token %}
+                                            {{ chooseTemplateForm }}
+                                            <button type="submit" class="btn btn-secondary" id="temp-1">Select Template</button>
+                                        </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
                                         <a href="{% url 'temp1' %}" type="button" class="btn btn-primary">Visit</a>
@@ -216,8 +225,12 @@
                                              alt="Subtle Blue template">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
+                                        <form method="post" id="choose-temp-2" class="choose-temp-form">
+                                            {% csrf_token %}
+                                            {{ chooseTemplateForm }}
+                                            <button type="submit" class="btn btn-secondary" id="temp-2">Select Template</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <a href="{% url 'temp2' %}" type="button" class="btn btn-primary">Visit</a>
                                     </div>
                                 </div>
@@ -248,8 +261,12 @@
                                              alt="Book template">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
+                                        <form method="post" id="choose-temp-3" class="choose-temp-form">
+                                            {% csrf_token %}
+                                            {{ chooseTemplateForm }}
+                                            <button type="submit" class="btn btn-secondary" id="temp-3">Select Template</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <a href="{% url 'temp3' %}" type="button" class="btn btn-primary">Visit</a>
                                     </div>
                                 </div>
@@ -370,6 +387,33 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
 <script src="{% static 'collegeHub/script.js' %}"></script>
+<script>
+    var chooseTemplateForms = document.getElementsByClassName('choose-temp-form');
+    for (i = 0; i < chooseTemplateForms.length; i++) {
+        chooseTemplateForms[i].addEventListener("submit", submitChooseTemplateHandler);
+      }
+    function submitChooseTemplateHandler(e){
+        e.preventDefault();
+        var form_id = this.id;
+        var temp_num = form_id.charAt(form_id.length-1);
+        var url = '{% url 'choose-template' temp=0 %}';
+            url = url.slice(0, -1) + temp_num;
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#'+form_id).serialize(),
+            dataType: 'json',
+            success: function (response) {
+                if(!response.fail){
+                    alert('Template Changed Successfully');
+                }
+            }
+        })
+    }
+</script>
 </body>
 </html>

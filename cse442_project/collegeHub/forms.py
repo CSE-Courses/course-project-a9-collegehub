@@ -173,3 +173,8 @@ class DeleteProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = []
+
+class ChooseTemplateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = []
