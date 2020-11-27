@@ -26,7 +26,7 @@ urlpatterns = [
     path('editSpecific/<int:pk>', views.edit_specific, name='edit-specific'),
     path('editSkill/<int:pk>', views.edit_skill, name='edit-skill'),
     path('editProject/<int:pk>', views.edit_project, name='edit-project'),
-
+    path('chooseTemplate/<int:temp>', views.choose_template, name='choose-template'),
 
     path('profile/', views.profile, name='profile'),
     # path('register/', views.register, name='register'),

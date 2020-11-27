@@ -3,18 +3,51 @@
 <div id="desktop">
     <!--*************************************************CONTENT************************************************-->
     <div id="Outer-timeline-tp1">
-        <div id="left-timeline">
-            <div style="margin-top: 20px">
-                <img id="user-image-tp1" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
-                <h1 style="color: white"> {{ user_profile.user.first_name }} {{user_profile.user.last_name }} </h1>
-                <hr>
-                <div class="list-group" id="myList" role="tablist">
-                    <a class="left-timeline-item active" data-toggle="list" href="#About" role="tab">About</a>
-                    <a class="left-timeline-item" data-toggle="list" href="#Education" role="tab">Education</a>
-                    <a class="left-timeline-item" data-toggle="list" href="#Skills" role="tab">Skills</a>
-                    <a class="left-timeline-item" data-toggle="list" href="#Experience" role="tab">Experience</a>
-                    <a class="left-timeline-item" data-toggle="list" href="#Projects" role="tab">Projects</a>
-                    <a class="left-timeline-item" data-toggle="list" href="#Contact" role="tab">Contact</a>
+
+      <div id="left-timeline">
+        <div style="margin-top: 20px">
+          <img id="user-image-tp1" src="{% static 'collegehub/images/logo.png' %}" alt="User profile picture">
+          <h1 style="color: white">   {{ user_profile.user.first_name }} {{user_profile.user.last_name }} </h1>
+          <hr>
+          <div class="list-group" id="myList" role="tablist">
+            <a class="left-timeline-item active" data-toggle="list" href="#About" role="tab">About</a>
+            <a class="left-timeline-item" data-toggle="list" href="#Education" role="tab">Education</a>
+            <a class="left-timeline-item" data-toggle="list" href="#Skills" role="tab">Skills</a>
+            <a class="left-timeline-item" data-toggle="list" href="#Experience" role="tab">Experience</a>
+            <a class="left-timeline-item" data-toggle="list" href="#Projects" role="tab">Projects</a>
+            <a class="left-timeline-item" data-toggle="list" href="#Contact" role="tab">Contact</a>
+          </div>
+        </div>
+        <div id="footer" style="margin: 20px">
+          <div style="color: white; font-weight: lighter">
+            @ 2020 CollegeHub
+          </div>
+          <div>
+            <div class="btn-group dropup">
+              <a data-offset="-155,20" href="#" id="tp1settingsicon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+              <div class="dropdown-menu" style="background-color: #ffe2e2">
+                  {% if user.username == user_profile.user.username and user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                {% endif %}
+                  <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="right-timeline">
+        <div class="tab-content" style="height: 100%;overflow: scroll">
+          <div class="tab-pane active" id="About" role="tabpanel" style="height: 100%">
+            <div class="about-container">
+              <div id="about-info">
+                <div style="color: #6b688c;">
+                  <h3> Hello. My name is</h3>
+                </div>
+                <div id="whoami">
+                  {{ user_profile.user.first_name }} <br>
+                  {{user_profile.user.last_name }}
+
                 </div>
             </div>
             <div id="footer" style="margin: 20px">
