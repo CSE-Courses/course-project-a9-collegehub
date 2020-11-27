@@ -1,0 +1,41 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    {% if user.userprofile.template_number == 0%}
+        <!--logo icon -->
+        <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
+    {% elif  user.userprofile.template_number == 1 %}
+          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css'%}">
+    {% endif %}
+
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+    <title> {{ user_profile.user }} | CollegeHub </title>
+</head>
+
+<body>
+
+    {% if user.userprofile.template_number == 0%}
+        {% include 'collegeHub/index.html' %}
+    {% elif  user.userprofile.template_number == 1 %}
+        {% include 'collegeHub/purple-candy.html' %}
+    {% elif  user.userprofile.template_number == 2 %}
+        {% include 'collegeHub/subtle-blue.html' %}
+    {% elif  user.userprofile.template_number == 3 %}
+{#        {% include 'collegeHub/book.html' %}#}
+    {% endif %}
+</body>
+</html>

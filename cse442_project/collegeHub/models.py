@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.contrib.auth import models as auth_models
@@ -23,14 +22,15 @@ class UserProfile(models.Model):
     user = models.OneToOneField(CurrentUser, unique=True, on_delete=models.CASCADE, null=True)
     bio = models.CharField(default="", blank=True, max_length=255)
     # bio_html = models.CharField(editable=False)
-
+    age = models.PositiveSmallIntegerField(default=None, blank=True, null=True)
+    phone_number = models.CharField(default="", max_length=50, blank=True, null=True)
     location = models.CharField(default="", blank=True, max_length=255)
     occupation = models.CharField(default="", blank=True, max_length=255)
     github = models.CharField(default="", blank=True, max_length=255)
     instagram = models.CharField(default="", blank=True, max_length=255)
     linkedin = models.CharField(default="", blank=True, max_length=255)
     resume = models.FileField(upload_to="files/", blank=True, null=True)
-
+    template_number = models.IntegerField(default=0)
     quote = models.CharField(default="", blank=True, max_length=255)
 
     id = models.AutoField(primary_key=True)

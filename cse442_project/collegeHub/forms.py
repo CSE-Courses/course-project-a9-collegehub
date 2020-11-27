@@ -63,7 +63,7 @@ class EventForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ( 'bio','occupation', 'location', 'github', 'linkedin', 'instagram',)
+        fields = ('bio', 'occupation', 'location', 'github', 'linkedin', 'instagram', 'phone_number', 'age')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -73,6 +73,8 @@ class UserProfileForm(forms.ModelForm):
         self.fields["occupation"].widget.attrs['class'] = "form-control grey_field"
         self.fields['location'].widget.attrs['placeholder'] = 'Where Do you live?'
         self.fields['location'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['phone_number'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['age'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
         # self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'

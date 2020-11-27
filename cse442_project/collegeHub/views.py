@@ -119,6 +119,7 @@ def EditProfile(request):
             user_form = UserEditForm(request.POST, instance=request.user)
             if user_form.is_valid():
                 print(user_form)
+                user_form.data.get('')
                 user_form.save()
                 messages.success(request, "Successfully changed account")
                 return redirect('account' )
@@ -132,8 +133,25 @@ def EditProfile(request):
             profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
             if profile_form.is_valid():
 
-                print(profile_form)
-                profile_form.save()
+                profile_info = profile_form.save(commit=False)
+                if 'github.com' not in profile_form.cleaned_data.get('github'):
+                    profile_info.github = ''
+                else:
+                    start_idx = profile_form.cleaned_data['github'].index('github.com')
+                    profile_info.github = 'https://www.' + profile_form.cleaned_data['github'][start_idx:]
+                profile_form.data.get('instagram')
+                if 'instagram.com' not in profile_form.cleaned_data.get('instagram'):
+                    profile_info.instagram = ''
+                else:
+                    start_idx = profile_form.cleaned_data['instagram'].index('instagram.com')
+                    profile_info.linkedin = 'https://www.' + profile_form.cleaned_data['instagram'][start_idx:]
+                if 'linkedin.com' not in profile_form.cleaned_data.get('linkedin'):
+                    profile_info.linkedin = ''
+                else:
+                    start_idx = profile_form.cleaned_data['linkedin'].index('linkedin.com')
+                    profile_info.linkedin = 'https://www.' + profile_form.cleaned_data['linkedin'][start_idx:]
+
+                profile_info.save()
                 messages.success(request, "Successfully changed profile")
                 return redirect('account' )
             else:
@@ -338,7 +356,7 @@ def create_project(request, pk):
 
             return JsonResponse(
                 {'description': description, 'name': name,
-                 'month': month, 'year': year, 'fail': False}, status=200)
+                 'month': month, 'year': year, 'fail': False, 'project_pk': new_project.pk}, status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
     else:
@@ -365,7 +383,7 @@ def create_specific(request, pk):
 
             return JsonResponse(
                 {'position': position, 'company': company, 'link': link, 'description': description, 'bullet_section': bullet_section,
-                 'section_pk': section.pk, 'fail': False, 'experience_pk': new_specific.pk},
+                 'section_pk': section.pk, 'fail': False, 'specific_pk': new_specific.pk},
                 status=200)
         else:
             return JsonResponse({'fail': True}, status=200)
@@ -406,7 +424,7 @@ def create_education(request, pk):
 
 class Index(DetailView):
     model = models.UserProfile
-    template_name = 'collegeHub/index.html'
+    template_name = 'collegeHub/base.html'
 
     def get_object(self):
         username = self.kwargs.get('username')

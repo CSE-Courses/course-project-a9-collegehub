@@ -1,53 +1,125 @@
-{% if user_profile.skill.count == 0 %}
-{% if user.username == user_profile.user.username%}
-<li style="background-color: transparent; font-size: 24px" class="card" id="no-skill">
-    <div class="card-body" style="font-weight: lighter; text-align: center">
-        Click on + to add a skill
-    </div>
-</li>
-{% endif %}
-{% endif %}
+{% if user_profile.template_number == 0 %}
+    {% if user_profile.skill.count == 0 %}
+        {% if user.username == user_profile.user.username%}
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-skill">
+            <div class="card-body" style="font-weight: lighter; text-align: center">
+                Click on + to add a skill
+            </div>
+        </li>
+        {% endif %}
+    {% endif %}
 
-{% for skill in user_profile.skill.all %}
-<div class="card mb-3"
-     style="align-items:center;display: flex;flex-direction:row;justify-content:space-between;border-radius: 4rem;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);max-width: 18rem; border: #9da724 3px solid"
-     id="skill-{{ skill.pk }}">
-    <div class="skill-header" id="skill-{{ skill.pk }}-name" style="color: white">{{skill.name}}</div>
-    <button type="button" style="margin: 0" class="option-button" id="uni-Button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-ellipsis-v"></i>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="uni-Button">
-        <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_skill_card_{{ skill.pk }}">Edit</button>
-        <form method="post" id="remove-skill-{{ skill.pk }}-form" class="delete-object-form">
-            {% csrf_token %}
-            {{ deleteSkillForm }}
-            <button type="submit" class="dropdown-item" style="color: black">Remove</button>
-        </form>
-    </div>
-    <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    {% for skill in user_profile.skill.all %}
+    <div class="card mb-3" style="align-items:center;display: flex;flex-direction:row;justify-content:space-between;border-radius: 4rem;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);max-width: 18rem; border: #9da724 3px solid" id="skill-{{ skill.pk }}">
+        <div class="skill-header" id="skill-{{ skill.pk }}-name" style="color: white">{{skill.name}}</div>
+        <button type="button" style="margin: 0" class="option-button" id="uni-Button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="uni-Button">
+            <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_skill_card_{{ skill.pk }}">Edit</button>
+            <form method="post" id="remove-skill-{{ skill.pk }}-form" class="delete-object-form">
+                {% csrf_token %}
+                {{ deleteSkillForm }}
+                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+            </form>
+        </div>
+        <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit Skill</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit_skill_cardLabel_{{ skill.pk }}">Edit Skill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-                <div class="modal-body">
-                   <form method="post" id="edit-skill-{{ skill.pk }}-form" class="edit-object-form">
-                            {% csrf_token %}
-                       <div class="form-group">
-                  {{ skillForm }}
-                </div>
-                       <button type="submit" class="btn btn-primary"> Edit </button>
-                   </form>
+                    <div class="modal-body">
+                       <form method="post" id="edit-skill-{{ skill.pk }}-form" class="edit-object-form">
+                                {% csrf_token %}
+                           <div class="form-group">
+                      {{ skillForm }}
+                    </div>
+                           <button type="submit" class="btn btn-primary"> Edit </button>
+                       </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 1 %}
+    {% if user_profile.skill.count == 0 %}
+        {% if user.username == user_profile.user.username%}
+        <li style="background-color: transparent; font-size: 24px" class="card" id="no-skill">
+            <div class="card-body" style="font-weight: lighter; text-align: center">
+                Click on + to add a skill
+            </div>
+        </li>
+        {% endif %}
+    {% endif %}
+
+    {% for skill in user_profile.skill.all %}
+        <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="skills_add_cardLabel">Add Skills card</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h1> {{ skillForm }} </h1>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="skills-body">
+                    <div class="card text-white skill-bar  mb-3">
+                      <div>{{skill.name}}</div>
+                      <button type="button" style="margin: 0" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_skill_card_{{ skill.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-skill-{{ skill.pk }}-form" class="delete-object-form">
+                          {% csrf_token %}
+                          {{ deleteSkillForm }}
+                          <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                        </form>
+                      </div>
+                      <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">
+                                Edit Skill</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+
+                            <div class="modal-body">
+                              <form method="post" id="edit-skill-{{ skill.pk }}-form" class="edit-object-form">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                  {{ skillForm }}
+                                </div>
+                                <button type="submit" class="btn btn-primary"> Edit</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    {% endfor %}
+{% endif %}

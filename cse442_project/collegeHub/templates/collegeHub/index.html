@@ -17,7 +17,7 @@
     <!--logo icon / favicon-->
     <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
-    <title>{{ user_profile.user }} | CollegeHub</title>
+    <title> {{ user_profile.user }} | CollegeHub </title>
 </head>
 
 <body>
@@ -145,7 +145,7 @@
                     <h3 id="name">
                         {{ user_profile.user.first_name }} {{user_profile.user.last_name }}
                     </h3>
-                    <h5 style="color: #d0de2f"> Computer Science</h5>
+                    <h5 style="color: #d0de2f"> {{user_profile.occupation}}</h5>
                     <h6 id="aboutme">
                         {{user_profile.bio}}
                     </h6>
@@ -341,14 +341,29 @@
                     </div>
                     <div>
                         <ul id="aboutme_list">
-                            <li><strong> <span style="color: #edff00;font-weight: bold"> Age: </span> </strong> <span> 22 </span>
-                            </li>
-                            <li><strong> <span style="color: #edff00;font-weight: bold"> phone number: </span> </strong>
-                                <span> (716)-999-9999 </span></li>
-                            <li><strong> <span style="color: #edff00;font-weight: bold"> email: </span> </strong> <span> {{ user_profile.user.email}} </span>
-                            </li>
-                            <li><strong> <span style="color: #edff00;font-weight: bold"> address: </span> </strong>
-                                <span> 7878 heaven st </span></li>
+                            {% if user_profile.age != None and user_profile.age != "" %}
+                                <li><strong> <span style="color: #edff00;font-weight: bold"> Age: </span> </strong>
+                                    <span> {{ user_profile.age }} </span>
+                                </li>
+                            {% endif %}
+                            {% if user_profile.phone_number != None and user_profile.phone_number != "" %}
+                                <li><strong> <span style="color: #edff00;font-weight: bold"> phone number: </span> </strong>
+                                    <span> {{user_profile.phone_number}} </span>
+                                </li>
+                            {% endif %}
+                            {% if user_profile.email != None and user_profile.email != "" %}
+                                <li><strong> <span style="color: #edff00;font-weight: bold"> email: </span> </strong>
+                                    <span> {{ user_profile.user.email}} </span>
+                                 </li>
+                            {% endif %}
+
+                            {% if user_profile.location != None and user_profile.location != "" %}
+                                <li><strong> <span style="color: #edff00;font-weight: bold"> location: </span> </strong>
+                                    <span> {{user_profile.location}} </span>
+                                </li>
+                            {% endif %}
+
+
                         </ul>
                     </div>
                     <div id="social_links_tp0">
