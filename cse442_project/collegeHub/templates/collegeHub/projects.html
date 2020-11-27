@@ -83,22 +83,7 @@
     {% endif %}
 
     {% for project in user_profile.project.all %}
-        <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="projects_add_cardLabel">Add Projects card</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <h1> {{ projectForm }}</h1>
-                    </div>
 
-                </div>
-            </div>
-        </div>
 
           <div class="project-body">
             <div class="card" style="width: 100%;border: #6b688c 1px solid; box-shadow: 30px 0 35px 0 lightgrey; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem">
