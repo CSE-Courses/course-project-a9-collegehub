@@ -93,10 +93,11 @@ class UserEditForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
-        self.fields["username"].widget.attrs['class'] = "form-control grey_field"
-        self.fields["first_name"].widget.attrs['class'] = "form-control grey_field"
-        self.fields['last_name'].widget.attrs['class'] = 'form-control grey_field'
-        self.fields['email'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields["username"].widget.attrs['class'] = "form-control grey_field_account"
+        self.fields["username"].widget.attrs['id'] = "id_username_account"
+        self.fields["first_name"].widget.attrs['class'] = "form-control grey_field_account"
+        self.fields['last_name'].widget.attrs['class'] = 'form-control grey_field_account'
+        self.fields['email'].widget.attrs['class'] = 'form-control grey_field_account'
      
 class SignupForm(UserCreationForm):
     class Meta:

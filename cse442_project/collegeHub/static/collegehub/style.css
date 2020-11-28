@@ -1,4 +1,8 @@
 /*DESKTOP*/
+/*<<<<<<SAFARI>>>>>*/
+/*-webkit-appearance: none;*/
+/*        -moz-appearance: none;*/
+/*        appearance: none;*/
 body {
     -webkit-overflow-scrolling: touch;
     height: 100%;
@@ -88,7 +92,7 @@ html {
     }
 
     #nav-logo {
-        width: 100%;
+        width: 101%;
         height: 100%;
         border-radius: 50%;
         border: 7px solid #FCA311;
@@ -113,7 +117,6 @@ html {
     }
 
     #Outer-timeline {
-        /*background: linear-gradient(to right, #f95959, rgba(0, 184, 186, 0.04), #f95959) repeat;*/
         background-color: white;
         height: 90%;
     }
@@ -121,7 +124,7 @@ html {
     #inner-timeline-left {
         background-color: #ffffff;
         float: left;
-        width: 60%;
+        width: 65%;
         height: 100%;
         overflow: auto;
         padding: 30px 4rem 60px 11rem;
@@ -131,7 +134,7 @@ html {
         background-image: linear-gradient(50deg, #FCA311 0%, #ffc22a 74%);
         float: right;
         height: 100%;
-        width: 40%;
+        width: 35%;
         overflow: auto;
         padding: 30px 8rem 50px 2rem;
     }
@@ -167,8 +170,10 @@ html {
 
     #template-container {
         display: inline-flex;
+        width: 100%;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         flex-direction: column;
     }
 
@@ -238,14 +243,6 @@ html {
 
     .sub-headers {
         width: 20%;
-    }
-
-    .account-forms {
-        padding: 15px;
-    }
-
-    .account-forms > div {
-        margin-bottom: 10px;
     }
 
     .header-item {
@@ -442,13 +439,19 @@ html {
     }
 
     #signup-form {
-        padding: 50px 150px 0 150px;
+        padding: 30px 150px 0 150px;
         width: 60%;
     }
 
     .grey_field {
         border: none;
         background-color: #f0f0f0;
+    }
+
+    .grey_field_account{
+        border: none;
+        background-color: #f3f3f3;
+        margin-bottom: 10px;
     }
 
     #signup-feature {
@@ -483,6 +486,8 @@ html {
         border-color: #FCA311;
         box-shadow: 0 2px rgba(252, 163, 17, 0.075), 0 0 4px rgba(252, 163, 17, 0.9);
     }
+
+
 
     .social_links {
         color: white;
@@ -753,21 +758,21 @@ html {
         justify-content: space-between;
     }
 
-    .nav-list li {
+    .navlistli {
         display: inline-block;
         padding: 5px 10px 5px 10px;
         margin: 0;
     }
 
-    .nav-list li a {
+    .navlistli a {
         color: #000000;
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease, font-size 0.1s;
     }
 
-    .nav-list li > a:hover {
-        color: #3d430d;
+    .navlistli > a:hover {
+        color: #d0de2f;
         font-size: 2rem;
     }
 
@@ -877,7 +882,8 @@ html {
         display: flex;
         align-items: center;
         justify-content: center;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
     }
 
     .sub-section-heading {
@@ -924,6 +930,9 @@ html {
         color: #666666;
         font-size: 24px;
         transition: font-size 0.1s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
 
     .edit_mode h4:hover {
@@ -931,7 +940,6 @@ html {
         color: #8a082c;
         animation: wiggle 150ms infinite;
         animation-timing-function: linear;
-
     }
 
     @keyframes wiggle {
@@ -972,9 +980,10 @@ html {
     }
 
     .sub-section {
-        border: #dedede 1px solid;
         border-radius: 0.5rem;
         padding: 5px;
+        box-shadow: -30px 0 30px 0 lightgrey;
+        background-color: white;
     }
 
     .sub-section-button {
@@ -1061,9 +1070,41 @@ html {
         font-weight: bold;
     }
 
+    .account_text{
+        background: linear-gradient(50deg, #1e325a 0%, #326ea4 74%) repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+    }
+
+    .temp-title-inside {
+        text-decoration: none;
+        background-size: 100%;
+        background: linear-gradient(50deg, #fc1111 0%, #ff862a 74%) repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(0, 0, 0, 0);
+        font-weight: bold;
+    }
+
+    .choose_temp {
+        background: linear-gradient(50deg, #fc1111 0%, #ff862a 74%) repeat;
+        color: white;
+        font-weight: bold;
+        border-radius: 1.5rem;
+    }
+
     .temp-title:hover {
         color: #FCA311;
         text-decoration: none;
+    }
+
+    .chosen_tick {
+        top: -25px;
+        position: relative;
+        left: -20px;
+        width: 0;
+        height: 0;
+        color: #9cae00;
+        font-size: 40px;
     }
 }
 
