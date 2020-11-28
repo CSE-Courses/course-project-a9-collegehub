@@ -1,4 +1,4 @@
-{%  load static %}
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css' %}">
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
     <!--    Animate on scroll (AOS)-->
@@ -47,7 +47,8 @@
                         <a data-offset="-155,20" href="#" id="tp1settingsicon" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
                         <div class="dropdown-menu" style="background-color: #ffe2e2">
-                            <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                            <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i
+                                    class="fas fa-cog"></i> </span>Settings</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
                         </div>
@@ -93,29 +94,9 @@
                             <div class="side-headings">
                                 Education
                             </div>
-                            <div class="ellipse-container">
-                                <button type="button" data-toggle="modal" data-target="#edu_add_card"
-                                        class="option-button"><i class="fas fa-plus"></i></button>
-                            </div>
                         </div>
                         <hr>
                         <div id="education-body" style="z-index: 100">
-                            <div class="modal fade" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Add Education card Form</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <ul class="list-unstyled">
                                 <li class="media edu-card">
                                     <img src="{% static 'collegehub/images/UB.jpg' %}" class="mr-3 edu-logo"
@@ -168,6 +149,52 @@
                         <div class="skills-body">
                             <div class="card text-white skill-bar  mb-3">
                                 <div>Skill name</div>
+                                <div>
+                                    <button type="button" style="margin: 0" class="option-button" id="uni-Button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                                data-target="#edit_skill_card_{{ skill.pk }}">Edit
+                                        </button>
+                                        <form method="post" id="remove-skill-{{ skill.pk }}-form"
+                                              class="delete-object-form">
+                                            {% csrf_token %}
+                                            {{ deleteSkillForm }}
+                                            <button type="submit" class="dropdown-item" style="color: black">Remove
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1"
+                                     aria-labelledby="edit_cardLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">
+                                                    Edit Skill</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form method="post" id="edit-skill-{{ skill.pk }}-form"
+                                                      class="edit-object-form">
+                                                    {% csrf_token %}
+                                                    <div class="form-group">
+                                                        {{ skillForm }}
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary"> Edit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card text-white skill-bar  mb-3">
                                 <div>Skill name</div>
