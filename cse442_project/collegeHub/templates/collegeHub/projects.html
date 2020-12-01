@@ -147,3 +147,107 @@
         </div>
     {% endfor %}
 {% endif %}
+
+{% if user_profile.template_number == 2%}
+<div class="section_heading" style="margin: 0; ">
+            <div>Projects</div>
+            {% if user.username == user_profile.user.username and user.is_authenticated %}
+
+            <div class="ellipse-container">
+              <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button">
+                <i class="fas fa-plus"></i></button>
+            </div>
+            {% endif %}
+          </div>
+          <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="projects_add_cardLabel">Add Project card</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post" id="project-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      {{ projectForm }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div style="color: #68d3c5; font-weight: bold">
+            Latest Work
+          </div>
+          <div id="projects_container">
+          {% for project in user_profile.project.all%}
+            <div class="card text-center project" id="project-{{ project.pk }}" style="background-color: transparent">
+              {% if user.username == user_profile.user.username and user.is_authenticated %}
+              <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              {% endif %}
+              <div class="dropdown-menu" aria-labelledby="uni-Button">
+                <button class="dropdown-item" style="color: black" data-toggle="modal" data-target="#edit_project_card_{{ project.pk }}">Edit
+                </button>
+                <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                  {% csrf_token %}
+                  {{ deleteProjectForm }}
+                  <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                </form>
+              </div>
+              <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1" aria-labelledby="edit_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                        Project</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" id="edit-project-{{ project.pk }}-form" class="edit-object-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ projectForm }}
+                        </div>
+                        <button type="submit" class="btn btn-primary"> Edit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="color: #68d3c5; font-weight: bold">{{project.name}}</h5>
+                <p class="card-text" style="font-weight: lighter">{{project.description}}</p>
+                <p class="card-text"><small class="text-muted">{{project.month}} {{project.year}}</small></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 3%}
+ <div class="section name_container">
+<h1 class="section_heading_text">Projects</h1>
+    </div>
+    <div class="section project_container">
+        {% for project in user_profile.project.all%}
+        <div class="project_card">
+            <div class="project_name">{{project.name}}</div>
+            <div class="project_date"> {{project.month}} {{project.year}}</div>
+            <div class="project_description"> {{project.description}}
+            </div>
+        </div>
+        {% endfor %}
+        
+        
+    </div>
+{% endif %}

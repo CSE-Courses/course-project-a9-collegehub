@@ -15,6 +15,10 @@
         <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
     {% elif  userprofile.template_number == 1 %}
           <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css'%}">
+    {% elif  userprofile.template_number == 2 %}
+          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+    {% elif  userprofile.template_number == 3 %}
+          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp3.css'%}">
     {% endif %}
 
     <!--    fontawesome-->
@@ -35,7 +39,7 @@
     {% elif  userprofile.template_number == 2 %}
         {% include 'collegeHub/subtle-blue.html' %}
     {% elif  userprofile.template_number == 3 %}
-{#        {% include 'collegeHub/book.html' %}#}
+       {% include 'collegeHub/book.html' %}
     {% endif %}
 </body>
 </html>
