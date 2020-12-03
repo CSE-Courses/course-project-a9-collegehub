@@ -37,6 +37,7 @@ urlpatterns = [
     path('Subtle_Blue/', views.temp2.as_view(), name='temp2'),
     path('Book/', views.temp3.as_view(), name='temp3'),
     path('404/', views.error404.as_view(), name='404'),
+    path('Search/', views.search.as_view(), name='Search'),
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),

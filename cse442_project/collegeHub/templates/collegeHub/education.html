@@ -1,267 +1,331 @@
 {% load static %}
-
 {% if user_profile.template_number == 0 %}
-{% if user_profile.education.count == 0 %}
-{% if user.username == user_profile.user.username %}
-<li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
-    <div class="card-body" style="font-weight: lighter; text-align: center">
-        Click on + to add an education
-    </div>
-</li>
-{% endif %}
-{% endif %}
-
-{% for education in user_profile.education.all %}
-<div class="card mb-3 marg-20 edu-card" id="education-{{ education.pk }}"
-     style="width: 540px;border-radius: 1rem">
-    <div class="row no-gutters">
-        {#
-        <div class="col-md-4">#}
-            {# <img src="{{ education.image }}" class="card-img" alt="edu-logo">#}
-            {#
-        </div>
-        #}
-        <div class="col-md-12">
-            {% if user.username == user_profile.user.username %}
-            <div class="dropdown ">
-                <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
-                </button>
-
-                <div class="dropdown-menu" aria-labelledby="uni-Button">
-                    <button class="dropdown-item" style="color: black" data-toggle="modal"
-                            data-target="#edit_education_card_{{ education.pk }}">Edit
-                    </button>
-                    <form method="post" id="remove-education-{{ education.pk }}-form"
-                          class="delete-object-form">
-                        {% csrf_token %}
-                        {{ deleteEducationForm }}
-                        <button type="submit" class="dropdown-item" style="color: black">Remove</button>
-                    </form>
+    {% if user_profile.education.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
+                <div class="card-body" style="font-weight: lighter; text-align: center">
+                    Click on + to add an education
                 </div>
-            </div>
+            </li>
+        {% endif %}
+    {% endif %}
 
-            <div class="modal fade" id="edit_education_card_{{ education.pk }}" tabindex="-1"
-                 aria-labelledby="edit_cardLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="edit_education_cardLabel_{{ education.pk }}">Edit
-                                Education card</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+    {% for education in user_profile.education.all %}
+        <div class="card mb-3 marg-20 edu-card" id="education-{{ education.pk }}"
+             style="width: 540px;border-radius: 1rem">
+            <div class="row no-gutters">
+                {#                <div class="col-md-4">#}
+                {#                    <img src="{{ education.image }}" class="card-img" alt="edu-logo">#}
+                {#                </div>#}
+                <div class="col-md-12">
+                    {% if user.username == user_profile.user.username %}
+                        <div class="dropdown ">
+                            <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
                             </button>
+
+                            <div class="dropdown-menu" aria-labelledby="uni-Button">
+                                <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                        data-target="#edit_education_card_{{ education.pk }}">Edit
+                                </button>
+                                <form method="post" id="remove-education-{{ education.pk }}-form"
+                                      class="delete-object-form">
+                                    {% csrf_token %}
+                                    {{ deleteEducationForm }}
+                                    <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                                </form>
+                            </div>
                         </div>
 
-                        <div class="modal-body">
-                            <form method="post" id="edit-education-{{ education.pk }}-form"
-                                  class="edit-object-form">
-                                {% csrf_token %}
-                                <div class="form-group">
-                                    {{ educationForm }}
+                        <div class="modal fade" id="edit_education_card_{{ education.pk }}" tabindex="-1"
+                             aria-labelledby="edit_cardLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="edit_education_cardLabel_{{ education.pk }}">Edit
+                                            Education card</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form method="post" id="edit-education-{{ education.pk }}-form"
+                                              class="edit-object-form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ educationForm }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"> Edit</button>
+                                        </form>
+                                    </div>
+
                                 </div>
-                                <button type="submit" class="btn btn-primary"> Edit</button>
-                            </form>
+                            </div>
                         </div>
+                    {% endif %}
 
+
+                    <div class="card-body">
+                        {% if education.institution != None %}
+                            <h5 id="education-{{ education.pk }}-institution"
+                                class="card-text uniname">{{ education.institution }}</h5>
+                        {% endif %}
+                        <h6 id="education-{{ education.pk }}-certification_name"
+                            class="card-title major"> {{ education.certification_name }}</h6>
+                        {% if education.description != None %}
+                            <h6 id="education-{{ education.pk }}-description"
+                                class="card-text edu-description">{{ education.description }}</h6>
+                        {% endif %}
+                        <p id="education-{{ education.pk }}-date" class="card-text year">
+                            <small
+                                    class="text-muted">Date: {{ education.month }}/{{ education.year }}
+                            </small>
+                        </p>
                     </div>
                 </div>
             </div>
+
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 1 %}
+    {% if user_profile.education.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
+                <div class="card-body" style="font-weight: lighter; text-align: center">
+                    Click on + to add an education
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+
+    {% for education in user_profile.education.all %}
+        <li class="media edu-card">
+            {# <img src="{% static 'collegehub/images/UB.jpg' %}" class="mr-3 edu-logo" alt="EDu logo">#}
+            {% if user.username == user_profile.user.username and user.is_authenticated %}
+                <div class="edu_ellipse">
+                    <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                data-target="#edit_education_card_{{ education.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteEducationForm }}
+                            <button type="submit" class="dropdown-item" style="color: black">Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal fade" id="edit_education_card_{{ education.pk }}" tabindex="-1"
+                     aria-labelledby="edit_cardLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit_education_cardLabel_{{ education.pk }}">Edit
+                                    Education
+                                    card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form method="post" id="edit-education-{{ education.pk }}-form"
+                                      class="edit-object-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ educationForm }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"> Edit</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             {% endif %}
+            <div class="media-body">
+                <h4 class="mt-0 mb-1" style="font-weight: bold">{{ education.institution }}</h4>
+                <h5 class="mt-0 mb-1" style="color: #8785a2"> {{ education.certification_name }}</h5>
+                <p>
+                    {{ education.description }}
+                </p>
+            </div>
 
+        </li>
+    {% endfor %}
 
-            <div class="card-body">
-                {% if education.institution != None %}
-                <h5 id="education-{{ education.pk }}-institution"
-                    class="card-text uniname">{{ education.institution }}</h5>
+{% endif %}
+
+{% if user_profile.template_number == 2 %}
+    {% if user_profile.education.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <div style="color: lightgrey;background-color: transparent;border-color: #7a7a7a; font-size: 24px"
+                 class="card" id="no-education">
+                <div class="card-body" style="font-weight: lighter; text-align: center;">
+                    Click on + to add an education
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    {% for education in user_profile.education.all %}
+        <div class="card edu-card" id="education-{{ education.pk }}"
+             style="color: white;width: 38vw;background-color: transparent; border: none">
+            <div class="card-body" style="padding: 0">
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
+                    <div class="dropdown ">
+                        <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+
+                        <div class="dropdown-menu" aria-labelledby="uni-Button">
+                            <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                    data-target="#edit_education_card_{{ education.pk }}">Edit
+                            </button>
+                            <form method="post" id="remove-education-{{ education.pk }}-form"
+                                  class="delete-object-form">
+                                {% csrf_token %}
+                                {{ deleteEducationForm }}
+                                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                            </form>
+                        </div>
+                        <div style="color: black" class="modal fade" id="edit_education_card_{{ education.pk }}"
+                             tabindex="-1"
+                             aria-labelledby="edit_cardLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="edit_education_cardLabel_{{ education.pk }}">Edit
+                                            Education
+                                            card</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form method="post" id="edit-education-{{ education.pk }}-form"
+                                              class="edit-object-form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ educationForm }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"> Edit</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
-                <h6 id="education-{{ education.pk }}-certification_name"
-                    class="card-title major"> {{ education.certification_name }}</h6>
-                {% if education.description != None %}
-                <h6 id="education-{{ education.pk }}-description"
-                    class="card-text edu-description">{{ education.description }}</h6>
-                {% endif %}
+                <h5 id="education-{{ education.pk }}-institution" class="uniname"
+                    style="color: white; font-weight: bold">
+                    {{ education.institution }}</h5>
+                <h6 id="education-{{ education.pk }}-certification_name" class="card-subtitle major mb-2"
+                    style="color: #68d3c5;">{{ education.certification_name }}</h6>
+                <p id="education-{{ education.pk }}-description" class="card-text edu-description"
+                   style="font-weight: lighter">{{ education.description }}</p>
                 <p id="education-{{ education.pk }}-date" class="card-text year">
-                    <small
-                            class="text-muted">Date: {{ education.month }}/{{ education.year }}
+                    <small class="text-muted">Date:
+                        {{ education.month }}/{{ education.year }}
                     </small>
                 </p>
             </div>
         </div>
-    </div>
+    {% endfor %}
 
-</div>
-{% endfor %}
 {% endif %}
 
-{% if user_profile.template_number == 1 %}
-{% if user_profile.education.count == 0 %}
-{% if user.username == user_profile.user.username %}
-<li style="background-color: transparent; font-size: 24px" class="card" id="no-education">
-    <div class="card-body" style="font-weight: lighter; text-align: center">
-        Click on + to add an education
-    </div>
-</li>
-{% endif %}
-{% endif %}
-
-{% for education in user_profile.education.all %}
-<li class="media edu-card">
-    {# <img src="{% static 'collegehub/images/UB.jpg' %}" class="mr-3 edu-logo" alt="EDu logo">#}
-    {% if user.username == user_profile.user.username and user.is_authenticated %}
-    <div class="edu_ellipse">
-        <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-ellipsis-v"></i>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="uni-Button">
-            <button class="dropdown-item" style="color: black" data-toggle="modal"
-                    data-target="#edit_education_card_{{ education.pk }}">Edit
-            </button>
-            <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
-                {% csrf_token %}
-                {{ deleteEducationForm }}
-                <button type="submit" class="dropdown-item" style="color: black">Remove
-                </button>
-            </form>
-        </div>
-    </div>
-    <div class="modal fade" id="edit_education_card_{{ education.pk }}" tabindex="-1"
-         aria-labelledby="edit_cardLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edit_education_cardLabel_{{ education.pk }}">Edit
-                        Education
-                        card</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+{% if user_profile.template_number == 3 %}
+    {% if user_profile.education.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <div style="color: lightgrey;background-color: transparent;border-color: #7a7a7a; font-size: 24px"
+                 class="card" id="no-education">
+                <div class="card-body" style="font-weight: lighter; text-align: center;">
+                    Click on + to add an education
                 </div>
-
-                <div class="modal-body">
-                    <form method="post" id="edit-education-{{ education.pk }}-form"
-                          class="edit-object-form">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            {{ educationForm }}
-                        </div>
-                        <button type="submit" class="btn btn-primary"> Edit</button>
-                    </form>
-                </div>
-
             </div>
-        </div>
-    </div>
+        {% endif %}
     {% endif %}
-    <div class="media-body">
-        <h4 class="mt-0 mb-1" style="font-weight: bold">{{ education.institution }}</h4>
-        <h5 class="mt-0 mb-1" style="color: #8785a2"> {{ education.certification_name }}</h5>
-        <p>
-            {{ education.description }}
-        </p>
-    </div>
-
-</li>
-{% endfor %}
-
-{% endif %}
-
-{% if user_profile.template_number == 2%}
-<div class="section_heading" style="margin: 0; ">
-    <div>Education</div>
-    {% if user.username == user_profile.user.username and user.is_authenticated %}
-    <div class="ellipse-container">
-        <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"><i
-                class="fas fa-plus"></i></button>
-    </div>
-    {% endif %}
-</div>
-<div class="modal fade" style="top: 116px" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    {% for education in user_profile.education.all %}
+        <div class="edu-card">
+            <div class="edu_title">
+                <div class="edu_major">{{ education.certification_name }}</div>
+                <div class="edu_name">{{ education.institution }}</div>
+                <div class="edu_date">{{ education.year }} /  {{ education.month }}</div>
             </div>
-            <div class="modal-body">
-                EDUCATION FORM
-            </div>
-        </div>
-    </div>
-</div>
-<div style="color: #68d3c5; font-weight: bold">
-    Studied at
-</div>
-<div id="education_container">
-    {% for education in user_profile.education.all%}
-    <div class="card edu-card" id="education-{{ education.pk }}"
-         style="color: white;width: 38vw;background-color: transparent; margin-bottom: 20px; border: none">
-        <div class="card-body" style="padding: 0">
-
-            <div class="dropdown ">
-                {% if user.username == user_profile.user.username and user.is_authenticated %}
-
-                <button type="button" class="option-button" id="uni-Button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                    <i class="fas fa-ellipsis-v"></i>
-                </button>
-                {% endif %}
-                <div class="dropdown-menu" aria-labelledby="uni-Button">
-                    <button class="dropdown-item" style="color: black" data-toggle="modal"
-                            data-target="#edit_education_card_{{ education.pk }}">Edit
+            {% if user.username == user_profile.user.username %}
+                <div class="dropdown " style="width: 5%">
+                    <button type="button" class="option-button" id="uni-Button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
                     </button>
-                    <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
-                        {% csrf_token %}
-                        {{ deleteEducationForm}}
-                        <button type="submit" class="dropdown-item" style="color: black">Remove</button>
-                    </form>
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                data-target="#edit_education_card_{{ education.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-education-{{ education.pk }}-form"
+                              class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteEducationForm }}
+                            <button type="submit" class="dropdown-item" style="color: black">
+                                Remove
+                            </button>
+                        </form>
+                    </div>
                 </div>
+                <span>
+                                        <div class="modal fade"
+                                             id="edit_education_card_{{ education.pk }}"
+                                             tabindex="-1"
+                                             aria-labelledby="edit_cardLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"
+                                                            id="edit_education_cardLabel_{{ education.pk }}">Edit
+                                                            Education card</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form method="post" id="edit-education-{{ education.pk }}-form"
+                                                              class="edit-object-form">
+                                                            {% csrf_token %}
+                                                            <div class="form-group">
+                                                                {{ educationForm }}
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary"> Edit</button>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+            {% endif %}
+            <div class="edu-description">
+                {{ education.description }}
             </div>
-            <h5 id="education-{{ education.pk }}-institution" class="uniname" style="color: white; font-weight: bold">
-                {{education.instituition}}</h5>
-            <h6 id="education-{{ education.pk }}-certification_name" class="card-subtitle major mb-2"
-                style="color: #68d3c5;">{{education.certification_name}}</h6>
-            <p id="education-{{ education.pk }}-description" class="card-text edu-description"
-               style="font-weight: lighter">{{education.description}}</p>
-            <p id="education-{{ education.pk }}-date" class="card-text year">
-                <small class="text-muted">Date:
-                    {{ education.month }}/{{ education.year }}
-                </small>
-            </p>
-
-            <a href="#" class="mylink">link</a>
         </div>
-    </div>
-    {% endfor%}
-
-
-</div>
-{% endif %}
-
-{% if user_profile.template_number == 3%}
-<div class="section_heading">
-    <div class="heading_block"></div>
-    <div>EDUCATION</div>
-</div>
-{% for education in user_profile.education.all%}
-<div id="education_body">
-    <div class="edu-card">
-        <div class="edu_title">
-            <div class="edu_major">{{education.certification_name}}</div>
-            <div class="edu_name">{{education.insitituition}}</div>
-            <div class="edu_date">{{education.year}} {{education.month}}</div>
-        </div>
-        <div class="edu-description">
-            {{education.description}}
-        </div>
-    </div>
-</div>
-{% endfor %}
+    {% endfor %}
 {% endif %}

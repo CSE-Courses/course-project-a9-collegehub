@@ -102,8 +102,13 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p> {{ educationForm }}</p>
-                                        <button type="submit" class="btn btn-primary"> Submit</button>
+                                        <form method="post" id="education-form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ educationForm }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -142,9 +147,15 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <h1> {{ skillForm }} </h1>
+                                        <form method="post" id="skill-form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="id_position" class="col-form-label"> Skill Name: </label>
+                                                {{ skillForm.name }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

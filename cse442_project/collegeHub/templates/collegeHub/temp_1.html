@@ -123,78 +123,11 @@
                             <div class="side-headings">
                                 Skills
                             </div>
-                            <div class="ellipse-container temp1-add-button">
-                                <button type="button" data-toggle="modal" data-target="#skills_add_card"
-                                        class="option-button"><i class="fas fa-plus"></i></button>
-                            </div>
                         </div>
                         <hr>
-                        <div class="modal fade" id="skills_add_card" tabindex="-1"
-                             aria-labelledby="skills_add_cardLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="skills_add_cardLabel">Add Skills card</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h1> special form</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="skills-body">
                             <div class="card text-white skill-bar  mb-3">
                                 <div>Skill name</div>
-                                <div>
-                                    <button type="button" style="margin: 0" class="option-button" id="uni-Button"
-                                            data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="uni-Button">
-                                        <button class="dropdown-item" style="color: black" data-toggle="modal"
-                                                data-target="#edit_skill_card_{{ skill.pk }}">Edit
-                                        </button>
-                                        <form method="post" id="remove-skill-{{ skill.pk }}-form"
-                                              class="delete-object-form">
-                                            {% csrf_token %}
-                                            {{ deleteSkillForm }}
-                                            <button type="submit" class="dropdown-item" style="color: black">Remove
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="edit_skill_card_{{ skill.pk }}" tabindex="-1"
-                                     aria-labelledby="edit_cardLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">
-                                                    Edit Skill</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                <form method="post" id="edit-skill-{{ skill.pk }}-form"
-                                                      class="edit-object-form">
-                                                    {% csrf_token %}
-                                                    <div class="form-group">
-                                                        {{ skillForm }}
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary"> Edit</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card text-white skill-bar  mb-3">
                                 <div>Skill name</div>
@@ -220,30 +153,9 @@
                             <div class="side-headings">
                                 Experience
                             </div>
-                            <div class="ellipse-container temp1-add-button">
-                                <button type="button" data-toggle="modal" data-target="#experience_add_card"
-                                        class="option-button"><i class="fas fa-plus"></i></button>
-                            </div>
                         </div>
                         <hr>
                         {# ********** ADD SECTION POP UP **********#}
-                        <div class="modal fade" id="experience_add_card" tabindex="-1"
-                             aria-labelledby="experience_add_cardLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="experience_add_cardLabel">Add an Experience</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Specific Form</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="experience-body">
                             <div class="sub-section">
                                 <div class="sub-section-header">
@@ -252,9 +164,6 @@
                                             Internship
                                         </h2>
                                     </div>
-                                    <button type="button" data-toggle="modal"
-                                            data-target="#add-experience-specific-{{ section.pk }}"
-                                            class="sub-section-button"><i class="fas fa-plus"></i></button>
                                 </div>
                                 <ul class="list-unstyled">
                                     <li class="media exp-card">
@@ -296,41 +205,10 @@
                                             Internship
                                         </h2>
                                     </div>
-                                    <button type="button" data-toggle="modal"
-                                            data-target="#add-experience-specific-{{ section.pk }}"
-                                            class="sub-section-button"><i class="fas fa-plus"></i></button>
+
                                 </div>
                                 <ul class="list-unstyled">
-                                    <li class="media exp-card">
-                                        <img src="{% static 'collegehub/images/work.png' %}" class="mr-3 work"
-                                             alt="...">
-                                        <div class="media-body">
-                                            <h4 class="mt-0 mb-1" style="font-weight: bold">Position</h4>
-                                            <h5 class="mt-0 mb-1" style="color: #8785a2"> Company</h5>
-                                            <p>
-                                                Cras sit amet nibh libero, in gravida nulla. Nulla
-                                                vel metus scelerisque ante sollicitudin. Cras purus
-                                                odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                Fusce condimentum nunc ac nisi vulputate fringilla.
-                                                Donec lacinia congue felis in faucibus.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media exp-card">
-                                        <img src="{% static 'collegehub/images/work.png' %}" class="mr-3 work"
-                                             alt="...">
-                                        <div class="media-body">
-                                            <h4 class="mt-0 mb-1" style="font-weight: bold">Position</h4>
-                                            <h5 class="mt-0 mb-1" style="color: #8785a2"> Company</h5>
-                                            <p>
-                                                Cras sit amet nibh libero, in gravida nulla. Nulla
-                                                vel metus scelerisque ante sollicitudin. Cras purus
-                                                odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                Fusce condimentum nunc ac nisi vulputate fringilla.
-                                                Donec lacinia congue felis in faucibus.
-                                            </p>
-                                        </div>
-                                    </li>
+
                                     <li class="media exp-card">
                                         <img src="{% static 'collegehub/images/work.png' %}" class="mr-3 work"
                                              alt="...">
@@ -372,29 +250,9 @@
                             <div class="side-headings">
                                 Projects
                             </div>
-                            <div class="ellipse-container temp1-add-button">
-                                <button type="button" data-toggle="modal" data-target="#projects_add_card"
-                                        class="option-button"><i class="fas fa-plus"></i></button>
-                            </div>
+
                         </div>
                         <hr>
-                        <div class="modal fade" id="projects_add_card" tabindex="-1"
-                             aria-labelledby="projects_add_cardLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="projects_add_cardLabel">Add Projects card</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h1> special form</h1>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="project-body">
                             <div class="card"
                                  style="width: 100%;border: #6b688c 1px solid; box-shadow: 30px 0 35px 0 lightgrey; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem">

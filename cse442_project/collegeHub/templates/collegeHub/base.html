@@ -1,4 +1,4 @@
-{%  load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,18 +9,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
-    {% if userprofile.template_number == 0%}
+    {% if userprofile.template_number == 0 %}
         <!--logo icon -->
         <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
     {% elif  userprofile.template_number == 1 %}
-          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp1.css' %}">
     {% elif  userprofile.template_number == 2 %}
-          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css' %}">
     {% elif  userprofile.template_number == 3 %}
-          <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp3.css'%}">
+        <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp3.css' %}">
     {% endif %}
-
+    <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
     <!--    Animate on scroll (AOS)-->
@@ -32,14 +32,14 @@
 
 <body>
 
-    {% if userprofile.template_number == 0 %}
-        {% include 'collegeHub/index.html' %}
-    {% elif  userprofile.template_number == 1 %}
-        {% include 'collegeHub/purple-candy.html' %}
-    {% elif  userprofile.template_number == 2 %}
-        {% include 'collegeHub/subtle-blue.html' %}
-    {% elif  userprofile.template_number == 3 %}
-       {% include 'collegeHub/book.html' %}
-    {% endif %}
+{% if userprofile.template_number == 0 %}
+    {% include 'collegeHub/index.html' %}
+{% elif  userprofile.template_number == 1 %}
+    {% include 'collegeHub/purple-candy.html' %}
+{% elif  userprofile.template_number == 2 %}
+    {% include 'collegeHub/subtle-blue.html' %}
+{% elif  userprofile.template_number == 3 %}
+    {% include 'collegeHub/book.html' %}
+{% endif %}
 </body>
 </html>
