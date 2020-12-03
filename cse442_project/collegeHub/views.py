@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm
-from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm, ChooseTemplateForm
+from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm, ChooseTemplateForm, PostForm
 from .models import UserProfile, Experiences, Education, Event, User, Post
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -30,6 +30,12 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import models as auth_models
 from django.contrib import messages
 
+from django.views.generic import (
+    ListView,
+    CreateView,
+    DetailView
+    #DeleteView
+)
 from ics import Calendar
 from ics import Event as eve
 import tempfile
@@ -725,13 +731,39 @@ def edit_project(request, pk):
         return
 
 
-def blog_all(request):
+# def blog_all(request):
     
-    context = {
-        'posts': Post.objects.all()
-    }
+#     context = {
+#         'posts': Post.objects.all()
+#     }
 
-    return render(request, 'collegeHub/blog_all.html', context)
+#     return render(request, 'collegeHub/blog_all.html', context)
 
-def blog_about(request):
-    return render(request, 'collegeHub/blog_about.html', {'title': 'About'})
+# def blog_about(request):
+#     return render(request, 'collegeHub/blog_about.html', {'title': 'About'})
+
+def create_blog(request):
+    if request.method == "POST":
+        post_form = PostForm(request.POST)
+        print(post_form)
+        if post_form.is_valid():
+            post = post_form.save(commit=False)
+            profile = get_object_or_404(UserProfile, pk= request.user.userprofile.pk)
+            post.save()
+            print(post)
+            return redirect('blog_all')
+        else:
+            return redirect('blog_create')
+    else:
+        form = PostForm()
+        return render(request, 'collegeHub/create_blog.html', { 'form' : form})
+
+
+class PostListView(ListView):
+    model = Post
+    template_name = 'collegeHub/blog_all.html'
+    context_object_name = 'posts'
+    ordering = ['-date_posted']
+
+class PostDetailView(DetailView):
+    model = Post 

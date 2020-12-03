@@ -6,7 +6,7 @@ from .models import Specific, Section, Education, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.admin import widgets
 
-from .models import Specific, Section, Education, Skill, Project, Event
+from .models import Specific, Section, Education, Skill, Project, Event, Post
 
 
 class UserPasswordResetForm(PasswordResetForm):
@@ -157,6 +157,12 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ('name', 'description', 'month', 'year')
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'content', 'profile')
+
 
 
 class DeleteSpecificForm(forms.ModelForm):

@@ -2,6 +2,9 @@ from django.urls import path, re_path
 from . import views
 from django.contrib.auth import views as auth_views
 from .forms import UserPasswordResetForm, SetPasswordForm
+from .views import (
+    PostListView
+)
 
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
@@ -39,6 +42,9 @@ urlpatterns = [
     path('404/', views.error404.as_view(), name='404'),
     path('Search/', views.search.as_view(), name='Search'),
 
+    path('blogs/', PostListView.as_view() , name = 'blog_all'),
+    path('blogs_create/', views.create_blog , name = 'blog_create'),
+
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
     path('emaiNotConfirmed/', views.register_not_confirmed.as_view(), name="not_confirmed"),
@@ -48,8 +54,7 @@ urlpatterns = [
     path('settings/<slug:username>/', views.Settings.as_view(), name='settings'),
     path('logout/', auth_views.LogoutView.as_view(template_name='templates/logout.html'), name='logout'),
 
-    path('blog_all/', views.blog_all, name = 'blog-all'),
-    path('blog_about/', views.blog_about, name = 'blog-about'),
+   
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "collegeHub/password_reset.html",form_class=UserPasswordResetForm), name = "reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),
