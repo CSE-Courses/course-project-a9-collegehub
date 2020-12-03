@@ -481,6 +481,9 @@ def create_skill(request, pk):
 class Home(TemplateView):
     template_name = 'collegeHub/home.html'
 
+class search(TemplateView):
+    template_name = 'collegeHub/search_profiles.html'
+
 class temp0(TemplateView):
     template_name = 'collegeHub/temp_0.html'
 

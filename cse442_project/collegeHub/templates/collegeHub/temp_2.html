@@ -1,4 +1,4 @@
-{%  load static %}
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp2.css' %}">
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
     <!--    Animate on scroll (AOS)-->
@@ -28,7 +28,7 @@
             <nav class="navigation">
                 <ul class="nav-list text-center ">
                     <li style="text-align: left;font-size: 20px; color: #68d3c5">
-                        Allison<br>Fragner
+                        Allison Fragner
                     </li>
                     <div>
                         <li>
@@ -61,10 +61,6 @@
                                 <h4 class="dropdown-header" style="font-size: large; color: #68d3c5">
                                     Allison Fragner
                                 </h4>
-                                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#add"><span> <i
-                                        class="fas fa-plus-square"></i> </span>Add</a>
-                                <a type="button" class="dropdown-item" data-toggle="modal" data-target="#remove"><span> <i
-                                        class="fas fa-minus-square"></i> </span>Remove</a>
                                 <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
                                 <a class="dropdown-item" href="{% url 'home' %}"><span> <i
                                         class="fas fa-sign-out-alt"></i> </span>Logout</a>
@@ -181,6 +177,7 @@
 
             </div>
             <div id="experience" class="section">
+
                 <div class="section_heading" style="margin: 0">
                     Experience
                 </div>
@@ -189,9 +186,12 @@
                 </div>
                 <div id="experience_container">
                     <div class="sub-section">
-                        <div class="sub-section_heading">
-                            Internship
+                        <div class="sub_section_heading_container">
+                            <div class="sub-section_heading">
+                                Internship
+                            </div>
                         </div>
+                        <br>
                         <div class="card" style="color: white;width: 38vw;background-color: transparent; border: none">
                             <div class="card-body" style="padding: 0">
                                 <h5 class="card-title" style="color: white; font-weight: bold">Software Engineer
@@ -206,9 +206,12 @@
                         </div>
                     </div>
                     <div class="sub-section">
-                        <div class="sub-section_heading">
-                            Concerts
+                        <div class="sub_section_heading_container">
+                            <div class="sub-section_heading">
+                                Concerts
+                            </div>
                         </div>
+                        <br>
                         <div class="card" style="color: white;width: 38vw;background-color: transparent; border: none">
                             <div class="card-body" style="padding: 0">
                                 <h5 class="card-title" style="color: white; font-weight: bold">Guitarist</h5>
@@ -275,12 +278,16 @@
                         <br>
                         <br>
                         <ul>
-                            <li><strong> <span class="blue"> Age: </span> </strong> <span style="font-weight: lighter"> 21 </span></li>
-                            <li><strong> <span class="blue"> Address: </span> </strong> <span style="font-weight: lighter">  Heaven st </span>
+                            <li><strong> <span class="blue"> Age: </span> </strong> <span style="font-weight: lighter"> 21 </span>
                             </li>
-                            <li><strong> <span class="blue"> Phone: </span> </strong> <span style="font-weight: lighter"> (716)-666-9999 </span>
+                            <li><strong> <span class="blue"> Address: </span> </strong> <span
+                                    style="font-weight: lighter">  Heaven st </span>
                             </li>
-                            <li><strong> <span class="blue"> E-mail: </span> </strong> <span style="font-weight: lighter"> college@univesity.com </span>
+                            <li><strong> <span class="blue"> Phone: </span> </strong> <span
+                                    style="font-weight: lighter"> (716)-666-9999 </span>
+                            </li>
+                            <li><strong> <span class="blue"> E-mail: </span> </strong> <span
+                                    style="font-weight: lighter"> college@univesity.com </span>
                             </li>
                         </ul>
                         <div class="signature">Allison Fragner</div>

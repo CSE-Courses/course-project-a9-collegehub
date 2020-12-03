@@ -79,52 +79,6 @@
             {% endif %}
         </ul>
     </nav>
-    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addLabel">Add a Section</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form onsubmit="return false">
-                        <div class="form-group">
-                            <label for="new_section_name">Section Name</label>
-                            <input type="text" class="form-control" id="new_section_name" aria-describedby="emailHelp">
-                        </div>
-                        <button data-dismiss="modal" type="submit" class="btn btn-primary" onclick="section_add()">Add
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="remove" tabindex="-1" aria-labelledby="removeLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="removeLabel">Remove a Section</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form onsubmit="return false">
-                        <div class="form-group">
-                            <label for="remove_section_name">Section Name to remove</label>
-                            <input type="text" class="form-control" id="remove_section_name"
-                                   aria-describedby="emailHelp">
-                        </div>
-                        <button data-dismiss="modal" type="submit" class="btn btn-primary" onclick="remove_section()">
-                            Remove
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--header-->
     <header id="header">
         <div class="blur">

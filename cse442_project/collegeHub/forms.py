@@ -58,16 +58,24 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'start_time', 'end_time', 'notes')
-       
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["title"].widget.attrs['id'] = "event_form_title"
+        self.fields["title"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["notes"].widget.attrs['id'] = "event_form_title"
+        self.fields["notes"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["start_time"].widget.attrs['class'] = "form-control grey_field"
+        self.fields["end_time"].widget.attrs['class'] = "form-control grey_field"
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('bio', 'occupation', 'location', 'github', 'linkedin', 'instagram', 'phone_number', 'age')
+        fields = ('bio', 'occupation', 'location', 'github', 'linkedin', 'instagram', 'phone_number', 'age', 'profile_pic','resume')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
+        self.fields["bio"].widget.attrs['placeholder'] = "Tell me about Yourself"
         self.fields["bio"].widget.attrs['id'] = "bio"
         self.fields["bio"].widget.attrs['class'] = "form-control grey_field"
         self.fields["occupation"].widget.attrs['class'] = "form-control grey_field"
@@ -77,10 +85,11 @@ class UserProfileForm(forms.ModelForm):
         self.fields['age'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
-        # self.fields['quote'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['linkedin'].widget.attrs['class'] = 'form-control grey_field'
-        # self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
-        # self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
+        self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'
+        self.fields['resume'].widget.attrs['class'] = 'custom-file-input'
+        self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
+        self.fields['resume'].widget.attrs['id'] = 'inputGroupFile02'
 
 
 class UserEditForm(UserChangeForm):
