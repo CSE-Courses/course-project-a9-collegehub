@@ -17,6 +17,11 @@
     <!--logo icon / favicon-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
     <title>Settings | CollegeHub</title>
+    <style>
+        #inputGroupFile01 {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,14 +39,15 @@
                 <hr>
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list"
-                       href="#list-home" role="tab" aria-controls="username">General</a>
+                       href="#list-home" role="tab" aria-controls="username"><i class="fas fa-user"></i>
+                        &nbsp;General</a>
                     <a class="header-item list-group-item-action" id="list-general-list" data-toggle="list"
-                       href="#list-general" role="tab" aria-controls="username">Profile</a>
+                       href="#list-general" role="tab" aria-controls="username"><i class="fas fa-id-card-alt"></i>&nbsp;Profile</a>
                     <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab"
-                       aria-controls="domain">Domain</a>
+                       aria-controls="domain"><i class="fas fa-link"></i>&nbsp;Domain</a>
                     {#            <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>#}
-{#                    <a class="header-item" id="list-password-list" data-toggle="list" href="#list-password" role="tab"#}
-{#                       aria-controls="password">Password Reset</a>#}
+                    {#                    <a class="header-item" id="list-password-list" data-toggle="list" href="#list-password" role="tab"#}
+                    {#                       aria-controls="password">Password Reset</a>#}
                     {% comment %} <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
             <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a> {% endcomment %}
                 </div>
@@ -63,10 +69,10 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                <div class="tab-content" id="nav-tabContent">
+                <div class="tab-content" id="nav-tabContent" style="height: 100%">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                          aria-labelledby="list-username-list">
-                        <h3 style="color: #14213D"> General Account Settings</h3>
+                        <h3 style="color: #14213D"><i class="fas fa-user"></i> General Account Settings</h3>
                         <hr>
                         {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
                         <form class="forms account-forms" enctype="multipart/form-data" method="POST">
@@ -80,20 +86,21 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fas fa-signature"></i>&nbsp; Username</label>
                                 <div class="col-sm-10">
                                     {{ u_form.username }}
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Email Address</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label"><i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;Email</label>
                                 <div class="col-sm-10">
                                     {{ u_form.email }}
                                 </div>
                             </div>
+                            <br>
                             <div class="row">
                                 <div class="col-sm-10">
-                                    <a href={% url 'reset_password' %}><label for="exampleInputEmail1">Reset
+                                    <a href={% url 'reset_password' %}><label for="exampleInputEmail1"><i class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;Reset
                                         Password</label></a>
                                 </div>
                             </div>
@@ -105,15 +112,73 @@
                         {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
                     </div>
                     <div class="tab-pane fade show" id="list-general" role="tabpanel"
-                         aria-labelledby="list-general-list">
-                        <h3 style="color: #14213D"> Profile Settings</h3>
+                         aria-labelledby="list-general-list" style="height: 100%">
+                        <h3 style="color: #14213D"><i class="fas fa-id-card-alt"></i> Profile Settings</h3>
                         <hr>
                         {% comment %} form for profile settings ----------------------------------------------------------------------  {% endcomment %}
-                        <div style="overflow: scroll;height: 23rem;">
-                            <form lass="forms account-forms" enctype="multipart/form-data" method="POST">
+                        <div style="height: 90%;">
+                            <form lass="forms account-forms" enctype="multipart/form-data" method="POST"
+                                  style="height: 100%;overflow: scroll">
                                 {% csrf_token %}
-                                {{ p_form }}
-                                <br>
+                                <div class="profile_form">
+                                    {{ p_form.non_field_errors }}
+                                    <div>
+                                        <label for="{{ p_form.bio.id_for_label }}"><i class="fas fa-user"></i>
+                                            About you: </label>
+                                        {{ p_form.bio }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-user-md"></i>
+                                            Occupation: </label>
+                                        {{ p_form.occupation }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.location.id_for_label }}"><i
+                                                class="fas fa-search-location"></i> Location: </label>
+                                        {{ p_form.location }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.phone_number.id_for_label }}"><i class="fas fa-phone"></i>
+                                            Phone number: </label>
+                                        {{ p_form.phone_number }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.age.id_for_label }}"><i class="fas fa-baby-carriage"></i>
+                                            Age:
+                                        </label>
+                                        {{ p_form.age }}
+                                    </div>
+                                    <div class="field" style="margin-top: 10px">
+                                        <h5 style="margin: 0"><i class="fas fa-hashtag"></i> Social Media</h5>
+                                        <div class="field" style="padding: 5px 20px 5px 20px">
+                                            <label for="{{ p_form.github.id_for_label }}"><i class="fab fa-github"></i>
+                                                Github:
+                                            </label>
+                                            {{ p_form.github }}
+                                            <label for="{{ p_form.linkedin.id_for_label }}"><i
+                                                    class="fab fa-linkedin-in"></i> LinkedIn: </label>
+                                            {{ p_form.linkedin }}
+                                            <label for="{{ p_form.instagram.id_for_label }}"><i
+                                                    class="fab fa-instagram"></i> Instagram: </label>
+                                            {{ p_form.instagram }}
+                                        </div>
+                                    </div>
+                                    <div id="pic_form">
+                                        {{ p_form.profile_pic }}
+                                    </div>
+                                    {#                                    <br>#}
+                                    {#                                    <div class="input-group">#}
+                                    {#                                        <div class="input-group-prepend">#}
+                                    {#                                        <span class="input-group-text" id="inputGroupFileAddon01"><i#}
+                                    {#                                                class="fas fa-file"></i>&ensp;Resume</span>#}
+                                    {#                                        </div>#}
+                                    {#                                        <div class="custom-file">#}
+                                    {#                                            {{ p_form.resume }}#}
+                                    {#                                            <label class="custom-file-label" for="inputGroupFile01">Choose#}
+                                    {#                                                file...</label>#}
+                                    {#                                        </div>#}
+                                    {#                                    </div>#}
+                                </div>
                                 <button type="submit"
                                         style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
                                         class="btn"
@@ -122,17 +187,16 @@
                             </form>
                         </div>
                         {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
-
                     </div>
 
 
                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                        <h3 style="color: #14213D"> Domain Details</h3>
+                        <h3 style="color: #14213D"><i class="fas fa-link"></i> Domain Details</h3>
                         <hr>
                         {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
                         <form class="forms">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Domain Name</label>
+                                <label for="exampleInputEmail1"><i class="fas fa-globe-americas"></i> &nbsp;Domain Name</label>
                                 <input type="email" class="form-control" id="domain" aria-describedby="domain"
                                        placeholder="{{ url_form }}" value={{ url_form }} disabled>
                                 <small class="form-text text-muted">Your domain is unique to your username.</small>
@@ -141,67 +205,10 @@
                         {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
 
                     </div>
-                    {#            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">#}
-                    {#              <h3 style="color: #14213D"> Template Settings</h3>#}
-                    {#              <hr>#}
-                    {#              <div id="template-setting-container">#}
-                    {#                <div class="template-setting-container-box">#}
-                    {#                  <div class="card">#}
-                    {#                    <div class="templateZoom zoomAccount">#}
-                    {#                      <img src="{% static 'collegehub/images/template1.png' %}" class="card-img-top" alt="...">#}
-                    {#                    </div>#}
-                    {#                    <div class="card-body">#}
-                    {#                      <h5 class="card-title">Red Marble</h5>#}
-                    {#                      <p class="card-text">Brief template description.</p>#}
-                    {#                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-                    {#                    </div>#}
-                    {#                  </div>#}
-                    {#                  <div class="custom-control custom-switch">#}
-                    {#                    <input type="checkbox" class="custom-control-input" id="customSwitch1">#}
-                    {#                    <label class="custom-control-label" for="customSwitch1">Toggle to choose.</label>#}
-                    {#                  </div>#}
-                    {#                </div>#}
-                    {#                <div class="template-setting-container-box">#}
-                    {#                  <div class="card">#}
-                    {#                    <div class="templateZoom zoomAccount">#}
-                    {#                      <img src="{% static 'collegehub/images/template2.png' %}" class="card-img-top" alt="...">#}
-                    {#                    </div>#}
-                    {#                    <div class="card-body">#}
-                    {#                      <h5 class="card-title">Purple Candy</h5>#}
-                    {#                      <p class="card-text">Brief template description.</p>#}
-                    {#                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-                    {#                    </div>#}
-                    {#                  </div>#}
-                    {#                  <div class="custom-control custom-switch">#}
-                    {#                    <input type="checkbox" class="custom-control-input" id="customSwitch2">#}
-                    {#                    <label class="custom-control-label" for="customSwitch2">Toggle to choose.</label>#}
-                    {#                  </div>#}
-                    {#                </div>#}
-                    {#                <div class="template-setting-container-box">#}
-                    {#                  <div class="card">#}
-                    {#                    <div class="templateZoom zoomAccount">#}
-                    {#                      <img src="{% static 'collegehub/images/template3.png' %}" class="card-img-top" alt="...">#}
-                    {#                    </div>#}
-                    {#                    <div class="card-body">#}
-                    {#                      <h5 class="card-title">Subtle Blue</h5>#}
-                    {#                      <p class="card-text">Brief template description.</p>#}
-                    {#                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-                    {#                    </div>#}
-                    {#                  </div>#}
-                    {#                  <div class="custom-control custom-switch">#}
-                    {#                    <input type="checkbox" class="custom-control-input" id="customSwitch3">#}
-                    {#                    <label class="custom-control-label" for="customSwitch3">Toggle to choose.</label>#}
-                    {#                  </div>#}
-                    {#                </div>#}
-                    {#              </div>#}
-                    {#            </div>#}
+                    {% comment %}
                     <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
                         <h3 style="color: #14213D"> Password Reset</h3>
                         <hr>
-                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
-
-                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
-
                     </div>
                     <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
                         <form>
@@ -227,6 +234,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endcomment %}
                 </div>
             </div>
         </div>
@@ -275,8 +283,15 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{% static 'collegeHub/script.js' %}"></script>
-<script>
-    AOS.init();
+<script type="application/javascript">
+    $('#inputGroupFile01').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('#pic').html(fileName);
+    });
+    $('#inputGroupFile02').change(function (e) {
+        var t = e.target.files[0].name;
+        $('#res').html(t);
+    });
 </script>
 </body>
 

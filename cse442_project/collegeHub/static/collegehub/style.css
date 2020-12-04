@@ -137,7 +137,23 @@ html {
         width: 35%;
         overflow: auto;
         padding: 30px 7rem 50px 2rem;
+        /*animation: move_background 6s infinite;*/
+        /*animation-timing-function: linear;*/
+
     }
+
+    /*@keyframes move_background {*/
+    /*    0% {*/
+    /*        */
+    /*        background-color: #FCA311;*/
+    /*    }*/
+    /*    50% {*/
+    /*        background-color: #ffc22a;*/
+    /*    }*/
+    /*    100% {*/
+    /*        background-color: #FCA311;*/
+    /*    }*/
+    /*}*/
 
     #inner-timeline-left::-webkit-scrollbar {
         display: none;
@@ -255,6 +271,7 @@ html {
         color: black;
         text-decoration: none;
         border-radius: 0.5rem;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in;
     }
 
     .header-item.active {
@@ -1172,11 +1189,34 @@ html {
         box-shadow: -8px 0 0 0 #fdb11c;
     }
 
-    #event_title {
+    .blog_card {
+        padding: 8px 8px 8px 2rem;
+        margin: 8px;
+        box-shadow: -8px 0 0 0 #fdb11c;
+    }
+
+    .event_title {
         font-weight: bold;
         font-size: 30px;
         color: #234c73;
 
+    }
+
+    .blog_title {
+        font-weight: bold;
+        font-size: 30px;
+        color: #234c73;
+    }
+
+    .blog_credent {
+        font-weight: bold;
+        color: gray;
+        font-style: italic;
+    }
+
+    .blog_time {
+        color: #a7a7a7;
+        font-weight: lighter;
     }
 
     #today {
@@ -1191,13 +1231,27 @@ html {
         font-size: 1rem;
     }
 
-    #event_time {
+    .blog_img {
+        background-color: #ffffff;
+        border: 5px solid #e7e7e7;
+        border-radius: 50%;
+        width: fit-content;
+        position: absolute;
+        left: -1.6rem;
+    }
+
+    .event_time {
         font-family: "Roboto Slab", "Helvetica", "Arial", sans-serif;
         margin-bottom: 5px;
     }
 
-    #event_notes {
+    .event_notes {
         font-weight: lighter;
+    }
+
+    .blog_notes {
+        font-weight: lighter;
+        color: #242424;
     }
 
     #left_tab {
@@ -1239,8 +1293,8 @@ html {
     #nome_event {
         color: white;
         font-family: 'Sacramento', cursive;
-        font-size: 40px;
         font-weight: bold;
+        font-size: 38px;
     }
 
     #create_event {
@@ -1251,10 +1305,30 @@ html {
     .search_bar {
 
     }
-    .people_card{
+
+    .people_card {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+    }
+
+    #blog_about {
+        color: white;
+
+    }
+
+    .profile_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly
+    }
+
+    .profile_form > div {
+        margin-bottom: 0.8rem;
+    }
+
+    .profile_form label {
+        margin: 0;
     }
 }
 

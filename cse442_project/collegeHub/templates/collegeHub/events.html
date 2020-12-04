@@ -9,6 +9,8 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
     <!--    Animate on scroll (AOS)-->
@@ -83,12 +85,14 @@
                 <h1 class="event_heading">Events</h1>
                 {% for event in event_list %}
                     <div class="event_card">
-                        <div id="event_title">{{ event.title }}
-                            <button type="submit" class="remove_exp_card"><i class="far fa-trash-alt"></i>
-                            </button>
+                        <div class="event_title">{{ event.title }}
+                            {% if user.is_authenticated %}
+                                <button type="submit" class="remove_exp_card"><i class="far fa-trash-alt"></i>
+                                </button>
+                            {% endif %}
                         </div>
-                        <div id="event_time"> {{ event.start_time }} to {{ event.end_time }}</div>
-                        <div id="event_notes">
+                        <div class="event_time"> {{ event.start_time }} to {{ event.end_time }}</div>
+                        <div class="event_notes">
                             {{ event.notes }}
                         </div>
                     </div>

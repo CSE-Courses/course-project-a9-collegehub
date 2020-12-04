@@ -155,7 +155,7 @@
                                         </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
-                                        <a href="{% url 'temp1' %}"  class="btn btn-warning">Visit</a>
+                                        <a href="{% url 'temp1' %}" class="btn btn-warning">Visit</a>
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                                         </form>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
-                                        <a href="{% url 'temp2' %}"  class="btn btn-warning">Visit</a>
+                                        <a href="{% url 'temp2' %}" class="btn btn-warning">Visit</a>
                                     </div>
                                 </div>
                             </div>
@@ -357,18 +357,35 @@
                         {{ user_profile.user }}</p>
                     <p class="card-text mg-0"><span> <i class="fas fa-globe-americas"></i></span> <b>Domain:</b>
                         {{ user_profile.user | lower }}.collegehub.com</p>
-                    <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b> Template_name
-                    </p>
-                    <p class="card-text mg-0"><span><i class="fas fa-certificate"></i></span> <b>Premium:</b> No</p>
-                    <p class="card-text mg-0"><span> <i class="fas fa-calendar-alt"></i></span> <b>Schedule:</b> Public
-                    </p>
+                    <p class="card-text mg-0"><span> <i class="fas fa-user-md"></i></span> <b>Major:</b>
+                        {{ user_profile.occupation }}</p>
+                    {% if user_profile.location != None and user_profile.location != "" %}
+                        <p class="card-text mg-0"><span> <i class="fas fa-search-location"></i></span> <b>Address:</b>
+                            {{ user_profile.location }}</p>
+                    {% endif %}
+                    {% if userprofile.template_number == 0 %}
+                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
+                            Red marble</p>
+                    {% elif  userprofile.template_number == 1 %}
+                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
+                            Purple Candy</p>
+                    {% elif  userprofile.template_number == 2 %}
+                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
+                            Subtle Blue</p>
+                    {% elif  userprofile.template_number == 3 %}
+                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
+                            The Book</p>
+                    {% endif %}
+                    {#                    <p class="card-text mg-0"><span> <i class="fas fa-calendar-alt"></i></span> <b>Schedule:</b> Public#}
+                    {#                    </p>#}
                 </div>
             </div>
             <br>
             <hr>
             <br>
             <div style="display: flex; justify-content: space-between; width: 100%;">
-                <a href="{% url 'events' %}" class="card account-card" style="width: 10.5rem; border-radius: 1rem;text-decoration: none">
+                <a href="{% url 'events' %}" class="card account-card"
+                   style="width: 10.5rem; border-radius: 1rem;text-decoration: none">
                     <div class="card-body" style="text-align: center;">
                         <h5 class="card-title" style="font-weight: lighter">Event Planner</h5>
                         <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="80"
@@ -376,7 +393,7 @@
                         </p>
                     </div>
                 </a>
-                <a href="#" class="card account-card" style="width: 10.5rem; border-radius: 1rem">
+                <a href="{% url 'blog_all' %}" class="card account-card" style="width: 10.5rem; border-radius: 1rem">
                     <div class="card-body" style="text-align: center">
                         <h5 class="card-title" style="font-weight: lighter">Lets Blog</h5>
                         <p class="card-text"><img src="../../static/collegehub/images/blog.png" height="80"
@@ -388,7 +405,8 @@
             </div>
             <div style="display: flex;justify-content: center; margin-top: 20px">
                 <a href="{% url 'Search' %}" class="card account-card" style="width: 14rem; border-radius: 1rem">
-                    <div class="card-body" style="text-align: center; display: flex; justify-content: space-between;align-items: center">
+                    <div class="card-body"
+                         style="text-align: center; display: flex; justify-content: space-between;align-items: center">
                         <img src="../../static/collegehub/images/search.png" height="30"
                              width="30"/>
                         <h5 class="card-title" style="font-weight: lighter; padding: 0;margin:0">Search Friends</h5>
