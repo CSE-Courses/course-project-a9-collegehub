@@ -1,291 +1,402 @@
-{%  load static %}
+{% load static %}
 <div id="desktop">
-    <!--*************************************************CONTENT************************************************-->
-    <div id="Outer_timeline_template4">
-        <div id="inner_timeline">
-            <div class="list-group left_box" id="list-tab" role="tablist">
-                <div>
-                    <img id="user_image" src="{{user_profile.profile_pic.url}}" alt="User profile picture">
-                </div>
-                <div id="left_block_name">{{user_profile.user.first_name}} {{user_profile.user.last_name}}</div>
-
-                <a class="block  active " data-toggle="list" href="#list-home" role="tab"
-                   aria-controls="about me">
-                    <i style="font-size: 25px;margin: 15px" class="fas fa-user"></i>
-                    <h5 style="padding: 0;margin: 0">About Me</h5>
-                    <div>Who am I</div>
-                </a>
-
-                <a class="block " id="list-profile-list" data-toggle="list"
-                   href="#list-profile"
-                   role="tab" aria-controls="profile">
-                    <i style="font-size: 25px;margin: 15px" class="fas fa-briefcase"></i>
-                    <h5 style="padding: 0;margin: 0">Resume</h5>
-                    <div>What I did</div>
-                </a>
-                <a class="block " id="list-messages-list" data-toggle="list"
-                   href="#list-messages" role="tab" aria-controls="messages">
-                    <i style="font-size: 25px;margin: 15px" class="fas fa-network-wired"></i>
-                    <h5 style="padding: 0;margin: 0">Projects</h5>
-                    <div>My work</div>
-                </a>
-                <a class="block " id="list-settings-list" data-toggle="list"
-                   href="#list-settings" role="tab" aria-controls="settings">
-                    <i style="font-size: 25px;margin: 15px" class="fas fa-id-badge"></i>
-                    <h5 style="padding: 0;margin: 0">Contact</h5>
-                    <div>Reach Me</div>
-                </a>
-
-            </div>
-            <div class="tab-content center_box" id="nav-tabContent">
-                <div class="tab-pane fade show active white" id="list-home" role="tabpanel"
-                     aria-labelledby="list-home-list">
-                    <div style="margin: 100px;min-height: 35rem;">
-                        <div class="section name_container">
-                            <h1 class="section_heading_text" id="username">{{user_profile.user.first_name}}
-                                {{user_profile.user.last_name}}</h1>
-                            <h2 class="section_sub_heading_text">{{user_profile.occupation}}</h2>
-                        </div>
-                        <div class="section about_container">
-                            <div class="section_heading">
-                                <div class="heading_block"></div>
-                                <div>ABOUT ME</div>
-                            </div>
-                            <p id="about_description">{{user_profile.bio}}
-                            </p>
-
-                        </div>
-                        <div class="section info">
-                            <div class="section_heading">
-                                <div class="heading_block"></div>
-                                <div>MY INFO</div>
-                            </div>
-                            <div class="info_container">
-                                <div class="data_left">
-                                    <ul>
-                                        <li>Name</li>
-                                        <li>Birthday</li>
-                                        <li>Age</li>
-                                        <li>Place of Birth</li>
-                                        <li>Nationality</li>
-                                    </ul>
-                                </div>
-                                <div class="data_right">
-                                    <ul>
-                                        <li>Caleb Smith</li>
-                                        <li>12.15.1998</li>
-                                        <li>19</li>
-                                        <li>India</li>
-                                        <li>America</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section contact_info">
-                            <div class="section_heading">
-                                <div class="heading_block"></div>
-                                <div>CONTACT INFO</div>
-                            </div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Email</span> <br>
-                                {{user_profile.user.email}}
-                            </div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Phone</span> <br>
-                                (716)-888-9999
-                            </div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Address</span> <br>
-                                Carlose Smith 1234 Street Road, Chicago, IN 567 890 United States
-                            </div>
-                        </div>
-
-                    </div>
-                    <div style="margin: 100px 0 50px 0">
-                        -1/4-
-                    </div>
-                    <div id="yello_container">
-                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
-                             class="yellow_bar">
-                        </div>
-                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
-                        </div>
-                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade white" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                    <div style="margin: 100px;min-height: 35rem;">
-                        <div class="section name_container">
-                            <h1 class="section_heading_text">Resume</h1>
-                            <h2 class="section_sub_heading_text"> CV</h2>
-                        </div>
-                        <div class="section education_container">
-                            {% include 'collegeHub/education.html'%}
-                        </div>
-                        <div class="section skills">
-                            {% include 'collegeHub/skills.html'%}
-
-                        </div>
-                        <div class="section experience_container">
-                            <div class="section_heading">
-                                <div class="heading_block"></div>
-                                <div>EXPERIENCES</div>
-                            </div>
-                            {% include 'collegeHub/experiences.html'%}
-                        </div>
-
-                    </div>
-                    <div style="margin: 100px 0 50px 0">
-                        -2/4-
-                    </div>
-                    <div id="yello_container">
-                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
-                             class="yellow_bar">
-                        </div>
-                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
-                        </div>
-                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade white" id="list-messages" role="tabpanel"
-                     aria-labelledby="list-messages-list">
-                    <div style="margin: 100px;min-height: 35rem;">
-                        {% include 'collegeHub/projects.html'%}
-                    </div>
-                    <div style="margin: 100px 0 50px 0">
-                        -3/4-
-                    </div>
-                    <div id="yello_container">
-                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
-                             class="yellow_bar">
-                        </div>
-                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
-                        </div>
-                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade white" id="list-settings" role="tabpanel"
-                     aria-labelledby="list-settings-list">
-                    <div style="margin: 100px;min-height: 35rem;">
-                        <div class="section name_container">
-                            <h1 class="section_heading_text">Contact</h1>
-                            <h2 class="section_sub_heading_text">ME</h2>
-                        </div>
-                        <div class="section contact_container">
-                            <div class="signature">
-                                {{user_profile.user.first_name}} {{user_profile.user.last_name}}
-                            </div>
-                            <div class="heading_block"></div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Address</span> <br>
-                                Carlose Smith 1234 Street Road, Chicago, IN 567 890 United States
-                            </div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Email</span> <br>
-                                {{user_profile.user.email}}
-                            </div>
-                            <div class="address">
-                                <span style="color: #5b5b5b;">Phone</span> <br>
-                                (716)-888-9999
-                            </div>
-                            <div id="contact_social">
-                                <a href="{{user_profile.github}}" type="button" class="social_links">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="{{user_profile.linkedin}}" type="button" class="social_links">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="{{user_profile.user.email}}" type="button" class="social_links">
-                                    <i class="far fa-envelope"></i>
-                                </a>
-                                <a href="{{user_profile.instagram}}" type="button" class="social_links">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin: 100px 0 50px 0">
-                        -4/4-
-                    </div>
-                    <div id="yello_container">
-                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
-                             class="yellow_bar">
-                        </div>
-                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
-                        </div>
-                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="right_box">
-                <a href="{{user_profile.github}}" type="button" class="social_links">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="{{user_profile.linkedin}}" type="button" class="social_links">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="{{user_profile.email}}" type="button" class="social_links">
-                    <i class="far fa-envelope"></i>
-                </a>
-                <a href="{{user_profile.instagram}}" type="button" class="social_links">
-                    <i class="fa fa-instagram"></i>
-                </a>
-                <a href="" type="button" id="copyright">
-                    © 2020 CollegeHub.
-                </a>
-                <div id="settings_logo">
-                    <div class="btn-group dropup">
-                        <a href="#" id="tp3settingsicon" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
-                        <div class="dropdown-menu move" style="background-color: #ffd42d;">
-                            {% if user.username == user_profile.user.username and user.is_authenticated %}
-                            <a class="dropdown-item" href="{% url 'settings' username=user.username%}"><span> <i
-                                    class="fas fa-cog"></i> </span>Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'logout' %}"><span> <i
-                                    class="fas fa-sign-out-alt"></i> </span>Logout</a>
-                            {% else %}
-                            <a class="dropdown-item" href="{% url 'login' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Login</a>
-
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!--*************************************************CONTENT************************************************-->
+  <div id="Outer_timeline_template4">
+    <div id="inner_timeline">
+      <div class="list-group left_box" id="list-tab" role="tablist">
+        <div>
+          <img id="user_image" src="{{ user_profile.profile_pic.url }}" alt="User profile picture">
         </div>
+        <div id="left_block_name">{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</div>
+
+        <a class="block  active " data-toggle="list" href="#list-home" role="tab" aria-controls="about me">
+          <i style="font-size: 25px;margin: 15px" class="fas fa-user"></i>
+          <h5 style="padding: 0;margin: 0">About Me</h5>
+          <div>Who am I</div>
+        </a>
+
+        <a class="block " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+          <i style="font-size: 25px;margin: 15px" class="fas fa-briefcase"></i>
+          <h5 style="padding: 0;margin: 0">Resume</h5>
+          <div>What I did</div>
+        </a>
+        <a class="block " id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">
+          <i style="font-size: 25px;margin: 15px" class="fas fa-network-wired"></i>
+          <h5 style="padding: 0;margin: 0">Projects</h5>
+          <div>My work</div>
+        </a>
+        <a class="block " id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">
+          <i style="font-size: 25px;margin: 15px" class="fas fa-id-badge"></i>
+          <h5 style="padding: 0;margin: 0">Contact</h5>
+          <div>Reach Me</div>
+        </a>
+
+      </div>
+      <div class="tab-content center_box" id="nav-tabContent">
+        <div class="tab-pane fade show active white" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+          <div style="margin: 100px;min-height: 35rem;">
+            <div class="section name_container">
+              <h1 class="section_heading_text" id="username">{{ user_profile.user.first_name }}
+                {{ user_profile.user.last_name }}</h1>
+              <h2 class="section_sub_heading_text">{{ user_profile.occupation }}</h2>
+            </div>
+            <div class="section about_container">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>ABOUT ME</div>
+              </div>
+              <p id="about_description">{{ user_profile.bio }}
+              </p>
+
+            </div>
+            <div class="section info">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>MY INFO</div>
+              </div>
+              <div class="info_container">
+                <div class="data_left">
+                  <ul>
+                    <li>Name</li>
+                    {#                                        <li>Birthday</li>#}
+                    <li>Age</li>
+                    <li>Location</li>
+                  </ul>
+                </div>
+                <div class="data_right">
+                  <ul>
+                    <li>{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</li>
+                    {#                                        <li>12.15.1998</li>#}
+                    <li>{{ user_profile.age }}</li>
+                    <li>{{ user_profile.location }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="section contact_info">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>CONTACT INFO</div>
+              </div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Email</span> <br>
+                {{ user_profile.user.email }}
+              </div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Phone</span> <br>
+                {{ user_profile.phone_number }}
+              </div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Address</span> <br>
+                {{ user_profile.location }}, United States
+              </div>
+            </div>
+
+          </div>
+          <div style="margin: 100px 0 50px 0">
+            -1/4-
+          </div>
+          <div id="yello_container">
+            <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative" class="yellow_bar">
+            </div>
+            <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+            </div>
+            <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade white" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+          <div style="margin: 100px;min-height: 35rem;">
+            <div class="section name_container">
+              <h1 class="section_heading_text">Resume</h1>
+              <h2 class="section_sub_heading_text"> CV</h2>
+            </div>
+            <div class="section education_container">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>EDUCATION</div>
+                <div>
+                  {% if user.username == user_profile.user.username and user.is_authenticated %}
+                  <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button"><i class="fas fa-plus"></i></button>
+                  {% endif %}
+                </div>
+                <div class="modal fade" id="edu_add_card" tabindex="-1" aria-labelledby="edu_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="post" id="education-form">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            {{ educationForm }}
+                          </div>
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="education_body">
+                {% include 'collegeHub/education.html' %}
+              </div>
+            </div>
+            <div class="section skills">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>SKILLS</div>
+                <div>
+                  {% if user.username == user_profile.user.username and user.is_authenticated %}
+                  <button type="button" data-toggle="modal" data-target="#skills_add_card" class="option-button"><i class="fas fa-plus"></i></button>
+                  {% endif %}
+                </div>
+                <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="skills_add_cardLabel">Add Skill card</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        <form method="post" id="skill-form">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="id_position" class="col-form-label"> Skill
+                              Name: </label>
+                            {{ skillForm.name }}
+                          </div>
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="skill_container">
+                <div class="skills_body">
+                  {% include 'collegeHub/skills.html' %}
+                </div>
+              </div>
+            </div>
+            <div class="section experience_container">
+              <div class="section_heading">
+                <div class="heading_block"></div>
+                <div>EXPERIENCE</div>
+                <div>
+                  {% if user.username == user_profile.user.username and user.is_authenticated %}
+                  <button type="button" data-toggle="modal" data-target="#experience_add_subsection" class="option-button"><i class="fas fa-plus"></i></button>
+                  {% endif %}
+                </div>
+                <div class="modal fade" id="experience_add_subsection" tabindex="-1" aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="experience_add_cardLabel">Add a Section to
+                          Experience</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="post" id="section-form">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="id_position" class="col-form-label">Type of
+                              Experience: </label>
+                            {{ sectionForm.name }}
+                          </div>
+                          <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="experience_body">
+                {% include 'collegeHub/experiences.html' %}
+              </div>
+            </div>
+          </div>
+          <div style="margin: 100px 0 50px 0">
+            -2/4-
+          </div>
+          <div id="yello_container">
+            <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative" class="yellow_bar">
+            </div>
+            <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+            </div>
+            <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade white" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+          <div style="margin: 100px;min-height: 35rem;">
+            <div class="section name_container">
+              <h1 class="section_heading_text">Projects</h1>
+              <h2 class="section_sub_heading_text"> WORK</h2>
+              <div>
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
+                <button type="button" data-toggle="modal" data-target="#projects_add_card" class="option-button"><i class="fas fa-plus"></i></button>
+                {% endif %}
+              </div>
+              <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="projects_add_cardLabel">Add Project card</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form method="post" id="project-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          {{ projectForm }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add</button>
+                      </form>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="section project_container">
+              {% include 'collegeHub/projects.html' %}
+            </div>
+          </div>
+          <div style="margin: 100px 0 50px 0">
+            -3/4-
+          </div>
+          <div id="yello_container">
+            <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative" class="yellow_bar">
+            </div>
+            <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+            </div>
+            <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade white" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+          <div style="margin: 100px;min-height: 35rem;">
+            <div class="section name_container">
+              <h1 class="section_heading_text">Contact</h1>
+              <h2 class="section_sub_heading_text">ME</h2>
+            </div>
+            <div class="section contact_container">
+              <div class="signature">
+                {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}
+              </div>
+              <div class="heading_block"></div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Address</span> <br>
+                {{ user_profile.location }}
+              </div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Email</span> <br>
+                {{ user_profile.user.email }}
+              </div>
+              <div class="address">
+                <span style="color: #5b5b5b;">Phone</span> <br>
+                {{ user_profile.phone_number }}
+              </div>
+              <div id="contact_social">
+                <a href="{{ user_profile.facebook }}" class="social_links">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="{{ user_profile.linkedin }}" class="social_links">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:{{ user_profile.user.email }}" class="social_links">
+                  <i class="far fa-envelope"></i>
+                </a>
+                <a href="{{ user_profile.instagram }}" class="social_links">
+                  <i class="fa fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style="margin: 100px 0 50px 0">
+            -4/4-
+          </div>
+          <div id="yello_container">
+            <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative" class="yellow_bar">
+            </div>
+            <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+            </div>
+            <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="right_box">
+        <a href="{{ user_profile.github }}" class="social_links">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="{{ user_profile.linkedin }}" class="social_links">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="{{ user_profile.email }}" class="social_links">
+          <i class="far fa-envelope"></i>
+        </a>
+        <a href="{{ user_profile.instagram }}" class="social_links">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="" id="copyright">
+          © 2020 CollegeHub.
+        </a>
+        <div id="settings_logo">
+          <div class="btn-group dropup">
+            <a href="#" id="tp3settingsicon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+            <div class="dropdown-menu move" style="background-color: #ffd42d;">
+              {% if user.username == user_profile.user.username and user.is_authenticated %}
+              <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+              {% else %}
+              <a class="dropdown-item" href="{% url 'login' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Login</a>
+
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!--*******************************************CONTENT************************************************-->
+  </div>
+  <!--*******************************************CONTENT************************************************-->
 </div>
 <div id="mobile-body">
-    <div id="mobile-container">
-        <img src="{% static 'collegehub/images/CH_white.png' %}" style="width: 100px; height: 100px;margin-right: 10px">
-        <h1 style="font-weight: bold">CollegeHub</h1>
-        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
-        <h2 style="font-weight: lighter">COMING SOON</h2>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
-        <br>
-        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
-    </div>
+  <div id="mobile-container">
+    <img src="{% static 'collegehub/images/CH_white.png' %}" style="width: 100px; height: 100px;margin-right: 10px">
+    <h1 style="font-weight: bold">CollegeHub</h1>
+    <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+    <h2 style="font-weight: lighter">COMING SOON</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+    <br>
+    <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+  </div>
 </div>
 <!-- JavaScript -->
 <!--<script src="script.js"></script>-->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
