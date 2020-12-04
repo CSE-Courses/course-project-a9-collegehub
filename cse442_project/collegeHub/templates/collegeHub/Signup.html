@@ -108,7 +108,7 @@
                                             {{ p_form.occupation }}
                                         </div>
                                         <div class="field">
-                                            <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-search-location"></i> Location: </label>
+                                            <label for="{{ p_form.location.id_for_label }}"><i class="fas fa-search-location"></i> Location: </label>
                                             {{ p_form.location }}
                                         </div>
                                         <div class="field">
@@ -122,7 +122,7 @@
                                         <div class="field" style="margin-top: 10px">
                                             <h5 style="margin: 0"><i class="fas fa-hashtag"></i> Social Media</h5>
                                             <div class="field" style="padding: 5px 20px 5px 20px">
-                                                <label for="{{ p_form.github.}}"><i class="fab fa-github"></i> Github: </label>
+                                                <label for="{{ p_form.github.id_for_label}}"><i class="fab fa-github"></i> Github: </label>
                                                 {{ p_form.github }}
                                                 <label for="{{ p_form.linkedin.id_for_label }}"><i class="fab fa-linkedin-in"></i> LinkedIn: </label>
                                                 {{ p_form.linkedin }}
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="custom-file">
                                                 {{ p_form.profile_pic}}
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                <label class="custom-file-label" id="pic" for="inputGroupFile01">Choose
                                                     file...</label>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@
                                             </div>
                                             <div class="custom-file">
                                                 {{ p_form.resume}}
-                                                <label class="custom-file-label" for="inputGroupFile01">Choose
+                                                <label class="custom-file-label" id="res" for="inputGroupFile01">Choose
                                                     file...</label>
                                             </div>
                                         </div>
@@ -237,8 +237,15 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{% static 'collegeHub/script.js' %}"></script>
-<script>
-    AOS.init();
+<script type="application/javascript">
+    $('#inputGroupFile01').change(function(e){
+        var fileName = e.target.files[0].name;
+        $('#pic').html(fileName);
+    });
+    $('#inputGroupFile02').change(function(e){
+        var t = e.target.files[0].name;
+        $('#res').html(t);
+    });
 </script>
 </body>
 </html>
