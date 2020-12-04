@@ -11,9 +11,7 @@
     {% endif %}
 
     {% for project in user_profile.project.all %}
-        <div class="card"
-             style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem"
-             id="project-{{ project.pk }}">
+        <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem" id="project-{{ project.pk }}">
             <div class="card-header"
                  style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
             <span style="font-weight: bold;font-size: 24px; color:#cbe206;" id="project-{{ project.pk }}-name">
@@ -91,10 +89,10 @@
         {% endif %}
     {% endif %}
     {% for project in user_profile.project.all %}
-        <div class="card proj_card">
+        <div class="card proj_card" id="project-{{ project.pk }}">
             <div class="card-header"
                  style="padding: 0.3rem 1.25rem;background-color: #a4a2c4; display: flex; justify-content: space-between; align-items: center; color:#ffc7c7;font-weight: bold">
-                <div style="font-size: 30px">{{ project.name }}</div>
+                <div style="font-size: 30px" id="project-{{ project.pk }}-name">{{ project.name }}</div>
                 {% if user.username == user_profile.user.username and user.is_authenticated %}
                     <div>
                         <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button"
@@ -139,10 +137,10 @@
                 {% endif %}
             </div>
             <div class="card-body" style="">
-                <h5 class="card-title" style="font-weight: lighter">{{ project.year }}</h5>
-                <p class="card-text">{{ project.description }}</p>
-                <a href="{{ project.link }}" class="btn"
-                   style="border-radius: 3rem; background-color: #6b688c; color: white">Link</a>
+                <h5 class="card-title" style="font-weight: lighter" id="project-{{ project.pk }}-year">{{ project.year }}</h5>
+                <p class="card-text" id="project-{{ project.pk }}-description">{{ project.description }}</p>
+{#                <a href="{{ project.link }}" id="project-{{ project.pk }}-link" class="btn"#}
+{#                   style="border-radius: 3rem; background-color: #6b688c; color: white">Link</a>#}
             </div>
         </div>
     {% endfor %}

@@ -207,10 +207,10 @@
     {% endif %}
 
     {% for section in experience.section.all %}
-        <div class="sub-section">
+        <div class="sub-section" id="sub-section-{{ section.pk }}">
             <div class="sub-section-header">
                 <div class="sub-section-heading">
-                    <h2 class="sub-section-heading-text">
+                    <h2 class="sub-section-heading-text" id="sub-section-{{ section.pk }}-name">
                         {{ section.name }}
                     </h2>
                 </div>
@@ -289,12 +289,12 @@
                                             <label for="id_company" class="col-form-label">Description: </label>
                                             {{ specificForm.description }}
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_company" class="col-sm-2 col-form-label">Link: </label>
-                                            <div class="col-sm-10">
-                                                {{ specificForm.link }}
-                                            </div>
-                                        </div>
+{#                                        <div class="form-group row">#}
+{#                                            <label for="id_company" class="col-sm-2 col-form-label">Link: </label>#}
+{#                                            <div class="col-sm-10">#}
+{#                                                {{ specificForm.link }}#}
+{#                                            </div>#}
+{#                                        </div>#}
                                         <button type="submit" class="btn btn-primary specific-form-submit">
                                             Add
                                         </button>
@@ -305,9 +305,9 @@
                     </div>
                 {% endif %}
             </div>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled" id="sub-section-list-{{ section.pk }}">
                 {% for specific in section.specific.all %}
-                    <li class="media exp-card">
+                    <li class="media exp-card" id="specific-{{specific.pk}}">
                         <div class="media-body">
                             {% if user.username == user_profile.user.username %}
                                 <div style="display: flex;" class="edit_mode">
@@ -330,8 +330,8 @@
                                     {{ specific.position }}
                                 </h4>
                             {% endif %}
-                            <h5 class="mt-0 mb-1" style="color: #e58383"> {{ specific.company }}</h5>
-                            <p>
+                            <h5 class="mt-0 mb-1" style="color: #e58383" id="specific-{{ specific.pk }}-company"> {{ specific.company }}</h5>
+                            <p id="specific-{{ specific.pk }}-description">
                                 {{ specific.description }}
                             </p>
                         </div>
@@ -353,7 +353,12 @@
                                               class="edit-object-form">
                                             {% csrf_token %}
                                             <div class="form-group">
-                                                {{ specificForm }}
+                                             <label for="id_position">Position:</label>
+                                                <input type="text" name="position" maxlength="50" required="" id="id_position">
+                                                <label for="id_company">Company:</label>
+                                                <input type="text" name="company" maxlength="50" id="id_company">
+                                                <label for="id_description">Description:</label>
+                                                <input type="text" name="description" value="This is what I did" maxlength="2000" required="" id="id_description">
                                             </div>
                                             <button type="submit" class="btn btn-primary"> Edit</button>
                                         </form>

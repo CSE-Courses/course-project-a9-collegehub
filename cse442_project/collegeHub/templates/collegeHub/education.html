@@ -104,7 +104,7 @@
     {% endif %}
 
     {% for education in user_profile.education.all %}
-        <li class="media edu-card">
+        <li class="media edu-card" id="education-{{ education.pk }}">
             {# <img src="{% static 'collegehub/images/UB.jpg' %}" class="mr-3 edu-logo" alt="EDu logo">#}
             {% if user.username == user_profile.user.username and user.is_authenticated %}
                 <div class="edu_ellipse">
@@ -119,8 +119,7 @@
                         <form method="post" id="remove-education-{{ education.pk }}-form" class="delete-object-form">
                             {% csrf_token %}
                             {{ deleteEducationForm }}
-                            <button type="submit" class="dropdown-item" style="color: black">Remove
-                            </button>
+                            <button type="submit" class="dropdown-item" style="color: black"> Remove </button>
                         </form>
                     </div>
                 </div>
@@ -160,7 +159,6 @@
                     {{ education.description }}
                 </p>
             </div>
-
         </li>
     {% endfor %}
 

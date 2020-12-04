@@ -10,9 +10,7 @@
     {% endif %}
 
     {% for skill in user_profile.skill.all %}
-        <div class="card mb-3"
-             style="align-items:center;display: flex;flex-direction:row;justify-content:space-between;border-radius: 4rem;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);max-width: 18rem; border: #9da724 3px solid"
-             id="skill-{{ skill.pk }}">
+        <div class="card mb-3" style="align-items:center;display: flex;flex-direction:row;justify-content:space-between;border-radius: 4rem;background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);max-width: 18rem; border: #9da724 3px solid" id="skill-{{ skill.pk }}">
             <div class="skill-header" id="skill-{{ skill.pk }}-name" style="color: white">{{ skill.name }}</div>
             {% if user.username == user_profile.user.username and user.is_authenticated %}
                 <button type="button" style="margin: 0" class="option-button" id="uni-Button" data-toggle="dropdown"
@@ -71,8 +69,8 @@
     {% endif %}
 
     {% for skill in user_profile.skill.all %}
-        <div class="skill-bar mb-3">
-            <div style=" font-size: 1.5rem ">{{ skill.name }}</div>
+        <div class="skill-bar mb-3" id="skill-{{ skill.pk }}">
+            <div style=" font-size: 1.5rem " id="skill-{{ skill.pk }}-name">{{ skill.name }}</div>
             {% if user.username == user_profile.user.username and user.is_authenticated %}
                 <div style="padding: 0;margin: 0">
                     <button type="button" style="margin: 0;color: white" class="option-button" id="uni-Button"
@@ -97,7 +95,7 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">
+                                <h5 class="modal-title" id="edit_skill_cardLabel_{{ skill.pk }}">
                                     Edit Skill</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -157,7 +155,7 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                                <h5 class="modal-title" id="edit_skill_cardLabel_{{ skill.pk }}">Edit
                                     Skill</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
