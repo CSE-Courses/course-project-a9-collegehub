@@ -195,9 +195,9 @@
         {% endif %}
     {% endif %}
     {% for skill in user_profile.skill.all %}
+        <div id="skill-{{ skill.pk }}">
         {% if user.username == user_profile.user.username and user.is_authenticated %}
-            <div style="-webkit-appearance: none;" type="button" data-toggle="dropdown" aria-haspopup="true"
-                 aria-expanded="false" class="skill_card">
+            <div style="-webkit-appearance: none;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="skill_card" id="skill-{{ skill.pk }}-name">
                 {{ skill.name }}
             </div>
             <div class="dropdown-menu" aria-labelledby="uni-Button">
@@ -244,5 +244,6 @@
         {% else %}
             <div class="skill_card"> {{ skill.name }}</div>
         {% endif %}
+        </div>
     {% endfor %}
 {% endif %}

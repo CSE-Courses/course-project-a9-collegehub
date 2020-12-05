@@ -225,9 +225,9 @@
         {% endif %}
     {% endif %}
     {% for project in user_profile.project.all %}
-        <div class="project_card">
+        <div class="project_card" id="project-{{ project.pk }}">
             <div class="project_name">
-                {{ project.name }}
+                <span id="project-{{ project.pk }}-name">{{ project.name }}</span>
                 {% if user.username == user_profile.user.username and user.is_authenticated %}
                     <button type="button" style="margin: 0; padding: 0" class="option-button"
                             id="uni-Button"
@@ -276,8 +276,13 @@
                     </div>
                 {% endif %}
             </div>
-            <div class="project_date"> {{ project.month }} {{ project.year }}</div>
-            <div class="project_description"> {{ project.description }}
+            {% if project.month != None and project.month != ''%}
+                <div class="project_date" id="project-{{ project.pk }}-date"> {{ project.month }}/{{ project.year }}</div>
+            {% else %}
+                    <div class="project_date" id="project-{{ project.pk }}-date"> {{ project.year }}</div>
+            {% endif %}
+
+            <div class="project_description" id="project-{{ project.pk }}-description"> {{ project.description }}
             </div>
         </div>
     {% endfor %}

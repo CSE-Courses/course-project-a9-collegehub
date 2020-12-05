@@ -561,7 +561,7 @@
     {% endif %}
 
     {% for section in experience.section.all %}
-        <div class="sub-section">
+        <div class="sub-section" id="sub-section-{{ section.pk }}">
             <div class="sub-section-header">
                 {% if user.username == user_profile.user.username %}
                     <div class="sub-section-heading">
@@ -683,12 +683,12 @@
                     </div>
                 </div>
             </div>
-            <div class="sub-section-container" id="sub-section-container">
+            <div class="sub-section-container" id="sub-section-container-{{ section.pk }}">
                 {% for specific in section.specific.all %}
-                    <div class="exp-card">
+                    <div class="exp-card" id="specific-{{ specific.pk }}">
                         <div class="exp_title">
-                            <div class="exp_company">{{ specific.company }}</div>
-                            <div class="exp_position">{{ specific.position }}</div>
+                            <div class="exp_company" id="specific-{{ specific.pk }}-company">{{ specific.company }}</div>
+                            <div class="exp_position" id="specific-{{ specific.pk }}-position">{{ specific.position }}</div>
 {#                            <div class="exp_date">Sep . 2020</div>#}
                         </div>
                         {% if user.username == user_profile.user.username %}
@@ -716,11 +716,11 @@
                                 </div>
                             </div>
                             <span>
-                                                    <div class="modal fade"
-                                                         id="edit_specific_card_{{ specific.pk }}"
-                                                         tabindex="-1"
-                                                         aria-labelledby="edit_cardLabel"
-                                                         aria-hidden="true">
+                                <div class="modal fade"
+                                     id="edit_specific_card_{{ specific.pk }}"
+                                     tabindex="-1"
+                                     aria-labelledby="edit_cardLabel"
+                                     aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
 
@@ -747,7 +747,7 @@
                             </div>
                                                 </span>
                         {% endif %}
-                        <div class="exp-description">
+                        <div class="exp-description" id="specific-{{ specific.pk }}-description">
                             {{ specific.description }}
                         </div>
                     </div>
