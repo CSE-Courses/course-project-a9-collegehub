@@ -65,11 +65,26 @@
                                 </h6>
                             </div>
                             <div class="social_links">
-                                <a href="#"><span><i class="fa fa-linkedin FA_Header"></i></span> </a>
+                                {% if user_profile.linkedin%}
+                                    <a href="{{user_profile.linkedin}}"><span><i class="fa fa-linkedin FA_Header"></i></span> </a>
+                                {% endif %}
+                                
+
+                                {% if user_profile.facebook%}
+                                    <a href="{{user_profile.facebook}}"><span><i class="fa fa-facebook FA_Header"></i></span> </a>
+                                {% endif %}
+                                
+
+                                {% if user_profile.instagram%}
+                                    <a href="{{user_profile.instagram}}"><span><i class="fa fa-instagram FA_Header"></i></span></a>
+                                {% endif %}
+                                
+                                {% if user_profile.github%}
+                                    <a href="{{user_profile.github}}"><span><i class="fa fa-github FA_Header"></i></span></a>
+                                {% endif %}
+
                                 <a href="#"><span><i class="far fa-envelope FA_Header"></i></span></a>
-                                <a href="#"><span><i class="fa fa-facebook FA_Header"></i></span> </a>
-                                <a href="#"><span><i class="fa fa-instagram FA_Header"></i></span>
-                                </a>
+
                             </div>
                         </div>
                         <div class="marble">
@@ -275,10 +290,14 @@
                                 <div id="email">
                                     {{ user_profile.user.email }}
                                 </div>
+                            {% if user_profile.resume %}
+
                                 <div style="margin-top: 20px">
-                                    <a class="contact-button" href="#" target="_blank"><span> <i
+
+                                    <a class="contact-button" href="{{user_profile.resume.url}}" ><span> <i
                                             class="fas fa-file-download" aria-hidden="true"> </i> </span>Resume</a>
                                 </div>
+                                {% endif %}
                                 {% if user_profile.location != None and user_profile.location != "" %}
                                     <div id="address">
                                         <div class="rechme" style="font-family: Bradley Hand, cursive">
@@ -291,11 +310,21 @@
                                 {% endif %}
                             </div>
                             <div class="social_links">
-                                <a href="#"><span><i class="fa fa-linkedin FA_Header"></i></span> </a>
-                                <a href="#"><span><i class="far fa-envelope FA_Header"></i></span></a>
-                                <a href="#"><span><i class="fa fa-facebook FA_Header"></i></span> </a>
-                                <a href="#"><span><i class="fa fa-instagram FA_Header"></i></span>
-                                </a>
+                            {% if user_profile.linkedin %}
+                                <a href="{{user_profile.linkedin}}"><span><i class="fa fa-linkedin FA_Header"></i></span> </a>
+                            {% endif %}   
+                            {% if user_profile.github %}
+                                <a href="{{user_profile.github}}"><span><i class="fa fa-github FA_Header"></i></span> </a>
+                            {% endif %}
+                            {% if user_profile.facebook %}
+                                <a href="{{user_profile.facebook}}"><span><i class="fa fa-facebook FA_Header"></i></span> </a>
+                            {% endif %}
+                            {% if user_profile.instagram %}
+                                <a href="{{user_profile.instagram}}"><span><i class="fa fa-instagram FA_Header"></i></span></a>
+                            {% endif %}
+
+                            <a href="{{user_profile.user.email}}"><span><i class="far fa-envelope FA_Header"></i></span></a>
+  
                             </div>
                         </div>
                         <div class="marble">

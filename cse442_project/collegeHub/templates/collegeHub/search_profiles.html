@@ -38,9 +38,10 @@
                     {% if user.is_authenticated %}
                         <div>
                             <nav class="navbar navbar-light">
-                                <form class="form-inline">
+                                <form class="form-inline" action='/Search/' method='POST'>
+                                     {% csrf_token %}
                                     <input style="color:white;border-radius: 0.5rem;background: linear-gradient(to right, #fbb136, #f9ae31) repeat;border: none;"
-                                           class="form-control" type="search" placeholder="Search" aria-label="Search">
+                                           class="form-control" type="search" name='q' placeholder="Search" aria-label="Search" id="SearchUsersInput">
                                     <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
                                     </button>
                                 </form>
@@ -152,39 +153,33 @@
         <div id="inner-event-right" style="height: 100%;">
             <div id="events">
                 <h1 class="event_heading">People</h1>
-
+              
                 <div id="people_container" style=" margin-top: 30px ">
-                    <div class="people_card">
+                 {% if results == '0'%}
+                <h5 style="font-weight: bold">Search Users...</h5>
+                {% else %}
+                    {% for result in results %}
+                     <div class="people_card">
                         <div style="background-color: #ffffff; border: 5px solid #e7e7e7; border-radius: 50%">
-                            <img style="border-radius: 50%" src="../../static/collegehub/images/BlueHead.jpg"
+                            <img style="border-radius: 50%" src="{{result.profile_pic.url}}"
                                  height="120"
                                  width="120"/>
                         </div>
                         <div class="card" style="width: 30rem;border: none">
                             <div class="card-body">
-                                <h5 class="card-title" style="font-weight: bold">Person name</h5>
-                                <p class="card-text" style="color: #FCA311">Major</p>
-                                <a href="#" style="background-color: #1b2d54; color: #FCA311; border-radius: 1.5rem"
+                                <h5 class="card-title" style="font-weight: bold">{{result.user.username}}</h5>
+                                <p class="card-text" style="color: #FCA311">{{result.user.first_name}} {{result.user.last_name}}</p>
+                                <a href="{% url 'index' username=result.user.username%}" style="background-color: #1b2d54; color: #FCA311; border-radius: 1.5rem"
                                    class="btn">Profile Link</a>
                             </div>
                         </div>
                     </div>
                     <hr>
-                    <div class="people_card">
-                        <div style="background-color: #ffffff; border: 5px solid #e7e7e7; border-radius: 50%">
-                            <img style="border-radius: 50%" src="../../static/collegehub/images/BlueHead.jpg"
-                                 height="120"
-                                 width="120"/>
-                        </div>
-                        <div class="card" style="width: 30rem;border: none">
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-weight: bold">Person name</h5>
-                                <p class="card-text" style="color: #FCA311">Major</p>
-                                <a href="#" style="background-color: #1b2d54; color: #FCA311; border-radius: 1.5rem"
-                                   class="btn">Profile Link</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
+
+                {% endif %}
+                  
                 </div>
                 {#       *************DOnt delete this comment TG will fix it once this page is fully done *************#}
                 {#                <hr>#}

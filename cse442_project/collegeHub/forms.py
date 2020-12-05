@@ -71,7 +71,7 @@ class EventForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('bio', 'occupation', 'location', 'github', 'linkedin', 'instagram', 'phone_number', 'age', 'profile_pic','resume')
+        fields = ('bio', 'occupation', 'location', 'github', 'linkedin', 'instagram', 'facebook', 'phone_number', 'age', 'profile_pic','resume')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -84,6 +84,7 @@ class UserProfileForm(forms.ModelForm):
         self.fields['phone_number'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['age'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['github'].widget.attrs['class'] = 'form-control grey_field'
+        self.fields['facebook'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['instagram'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['linkedin'].widget.attrs['class'] = 'form-control grey_field'
         self.fields['profile_pic'].widget.attrs['class'] = 'custom-file-input'

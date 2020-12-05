@@ -313,18 +313,33 @@
                 {{ user_profile.phone_number }}
               </div>
               <div id="contact_social">
-                <a href="{{ user_profile.facebook }}" class="social_links">
+              {% if user_profile.facebook %}
+              <a href="{{ user_profile.facebook }}" class="social_links">
                   <i class="fab fa-facebook-f"></i>
                 </a>
+              {% endif %}
+                
+                {% if user_profile.linkedin %}
                 <a href="{{ user_profile.linkedin }}" class="social_links">
                   <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="mailto:{{ user_profile.user.email }}" class="social_links">
-                  <i class="far fa-envelope"></i>
-                </a>
+              {% endif %}
+                
+                {% if user_profile.gitub %}
+                 <a href="{{ user_profile.github }}" class="social_links">
+                  <i class="fa fa-github"></i></a>
+              {% endif %}
+               
+                {% if user_profile.instagram %}
                 <a href="{{ user_profile.instagram }}" class="social_links">
                   <i class="fa fa-instagram"></i>
+              {% endif %}
+                     
+
+                  <a href="mailto:{{ user_profile.user.email }}" class="social_links">
+                  <i class="far fa-envelope"></i>
                 </a>
+                
               </div>
             </div>
           </div>
@@ -342,18 +357,37 @@
         </div>
       </div>
       <div id="right_box">
+        {% if user_profile.github%}
         <a href="{{ user_profile.github }}" class="social_links">
           <i class="fab fa-github"></i>
         </a>
+        {% endif %}
+        
+
+        {% if user_profile.linkedin%}
         <a href="{{ user_profile.linkedin }}" class="social_links">
           <i class="fab fa-linkedin-in"></i>
         </a>
-        <a href="{{ user_profile.email }}" class="social_links">
-          <i class="far fa-envelope"></i>
+        {% endif %}
+       
+
+        {% if user_profile.facebook%}
+        <a href="{{ user_profile.facebook }}" class="social_links">
+          <i class="fa fa-facebook"></i>
         </a>
+        {% endif %}
+        
+
+        {% if user_profile.instagram%}
         <a href="{{ user_profile.instagram }}" class="social_links">
           <i class="fa fa-instagram"></i>
         </a>
+        {% endif %}
+
+        <a href="{{ user_profile.email }}" class="social_links">
+          <i class="far fa-envelope"></i>
+        </a>
+        
         <a href="" id="copyright">
           © 2020 CollegeHub.
         </a>

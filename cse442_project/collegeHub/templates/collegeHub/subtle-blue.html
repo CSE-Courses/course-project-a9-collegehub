@@ -328,15 +328,31 @@
 
         </div>
         <div id="social_links">
+        {% if user_profile.instagram %}
             <a href="{{ user_profile.instagram }}" class="social_links_circle">
                 <i class="fab fa-instagram"></i>
             </a>
+        {% endif %}
+        {% if user_profile.github %}
+
             <a href="{{ user_profile.github }}" class="social_links_circle">
                 <i class="fab fa-github"></i>
             </a>
+        {% endif %}
+
+          {% if user_profile.linkedin %}
+
             <a href="{{ user_profile.linkedin }}" class="social_links_circle">
                 <i class="fa fa-linkedin FA_Header"></i>
             </a>
+          {% endif %}
+
+        {% if user_profile.facebook %}
+        <a href="{{ user_profile.facebook }}" class="social_links_circle">
+                <i class="fa fa-facebook-f FA_Header"></i>
+            </a>
+        {% endif %}
+
             <a href="{{ user_profile.email }}" class="social_links_circle">
                 <i class="far fa-envelope FA_Header"></i>
             </a>

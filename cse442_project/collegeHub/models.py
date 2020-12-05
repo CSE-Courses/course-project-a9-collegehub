@@ -27,6 +27,7 @@ class UserProfile(models.Model):
     location = models.CharField(default="", blank=True, max_length=255)
     occupation = models.CharField(default="", blank=True, max_length=255)
     github = models.CharField(default="", blank=True, max_length=255)
+    facebook = models.CharField(default="", blank=True, max_length=255)
     instagram = models.CharField(default="", blank=True, max_length=255)
     linkedin = models.CharField(default="", blank=True, max_length=255)
     resume = models.FileField(upload_to="files/", blank=True, null=True)
@@ -99,7 +100,9 @@ class Event(models.Model):
     end_time = models.DateTimeField(u'Final time', help_text=u'Final time')
     notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
  
-
+    class Meta:
+        ordering = ['-start_time']
+        
 class Project(models.Model):
     name = models.CharField(default='', max_length=50)
     description = models.CharField(default='This is what I did', max_length=2000)

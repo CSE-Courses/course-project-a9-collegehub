@@ -33,7 +33,6 @@ urlpatterns = [
     path('chooseTemplate/<int:temp>', views.choose_template, name='choose-template'),
 
     path('profile/', views.profile, name='profile'),
-    # path('register/', views.register, name='register'),
     path('specific', views.passer, name='specific-url'),
     path('test/', views.test_page.as_view(), name='test'),
     path('Red_Marble/', views.temp0.as_view(), name='temp0'),
@@ -41,7 +40,7 @@ urlpatterns = [
     path('Subtle_Blue/', views.temp2.as_view(), name='temp2'),
     path('Book/', views.temp3.as_view(), name='temp3'),
     path('404/', views.error404.as_view(), name='404'),
-    path('Search/', views.search.as_view(), name='Search'),
+    # path('Search/', views.search.as_view(), name='Search'),
 
     path('emailSent/', views.register_email_sent.as_view(), name="emailed"),
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
@@ -57,7 +56,7 @@ urlpatterns = [
     path('blogs_create/', views.create_blog , name = 'blog_create'),
     #path('blogs/<int:pk>/', PostDetailView.as_view() , name = 'blog_detail'),
     #path('blogs/delete/', PostDeleteView.as_view(), name = 'post-delete' ),
-
+    path('Search/', views.SearchResult, name='Search'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "collegeHub/password_reset.html",form_class=UserPasswordResetForm), name = "reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view( template_name = "collegeHub/password_reset_form.html", form_class=SetPasswordForm), name = "password_reset_confirm"),
