@@ -152,7 +152,7 @@
                 <div style="color: #68d3c5; font-weight: bold">
                     Studied at
                 </div>
-                <div id="education_container">
+                <div id="education-container">
                     {% include 'collegeHub/education.html' %}
                 </div>
             </div>
@@ -198,7 +198,7 @@
                 <div style="color: #68d3c5; font-weight: bold">
                     What I can do
                 </div>
-                <div id="skills_container">
+                <div id="skills-container">
                     {% include 'collegeHub/skills.html' %}
                 </div>
             </div>
@@ -239,7 +239,7 @@
                 <div style="color: #68d3c5; font-weight: bold">
                     I worked at
                 </div>
-                <div id="experience_container">
+                <div id="experience-container">
                     {% include 'collegeHub/experiences.html' %}
                 </div>
             </div>
@@ -282,7 +282,7 @@
                 <div style="color: #68d3c5; font-weight: bold">
                     Latest Work
                 </div>
-                <div id="projects_container">
+                <div id="projects-container">
                     {% include 'collegeHub/projects.html' %}
                 </div>
             </div>
@@ -373,3 +373,10 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+
+{% if user.username == user_profile.user.username %}
+    {% include 'collegeHub/subtle-blue-javascript.html' %}
+{% endif %}

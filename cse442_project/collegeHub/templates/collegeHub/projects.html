@@ -202,9 +202,13 @@
                 </div>
             {% endif %}
             <div class="card-body">
-                <h5 class="card-title" style="color: #68d3c5; font-weight: bold">{{ project.name }}</h5>
-                <p class="card-text" style="font-weight: lighter">{{ project.description }}</p>
-                <p class="card-text"><small class="text-muted">{{ project.month }} {{ project.year }}</small></p>
+                <h5 class="card-title" style="color: #68d3c5; font-weight: bold" id="project-{{ project.pk }}-name">{{ project.name }}</h5>
+                <p class="card-text" style="font-weight: lighter" id="project-{{ project.pk }}-description">{{ project.description }}</p>
+                {% if project.month != None and project.month != ''%}
+                <p class="card-text"><small class="text-muted" id="project-{{ project.pk }}-date">{{ project.month }} / {{ project.year }}</small></p>
+                {% else %}
+                    <p class="card-text"><small class="text-muted" id="project-{{ project.pk }}-date"> {{ project.year }} </small></p>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

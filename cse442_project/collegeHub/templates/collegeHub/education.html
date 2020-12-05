@@ -236,8 +236,8 @@
                     style="color: #68d3c5;">{{ education.certification_name }}</h6>
                 <p id="education-{{ education.pk }}-description" class="card-text edu-description"
                    style="font-weight: lighter">{{ education.description }}</p>
-                <p id="education-{{ education.pk }}-date" class="card-text year">
-                    <small class="text-muted">Date:
+                <p class="card-text year">
+                    <small class="text-muted" id="education-{{ education.pk }}-date">Date:
                         {{ education.month }}/{{ education.year }}
                     </small>
                 </p>

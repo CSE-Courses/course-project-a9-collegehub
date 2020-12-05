@@ -478,7 +478,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sub-section-container" id="sub-section-container">
+            <div class="sub-section-container" id="sub-section-container-{{ section.pk }}">
                 {% for specific in section.specific.all %}
                     <div class="card " id="specific-{{ specific.pk }}"
                          style="color: white;width: 38vw; margin-top:20px;background-color: transparent; border: none">

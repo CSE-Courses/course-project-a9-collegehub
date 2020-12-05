@@ -132,9 +132,9 @@
     {% endif %}
     {% for skill in user_profile.skill.all %}
         {% if user.username == user_profile.user.username and user.is_authenticated %}
-            <div>
+            <div id="skill-{{ skill.pk }}">
                 <div type="button" style="-webkit-appearance: none;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                     class="skill_circle" id="skill-{{ skill.pk }}">
+                     class="skill_circle" >
                     <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>
                     <div class="skill-header" id="skill-{{ skill.pk }}-name" style="color: white">{{ skill.name }}</div>
                 </div>
