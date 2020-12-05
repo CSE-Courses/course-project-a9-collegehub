@@ -87,8 +87,10 @@
                     <div class="event_card">
                         <div class="event_title">{{ event.title }}
                             {% if user.is_authenticated %}
-                                <button type="submit" class="remove_exp_card"><i class="far fa-trash-alt"></i>
+                                <form action = {% url 'delete_event' pk=event.pk %}> 
+                                <button type="submit" value='DELETE' class="remove_exp_card"><i class="far fa-trash-alt"></i>
                                 </button>
+                                </form>
                             {% endif %}
                         </div>
                         <div class="event_time"> {{ event.start_time }} to {{ event.end_time }}</div>

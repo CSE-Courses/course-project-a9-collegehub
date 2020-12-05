@@ -162,13 +162,12 @@ class ProjectForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'profile')
+        fields = ('title', 'content')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["title"].widget.attrs['class'] = "form-control grey_field"
         self.fields["content"].widget.attrs['class'] = "form-control grey_field"
-        self.fields['profile'].widget.attrs['class'] = 'form-control grey_field'
 
 
 class DeleteSpecificForm(forms.ModelForm):

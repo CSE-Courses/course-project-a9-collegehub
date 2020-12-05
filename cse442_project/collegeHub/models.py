@@ -95,7 +95,7 @@ class Education(models.Model):
 
 class Event(models.Model):
     user =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='scheduling', null=True, blank=True)
-    title = models.CharField(max_length=200, unique=True, blank = True, null = True)
+    title = models.CharField(max_length=200, blank = True, null = True)
     start_time = models.DateTimeField(u'Starting time', help_text=u'Starting time')
     end_time = models.DateTimeField(u'Final time', help_text=u'Final time')
     notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
