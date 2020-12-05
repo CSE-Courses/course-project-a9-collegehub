@@ -142,7 +142,7 @@
                   </div>
                 </div>
               </div>
-              <div id="education_body">
+              <div id="education-container">
                 {% include 'collegeHub/education.html' %}
               </div>
             </div>
@@ -183,7 +183,7 @@
                 </div>
               </div>
               <div class="skill_container">
-                <div class="skills_body">
+                <div class="skills_body" id="skills-container">
                   {% include 'collegeHub/skills.html' %}
                 </div>
               </div>
@@ -222,7 +222,7 @@
                   </div>
                 </div>
               </div>
-              <div id="experience_body">
+              <div id="experience-container">
                 {% include 'collegeHub/experiences.html' %}
               </div>
             </div>
@@ -230,7 +230,7 @@
           <div style="margin: 100px 0 50px 0">
             -2/4-
           </div>
-          <div id="yello_container">
+          <div id="yellow_container">
             <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative" class="yellow_bar">
             </div>
             <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
@@ -273,7 +273,7 @@
               </div>
 
             </div>
-            <div class="section project_container">
+            <div class="section project_container" id="projects-container">
               {% include 'collegeHub/projects.html' %}
             </div>
           </div>
@@ -434,3 +434,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+{% if user.username == user_profile.user.username %}
+    {% include 'collegeHub/book-javascript.html' %}
+{% endif %}

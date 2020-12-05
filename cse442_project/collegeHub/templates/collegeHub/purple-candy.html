@@ -175,13 +175,13 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="skills-body">
+                        <div class="skills-body" id="skills-container">
                             {% include 'collegeHub/skills.html' %}
                         </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="Experience" role="tabpanel" style="height: 100%">
-                    <div id="experience-container" style="height: 100%">
+                    <div style="height: 100%">
                         <div class="side-header">
                             <div class="side-headings">
                                 Experience
@@ -220,7 +220,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="experience-body">
+                        <div class="experience-body" id="experience-container">
                             {% include 'collegeHub/experiences.html' %}
                         </div>
                     </div>
@@ -264,7 +264,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="project-body">
+                        <div class="project-body" id="projects-container">
                             {% include 'collegeHub/projects.html' %}
                         </div>
                     </div>
@@ -366,4 +366,9 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+{% if user.username == user_profile.user.username %}
+    {% include 'collegeHub/purple-candy-javascript.html' %}
+{% endif %}
