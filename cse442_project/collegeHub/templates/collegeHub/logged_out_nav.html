@@ -31,9 +31,10 @@
         </li>
         <li>
             <nav class="navbar navbar-light">
-                <form class="form-inline">
+                <form class="form-inline" action ="/Search/" method='POST'>
+                    {% csrf_token %} 
                     <input style="border-radius: 0.5rem;background: linear-gradient(to right, #ffffff, #f6f6f6) repeat;border-right: none;"
-                           class="form-control" type="search" placeholder="Search" aria-label="Search">
+                           class="form-control" type="search" name='q' placeholder="Search" aria-label="Search">
                     <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </nav>

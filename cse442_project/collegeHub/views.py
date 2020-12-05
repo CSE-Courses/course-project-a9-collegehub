@@ -755,3 +755,31 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+def SearchResult(request):
+    if request.method == "POST":
+        print(request.POST)
+        query = request.POST.get('q')
+        print(request)
+        print('query is', query)
+        if(len(query)==0):
+            everything = models.UserProfile.objects.all()
+            return render(request, 'collegeHub/search_profiles.html', {'results': everything})
+        else:
+            queries = str(query).split(' ')
+            print(queries)
+            querysett = []
+            for q in queries:
+                print('query is ',q)
+                unames = models.UserProfile.objects.filter(user__username__icontains=q)
+                fnames = models.UserProfile.objects.filter(user__first_name__icontains=q)
+                lnames = models.UserProfile.objects.filter(user__last_name__icontains=q)
+                fullquery = unames | fnames | lnames
+
+                querysett+=fullquery.distinct()
+            
+            print(querysett)
+
+            return render(request, 'collegeHub/search_profiles.html', {'results': list(set(querysett))})
+    else:
+        return render(request, 'collegehub/search_profiles.html', {'results': '0'})
