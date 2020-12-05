@@ -86,16 +86,9 @@
                 <h1 class="event_heading">New Blog Entry</h1>
                 <form enctype="multipart/form-data" class="create_event_form" method="POST">
                     {% csrf_token %}
-                
-                    <div class="row">
-                        <label for="{{ form.title.id_for_label }}"><i class="fas fa-heading"></i> Title: </label>
-                        {{ form.title }}
-                    </div>
-                    <div class="row">
-                        <label for="{{ form.content.id_for_label }}"><i class="fas fa-quote-right"></i> Description:
-                        </label>
-                        {{ form.content }}
-                    </div>
+                    {{form.media}}
+                    {{form.as_p}}                  
+
                     <button type="submit" style="background-color: #FCA311; color: #14213D; border-radius: 1.5rem"
                             class="btn">Create Blog
                     </button>
