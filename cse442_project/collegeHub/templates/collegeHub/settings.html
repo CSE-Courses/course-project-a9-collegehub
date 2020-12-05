@@ -47,11 +47,16 @@
             <div id="template-container">
                 <h1 id="template-heading"> Template Store</h1>
                 <div class="tp-card template">
-                    {% if user_profile.template_number == 0 %}
-                        <div class="chosen_tick">
+
+                        <div class="chosen_tick" id="chosen-tick-0"
+                            {% if user_profile.template_number == 0 %}
+                                style="visibility: visible">
+                             {% else %}
+                                 style="visibility: hidden">
+                            {% endif %}
                             <i class="fas fa-check-circle"></i>
                         </div>
-                    {% endif %}
+
                     <div class="tp-info">
                         <a href="{% url 'temp0' %}" class="temp-title"><h5><b> Red Marble</b></h5></a>
                         <div class="shades">
@@ -121,11 +126,14 @@
                 </div>
                 <div class="tp-card template">
                     <div id="tp-img-container">
-                        {% if user_profile.template_number == 1 %}
-                            <div class="chosen_tick">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                        {% endif %}
+                        <div class="chosen_tick" id="chosen-tick-1"
+                            {% if user_profile.template_number == 1 %}
+                                style="visibility: visible">
+                             {% else %}
+                                 style="visibility: hidden">
+                            {% endif %}
+                            <i class="fas fa-check-circle"></i>
+                        </div>
                         <a class="tp-img" type="button" data-toggle="modal" data-target="#tp2">
                             <img src="{% static 'collegehub/images/template2.png' %}" class="card-img"
                                  alt="Default template">
@@ -194,11 +202,14 @@
 
                 </div>
                 <div class="tp-card template">
-                    {% if user_profile.template_number == 2 %}
-                        <div class="chosen_tick">
+                    <div class="chosen_tick" id="chosen-tick-2"
+                            {% if user_profile.template_number == 2 %}
+                                style="visibility: visible">
+                             {% else %}
+                                 style="visibility: hidden">
+                            {% endif %}
                             <i class="fas fa-check-circle"></i>
                         </div>
-                    {% endif %}
                     <div class="tp-info">
                         <a href="{% url 'temp2' %}" class="temp-title"><h5><b> Subtle Blue</b></h5></a>
                         <div class="shades">
@@ -268,11 +279,14 @@
                     </div>
                 </div>
                 <div class="tp-card template">
-                    {% if user_profile.template_number == 3 %}
-                        <div class="chosen_tick">
+                    <div class="chosen_tick" id="chosen-tick-3"
+                            {% if user_profile.template_number == 3 %}
+                                style="visibility: visible">
+                             {% else %}
+                                 style="visibility: hidden">
+                            {% endif %}
                             <i class="fas fa-check-circle"></i>
                         </div>
-                    {% endif %}
                     <div id="tp-img-container">
                         <a class="tp-img" type="button" data-toggle="modal" data-target="#tp4">
                             <img src="{% static 'collegehub/images/template4.png' %}" class="card-img"
@@ -466,6 +480,11 @@
             success: function (response) {
                 if (!response.fail) {
                     alert('Template Changed Successfully');
+                    var tickList = document.getElementsByClassName("chosen_tick");
+                        for (var i = 0; i < tickList.length; i++) {
+                          tickList[i].style.visibility = "hidden";
+                        }
+                    document.getElementById("chosen-tick-"+temp_num).style.visibility = 'visible';
                 }
             }
         })
