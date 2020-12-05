@@ -2,7 +2,6 @@
 
 <script>
     const sectionForm = document.getElementById('section-form');
-    let current_user = {% if user.username == user_profile.user.username  and user.is_authenticated %} true {% else %}false {% endif %}
 
     sectionForm.addEventListener("submit", submitSectionHandler);
     function submitSectionHandler(e){
@@ -626,10 +625,8 @@ function submitEducationHandler(e){
                         document.getElementById(obj_type+'-'+obj_pk+'-'+'name').innerText = response.name;
                         document.getElementById(obj_type+'-'+obj_pk+'-'+'description').innerText = response.description;
                         if(response.month != '' && response.month != 'None') {
-                            console.log('YOO');
                             document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText = response.month + '/' + response.year;
                          }else{
-                            console.log('Yeerr');
                             console.log( document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText);
                             document.getElementById(obj_type + '-' + obj_pk + '-' + 'date').innerText = response.year;
                          }
