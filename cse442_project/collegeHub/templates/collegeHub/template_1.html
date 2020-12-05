@@ -61,7 +61,7 @@
                             class="fas fa-minus-square"></i> </span>Remove</a>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i
+                    <a class="dropdown-item" href="{% url 'settings' %}"><span> <i
                             class="fas fa-cog"></i> </span>Settings</a>
                     <a class="dropdown-item" href="{% url 'logout' %}"><span> <i
                             class="fas fa-sign-out-alt"></i> </span>Logout</a>

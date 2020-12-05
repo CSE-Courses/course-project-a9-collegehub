@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.views.generic import TemplateView, ListView, DetailView, FormView
+from django.views.generic import TemplateView, ListView, DetailView, FormView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -241,6 +241,35 @@ class events(LoginRequiredMixin, ListView):
         print(x)
         return x
 
+class delete_event(LoginRequiredMixin, DeleteView):
+    model = Event
+    # template_name ='collegeHub/events.html'
+    success_url = reverse_lazy('events')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        x =  queryset.filter(user__user__username__iexact=self.request.user.username)
+        return x
+
+    def get(self, request, *args, **kwargs):
+        event_pk = kwargs.get('pk')
+        event_obj = get_object_or_404(Event, pk=event_pk)
+        current_site = get_current_site(request)
+        email_subject = f'NOTICE: Event Deleted: {event_obj.title}'
+        message = render_to_string('collegehub/event_delete_email.html', {
+            'user': request.user,
+            'domain': current_site.domain,
+            'event': event_obj
+        })
+
+        to_email = request.user.email
+        email = EmailMessage(
+            email_subject, message, to=[to_email]
+        )
+        email.send()        
+        return self.post(request, *args, **kwargs)
+
+    
 def group_invitation(request):
     if request.method == "POST":
         print(request.POST)
@@ -515,13 +544,13 @@ class Settings(LoginRequiredMixin, DetailView):
     template_name = 'collegeHub/settings.html'
 
     def get_object(self):
-        username = self.kwargs.get('username')
+        username = self.request.user.username
         user = auth_models.User.objects.get(username=username)
         return get_object_or_404(models.UserProfile, user=user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        username = self.kwargs.get('username')
+        username = self.request.user.username
         usr = auth_models.User.objects.get(username=username)
         userProfile = models.UserProfile.objects.get(user=usr)
         context['user_profile'] = userProfile
@@ -729,7 +758,7 @@ def edit_project(request, pk):
             return JsonResponse({'fail': True}, status=200)
     else:
         return
-
+@login_required
 def create_blog(request):
     if request.method == "POST":
         post_form = PostForm(request.POST)
@@ -737,6 +766,7 @@ def create_blog(request):
         if post_form.is_valid():
             post = post_form.save(commit=False)
             profile = get_object_or_404(UserProfile, pk= request.user.userprofile.pk)
+            post.profile = profile
             post.save()
             print(post)
             return redirect('blog_all')
@@ -753,8 +783,41 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(profile__user__username__iexact=self.request.user.username)
+    
+
 class PostDetailView(DetailView):
     model = Post
+    template_name = 'collegeHub/blog_detail.html'
+    context_object_name = 'object'
+
+    def get_queryset(self):
+        queryset =  super().get_queryset()
+        return queryset.filter(profile__user__username__iexact=self.request.user.username)
+
+class update_blog(LoginRequiredMixin, UpdateView):
+    model = Post
+    template_name = 'collegeHub/edit_blog.html'
+    fields = ['title', 'content']
+
+    def get_success_url(self):
+        return reverse('blog_all')
+
+class delete_blog(LoginRequiredMixin, DeleteView):
+    model = Post
+    # template_name ='collegeHub/events.html'
+    success_url = reverse_lazy('blog_all')
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        x =  queryset.filter(profile__user__username__iexact=self.request.user.username)
+        return x
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)   
+
 
 def SearchResult(request):
     if request.method == "POST":

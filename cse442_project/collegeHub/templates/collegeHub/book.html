@@ -396,7 +396,7 @@
             <a href="#" id="tp3settingsicon" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
             <div class="dropdown-menu move" style="background-color: #ffd42d;">
               {% if user.username == user_profile.user.username and user.is_authenticated %}
-              <a class="dropdown-item" href="{% url 'settings' username=user.username %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
+              <a class="dropdown-item" href="{% url 'settings' %}"><span> <i class="fas fa-cog"></i> </span>Settings</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
               {% else %}

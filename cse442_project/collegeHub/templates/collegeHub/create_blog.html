@@ -86,11 +86,7 @@
                 <h1 class="event_heading">New Blog Entry</h1>
                 <form enctype="multipart/form-data" class="create_event_form" method="POST">
                     {% csrf_token %}
-                    <div class="row">
-                        <label for="{{ form.profile.id_for_label }}"><i class="fas fa-user-tag"></i> Profile:
-                        </label>
-                        {{ form.profile }}
-                    </div>
+                
                     <div class="row">
                         <label for="{{ form.title.id_for_label }}"><i class="fas fa-heading"></i> Title: </label>
                         {{ form.title }}
