@@ -46,6 +46,8 @@ urlpatterns = [
     path('emailConfirmed/', views.register_confirmed.as_view(), name="confirmed"),
     path('emaiNotConfirmed/', views.register_not_confirmed.as_view(), name="not_confirmed"),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('activate_event/<uidb64>/', views.activate_invite, name='activate_event'),
+
     path('login/', auth_views.LoginView.as_view(template_name='templates/login.html'), name='login'),
     path('account/', views.EditProfile, name='account'),
     path('settings/', views.Settings.as_view(), name='settings'),

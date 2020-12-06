@@ -2,14 +2,17 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django import forms as form_check
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView, FormView, DeleteView, UpdateView
 from django.urls import reverse, reverse_lazy
 from collegeHub import models
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.timezone import make_aware
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.validators import validate_email
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm, PostForm
 from .forms import  DeleteSpecificForm, DeleteSectionForm, DeleteEducationForm, DeleteSkillForm, DeleteProjectForm, ChooseTemplateForm
@@ -19,14 +22,14 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
-
+import json 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import User
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mass_mail
 from django.contrib.auth import models as auth_models
 from django.contrib import messages
 from django.views.generic import (
@@ -272,31 +275,66 @@ class delete_event(LoginRequiredMixin, DeleteView):
     
 def group_invitation(request):
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
         str_emails = request.POST.get('emails')
         emails = str_emails.split(',')
         event = {'title':  request.POST.get('title'), 'start_time' :  request.POST.get('start_time'), 'end_time':  request.POST.get('end_time'), 'notes':  request.POST.get('notes') }
-        print(emails)
-        print(event)
-        for x in emails:
-            print(x)
-            email_subject = f'REMINDER: New Group Event'
-            message = render_to_string('collegehub/group_scheduler.html', {
-                'title' : event['title'],
-                'start_time': event['start_time'],
-                'end_time': event['end_time'],
-                'notes': event['notes'],
-                'requester': str(request.user.first_name + " " + request.user.last_name)
-            })
-            print(message)
-            to_email = x
-            email = EmailMessage(
-                email_subject, message, to=[to_email]
-            )
-            success = email.send()
-        return HttpResponse('sent mails')
+        # print(emails)
+        # print(event)
+        email_event = event
+        email_event['requester'] = request.user.email
+        encoded_event = urlsafe_base64_encode(force_bytes(json.dumps(email_event)))
+        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=make_aware(event['start_time']), end_time=make_aware( event['end_time']), notes=event['notes'])
+        event_obj.save()
+        cleaned_emails = []
+        for em in emails:
+            try:
+                validate_email(em.strip())
+                cleaned_emails.append(em)
+            except form_check.ValidationError:
+                print('invalid email.. ignoring')
+        email_subject = 'REMINDER: New Group Event'
+        
+        message = render_to_string('collegehub/group_scheduler.html', {
+            'title' : event['title'],
+            'start_time': event['start_time'],
+            'end_time': event['end_time'],
+            'notes': event['notes'],
+            'domain' : get_current_site(request),
+            'uid' : encoded_event,
+            'requester': str(request.user.first_name + " " + request.user.last_name)
+        })
+        email_invite = ( email_subject, message, 'teamcollegehub@gmail.com', cleaned_emails)
+        # send_mass_mail((email_invite,))
+
+        return redirect(reverse('events'))
     else:
         return render(request, 'collegeHub/group_email_form.html')
+
+def activate_invite(request, uidb64):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        print(uid)
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError):
+        user = None
+    if user is not None:
+        print(user)
+        print('event active')
+
+        #
+        # new_user_profile = UserProfile(user=user)
+        # new_user_profile.save()
+        #
+        # new_user_experience = Experiences(profile=new_user_profile)
+        # new_user_experience.save()
+
+
+        # return redirect('home')
+        return redirect(reverse('confirmed'))
+    else:
+        return redirect(reverse('not_confirmed'))
+
 
 
 class register_email_sent(TemplateView):
