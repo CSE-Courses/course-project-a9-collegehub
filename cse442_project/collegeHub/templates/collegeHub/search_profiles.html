@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--    Style CSS-->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
     <!--    fontawesome-->
     <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
@@ -35,23 +37,36 @@
                             {{ user.first_name }} {{ user.last_name }}
                         </div>
                     </div>
-                    {% if user.is_authenticated %}
-                        <div>
-                            <nav class="navbar navbar-light">
-                                <form class="form-inline" action='/Search/' method='POST'>
-                                     {% csrf_token %}
-                                    <input style="color:white;border-radius: 0.5rem;background: linear-gradient(to right, #fbb136, #f9ae31) repeat;border: none;"
-                                           class="form-control" type="search" name='q' placeholder="Search" aria-label="Search" id="SearchUsersInput">
-                                    <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
-                                    </button>
-                                </form>
-                            </nav>
-                        </div>
-                    {% endif %}
+                    <div id="number_events">
+                        {% if results %}
+                            {% if results|length > 1 %}
+                                We found {{ results|length }} profiles!
+                            {% elif results == '0' and results|length == 1 %}
+                                Search you friend's profile.
+                            {% else %}
+                                We only found {{ results|length }} profile!
+                            {% endif %}
+                        {% else %}
+                            Search you friend's profile.
+                        {% endif %}
+                    </div>
+                    <div>
+                        <nav class="navbar navbar-light">
+                            <form class="form-inline" action='/Search/' method='POST'>
+                                {% csrf_token %}
+                                <input style="color:white;border-radius: 0.5rem;background: linear-gradient(to right, #fbb136, #f9ae31) repeat;border: none;"
+                                       class="form-control" type="search" name='q' placeholder="Search"
+                                       aria-label="Search" id="SearchUsersInput">
+                                <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                        </nav>
+                    </div>
                     <div style="text-align: center; margin-bottom: 35px">
                         <div id="today">
                             {% now "F jS Y" %}
                         </div>
+
                     </div>
                     <div id="event_button_container">
                         <a href="{% url 'events' %}" class="card event_button"
@@ -101,7 +116,7 @@
                     </div>
                     <div id="event_button_container" style="flex-wrap: wrap">
                         <div class="card event_button"
-                           style="width: 9rem; border-radius: 1rem">
+                             style="width: 9rem; border-radius: 1rem">
                             <div class="card-body" style="text-align: center">
                                 <h5 class="card-title" style="font-weight: lighter">Events</h5>
                                 <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="60"
@@ -110,7 +125,7 @@
                             </div>
                         </div>
                         <div href="{% url 'group_email' %}" class="card event_button"
-                           style="width: 9rem; border-radius: 1rem">
+                             style="width: 9rem; border-radius: 1rem">
                             <div class="card-body" style="text-align: center">
                                 <h5 class="card-title" style="font-weight: lighter">Blog</h5>
                                 <p class="card-text"><img src="../../static/collegehub/images/blog.png" height="60"
@@ -119,19 +134,21 @@
                             </div>
                         </div>
                         <div href="{% url 'group_email' %}" class="card event_button"
-                           style="width: 9rem; border-radius: 1rem; margin-top: 10px">
+                             style="width: 9rem; border-radius: 1rem; margin-top: 10px">
                             <div class="card-body" style="text-align: center">
                                 <h5 class="card-title" style="font-weight: lighter">Domain</h5>
-                                <p class="card-text"><img src="{% static 'collegehub/images/feature3-2.png' %}" height="60"
+                                <p class="card-text"><img src="{% static 'collegehub/images/feature3-2.png' %}"
+                                                          height="60"
                                                           width="60"/>
                                 </p>
                             </div>
                         </div>
                         <div href="{% url 'group_email' %}" class="card event_button"
-                           style="width: 9rem; border-radius: 1rem; margin-top: 10px">
+                             style="width: 9rem; border-radius: 1rem; margin-top: 10px">
                             <div class="card-body" style="text-align: center">
                                 <h5 class="card-title" style="font-weight: lighter">Templates</h5>
-                                <p class="card-text"><img src="{% static 'collegehub/images/feature2-2.png' %}" height="60"
+                                <p class="card-text"><img src="{% static 'collegehub/images/feature2-2.png' %}"
+                                                          height="60"
                                                           width="60"/>
                                 </p>
                             </div>
@@ -140,64 +157,69 @@
 
                 </div>
             {% endif %}
-            <div style="margin-bottom: 50px">
-                <p style="font-weight: lighter;color: #de9300; font-size: 10px">
-                    Access github for rules and regulations
-                    <br>
-                    Access our FAQ for any questions
-                    <br>
-                    @ 2020 CollegeHub
-                </p>
+            <div style="display: flex;justify-content: space-between">
+                <div style="margin-bottom: 40px">
+                    <p style="font-weight: lighter;color: #de9300; font-size: 10px">
+                        Access github for rules and regulations
+                        <br>
+                        Access our FAQ for any questions
+                        <br>
+                        @ 2020 CollegeHub
+                    </p>
+                </div>
+                <div style="margin-top: 10px">
+                    <a href="{% url 'settings' %}" class="event_button"
+                       style="border-radius: 1rem;padding: 14px 12px">
+                        <img class="setting_cog" src="../../static/collegehub/images/cog.png" height="30"
+                             width="30"/>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="inner-event-right" style="height: 100%;">
             <div id="events">
                 <h1 class="event_heading">People</h1>
-              
+
                 <div id="people_container" style=" margin-top: 30px ">
-                 {% if results == '0'%}
-                <h5 style="font-weight: bold">Search Users...</h5>
-                {% else %}
-                    {% for result in results %}
-                     <div class="people_card">
-                        <div style="background-color: #ffffff; border: 5px solid #e7e7e7; border-radius: 50%">
-                            <img style="border-radius: 50%" src="{{result.profile_pic.url}}"
-                                 height="120"
-                                 width="120"/>
-                        </div>
-                        <div class="card" style="width: 30rem;border: none">
-                            <div class="card-body">
-                                <h5 class="card-title" style="font-weight: bold">{{result.user.username}}</h5>
-                                <p class="card-text" style="color: #FCA311">{{result.user.first_name}} {{result.user.last_name}}</p>
-                                <a href="{% url 'index' username=result.user.username%}" style="background-color: #1b2d54; color: #FCA311; border-radius: 1.5rem"
-                                   class="btn">Profile Link</a>
+                    {% if results == '0' %}
+                    {% else %}
+                        {% for result in results %}
+                            <div class="people_card">
+                                <div style="background-color: #ffffff; border: 5px solid #e7e7e7; border-radius: 50%">
+                                    <img style="border-radius: 50%" src="{{ result.profile_pic.url }}"
+                                         height="120"
+                                         width="120"/>
+                                </div>
+                                <div class="card" style="width: 30rem;border: none">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="font-weight: bold">{{ result.user.username }}</h5>
+                                        <p class="card-text"
+                                           style="color: #FCA311">{{ result.user.first_name }} {{ result.user.last_name }}</p>
+                                        <a href="{% url 'index' username=result.user.username %}"
+                                           style="background-color: #1b2d54; color: #FCA311; border-radius: 1.5rem"
+                                           class="btn">Profile Link</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <hr>
-                    {% endfor %}
-                    
-
-                {% endif %}
-                  
+                            <hr>
+                        {% endfor %}
+                    {% endif %}
                 </div>
-                {#       *************DOnt delete this comment TG will fix it once this page is fully done *************#}
-                {#                <hr>#}
-                {#                <div class="card">#}
-                {#                    <div class="card-body" style="text-align: center; letter-spacing: 4px">#}
-                {#                        {% if people_list %}#}
-                {#                            {% if people_list|length > 1 %}...#}
-                {#                                We found {{ event_list|length }} profiles!#}
-                {#                            {% else %}#}
-                {#                                We only have {{ event_list|length }} profile!#}
-                {#                            {% endif %}#}
-                {#                        {% else %}#}
-                {#                            Search you friend's profile.#}
-                {#                        {% endif %}#}
-                {#                    </div>#}
-                {#                </div>#}
-                {#       *************DOnt delete this comment TG will fix it once this page is fully done *************#}
-
+                <div class="card">
+                    <div class="card-body" style="text-align: center; letter-spacing: 4px">
+                        {% if results %}
+                            {% if results|length > 1 %}
+                                We found {{ results|length }} profiles!
+                            {% elif results == '0' and results|length == 1 %}
+                                Search you friend's profile.
+                            {% else %}
+                                We only found {{ results|length }} profile!
+                            {% endif %}
+                        {% else %}
+                            Search you friend's profile.
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
 

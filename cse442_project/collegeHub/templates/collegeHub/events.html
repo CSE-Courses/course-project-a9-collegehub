@@ -70,14 +70,23 @@
                 </div>
 
             </div>
-            <div style="margin-bottom: 50px">
-                <p style="font-weight: lighter;color: #de9300; font-size: 10px">
-                    Access github for rules and regulations
-                    <br>
-                    Access our FAQ for any questions
-                    <br>
-                    @ 2020 CollegeHub
-                </p>
+            <div style="display: flex;justify-content: space-between">
+                <div style="margin-bottom: 40px">
+                    <p style="font-weight: lighter;color: #de9300; font-size: 10px">
+                        Access github for rules and regulations
+                        <br>
+                        Access our FAQ for any questions
+                        <br>
+                        @ 2020 CollegeHub
+                    </p>
+                </div>
+                <div style="margin-top: 10px">
+                    <a href="{% url 'settings' %}" class="event_button"
+                       style="border-radius: 1rem;padding: 14px 12px">
+                        <img class="setting_cog" src="../../static/collegehub/images/cog.png" height="30"
+                             width="30"/>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="inner-event-right" style="height: 100%;">
@@ -85,12 +94,18 @@
                 <h1 class="event_heading">Events</h1>
                 {% for event in event_list %}
                     <div class="event_card">
-                        <div class="event_title">{{ event.title }}
+                        <div class="event_title">
+                            <div>
+                                {{ event.title }}
+                            </div>
                             {% if user.is_authenticated %}
-                                <form action = {% url 'delete_event' pk=event.pk %}> 
-                                <button type="submit" value='DELETE' class="remove_exp_card"><i class="far fa-trash-alt"></i>
-                                </button>
-                                </form>
+                                <div>
+                                    <form action= {% url 'delete_event' pk=event.pk %}>
+                                        <button type="submit" value='DELETE' class="remove_exp_card"><i
+                                                class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="event_time"> {{ event.start_time }} to {{ event.end_time }}</div>

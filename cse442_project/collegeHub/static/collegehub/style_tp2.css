@@ -348,9 +348,7 @@ html {
 
     .spin {
         display: inline-block;
-        width: 2rem;
         position: absolute;
-        height: 2rem;
         vertical-align: text-bottom;
         border: .25em solid #68e0cf;
         border-right-color: transparent;
