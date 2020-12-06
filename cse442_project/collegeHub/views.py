@@ -284,7 +284,7 @@ def group_invitation(request):
         email_event = event
         email_event['requester'] = request.user.email
         encoded_event = urlsafe_base64_encode(force_bytes(json.dumps(email_event)))
-        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=make_aware(event['start_time']), end_time=make_aware( event['end_time']), notes=event['notes'])
+        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=event['start_time'], end_time= event['end_time'], notes=event['notes'])
         event_obj.save()
         cleaned_emails = []
         for em in emails:
