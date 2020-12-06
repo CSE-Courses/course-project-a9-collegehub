@@ -5,7 +5,9 @@ from django.contrib.auth import models as auth_models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.utils import timezone
+from django_quill.fields import QuillField
 # Create your models here.
+from mdeditor.fields import MDTextField
 
 
 CurrentUser = get_user_model()
@@ -116,7 +118,9 @@ class Project(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length = 100)
-    content = models.TextField()
+    # content = models.TextField()
+    # content = QuillField()
+    content = MDTextField()
     date_posted = models.DateTimeField(default = timezone.now)  
     profile =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
 

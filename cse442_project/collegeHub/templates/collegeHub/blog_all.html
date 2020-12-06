@@ -41,7 +41,7 @@
                             {% if posts|length > 1 %}
                                 {{ posts|length }} Blog entries
                             {% else %}
-                                 {{ posts|length }} Blog entry only
+                                {{ posts|length }} Blog entry only
                             {% endif %}
                         {% else %}
                             Add a Blog below!
@@ -70,14 +70,23 @@
                     </a>
                 </div>
             </div>
-            <div style="margin-bottom: 50px">
-                <p style="font-weight: lighter;color: #de9300; font-size: 10px">
-                    Access github for rules and regulations
-                    <br>
-                    Access our FAQ for any questions
-                    <br>
-                    @ 2020 CollegeHub
-                </p>
+            <div style="display: flex;justify-content: space-between">
+                <div style="margin-bottom: 40px">
+                    <p style="font-weight: lighter;color: #de9300; font-size: 10px">
+                        Access github for rules and regulations
+                        <br>
+                        Access our FAQ for any questions
+                        <br>
+                        @ 2020 CollegeHub
+                    </p>
+                </div>
+                <div style="margin-top: 10px">
+                    <a href="{% url 'settings' %}" class="event_button"
+                       style="border-radius: 1rem;padding: 14px 12px">
+                        <img class="setting_cog" src="../../static/collegehub/images/cog.png" height="30"
+                             width="30"/>
+                    </a>
+                </div>
             </div>
         </div>
         <div id="inner-event-right" style="height: 100%;">
@@ -85,35 +94,39 @@
                 <h1 class="event_heading">Blogs</h1>
                 {% for post in posts %}
                     <div class="blog_card">
-{#                        IF YOU HAVE USER'S PROFILE PICTURE REPLACE SRC TO THE TAG AND UNCOMMENT THIS SECTION#}
-{#                        <div class="blog_img">#}
-{#                            <img style="border-radius: 50%" src="../../static/collegehub/images/BlueHead.jpg"#}
-{#                                 height="50"#}
-{#                                 width="50"/>#}
-{#                        </div>#}
-{#                        IF YOU HAVE USER'S PROFILE PICTURE REPLACE SRC TO THE TAG AND UNCOMMENT THIS SECTION#}
-
+                        <div class="blog_img">
+                            <img style="border-radius: 50%" src="{{ user.userprofile.profile_pic.url }}"
+                                 height="50"
+                                 width="50"/>
+                        </div>
                         <div class="blog_by">
-                            <span class="blog_credent">By </span> <span
-                                style="margin-left:3px;color: #FCA311; font-weight: bold; font-size: 20px">{{ post.profile }}</span>&nbsp;&nbsp;&nbsp;<span
-                                class="blog_credent" style="margin-right: 3px">published </span> <span
-                                class="blog_time">{{ post.date_posted }}</span>
-                              {% if user.is_authenticated %}  
-                            <form method = 'POST' action = {% url 'delete_blog' pk=post.pk %}>
-                            {% csrf_token %}
-                            <button type="submit" value='DELETE' class="remove_exp_card"><i class="far fa-trash-alt"></i>
-                            </button>
-                            </form>
-                            {% comment %} <a href={% url 'edit_blog' pk=post.pk %}><i class="far fa-edit"></i></a> {% endcomment %}
-                             {% endif %} 
+                            <div>
+                                <span class="blog_credent">By </span> <span
+                                    style="margin-left:3px;color: #FCA311; font-weight: bold; font-size: 20px">{{ post.profile }}</span>&nbsp;
+                            </div>
+                            <div class="blog_options">
+                                {% if user.is_authenticated %}
+                                    <form method='POST' action= {% url 'delete_blog' pk=post.pk %}>
+                                        {% csrf_token %}
+                                        <button type="submit" value='DELETE' class="remove_exp_card"><i
+                                                class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a href="{% url 'edit_blog' pk=post.pk %}" style="font-size: larger;"><i
+                                            style="margin: 0;color: #17a2b8"
+                                            class="far remove_exp_card fa-edit"></i></a>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="blog_title">
-                            <a href= {% url 'blog_detail' pk=post.pk%}>
-                            {{ post.title }}
+                            <a href= {% url 'blog_detail' pk=post.pk %}>
+                                {{ post.title }}
                             </a>
                         </div>
                         <div class="blog_notes">
-                            {{ post.content| truncatechars:9 }}
+                            <span class="blog_credent" style="margin-right: 3px">published </span> <span
+                                class="blog_time">{{ post.date_posted }}</span>
                         </div>
                     </div>
                 {% endfor %}
@@ -123,12 +136,12 @@
                         {% if posts %}
                             {% if posts|length > 1 %}
 
-                                {{ posts|length }} Blog entries,<a href="{% url 'blog_create' %}"
+                                You have {{ posts|length }} Blog entries,<a href="{% url 'blog_create' %}"
                                                                             style="color: #234c73; font-weight: bold">add</a>
                                 more!
                             {% else %}
                                 Only {{ posts|length }} Blog entry, <a href="{% url 'blog_create' %}"
-                                                                                style="color: #234c73; font-weight: bold">add</a>
+                                                                       style="color: #234c73; font-weight: bold">add</a>
                                 more!
                             {% endif %}
                         {% else %}

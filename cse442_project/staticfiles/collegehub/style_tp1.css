@@ -100,7 +100,7 @@ html {
         width: 12rem;
         z-index: 2;
         border-radius: 50%;
-        border: 3px solid white;
+        border: 5px solid #f6f6f6;
     }
 
     #About {
@@ -133,14 +133,12 @@ html {
     }
 
     #whoami {
-        background-size: 100%;
-        background: linear-gradient(50deg, #ff7f7f 0%, #ffc7c7 74%) repeat;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: rgba(0, 0, 0, 0);
-        font-size: 6rem;
+        color: #ffa9a9;
+        font-size: 6vw;
         font-weight: bold;
         line-height: 5.2rem;
     }
+
 
     #footer {
         display: flex;
@@ -166,6 +164,12 @@ html {
         -webkit-background-clip: text;
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
         font-size: 4rem;
+        margin-top: 25px;
+    }
+
+    .edu_ellipse {
+        left: 93%;
+        position: relative;
     }
 
     .side-header {
@@ -231,6 +235,28 @@ html {
         height: 3rem;
     }
 
+    .form-group input {
+        display: block;
+        width: 100%;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #ffffff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    button:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+    }
+
     .option-button {
         float: right;
         display: inline-block;
@@ -247,10 +273,6 @@ html {
         line-height: 1.5;
         border-radius: .25rem;
         transition: font-size 0.1s ease;
-    }
-
-    .option-button:hover {
-        font-size: 2.5rem;
     }
 
     .sub-section-button {
@@ -284,7 +306,59 @@ html {
     }
 
     .exp-card {
-        padding: 15px;
+        padding: 0 1.5rem 0 1.5rem;
+
+    }
+
+    .remove_exp_card {
+        color: #bf3434;
+        padding: 0;
+        margin: 0 0 0 40px;
+        font-size: 20px;
+        transform: scale(1);
+        display: inline-block;
+        font-weight: 200;
+        text-align: center;
+        -webkit-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: none;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: transform 0.2s ease;
+    }
+
+    .remove_exp_card:hover {
+        transform: scale(2);
+    }
+
+    .edit_mode h4 {
+        font-weight: bold;
+        color: #535353;
+        font-size: 24px;
+        transition: font-size 0.1s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .edit_mode h4:hover {
+        font-size: 28px;
+        color: #ff7272;
+        animation: wiggle 150ms infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes wiggle {
+        0% {
+            transform: rotate(2deg) translate(2px, 0);
+        }
+        50% {
+            transform: rotate(-1deg) translate(-2px, 0);;
+        }
+        100% {
+            transform: rotate(2deg) translate(2px, 0);;
+        }
     }
 
     .skills-body {
@@ -298,9 +372,12 @@ html {
         color: white;
         border-radius: 3rem;
         text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .skill-bar div {
+    .skill-bar > div {
         padding: .75rem 1.25rem;
         margin-bottom: 0;
     }
@@ -323,12 +400,22 @@ html {
         -webkit-text-fill-color: rgba(0, 0, 0, 0);
     }
 
-    .sub-section {
-        border: #dedede 1px solid;
-        border-radius: 0.5rem;
-        padding: 5px;
-        margin-bottom: 10px;
+    .proj_card {
+        width: 100%;
+        border: none;
         box-shadow: 30px 0 35px 0 lightgrey;
+        border-bottom-right-radius: 3rem;
+        border-bottom-left-radius: 3rem;
+        margin-bottom: 25px;
+        background: linear-gradient(50deg, #f6f6f6 0%, #fff8f8 74%) repeat;
+    }
+
+    .sub-section {
+        background: linear-gradient(50deg, #f6f6f6 0%, #fff8f8 74%) repeat;
+        border-radius: 1.5rem;
+        padding: 15px;
+        box-shadow: 30px 0 35px 0 lightgrey;
+        margin-bottom: 15px;
     }
 
     .sub-section-header {
@@ -340,8 +427,8 @@ html {
 
     .experience-body {
         height: 90%;
-        padding: 30px 60px 20px 0;
-        overflow: scroll;
+        padding: 30px 60px 50px 0;
+        /*overflow: scroll;*/
     }
 
     #project-container {
@@ -360,7 +447,8 @@ html {
         display: flex;
         height: 100%;
     }
-    #contact_container_left{
+
+    #contact_container_left {
         width: 50%;
         height: 100%;
     }
@@ -387,6 +475,7 @@ html {
         flex-direction: column;
         justify-content: left;
     }
+
     #contact-me div {
         margin-bottom: 10px;
     }
