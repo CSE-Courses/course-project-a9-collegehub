@@ -12,6 +12,7 @@ from collegeHub import models
 from django.utils.timezone import make_aware
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.validators import validate_email
 from .forms import UserProfileForm, UserEditForm
 from .forms import SignupForm, SpecificForm, SectionForm, EducationForm, SkillForm, ProjectForm, EventForm, PostForm
@@ -227,9 +228,11 @@ def create_event(request):
             email.send()
             print(ics_file.getvalue())
             event.save()
+            messages.success(request, 'You have created a new event')
             return redirect('events')
         else:
-            return redirect('create_event')
+            messages.error(request, 'Something went wrong. Please try again.')
+            return redirect('events')
     else:
         form = EventForm()
         return render(request, 'collegeHub/create_event.html', { 'form' : form})
@@ -244,10 +247,11 @@ class events(LoginRequiredMixin, ListView):
         print(x)
         return x
 
-class delete_event(LoginRequiredMixin, DeleteView):
+class delete_event(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Event
     # template_name ='collegeHub/events.html'
     success_url = reverse_lazy('events')
+    success_message = 'You have successfully deleted the event'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -269,7 +273,8 @@ class delete_event(LoginRequiredMixin, DeleteView):
         email = EmailMessage(
             email_subject, message, to=[to_email]
         )
-        email.send()        
+        email.send()     
+        messages.success(self.request, 'You have successfully deleted the event')   
         return self.post(request, *args, **kwargs)
 
     
@@ -281,11 +286,14 @@ def group_invitation(request):
         event = {'title':  request.POST.get('title'), 'start_time' :  request.POST.get('start_time'), 'end_time':  request.POST.get('end_time'), 'notes':  request.POST.get('notes') }
         # print(emails)
         # print(event)
+        
+        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=event['start_time'], end_time= event['end_time'], notes=event['notes'], is_group=True)
+        event_obj.save()
         email_event = event
         email_event['requester'] = request.user.email
         encoded_event = urlsafe_base64_encode(force_bytes(json.dumps(email_event)))
-        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=event['start_time'], end_time= event['end_time'], notes=event['notes'])
-        event_obj.save()
+
+
         cleaned_emails = []
         for em in emails:
             try:
@@ -293,6 +301,11 @@ def group_invitation(request):
                 cleaned_emails.append(em)
             except form_check.ValidationError:
                 print('invalid email.. ignoring')
+
+        if cleaned_emails == []:
+            messages.error(request, 'Something went wrong. Please try again')
+            return redirect(reverse('events'))
+
         email_subject = 'REMINDER: New Group Event'
         
         message = render_to_string('collegehub/group_scheduler.html', {
@@ -302,39 +315,35 @@ def group_invitation(request):
             'notes': event['notes'],
             'domain' : get_current_site(request),
             'uid' : encoded_event,
+
             'requester': str(request.user.first_name + " " + request.user.last_name)
         })
         email_invite = ( email_subject, message, 'teamcollegehub@gmail.com', cleaned_emails)
-        # send_mass_mail((email_invite,))
-
+        send_mass_mail((email_invite,))
+        messages.success(request, 'Invitations sent. The event has been added to your dashboard.')
         return redirect(reverse('events'))
     else:
         return render(request, 'collegeHub/group_email_form.html')
 
+@login_required
 def activate_invite(request, uidb64):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         print(uid)
-        user = User.objects.get(pk=uid)
+        user = User.objects.get(pk=request.user.pk)
     except(TypeError, ValueError, OverflowError):
         user = None
     if user is not None:
         print(user)
         print('event active')
-
-        #
-        # new_user_profile = UserProfile(user=user)
-        # new_user_profile.save()
-        #
-        # new_user_experience = Experiences(profile=new_user_profile)
-        # new_user_experience.save()
-
-
-        # return redirect('home')
-        return redirect(reverse('confirmed'))
+        event = json.loads(uid)
+        event_obj = Event(user=request.user.userprofile, title=event['title'], start_time=event['start_time'], end_time= event['end_time'], notes=event['notes'], is_group=True)
+        event_obj.save()
+        messages.success(request, 'You have accepted an invite')
+        return redirect('events')
     else:
-        return redirect(reverse('not_confirmed'))
-
+        messages.error(request, 'Something went wrong. Please try again or contact the host of the meeting.')
+        return redirect('events')
 
 
 class register_email_sent(TemplateView):
