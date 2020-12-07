@@ -105,6 +105,17 @@ class Event(models.Model):
  
     class Meta:
         ordering = ['-start_time']
+
+class GroupEvent(models.Model):
+    confirmed_users =  models.ManyToManyField(UserProfile, related_name='confirmed_users', null=True, blank=True)
+    pending_users =  models.ManyToManyField(UserProfile, related_name='pending_users', null=True, blank=True)
+    title = models.CharField(max_length=200, blank = True, null = True)
+    start_time = models.DateTimeField(u'Starting time', help_text=u'Starting time')
+    end_time = models.DateTimeField(u'Final time', help_text=u'Final time')
+    notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
+ 
+    class Meta:
+        ordering = ['-start_time']
         
 class Project(models.Model):
     name = models.CharField(default='', max_length=50)
