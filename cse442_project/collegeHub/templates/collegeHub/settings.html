@@ -24,39 +24,18 @@
     {% include 'collegeHub/logged_in_nav.html' %}
     <div id="Outer-timeline">
         <div id="inner-timeline-left">
-            <div class="card mb-3" style="background-color: #E5E5E5; box-shadow: 30px 0 30px 0 lightgrey; border: none">
-                <div class="row no-gutters">
-                    <div class="col-md-5">
-                        {#                          <iframe src="http://localhost:8000/Tamaghan/" width="400" height="400"></iframe>#}
-                        <img src="{% static 'collegehub/images/template1.png' %}" id="website-preview"
-                             alt="Website preview">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <a href="{% url 'index' username=user_profile.user %}"><h5 class="card-title account_text">
-                                <b><span> {{ user_profile.user |lower }}</span>.collegeHub</b>
-                            </h5></a>
-
-                            <p class="card-text">{{ user_profile.bio }}</p>
-{#                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
             <div id="template-container">
                 <h1 id="template-heading"><img src="{% static 'collegehub/images/feature2-2.png' %}" height="35"
-                                                      width="35"/> Template Store</h1>
+                                               width="35"/> Template Store</h1>
                 <div class="tp-card template">
-
-                        <div class="chosen_tick" id="chosen-tick-0"
+                    <div class="chosen_tick" id="chosen-tick-0"
                             {% if user_profile.template_number == 0 %}
-                                style="visibility: visible">
-                             {% else %}
-                                 style="visibility: hidden">
+                         style="visibility: visible">
+                            {% else %}
+                                style="visibility: hidden">
                             {% endif %}
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                    <i class="fas fa-check-circle"></i>
+                    </div>
 
                     <div class="tp-info">
                         <a href="{% url 'temp0' %}" class="temp-title"><h5><b> Red Marble</b></h5></a>
@@ -128,12 +107,12 @@
                 <div class="tp-card template">
                     <div id="tp-img-container">
                         <div class="chosen_tick" id="chosen-tick-1"
-                            {% if user_profile.template_number == 1 %}
-                                style="visibility: visible">
-                             {% else %}
-                                 style="visibility: hidden">
-                            {% endif %}
-                            <i class="fas fa-check-circle"></i>
+                                {% if user_profile.template_number == 1 %}
+                             style="visibility: visible">
+                                {% else %}
+                                    style="visibility: hidden">
+                                {% endif %}
+                        <i class="fas fa-check-circle"></i>
                         </div>
                         <a class="tp-img" type="button" data-toggle="modal" data-target="#tp2">
                             <img src="{% static 'collegehub/images/template2.png' %}" class="card-img"
@@ -205,12 +184,12 @@
                 <div class="tp-card template">
                     <div class="chosen_tick" id="chosen-tick-2"
                             {% if user_profile.template_number == 2 %}
-                                style="visibility: visible">
-                             {% else %}
-                                 style="visibility: hidden">
+                         style="visibility: visible">
+                            {% else %}
+                                style="visibility: hidden">
                             {% endif %}
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                    <i class="fas fa-check-circle"></i>
+                    </div>
                     <div class="tp-info">
                         <a href="{% url 'temp2' %}" class="temp-title"><h5><b> Subtle Blue</b></h5></a>
                         <div class="shades">
@@ -282,12 +261,12 @@
                 <div class="tp-card template">
                     <div class="chosen_tick" id="chosen-tick-3"
                             {% if user_profile.template_number == 3 %}
-                                style="visibility: visible">
-                             {% else %}
-                                 style="visibility: hidden">
+                         style="visibility: visible">
+                            {% else %}
+                                style="visibility: hidden">
                             {% endif %}
-                            <i class="fas fa-check-circle"></i>
-                        </div>
+                    <i class="fas fa-check-circle"></i>
+                    </div>
                     <div id="tp-img-container">
                         <a class="tp-img" type="button" data-toggle="modal" data-target="#tp4">
                             <img src="{% static 'collegehub/images/template4.png' %}" class="card-img"
@@ -480,6 +459,10 @@
         crossorigin="anonymous"></script>
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script>
+    function load_home() {
+        document.getElementById("website-preview").innerHTML = '<object type="text/html" data="index.html" ></object>';
+    }
+
     var chooseTemplateForms = document.getElementsByClassName('choose-temp-form');
     for (i = 0; i < chooseTemplateForms.length; i++) {
         chooseTemplateForms[i].addEventListener("submit", submitChooseTemplateHandler);
@@ -500,10 +483,10 @@
                 if (!response.fail) {
                     alert('Template Changed Successfully');
                     var tickList = document.getElementsByClassName("chosen_tick");
-                        for (var i = 0; i < tickList.length; i++) {
-                          tickList[i].style.visibility = "hidden";
-                        }
-                    document.getElementById("chosen-tick-"+temp_num).style.visibility = 'visible';
+                    for (var i = 0; i < tickList.length; i++) {
+                        tickList[i].style.visibility = "hidden";
+                    }
+                    document.getElementById("chosen-tick-" + temp_num).style.visibility = 'visible';
                 }
             }
         })
