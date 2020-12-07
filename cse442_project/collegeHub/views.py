@@ -160,7 +160,9 @@ def EditProfile(request):
                 else:
                     start_idx = profile_form.cleaned_data['linkedin'].index('linkedin.com')
                     profile_info.linkedin = 'https://www.' + profile_form.cleaned_data['linkedin'][start_idx:]
-
+                print(request.FILES)
+                if 'profile_pic' in request.FILES:
+                    profile_info.profile_pic = request.FILES['profile_pic']
                 profile_info.save()
                 messages.success(request, "Successfully changed profile")
                 return redirect('account' )

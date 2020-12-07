@@ -116,6 +116,9 @@ class Project(models.Model):
 
     def __str__(self):
         return self.profile.__str__() + ':  ' + self.name
+    
+    class Meta:
+        ordering = ['-year']
 
 class Post(models.Model):
     title = models.CharField(max_length = 100)
