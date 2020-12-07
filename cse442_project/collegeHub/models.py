@@ -8,7 +8,7 @@ from django.utils import timezone
 from django_quill.fields import QuillField
 # Create your models here.
 from mdeditor.fields import MDTextField
-
+import uuid 
 
 CurrentUser = get_user_model()
 
@@ -101,6 +101,7 @@ class Event(models.Model):
     start_time = models.DateTimeField(u'Starting time', help_text=u'Starting time')
     end_time = models.DateTimeField(u'Final time', help_text=u'Final time')
     notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
+    is_group = models.BooleanField(default=False, blank=True, null=True)
  
     class Meta:
         ordering = ['-start_time']

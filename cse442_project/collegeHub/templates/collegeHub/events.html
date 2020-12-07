@@ -92,11 +92,19 @@
         <div id="inner-event-right" style="height: 100%;">
             <div id="events">
                 <h1 class="event_heading">Events</h1>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
                 {% for event in event_list %}
                     <div class="event_card">
                         <div class="event_title">
                             <div>
                                 {{ event.title }}
+                                {% if event.is_group %}
+                                    <span class=" badge badge-pill small badge-warning">Group Event</span>
+                                {% endif %}
                             </div>
                             {% if user.is_authenticated %}
                                 <div>
