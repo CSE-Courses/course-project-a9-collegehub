@@ -323,12 +323,12 @@ html {
         font-weight: 600;
     }
 
-    #education_container {
+    #education-container {
         margin-top: 20px;
         padding-top: 30px;
     }
 
-    #skills_container {
+    #skills-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
@@ -356,7 +356,7 @@ html {
         animation: spinner-border 5s linear infinite;
     }
 
-    #experience_container {
+    #experience-container {
         margin-top: 30px;
     }
 
@@ -469,7 +469,7 @@ html {
     }
 
 
-    #projects_container {
+    #projects-container {
         margin-top: 30px;
 
     }

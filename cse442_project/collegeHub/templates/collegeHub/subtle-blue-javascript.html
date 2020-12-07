@@ -179,13 +179,13 @@
                                 '                                        </button>\n'+
                                 '                                    </form>\n'+
                                 '                                </div>\n';
-                                if(specific.company != 'None' && specific.company != ''){
+                                if(response.company != 'None' && response.company != ''){
                                     specific += '                                <h6 id="specific-'+response.specific_pk+'-company" class="card-subtitle mb-2"\n' +
                                         '                                    style="color: #68d3c5;">'+response.company+'</h6>\n';
                                 }
                                     specific += '                            <p id="specific-'+response.specific_pk+'-description" class="card-text"\n' +
                                                 '                               style="font-weight: lighter">'+response.description+'</p>\n';
-                                if(specific.link != 'None' && specific.link != '' && specific.link != '/'){
+                                if(response.link != 'None' && response.link != '' && response.link != '/'){
                                     specific += '                                <a id="specific-'+response.specific_pk+'-link" href="'+response.link+'"\n' +
                                                 '                                   class="mylink">Link</a>\n';
                                 }
@@ -353,7 +353,7 @@ function submitEducationHandler(e){
                         '                <div type="button" style="-webkit-appearance: none;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"\n'
                         +
                         '                     class="skill_circle" >\n'+
-                        '                    <div class="spin" style="width: 5rem; height: 5rem;" role="status"></div>\n'
+                        '                    <div class="spin" style="width: 7.5vw; height: 7.5vw;" role="status"></div>\n'
                         +
                         '                    <div class="skill-header" id="skill-'+response.skill_pk+'-name" style="color: white">'+response.name+'</div>\n'
                         +
