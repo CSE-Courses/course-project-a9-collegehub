@@ -72,7 +72,7 @@ def register(user_request):
 
             current_site = get_current_site(user_request)
             mail_subject = 'Activate your account.'
-            message = render_to_string('collegehub/acc_active_email.html', {
+            message = render_to_string('collegeHub/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
@@ -224,7 +224,7 @@ def create_event(request):
             print("sending email")
             current_site = get_current_site(request)
             email_subject = f'REMINDER: New event {event.title}'
-            message = render_to_string('collegehub/individual_scheduler.html', {
+            message = render_to_string('collegeHub/individual_scheduler.html', {
                 'user': request.user,
                 'domain': current_site.domain,
                 'event': event
@@ -273,7 +273,7 @@ class delete_event(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
         event_obj = get_object_or_404(Event, pk=event_pk)
         current_site = get_current_site(request)
         email_subject = f'NOTICE: Event Deleted: {event_obj.title}'
-        message = render_to_string('collegehub/event_delete_email.html', {
+        message = render_to_string('collegeHub/event_delete_email.html', {
             'user': request.user,
             'domain': current_site.domain,
             'event': event_obj
@@ -318,7 +318,7 @@ def group_invitation(request):
 
         email_subject = 'REMINDER: New Group Event'
         
-        message = render_to_string('collegehub/group_scheduler.html', {
+        message = render_to_string('collegeHub/group_scheduler.html', {
             'title' : event['title'],
             'start_time': event['start_time'],
             'end_time': event['end_time'],
@@ -328,7 +328,7 @@ def group_invitation(request):
 
             'requester': str(request.user.first_name + " " + request.user.last_name)
         })
-        email_invite = ( email_subject, message, 'teamcollegehub@gmail.com', cleaned_emails)
+        email_invite = ( email_subject, message, 'teamcollegeHub@gmail.com', cleaned_emails)
         send_mass_mail((email_invite,))
         messages.success(request, 'Invitations sent. The event has been added to your dashboard.')
         return redirect(reverse('events'))
@@ -357,22 +357,22 @@ def activate_invite(request, uidb64):
 
 
 class register_email_sent(TemplateView):
-    template_name = "collegehub/register_email_sent.html"
+    template_name = "collegeHub/register_email_sent.html"
 
 
 class register_confirmed(TemplateView):
-    template_name = "collegehub/register_confirmed.html"
+    template_name = "collegeHub/register_confirmed.html"
 
 
 class register_not_confirmed(TemplateView):
-    template_name = "collegehub/unconfirmed.html"
+    template_name = "collegeHub/unconfirmed.html"
 
 
 
 
 # class Account(LoginRequiredMixin, DetailView):
 #     model = models.UserProfile
-#     template_name = "collegehub/account.html"
+#     template_name = "collegeHub/account.html"
 
 #     def get_object(self):
 #         username = self.kwargs.get('username')
@@ -392,7 +392,7 @@ class register_not_confirmed(TemplateView):
 #     form_class = SignupForm
 #     success_url = reverse_lazy('gsplit-login')
 
-#     template_name = "collegehub/Signup.html"
+#     template_name = "collegeHub/Signup.html"
 
 
 @login_required
@@ -902,4 +902,4 @@ def SearchResult(request):
 
             return render(request, 'collegeHub/search_profiles.html', {'results': list(set(querysett))})
     else:
-        return render(request, 'collegehub/search_profiles.html', {'results': '0'})
+        return render(request, 'collegeHub/search_profiles.html', {'results': '0'})
