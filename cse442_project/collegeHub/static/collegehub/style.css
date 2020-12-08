@@ -1340,7 +1340,8 @@ html {
         color: white;
 
     }
-    .ed textarea{
+
+    .ed textarea {
         display: block;
         width: 100%;
         border: none;
@@ -1355,7 +1356,8 @@ html {
         border-radius: .25rem;
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
-    .ed input{
+
+    .ed input {
         display: block;
         width: 100%;
         border: none;
@@ -1393,23 +1395,141 @@ html {
         box-shadow: -30px 0 30px 0 lightgrey;
         min-height: 30rem;
     }
-    .blog_detail{
+
+    .blog_detail {
         font-family: "Roboto Slab", "Helvetica", "Arial", sans-serif;
     }
 
     .blog_detail_title {
         border-radius: 2rem;
         padding: 20px;
-        color: #FCA311;
+        color: #fca311;
         font-weight: bolder;
         font-size: 2rem;
         text-align: center;
     }
-    .blog_detail_header{
-         display: flex;
+
+    .blog_detail_header {
+        display: flex;
         justify-content: space-between;
     }
 
+
+    /*PRELOAD!**!*/
+    #preload {
+        background: linear-gradient(50deg, #000000 0%, #000000 74%) repeat;
+        padding: 50px;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 99999;
+    }
+
+    .preload_container {
+        text-align: center;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+    }
+
+
+    @keyframes fadeout {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    #my-name {
+        animation: fl 1s ease forwards 1.5s;
+    }
+
+    #my-name path:nth-child(1) {
+        stroke-dasharray: 530px;
+        stroke-dashoffset: 530px;
+        animation: nm 2s ease forwards;
+    }
+
+    #my-name path:nth-child(2) {
+        stroke-dasharray: 450px;
+        stroke-dashoffset: 450px;
+        animation: nm 3s ease forwards 0.5s;
+
+    }
+
+    #my-name path:nth-child(3) {
+        stroke-dasharray: 250.708px;
+        stroke-dashoffset: 250.708px;
+        animation: nm 1s ease forwards 0.5s;
+
+    }
+
+    #my-name path:nth-child(4) {
+        stroke-dasharray: 250px;
+        stroke-dashoffset: 250px;
+        animation: nm 1s ease forwards ;
+
+    }
+
+    #my-name path:nth-child(5) {
+        stroke-dasharray: 505px;
+        stroke-dashoffset: 505px;
+        animation: nm 3s ease forwards 0.5s;
+
+    }
+
+    #my-name path:nth-child(6) {
+        stroke-dasharray: 645px;
+        stroke-dashoffset: 645px;
+        animation: nm 3s ease forwards 0.5s;
+
+    }
+
+    #my-name path:nth-child(7) {
+        stroke-dasharray: 505px;
+        stroke-dashoffset: 505px;
+        animation: nm 3s ease forwards 0.5s;
+
+    }
+
+    #my-name path:nth-child(8) {
+        stroke-dasharray: 605px;
+        stroke-dashoffset: 605px;
+        animation: nm 2s ease forwards;
+    }
+
+    #my-name path:nth-child(9) {
+        stroke-dasharray: 423px;
+        stroke-dashoffset: 423px;
+        animation: nm 2s ease forwards;
+
+    }
+
+    #my-name path:nth-child(10) {
+        stroke-dasharray: 563px;
+        stroke-dashoffset: 563px;
+        animation: nm 2s ease forwards 0.5s;
+
+    }
+
+    @keyframes nm {
+        100% {
+            stroke-dashoffset: 0;
+        }
+    }
+    @keyframes fl {
+        from {
+            fill: transparent;
+        }
+        to {
+            fill: white;
+        }
+    }
 }
 
 
