@@ -47,7 +47,6 @@ import io
 import os
 
 ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT')
-import settings
 # Create your views here.
 
 def acme_challenge(request):
