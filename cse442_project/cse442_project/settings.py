@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'cse442_project.urls'
 
 TEMPLATES = [
@@ -137,6 +138,7 @@ EMAIL_HOST_USER = 'teamcollegehub@gmail.com'
 EMAIL_HOST_PASSWORD = 'collegehub@442'
 EMAIL_PORT = 587
 
+ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT')
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')

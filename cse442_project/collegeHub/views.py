@@ -44,8 +44,14 @@ from ics import Calendar
 from ics import Event as eve
 import tempfile
 import io
+import os
+
+ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT')
+import settings
 # Create your views here.
 
+def acme_challenge(request):
+    return HttpResponse(ACME_CHALLENGE_CONTENT)
 
 def register(user_request):
     if user_request.method == 'POST':
