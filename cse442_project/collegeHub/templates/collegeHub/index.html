@@ -97,15 +97,26 @@
                         {{ user_profile.bio }}
                     </h6>
                     <div id="social_links_tp0">
-                        <a class="social_links_circle" href="{{ user_profile.instagram }}">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="social_links_circle" href="{{ user_profile.facebook }}">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="social_links_circle" href="{{ user_profile.linkedin }}">
-                            <i class="fa fa-linkedin FA_Header"></i>
-                        </a>
+                        {% if user_profile.github %}
+                            <a class="social_links_circle" href="{{ user_profile.github }}">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        {% endif %}
+                        {% if user_profile.instagram %}
+                            <a class="social_links_circle" href="{{ user_profile.instagram }}">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        {% endif %}
+                        {% if user_profile.facebook %}
+                            <a class="social_links_circle" href="{{ user_profile.facebook }}">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                         {% endif %}
+                        {% if user_profile.facebook %}
+                            <a class="social_links_circle" href="{{ user_profile.linkedin }}">
+                                <i class="fa fa-linkedin FA_Header"></i>
+                            </a>
+                        {% endif %}
                         <a class="social_links_circle" href="mailto:{{ user_profile.email }}">
                             <i class="far fa-envelope FA_Header"></i>
                         </a>
