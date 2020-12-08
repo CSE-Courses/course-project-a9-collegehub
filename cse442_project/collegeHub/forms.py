@@ -91,6 +91,7 @@ class UserProfileForm(forms.ModelForm):
         self.fields['resume'].widget.attrs['class'] = 'custom-file-input'
         self.fields['profile_pic'].widget.attrs['id'] = 'inputGroupFile01'
         self.fields['resume'].widget.attrs['id'] = 'inputGroupFile02'
+        self.fields['resume'].widget.attrs['accept'] = 'application/pdf'
 
 
 class UserEditForm(UserChangeForm):

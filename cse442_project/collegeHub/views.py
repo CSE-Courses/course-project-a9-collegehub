@@ -39,7 +39,7 @@ from django.views.generic import (
     DetailView
     #DeleteView
 )
-
+from .validators import validate_image, validate_pdf
 from ics import Calendar
 from ics import Event as eve
 import tempfile
@@ -55,10 +55,10 @@ def register(user_request):
         if form.is_valid():
             user = form.save(commit=False)
             profile = p_form.save(commit=False)
-            if 'profile_pic' in user_request.FILES:
+            if 'profile_pic' in user_request.FILES and validate_image(user_request.FILES['profile_pic']):
                 print('got a picture')
                 profile.profile_pic = user_request.FILES['profile_pic']
-            if 'resume' in user_request.FILES:
+            if 'resume' in user_request.FILES and validate_image(user_request.FILES['resume']):
                 print('got a picture')
                 profile.resume = user_request.FILES['resume']
 
@@ -138,11 +138,9 @@ def EditProfile(request):
                 return redirect('account' )
 
         elif 'profile' in request.POST:
-
             print('received profile settings')
             profile_form = UserProfileForm(request.POST, instance=request.user.userprofile)
             if profile_form.is_valid():
-
                 profile_info = profile_form.save(commit=False)
                 if 'github.com' not in profile_form.cleaned_data.get('github'):
                     profile_info.github = ''
@@ -160,6 +158,18 @@ def EditProfile(request):
                 else:
                     start_idx = profile_form.cleaned_data['linkedin'].index('linkedin.com')
                     profile_info.linkedin = 'https://www.' + profile_form.cleaned_data['linkedin'][start_idx:]
+                if 'facebook.com' not in profile_form.cleaned_data.get('facebook'):
+                    profile_info.facebook = ''
+                else:
+                    start_idx = profile_form.cleaned_data['facebook'].index('facebook.com')
+                    profile_info.facebook = 'https://www.' + profile_form.cleaned_data['facebook'][start_idx:]
+
+                if 'profile_pic' in request.FILES and validate_image(request.FILES['profile_pic']):
+                    print('got a picture')
+                    profile_info.profile_pic = request.FILES['profile_pic']
+                if 'resume' in request.FILES and validate_pdf(request.FILES['resume']):
+                    print('got resume')
+                    profile_info.resume = request.FILES['resume']
 
                 profile_info.save()
                 messages.success(request, "Successfully changed profile")

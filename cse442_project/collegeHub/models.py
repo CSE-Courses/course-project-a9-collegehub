@@ -8,7 +8,8 @@ from django.utils import timezone
 from django_quill.fields import QuillField
 # Create your models here.
 from mdeditor.fields import MDTextField
-import uuid 
+import uuid
+from collegeHub.validators import validate_pdf, validate_image
 
 CurrentUser = get_user_model()
 
@@ -35,7 +36,6 @@ class UserProfile(models.Model):
     resume = models.FileField(upload_to="files/", blank=True, null=True)
     template_number = models.IntegerField(default=0)
     quote = models.CharField(default="", blank=True, max_length=255)
-
     id = models.AutoField(primary_key=True)
 
     def __str__(self):
