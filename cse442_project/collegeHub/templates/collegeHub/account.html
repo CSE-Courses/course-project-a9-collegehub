@@ -8,6 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!--    Style CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
     <!--    fontawesome-->
@@ -17,11 +19,6 @@
     <!--logo icon / favicon-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
     <title>Settings | CollegeHub</title>
-    <style>
-        #inputGroupFile01 {
-            opacity: 1;
-        }
-    </style>
 </head>
 
 <body>
@@ -51,6 +48,13 @@
                     {% comment %} <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
             <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a> {% endcomment %}
                 </div>
+                {% if messages %}
+                    <ul class="messages" style="padding: 0 20px 0 20px">
+                        {% for message in messages %}
+                            <li{% if message.tags %} style="color: #FCA311; font-weight: lighter" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <div style="margin-top: 60px">
                     <p style="font-weight: lighter;color: #dedede; font-size: 10px">
                         All personal information goes to our database securely handled by SQL lite.
@@ -62,13 +66,7 @@
                 </div>
             </div>
             <div id="account-container-right">
-                {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+
                 <div class="tab-content" id="nav-tabContent" style="height: 100%">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                          aria-labelledby="list-username-list">
@@ -86,13 +84,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label"><i class="fas fa-signature"></i>&nbsp; Username</label>
+                                <label for="staticEmail" class="col-sm-2 col-form-label"><i
+                                        class="fas fa-signature"></i>&nbsp; Username</label>
                                 <div class="col-sm-10">
                                     {{ u_form.username }}
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label"><i class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;Email</label>
+                                <label for="inputPassword" class="col-sm-2 col-form-label"><i
+                                        class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;Email</label>
                                 <div class="col-sm-10">
                                     {{ u_form.email }}
                                 </div>
@@ -100,7 +100,8 @@
                             <br>
                             <div class="row">
                                 <div class="col-sm-10">
-                                    <a href={% url 'reset_password' %}><label for="exampleInputEmail1"><i class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;Reset
+                                    <a href={% url 'reset_password' %}><label for="exampleInputEmail1"><i
+                                            class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;Reset
                                         Password</label></a>
                                 </div>
                             </div>
@@ -117,7 +118,7 @@
                         <hr>
                         {% comment %} form for profile settings ----------------------------------------------------------------------  {% endcomment %}
                         <div style="height: 90%;">
-                            <form lass="forms account-forms" enctype="multipart/form-data" method="POST"
+                            <form class="forms account-forms" enctype="multipart/form-data" method="POST"
                                   style="height: 100%;overflow: scroll">
                                 {% csrf_token %}
                                 <div class="profile_form">
@@ -161,30 +162,38 @@
                                             <label for="{{ p_form.instagram.id_for_label }}"><i
                                                     class="fab fa-instagram"></i> Instagram: </label>
                                             {{ p_form.instagram }}
-                                        
+
                                             <label for="{{ p_form.facebook.id_for_label }}"><i
                                                     class="fab fa-facebook"></i> Facebook: </label>
                                             {{ p_form.facebook }}
                                         </div>
                                     </div>
-                                    <div id="pic_form">
-                                        {{ p_form.profile_pic }}
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01"><i
+                                                    class="fas fa-portrait"></i>&ensp;Profile Picture</span>
+                                        </div>
+                                        <div id="pic_form" class="custom-file">
+                                            {{ p_form.profile_pic }}
+                                            <label class="custom-file-label " style="background-color: #f0f0f0 " id="pic" for="inputGroupFile01">Choose
+                                                a picture...</label>
+                                        </div>
                                     </div>
-                                    {#                                    <br>#}
-                                    {#                                    <div class="input-group">#}
-                                    {#                                        <div class="input-group-prepend">#}
-                                    {#                                        <span class="input-group-text" id="inputGroupFileAddon01"><i#}
-                                    {#                                                class="fas fa-file"></i>&ensp;Resume</span>#}
-                                    {#                                        </div>#}
-                                    {#                                        <div class="custom-file">#}
-                                    {#                                            {{ p_form.resume }}#}
-                                    {#                                            <label class="custom-file-label" for="inputGroupFile01">Choose#}
-                                    {#                                                file...</label>#}
-                                    {#                                        </div>#}
-                                    {#                                    </div>#}
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01"><i
+                                                    class="fas fa-file"></i>&ensp;Resume or CV</span>
+                                        </div>
+                                        <div id="resume_form" class="custom-file">
+                                            {{ p_form.resume }}
+                                            <label class="custom-file-label" style="background-color: #f0f0f0 " id="res" for="inputGroupFile01">Choose
+                                                a PDF file...</label>
+                                        </div>
+                                    </div>
                                 </div>
+                                <hr>
                                 <button type="submit"
-                                        style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
+                                        style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem;margin-bottom: 10px"
                                         class="btn"
                                         value="profile" name='profile'>Edit Profile
                                 </button>
@@ -288,6 +297,23 @@
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{% static 'collegeHub/script.js' %}"></script>
 <script type="application/javascript">
+
+    $('#profile_pic-clear_id').remove();
+    $('#pic_form br').remove();
+    $('#pic_form a').remove();
+    $('#pic_form > label:first-of-type').remove();
+    $('#pic_form').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+    $('#resume-clear_id').remove();
+    $('#resume_form br').remove();
+    $('#resume_form a').remove();
+    $('#resume_form > label:first-of-type').remove();
+    $('#resume_form').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+
+
     $('#inputGroupFile01').change(function (e) {
         var fileName = e.target.files[0].name;
         $('#pic').html(fileName);
