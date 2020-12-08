@@ -1,0 +1,18 @@
+{% block content %}
+  <div id="content-main">
+          <ul class="object-tools">
+            <li>
+                <a href={{ previous_month }}>
+                    Previous month
+                </a>
+            </li>
+            <li>
+                <a href={{ next_month }}>
+                    Next month
+                </a>
+            </li>
+        </ul>
+      {{ calendar }}
+  </div>
+
+{% endblock%}

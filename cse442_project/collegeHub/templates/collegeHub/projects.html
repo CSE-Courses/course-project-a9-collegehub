@@ -1,0 +1,289 @@
+{% load static %}
+{% if user_profile.template_number == 0 %}
+    {% if user_profile.project.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
+                <div class="card-body" style="font-weight: lighter; text-align: center">
+                    Click on + to add a project
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+
+    {% for project in user_profile.project.all %}
+        <div class="card" style="width: 900px;box-shadow: -30px 0 30px 0 lightgrey;border: #9da724 1px solid; border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem" id="project-{{ project.pk }}">
+            <div class="card-header"
+                 style="background-image: linear-gradient(50deg, #214252 0%, #376f8a 74%);border-bottom-right-radius: 1rem;border-bottom-left-radius: 1rem; ">
+            <span style="font-weight: bold;font-size: 24px; color:#cbe206;" id="project-{{ project.pk }}-name">
+                {{ project.name }}
+            </span>
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
+                    <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                data-target="#edit_project_card_{{ project.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteProjectForm }}
+                            <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                        </form>
+                    </div>
+                    <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1"
+                         aria-labelledby="edit_cardLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                                        Project</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" id="edit-project-{{ project.pk }}-form"
+                                          class="edit-object-form">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            {{ projectForm }}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"> Edit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p id="project-{{ project.pk }}-description"
+                       style="font-weight: lighter">{{ project.description }}</p>
+                    <footer class="blockquote-footer" id="project-{{ project.pk }}-date">
+                        {% if project.month != None %}
+                            {{ project.month }} /
+                        {% endif %}
+                        {{ project.year }}
+                    </footer>
+                </blockquote>
+            </div>
+
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 1 %}
+    {% if user_profile.project.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
+                <div class="card-body" style="font-weight: lighter; text-align: center">
+                    Click on + to add a project
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+    {% for project in user_profile.project.all %}
+        <div class="card proj_card" id="project-{{ project.pk }}">
+            <div class="card-header"
+                 style="padding: 0.3rem 1.25rem;background-color: #a4a2c4; display: flex; justify-content: space-between; align-items: center; color:#ffc7c7;font-weight: bold">
+                <div style="font-size: 30px" id="project-{{ project.pk }}-name">{{ project.name }}</div>
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
+                    <div>
+                        <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="uni-Button">
+                            <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                    data-target="#edit_project_card_{{ project.pk }}">Edit
+                            </button>
+                            <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                                {% csrf_token %}
+                                {{ deleteProjectForm }}
+                                <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                            </form>
+                        </div>
+                        <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1"
+                             aria-labelledby="edit_cardLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">
+                                            Edit Project</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" id="edit-project-{{ project.pk }}-form"
+                                              class="edit-object-form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ projectForm }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary"> Edit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-body" style="">
+                <h5 class="card-title" style="font-weight: lighter" id="project-{{ project.pk }}-year">{{ project.year }}</h5>
+                <p class="card-text" id="project-{{ project.pk }}-description">{{ project.description }}</p>
+{#                <a href="{{ project.link }}" id="project-{{ project.pk }}-link" class="btn"#}
+{#                   style="border-radius: 3rem; background-color: #6b688c; color: white">Link</a>#}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 2 %}
+    {% if user_profile.education.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <div style="color: lightgrey;background-color: transparent;border-color: #7a7a7a; font-size: 24px"
+                 class="card" id="no-education">
+                <div class="card-body" style="font-weight: lighter; text-align: center;">
+                    Click on + to add an education
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    {% for project in user_profile.project.all %}
+        <div class="card text-center project" id="project-{{ project.pk }}" style="background-color: transparent">
+            {% if user.username == user_profile.user.username and user.is_authenticated %}
+                <div class="project_button">
+                    <button type="button" style="margin: 0; padding: 0" class="option-button" id="uni-Button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                data-target="#edit_project_card_{{ project.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-project-{{ project.pk }}-form" class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteProjectForm }}
+                            <button type="submit" class="dropdown-item" style="color: black">Remove</button>
+                        </form>
+                    </div>
+                </div>
+                <div style="color: black; text-align: left" class="modal fade" id="edit_project_card_{{ project.pk }}"
+                     tabindex="-1"
+                     aria-labelledby="edit_cardLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edit_project_cardLabel_{{ project.pk }}">Edit
+                                    Project</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="edit-project-{{ project.pk }}-form" class="edit-object-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ projectForm }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"> Edit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title" style="color: #68d3c5; font-weight: bold" id="project-{{ project.pk }}-name">{{ project.name }}</h5>
+                <p class="card-text" style="font-weight: lighter" id="project-{{ project.pk }}-description">{{ project.description }}</p>
+                {% if project.month != None and project.month != ''%}
+                <p class="card-text"><small class="text-muted" id="project-{{ project.pk }}-date">{{ project.month }} / {{ project.year }}</small></p>
+                {% else %}
+                    <p class="card-text"><small class="text-muted" id="project-{{ project.pk }}-date"> {{ project.year }} </small></p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if user_profile.template_number == 3 %}
+    {% if user_profile.project.count == 0 %}
+        {% if user.username == user_profile.user.username %}
+            <li style="background-color: transparent; font-size: 24px" class="card" id="no-project">
+                <div class="card-body" style="font-weight: lighter; text-align: center">
+                    Click on + to add a project
+                </div>
+            </li>
+        {% endif %}
+    {% endif %}
+    {% for project in user_profile.project.all %}
+        <div class="project_card" id="project-{{ project.pk }}">
+            <div class="project_name">
+                <span id="project-{{ project.pk }}-name">{{ project.name }}</span>
+                {% if user.username == user_profile.user.username and user.is_authenticated %}
+                    <button type="button" style="margin: 0; padding: 0" class="option-button"
+                            id="uni-Button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="uni-Button">
+                        <button class="dropdown-item" style="color: black" data-toggle="modal"
+                                data-target="#edit_project_card_{{ project.pk }}">Edit
+                        </button>
+                        <form method="post" id="remove-project-{{ project.pk }}-form"
+                              class="delete-object-form">
+                            {% csrf_token %}
+                            {{ deleteProjectForm }}
+                            <button type="submit" class="dropdown-item" style="color: black">Remove
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal fade" id="edit_project_card_{{ project.pk }}" tabindex="-1"
+                         aria-labelledby="edit_cardLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"
+                                        id="edit_project_cardLabel_{{ project.pk }}">Edit
+                                        {{ project.name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" id="edit-project-{{ project.pk }}-form"
+                                          class="edit-object-form">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            {{ projectForm }}
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"> Edit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if project.month != None and project.month != ''%}
+                <div class="project_date" id="project-{{ project.pk }}-date"> {{ project.month }}/{{ project.year }}</div>
+            {% else %}
+                    <div class="project_date" id="project-{{ project.pk }}-date"> {{ project.year }}</div>
+            {% endif %}
+
+            <div class="project_description" id="project-{{ project.pk }}-description"> {{ project.description }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

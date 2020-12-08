@@ -1,0 +1,395 @@
+{% load static %}
+<div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    <div id="Outer_timeline_template3">
+        <nav class="navigation">
+            <ul class="nav-list text-center ">
+                <li style="text-align: left;font-size: 20px; color: #68d3c5">
+                    {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}
+                </li>
+                <div>
+                    <li>
+                        <a href="#"> Home </a>
+                    </li>
+                    <li>
+                        <a href="#about"> About </a>
+                    </li>
+                    <li>
+                        <a href="#education">Education</a>
+                    </li>
+                    <li>
+                        <a href="#skills"> Skills </a>
+                    </li>
+                    <li>
+                        <a href="#experience">Experience</a>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a data-offset="-235,40" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"
+                             style="background-color: #585e64; border-radius: 7px;">
+                            <h4 class="dropdown-header" style="font-size: large; color: #68d3c5">
+                                {{ user.first_name }} {{ user.last_name }}
+                            </h4>
+                            {% if user.is_authenticated %}
+
+                                <a class="dropdown-item" href="{% url 'settings'  %}"><span> <i
+                                        class="fas fa-cog"></i> </span>Settings</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}"><span> <i
+                                        class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'login' %}"><span> <i
+                                        class="fas fa-sign-out-alt"></i> </span>Login</a>
+
+                            {% endif %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" style="color: #68d3c5" href="#">Copyright CollegHub @ 2020</a>
+                        </div>
+                    </li>
+                </div>
+
+            </ul>
+        </nav>
+        <div id="sections">
+            <div id="profile_pic_left">
+                {% if user_profile.profile_pic.url %}
+                    <img src="{{ user_profile.profile_pic.url }}">
+                {% else %}
+                    <img src="{% static 'collegehub/images/blue_marble.jpg' %}">
+                {% endif %}
+            </div>
+            <div id="header">
+                <div id="circle">
+                    <h1><span>{{ user_profile.user.first_name }}<br>{{ user_profile.user.last_name }} </span></h1>
+                </div>
+                <div id="header_container">
+                    <div style="color: #68d3c5; font-weight: bold; margin-bottom: 10px">
+                        {{ user_profile.occupation }}
+                    </div>
+                    <div class="about-me">
+                        {{ user_profile.bio }}
+                    </div>
+                    <div>
+                        <a id="contact_me_b" href="#contact">
+                            Contact me
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="about" class="section">
+                <div class="section_heading">
+                    About Me
+                </div>
+                <div id="about_container">
+                    <div class="about-me" style="margin-bottom: 35px; padding: 0">
+                        {{ user_profile.bio }}
+                    </div>
+                    <div>
+                        <ul id="aboutme_list">
+                            {% if user_profile.age != None and user_profile.age != "" %}
+                                <li><strong> <span style="color: #68d3c5;font-weight: bold"> Age: </span> </strong>
+                                    <span> {{ user_profile.age }} </span></li>
+                            {% endif %}
+                            {% if user_profile.phone_number != None and user_profile.phone_number != "" %}
+                                <li>
+                                    <strong>
+                                        <span style="color: #68d3c5;font-weight: bold"> phone number: </span>
+                                    </strong>
+                                    <span> {{ user_profile.phone_number }} </span>
+                                </li>
+                            {% endif %}
+                            <li><strong> <span style="color: #68d3c5;font-weight: bold"> email: </span> </strong>
+                                <span> {{ user.email }} </span></li>
+                            {% if user_profile.location != None and user_profile.location != "" %}
+                                <li><strong> <span style="color: #68d3c5;font-weight: bold"> address: </span> </strong>
+                                    <span> {{ user_profile.location }} </span></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div id="education" class="section">
+                <div class="section_heading" style="margin: 0; ">
+                    <div>Education</div>
+                    {% if user.username == user_profile.user.username and user.is_authenticated %}
+                        <div class="ellipse-container">
+                            <button type="button" data-toggle="modal" data-target="#edu_add_card" class="option-button">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="modal fade" style="top: 116px" id="edu_add_card" tabindex="-1"
+                     aria-labelledby="edu_add_cardLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="edu_add_cardLabel">Add Education card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="education-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ educationForm }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Studied at
+                </div>
+                <div id="education-container">
+                    {% include 'collegeHub/education.html' %}
+                </div>
+            </div>
+            <div id="skills" class="section">
+                <div class="section_heading" style="margin: 0; ">
+                    <div>Skills</div>
+                    {% if user.username == user_profile.user.username and user.is_authenticated %}
+
+                        <div class="ellipse-container">
+                            <button type="button" data-toggle="modal" data-target="#skills_add_card"
+                                    class="option-button">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+
+                    {% endif %}
+                </div>
+                <div class="modal fade" id="skills_add_card" tabindex="-1" aria-labelledby="skills_add_cardLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="skills_add_cardLabel">Add Skill card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <form method="post" id="skill-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="id_position" class="col-form-label"> Skill Name: </label>
+                                        {{ skillForm.name }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    What I can do
+                </div>
+                <div id="skills-container">
+                    {% include 'collegeHub/skills.html' %}
+                </div>
+            </div>
+            <div id="experience" class="section">
+                <div class="section_heading" style="margin: 0; ">
+                    <div>Experience</div>
+                    {% if user.username == user_profile.user.username and user.is_authenticated %}
+                        <div class="ellipse-container">
+                            <button type="button" data-toggle="modal" data-target="#experience_add_subsection"
+                                    class="option-button">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="modal fade" id="experience_add_subsection" tabindex="-1"
+                     aria-labelledby="experience_add_cardLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="experience_add_cardLabel">Add a Section to Experience</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="section-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="id_position" class="col-form-label">Type of Experience: </label>
+                                        {{ sectionForm.name }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    I worked at
+                </div>
+                <div id="experience-container">
+                    {% include 'collegeHub/experiences.html' %}
+                </div>
+            </div>
+            <div id="projects" class="section">
+                <div class="section_heading" style="margin: 0; ">
+                    <div>Projects</div>
+                    {% if user.username == user_profile.user.username and user.is_authenticated %}
+
+                        <div class="ellipse-container">
+                            <button type="button" data-toggle="modal" data-target="#projects_add_card"
+                                    class="option-button">
+                                <i class="fas fa-plus"></i></button>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="modal fade" id="projects_add_card" tabindex="-1" aria-labelledby="projects_add_cardLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="projects_add_cardLabel">Add Project card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="project-form">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ projectForm }}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Latest Work
+                </div>
+                <div id="projects-container">
+                    {% include 'collegeHub/projects.html' %}
+                </div>
+            </div>
+            <div id="contact" class="section">
+                <div class="section_heading" style="margin: 0">
+                    Contact
+                </div>
+                <div style="color: #68d3c5; font-weight: bold">
+                    Let's Talk
+                </div>
+                <div id="contact_container">
+                    <div id="contact_me_container">
+                        <div style="font-weight: bold;font-size: 24px">{{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</div>
+                        <div class="blue" style="">{{ user_profile.occupation }}</div>
+                        <br>
+                        <br>
+                        <ul>
+                            {% if user_profile.age != None and user_profile.age != "" %}
+                                <li><strong> <span class="blue"> Age: </span> </strong> <span
+                                        style="font-weight: lighter"> {{ user_profile.age }} </span>
+                                </li>
+                            {% endif %}
+                            {% if user_profile.location != None and user_profile.location != "" %}
+                                <li><strong> <span class="blue"> Address: </span> </strong> <span
+                                        style="font-weight: lighter"> {{ user_profile.location }} </span>
+                                </li>
+                            {% endif %}
+                            {% if user_profile.phone_number != None and user_profile.phone_number != "" %}
+                                <li><strong> <span class="blue"> Phone: </span> </strong> <span
+                                        style="font-weight: lighter"> {{ user_profile.phone_number }} </span>
+                                </li>
+                            {% endif %}
+
+                            <li><strong> <span class="blue"> E-mail: </span> </strong> <span
+                                    style="font-weight: lighter"> {{ user_profile.user.email }} </span>
+                            </li>
+                        </ul>
+                        <div style="font-family: 'Arizonia', Helvetica, sans-serif, cursive"
+                             class="signature"> {{ user_profile.user.first_name }} {{ user_profile.user.last_name }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="social_links">
+        {% if user_profile.instagram %}
+            <a href="{{ user_profile.instagram }}" class="social_links_circle">
+                <i class="fab fa-instagram"></i>
+            </a>
+        {% endif %}
+        {% if user_profile.github %}
+
+            <a href="{{ user_profile.github }}" class="social_links_circle">
+                <i class="fab fa-github"></i>
+            </a>
+        {% endif %}
+
+          {% if user_profile.linkedin %}
+
+            <a href="{{ user_profile.linkedin }}" class="social_links_circle">
+                <i class="fa fa-linkedin FA_Header"></i>
+            </a>
+          {% endif %}
+
+        {% if user_profile.facebook %}
+        <a href="{{ user_profile.facebook }}" class="social_links_circle">
+                <i class="fa fa-facebook-f FA_Header"></i>
+            </a>
+        {% endif %}
+
+            <a href="{{ user_profile.email }}" class="social_links_circle">
+                <i class="far fa-envelope FA_Header"></i>
+            </a>
+        </div>
+    </div>
+    <!--*******************************************CONTENT************************************************-->
+</div>
+<div id="mobile-body">
+    <div id="mobile-container">
+        <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha384-LVoNJ6yst/aLxKvxwp6s2GAabqPczfWh6xzm38S/YtjUyZ+3aTKOnD/OJVGYLZDl"
+        crossorigin="anonymous"></script>
+
+{% if user.username == user_profile.user.username %}
+    {% include 'collegeHub/subtle-blue-javascript.html' %}
+{% endif %}

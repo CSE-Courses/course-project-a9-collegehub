@@ -1,0 +1,419 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style_tp3.css' %}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link href='http://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <!--    <link rel="icon" href="images/logo.png">-->
+    <title> Caleb Smith | CollegeHub</title>
+</head>
+
+<body>
+<div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    <div id="Outer_timeline_template4">
+        <div id="inner_timeline">
+            <div class="list-group left_box" id="list-tab" role="tablist">
+                <div>
+                    <img id="user_image" src="{% static 'collegehub/images/preview.jpg' %}" alt="User profile picture">
+                </div>
+                <div id="left_block_name"> CALEB SMITH</div>
+
+                <a class="block active " data-toggle="list" href="#list-home" role="tab"
+                   aria-controls="about me">
+                    <i style="font-size: 25px;margin: 15px" class="fas fa-user"></i>
+                    <h5 style="padding: 0;margin: 0">About Me</h5>
+                    <div>Who am I</div>
+                </a>
+
+                <a class="block " id="list-profile-list" data-toggle="list"
+                   href="#list-profile"
+                   role="tab" aria-controls="profile">
+                    <i style="font-size: 25px;margin: 15px" class="fas fa-briefcase"></i>
+                    <h5 style="padding: 0;margin: 0">Resume</h5>
+                    <div>What I did</div>
+                </a>
+                <a class="block " id="list-messages-list" data-toggle="list"
+                   href="#list-messages" role="tab" aria-controls="messages">
+                    <i style="font-size: 25px;margin: 15px" class="fas fa-network-wired"></i>
+                    <h5 style="padding: 0;margin: 0">Projects</h5>
+                    <div>My work</div>
+                </a>
+                <a class="block " id="list-settings-list" data-toggle="list"
+                   href="#list-settings" role="tab" aria-controls="settings">
+                    <i style="font-size: 25px;margin: 15px" class="fas fa-id-badge"></i>
+                    <h5 style="padding: 0;margin: 0">Contact</h5>
+                    <div>Reach Me</div>
+                </a>
+
+            </div>
+            <div class="tab-content center_box" id="nav-tabContent">
+                <div class="tab-pane fade show active white" id="list-home" role="tabpanel"
+                     aria-labelledby="list-home-list">
+                    <div style="margin: 100px;min-height: 35rem;">
+                        <div class="section name_container">
+                            <h1 class="section_heading_text" id="username">Caleb Smith</h1>
+                            <h2 class="section_sub_heading_text"> Computer Science</h2>
+                        </div>
+                        <div class="section about_container">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>ABOUT ME</div>
+                            </div>
+                            <p id="about_description"> “ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt
+                                ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                in
+                                voluptate velit esse ! “
+                            </p>
+                            <div class="signature">
+                                Caleb Smith
+                            </div>
+                        </div>
+                        <div class="section info">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>MY INFO</div>
+                            </div>
+                            <div class="info_container">
+                                <div class="data_left">
+                                    <ul>
+                                        <li>Name</li>
+                                        <li>Birthday</li>
+                                        <li>Age</li>
+                                        <li>Place of Birth</li>
+                                        <li>Nationality</li>
+                                    </ul>
+                                </div>
+                                <div class="data_right">
+                                    <ul>
+                                        <li>Caleb Smith</li>
+                                        <li>12.15.1998</li>
+                                        <li>19</li>
+                                        <li>India</li>
+                                        <li>America</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section contact_info">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>CONTACT INFO</div>
+                            </div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Email</span> <br>
+                                collegehub@hub.com
+                            </div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Phone</span> <br>
+                                (716)-888-9999
+                            </div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Address</span> <br>
+                                Carlose Smith 1234 Street Road, Chicago, IN 567 890 United States
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="margin: 100px 0 50px 0">
+                        -1/4-
+                    </div>
+                    <div id="yello_container">
+                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
+                             class="yellow_bar">
+                        </div>
+                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+                        </div>
+                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade white" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div style="margin: 100px;min-height: 35rem;">
+                        <div class="section name_container">
+                            <h1 class="section_heading_text">Resume</h1>
+                            <h2 class="section_sub_heading_text"> CV</h2>
+                        </div>
+                        <div class="section education_container">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>EDUCATION</div>
+                            </div>
+                            <div id="education_body">
+                                <div class="edu-card">
+                                    <div class="edu_title">
+                                        <div class="edu_major">Computer Science</div>
+                                        <div class="edu_name">University at buffalo</div>
+                                        <div class="edu_date">Sep . 2020</div>
+                                    </div>
+                                    <div class="edu-description">
+                                        Ut enim ad minim veniam, quis nostrud exerc. Irure dolor in reprehend incididunt
+                                        labore et dolore magna aliqua.
+                                    </div>
+                                </div>
+                                <div class="edu-card">
+                                    <div class="edu_title">
+                                        <div class="edu_major">Computer Science</div>
+                                        <div class="edu_name">University at buffalo</div>
+                                        <div class="edu_date">Sep . 2020</div>
+                                    </div>
+                                    <div class="edu-description">
+                                        Ut enim ad minim veniam, quis nostrud exerc. Irure dolor in reprehend incididunt
+                                        labore et dolore magna aliqua.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section skills">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>SKILLS</div>
+                            </div>
+                            <div class="skill_container">
+                                <div class="skills_body">
+                                    <div class="skill_card"> javasctipt</div>
+                                    <div class="skill_card"> javasctipt</div>
+                                    <div class="skill_card"> javasctipt</div>
+                                    <div class="skill_card"> javasctipt</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section experience_container">
+                            <div class="section_heading">
+                                <div class="heading_block"></div>
+                                <div>EXPERIENCE</div>
+                            </div>
+                            <div id="experience_body">
+                                <div class="exp-card">
+                                    <div class="exp_title">
+                                        <div class="exp_company">Amazon</div>
+                                        <div class="exp_position">Software Engineer</div>
+                                        <div class="exp_date">Sep . 2020</div>
+                                    </div>
+                                    <div class="exp-description">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </div>
+                                </div>
+                                <div class="exp-card">
+                                    <div class="exp_title">
+                                        <div class="exp_company">Apple</div>
+                                        <div class="exp_position">Software Developer</div>
+                                        <div class="exp_date">Aug . 2020</div>
+                                    </div>
+                                    <div class="exp-description">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="margin: 100px 0 50px 0">
+                        -2/4-
+                    </div>
+                    <div id="yello_container">
+                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
+                             class="yellow_bar">
+                        </div>
+                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+                        </div>
+                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade white" id="list-messages" role="tabpanel"
+                     aria-labelledby="list-messages-list">
+                    <div style="margin: 100px;min-height: 35rem;">
+                        <div class="section name_container">
+                            <h1 class="section_heading_text">Projects</h1>
+                            <h2 class="section_sub_heading_text"> WORK</h2>
+                        </div>
+                        <div class="section project_container">
+                            <div class="project_card">
+                                <div class="project_name"> Project Name</div>
+                                <div class="project_date"> Date</div>
+                                <div class="project_description"> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                            <div class="project_card">
+                                <div class="project_name"> Project Name</div>
+                                <div class="project_date"> Date</div>
+                                <div class="project_description"> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                            <div class="project_card">
+                                <div class="project_name"> Project Name</div>
+                                <div class="project_date"> Date</div>
+                                <div class="project_description"> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                    elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 100px 0 50px 0">
+                        -3/4-
+                    </div>
+                    <div id="yello_container">
+                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
+                             class="yellow_bar">
+                        </div>
+                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+                        </div>
+                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade white" id="list-settings" role="tabpanel"
+                     aria-labelledby="list-settings-list">
+                    <div style="margin: 100px;min-height: 35rem;">
+                        <div class="section name_container">
+                            <h1 class="section_heading_text">Contact</h1>
+                            <h2 class="section_sub_heading_text">ME</h2>
+                        </div>
+                        <div class="section contact_container">
+                            <div class="signature">
+                                Caleb Smith
+                            </div>
+                            <div class="heading_block"></div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Address</span> <br>
+                                Carlose Smith 1234 Street Road, Chicago, IN 567 890 United States
+                            </div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Email</span> <br>
+                                collegehub@hub.com
+                            </div>
+                            <div class="address">
+                                <span style="color: #5b5b5b;">Phone</span> <br>
+                                (716)-888-9999
+                            </div>
+                            <div id="contact_social">
+                                <a href="" class="social_links">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="" class="social_links">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="" class="social_links">
+                                    <i class="far fa-envelope"></i>
+                                </a>
+                                <a href="" class="social_links">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin: 100px 0 50px 0">
+                        -4/4-
+                    </div>
+                    <div id="yello_container">
+                        <div style="box-shadow: 0 4px 2px -2px #dab522;z-index:13 !important;position: relative"
+                             class="yellow_bar">
+                        </div>
+                        <div style="width: 97%; height: 9px;background-color:#f3ca29;box-shadow: 0 4px 2px -2px #dab522;z-index:12 !important;position: relative ">
+                        </div>
+                        <div style="width: 94%; height: 9px;background-color:#eac228;box-shadow: 0 4px 2px -2px #dab522;z-index:11 !important;position: relative ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right_box">
+                <a href="" class="social_links">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="social_links">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="" class="social_links">
+                    <i class="far fa-envelope"></i>
+                </a>
+                <a href="" class="social_links">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="" id="copyright">
+                    © 2020 CollegeHub.
+                </a>
+                <div id="settings_logo">
+                    <div class="btn-group dropup">
+                        <a href="#" id="tp3settingsicon" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                        <div class="dropdown-menu move" style="background-color: #ffd42d;">
+                            <a class="dropdown-item" href=""><span> <i class="fas fa-cog"></i> </span>Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'home' %}"><span> <i class="fas fa-sign-out-alt"></i> </span>Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--*******************************************CONTENT************************************************-->
+</div>
+<div id="mobile-body">
+    <div id="mobile-container">
+        <img src="images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+</body>
+
+</html>

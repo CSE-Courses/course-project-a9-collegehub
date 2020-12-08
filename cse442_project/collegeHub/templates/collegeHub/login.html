@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     <!--logo icon / favicon-->
     <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
-    <title>Login In | CollegeHub</title>
+    <title>Login | CollegeHub</title>
 </head>
 <body>
 <div id="desktop">
@@ -30,20 +30,32 @@
                 </div>
                 <hr>
                 <div>
-                    <form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input style="background-color: #f0f0f0; border: none" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            {{ form.username.errors }}
+                            <label for="{{ form.username.id_for_label }}">Username</label>
+                            {{ form.username }}
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input style="background-color: #f0f0f0; border: none" type="password" class="form-control" id="exampleInputPassword1">
+                            {{ form.password.errors }}
+                            <label for="{{ form.password.id_for_label }}">Password</label>
+                            {{ form.password }}
+                        </div>
+                        <div>
+                           {% if messages %}
+                            <ul class="messages">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
                         </div>
                         <div class="form-group ">
-                            <a href="#" style="padding: 0; margin: 0; color: #FCA311">Forgot your username or password?</a>
+                            <a href="{% url 'reset_password' %}" style="padding: 0; margin: 0; color: #FCA311">Forgot your username or password?</a>
                         </div>
-                        <button type="submit" style="background-color: #FCA311; color: #14213D; border-radius: 1.5rem" class="btn">Sign In</button>
+                        <button type="submit" style="background-color: #FCA311; color: #14213D; border-radius: 1.5rem" class="btn">Log In</button>
                     </form>
                 </div>
                 <br>

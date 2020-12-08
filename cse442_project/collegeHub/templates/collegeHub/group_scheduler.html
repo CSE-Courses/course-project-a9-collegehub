@@ -1,0 +1,18 @@
+{% autoescape off %}
+Hi,
+
+You have been invited to a new event by {{requester}} 
+Details of the event are as follows.
+
+Event Title: {{title}}
+Event Start time: {{start_time}}
+Event End time: {{end_time}}
+Event Notes: {{notes}}
+
+
+You can also add this to your dashboard by clicking here -
+http://{{ domain }}{% url 'activate_event' uidb64=uid %}
+Thank You,
+Team CollegeHub.
+ 
+{% endautoescape %}

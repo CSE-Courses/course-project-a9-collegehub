@@ -3,191 +3,326 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <!--    Style CSS-->
-  <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css'%}">
-  <!--    fontawesome-->
-  <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
-  <!--    Animate on scroll (AOS)-->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  <!--logo icon / favicon-->
-  <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
-  <title>Settings | CollegeHub</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <!--logo icon / favicon-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+    <title>Settings | CollegeHub</title>
 </head>
 
 <body>
-  <div id="desktop">
+<div id="desktop">
     <!--*************************************************CONTENT************************************************-->
     {% include 'collegeHub/logged_in_nav.html' %}
     <div id="account">
-      <div id="account-container">
-        <div id="account-container-left">
-          <div style="display: flex; align-items: center; text-align: center;justify-content: center">
-            <img src="../../static/collegehub/images/CH.png" style="width: 50px; height: 50px; margin-right: 20px" alt="CH logo">
-            <h2 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h2>
-          </div>
-          <hr>
-          <div class="list-group" id="list-tab" role="tablist">
-            <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list" href="#list-home" role="tab" aria-controls="username">General</a>
-            <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="domain">Domain</a>
-            <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>
-            <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
-            <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a>
-          </div>
-          <div style="margin-top: 60px">
-            <p style="font-weight: lighter;color: #dedede; font-size: 10px">
-              All personal information goes to our database securely handled by SQL lite.
-              <br>
-              Access our FAQ for any question
-              <br>
-              @ 2020 CollegeHub
-            </p>
-          </div>
+        <div id="account-container">
+            <div id="account-container-left">
+                <div style="display: flex; align-items: center; text-align: center;justify-content: center">
+                    <img src="../../static/collegehub/images/CH.png"
+                         style="width: 50px; height: 50px; margin-right: 20px" alt="CH logo">
+                    <h2 style="margin: 0; padding: 0; font-weight: lighter">CollegeHub</h2>
+                </div>
+                <hr>
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="header-item list-group-item-action active" id="list-username-list" data-toggle="list"
+                       href="#list-home" role="tab" aria-controls="username"><i class="fas fa-user"></i>
+                        &nbsp;General</a>
+                    <a class="header-item list-group-item-action" id="list-general-list" data-toggle="list"
+                       href="#list-general" role="tab" aria-controls="username"><i class="fas fa-id-card-alt"></i>&nbsp;Profile</a>
+                    <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab"
+                       aria-controls="domain"><i class="fas fa-link"></i>&nbsp;Domain</a>
+                    {#            <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>#}
+                    {#                    <a class="header-item" id="list-password-list" data-toggle="list" href="#list-password" role="tab"#}
+                    {#                       aria-controls="password">Password Reset</a>#}
+                    {% comment %} <a class="header-item" id="list-premium-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="premium">Premium</a>
+            <a class="header-item" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="schedule">Schedule</a> {% endcomment %}
+                </div>
+                {% if messages %}
+                    <ul class="messages" style="padding: 0 20px 0 20px">
+                        {% for message in messages %}
+                            <li{% if message.tags %} style="color: #FCA311; font-weight: lighter" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div style="margin-top: 60px">
+                    <p style="font-weight: lighter;color: #dedede; font-size: 10px">
+                        All personal information goes to our database securely handled by SQL lite.
+                        <br>
+                        Access our FAQ for any question
+                        <br>
+                        @ 2020 CollegeHub
+                    </p>
+                </div>
+            </div>
+            <div id="account-container-right">
+
+                <div class="tab-content" id="nav-tabContent" style="height: 100%">
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel"
+                         aria-labelledby="list-username-list">
+                        <h3 style="color: #14213D"><i class="fas fa-user"></i> General Account Settings</h3>
+                        <hr>
+                        {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+                        <form class="forms account-forms" enctype="multipart/form-data" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col">
+                                    {{ u_form.first_name }}
+                                </div>
+                                <div class="col">
+                                    {{ u_form.last_name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label"><i
+                                        class="fas fa-signature"></i>&nbsp; Username</label>
+                                <div class="col-sm-10">
+                                    {{ u_form.username }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label"><i
+                                        class="far fa-envelope"></i>&nbsp;&nbsp;&nbsp;Email</label>
+                                <div class="col-sm-10">
+                                    {{ u_form.email }}
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <a href={% url 'reset_password' %}><label for="exampleInputEmail1"><i
+                                            class="fas fa-key"></i>&nbsp;&nbsp;&nbsp;Reset
+                                        Password</label></a>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                    style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem"
+                                    class="btn" value="account" name='account'>Edit Account
+                            </button>
+                        </form>
+                        {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+                    </div>
+                    <div class="tab-pane fade show" id="list-general" role="tabpanel"
+                         aria-labelledby="list-general-list" style="height: 100%">
+                        <h3 style="color: #14213D"><i class="fas fa-id-card-alt"></i> Profile Settings</h3>
+                        <hr>
+                        {% comment %} form for profile settings ----------------------------------------------------------------------  {% endcomment %}
+                        <div style="height: 90%;">
+                            <form class="forms account-forms" enctype="multipart/form-data" method="POST"
+                                  style="height: 100%;overflow: scroll">
+                                {% csrf_token %}
+                                <div class="profile_form">
+                                    {{ p_form.non_field_errors }}
+                                    <div>
+                                        <label for="{{ p_form.bio.id_for_label }}"><i class="fas fa-user"></i>
+                                            About you: </label>
+                                        {{ p_form.bio }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.occupation.id_for_label }}"><i class="fas fa-user-md"></i>
+                                            Occupation: </label>
+                                        {{ p_form.occupation }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.location.id_for_label }}"><i
+                                                class="fas fa-search-location"></i> Location: </label>
+                                        {{ p_form.location }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.phone_number.id_for_label }}"><i class="fas fa-phone"></i>
+                                            Phone number: </label>
+                                        {{ p_form.phone_number }}
+                                    </div>
+                                    <div class="field">
+                                        <label for="{{ p_form.age.id_for_label }}"><i class="fas fa-baby-carriage"></i>
+                                            Age:
+                                        </label>
+                                        {{ p_form.age }}
+                                    </div>
+                                    <div class="field" style="margin-top: 10px">
+                                        <h5 style="margin: 0"><i class="fas fa-hashtag"></i> Social Media</h5>
+                                        <div class="field" style="padding: 5px 20px 5px 20px">
+                                            <label for="{{ p_form.github.id_for_label }}"><i class="fab fa-github"></i>
+                                                Github:
+                                            </label>
+                                            {{ p_form.github }}
+                                            <label for="{{ p_form.linkedin.id_for_label }}"><i
+                                                    class="fab fa-linkedin-in"></i> LinkedIn: </label>
+                                            {{ p_form.linkedin }}
+                                            <label for="{{ p_form.instagram.id_for_label }}"><i
+                                                    class="fab fa-instagram"></i> Instagram: </label>
+                                            {{ p_form.instagram }}
+
+                                            <label for="{{ p_form.facebook.id_for_label }}"><i
+                                                    class="fab fa-facebook"></i> Facebook: </label>
+                                            {{ p_form.facebook }}
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01"><i
+                                                    class="fas fa-portrait"></i>&ensp;Profile Picture</span>
+                                        </div>
+                                        <div id="pic_form" class="custom-file">
+                                            {{ p_form.profile_pic }}
+                                            <label class="custom-file-label " style="background-color: #f0f0f0 " id="pic" for="inputGroupFile01">Choose
+                                                a picture...</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupFileAddon01"><i
+                                                    class="fas fa-file"></i>&ensp;Resume or CV</span>
+                                        </div>
+                                        <div id="resume_form" class="custom-file">
+                                            {{ p_form.resume }}
+                                            <label class="custom-file-label" style="background-color: #f0f0f0 " id="res" for="inputGroupFile01">Choose
+                                                a PDF file...</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <button type="submit"
+                                        style="background-color: #14213D; color: #FCA311; border-radius: 1.5rem;margin-bottom: 10px"
+                                        class="btn"
+                                        value="profile" name='profile'>Edit Profile
+                                </button>
+                            </form>
+                        </div>
+                        {% comment %} form for user settings ----------------------------------------------------------------------  {% endcomment %}
+                    </div>
+
+
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <h3 style="color: #14213D"><i class="fas fa-link"></i> Domain Details</h3>
+                        <hr>
+                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
+                        <form class="forms">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1"><i class="fas fa-globe-americas"></i> &nbsp;Domain Name</label>
+                                <input type="email" class="form-control" id="domain" aria-describedby="domain"
+                                       placeholder="{{ url_form }}" value={{ url_form }} disabled>
+                                <small class="form-text text-muted">Your domain is unique to your username.</small>
+                            </div>
+                        </form>
+                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
+
+                    </div>
+                    {% comment %}
+                    <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
+                        <h3 style="color: #14213D"> Password Reset</h3>
+                        <hr>
+                    </div>
+                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                        <form>
+                            <div class="form-row align-items-center">
+                                <div class="col-auto my-1">
+                                    <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                        <option selected>Current Membership</option>
+                                        <option value="1">Premium</option>
+                                        <option value="2">Standard</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="list-schedule" role="tabpanel" aria-labelledby="list-schedule-list">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Scheduler</h5>
+                                <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="80"
+                                                          width="80"/></p>
+                                <a href="#" class="btn btn-outline-danger">Coming Soon</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endcomment %}
+                </div>
+            </div>
         </div>
-        <div id="account-container-right">
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-username-list">
-              <h3 style="color: #14213D"> General Account Settings</h3>
-              <hr>
-              <form class="forms account-forms">
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Name</h6>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="Full Name">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Username</h6>
-                  </div>
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="Username">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Email</h6>
-                  </div>
-                  <div class="col">
-                    <input type="email" class="form-control" placeholder="Email">
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="sub-headers">
-                    <h6>Password</h6>
-                  </div>
-                  <div class="col">
-                    <input type="email" class="form-control" placeholder="New Password">
-                  </div>
-                </div>
-                <div>
-                  <p style="font-weight: lighter;color: #FCA311; font-size: 15px">
-                    * Password Must contain one upper case letter, a number and a symbol.
-                  </p>
-                </div>
-              </form>
-            </div>
-            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-              <h3 style="color: #14213D"> Domain Settings</h3>
-              <hr>
-              <form class="forms">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Domain Name</label>
-                  <input type="email" class="form-control" id="domain" aria-describedby="domain" placeholder="Fullname@collegehub.com">
-                  <small class="form-text text-muted">Your domain will be unique.</small>
-                </div>
-              </form>
-            </div>
-            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-              <h3 style="color: #14213D"> Template Settings</h3>
-              <hr>
-              <div id="template-setting-container">
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'collegehub/images/tp0-sample.png' %}" class="card-img-top template-setting-image" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img src="{% static 'collegehub/images/tp1-sample.png' %}" class="card-img-top template-setting-image" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
-              <form>
-                <div class="form-row align-items-center">
-                  <div class="col-auto my-1">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                      <option selected>Current Membership</option>
-                      <option value="1">Premium</option>
-                      <option value="2">Standard</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="tab-pane fade" id="list-schedule" role="tabpanel" aria-labelledby="list-schedule-list">
-              <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Scheduler</h5>
-                  <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="80" width="80" /></p>
-                  <a href="#" class="btn btn-outline-danger">Coming Soon</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <footer>
-      <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
+        <nav class="navbar fixed-bottom navbar-light" style="background-image: linear-gradient(50deg, #14213D 5%, #14213D 74%);
         background-size: 100%;
         background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
         <span style="color: white">
           @ 2020 CollegeHub
         </span>
-        <span>
-          <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank" style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
+            <span>
+          <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank"
+             style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
         </span>
-      </nav>
+        </nav>
     </footer>
     <!--*******************************************CONTENT************************************************-->
-  </div>
-  <div id="mobile-body">
+</div>
+<div id="mobile-body">
     <div id="mobile-container">
-      <h1 style="font-weight: bold">CollegeHub</h1>
-      <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
-      <h2 style="font-weight: lighter">COMING SOON</h2>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
-      <br>
-      <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
     </div>
-  </div>
-  <!-- JavaScript -->
-  <!--<script src="script.js"></script>-->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script src="{% static 'collegeHub/script.js' %}"></script>
-  <script>
-    AOS.init();
-  </script>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="{% static 'collegeHub/script.js' %}"></script>
+<script type="application/javascript">
+
+    $('#profile_pic-clear_id').remove();
+    $('#pic_form br').remove();
+    $('#pic_form a').remove();
+    $('#pic_form > label:first-of-type').remove();
+    $('#pic_form').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+    $('#resume-clear_id').remove();
+    $('#resume_form br').remove();
+    $('#resume_form a').remove();
+    $('#resume_form > label:first-of-type').remove();
+    $('#resume_form').contents().filter(function () {
+        return this.nodeType === 3;
+    }).remove();
+
+
+    $('#inputGroupFile01').change(function (e) {
+        var fileName = e.target.files[0].name;
+        $('#pic').html(fileName);
+    });
+    $('#inputGroupFile02').change(function (e) {
+        var t = e.target.files[0].name;
+        $('#res').html(t);
+    });
+</script>
 </body>
 
 </html>

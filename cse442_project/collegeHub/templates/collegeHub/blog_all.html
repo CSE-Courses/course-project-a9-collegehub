@@ -1,0 +1,203 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--    Style CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'collegehub/style.css' %}">
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/b6d5ddd578.js"></script>
+    <!--    Animate on scroll (AOS)-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <!--logo icon / favicon-->
+    <link rel="icon" href="{% static 'collegehub/images/CH.png' %}">
+    <title>Blogs | CollegeHub</title>
+</head>
+
+<body>
+<div id="desktop">
+    <!--*************************************************CONTENT************************************************-->
+    {% include 'collegeHub/logged_in_nav.html' %}
+    <div id="event_outer_timeline">
+        <div id="inner-event-left">
+            <div id="left_tab">
+                <div id="events_info">
+                    <div id="nome_event">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </div>
+                </div>
+                <div style="text-align: center; margin-bottom: 35px">
+                    <div id="today">
+                        {% now "F jS Y" %}
+                    </div>
+                    <div id="number_events">
+                        {% if posts %}
+                            {% if posts|length > 1 %}
+                                {{ posts|length }} Blog entries
+                            {% else %}
+                                {{ posts|length }} Blog entry only
+                            {% endif %}
+                        {% else %}
+                            Add a Blog below!
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="event_button_container">
+                    <a href="{% url 'events' %}" class="card event_button"
+                       style="width: 9rem; border-radius: 1rem">
+                        <div class="card-body" style="text-align: center">
+                            <h5 class="card-title" style="font-weight: lighter">Event</h5>
+                            <p class="card-text"><img src="../../static/collegehub/images/schedule.png" height="60"
+                                                      width="60"/>
+                            </p>
+                        </div>
+                    </a>
+                    <a href="{% url 'blog_create' %}" class="card event_button"
+                       style="width: 9rem; border-radius: 1rem">
+                        <div class="card-body" style="text-align: center">
+                            <h5 class="card-title" style="font-weight: lighter">New Blog</h5>
+                            <p class="card-text"><img src="../../static/collegehub/images/create_blog.png"
+                                                      height="60"
+                                                      width="60"/>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div style="display: flex;justify-content: space-between">
+                <div style="margin-bottom: 40px">
+                    <p style="font-weight: lighter;color: #de9300; font-size: 10px">
+                        Access github for rules and regulations
+                        <br>
+                        Access our FAQ for any questions
+                        <br>
+                        @ 2020 CollegeHub
+                    </p>
+                </div>
+                <div style="margin-top: 10px">
+                    <a href="{% url 'settings' %}" class="event_button"
+                       style="border-radius: 1rem;padding: 14px 12px">
+                        <img class="setting_cog" src="../../static/collegehub/images/cog.png" height="30"
+                             width="30"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="inner-event-right" style="height: 100%;">
+            <div id="events">
+                <h1 class="event_heading">Blogs</h1>
+                {% for post in posts %}
+                    <div class="blog_card">
+                        <div class="blog_img">
+                            <img style="border-radius: 50%" src="{{ user.userprofile.profile_pic.url }}"
+                                 height="50"
+                                 width="50"/>
+                        </div>
+                        <div class="blog_by">
+                            <div>
+                                <span class="blog_credent">By </span> <span
+                                    style="margin-left:3px;color: #FCA311; font-weight: bold; font-size: 20px">{{ post.profile }}</span>&nbsp;
+                            </div>
+                            <div class="blog_options">
+                                {% if user.is_authenticated %}
+                                    <form method='POST' action= {% url 'delete_blog' pk=post.pk %}>
+                                        {% csrf_token %}
+                                        <button type="submit" value='DELETE' class="remove_exp_card"><i
+                                                class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a href="{% url 'edit_blog' pk=post.pk %}" style="font-size: larger;"><i
+                                            style="margin: 0;color: #17a2b8"
+                                            class="far remove_exp_card fa-edit"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="blog_title">
+                            <a href= {% url 'blog_detail' pk=post.pk %}>
+                                {{ post.title }}
+                            </a>
+                        </div>
+                        <div class="blog_notes">
+                            <span class="blog_credent" style="margin-right: 3px">published </span> <span
+                                class="blog_time">{{ post.date_posted }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+                <hr>
+                <div class="card">
+                    <div class="card-body" style="text-align: center; letter-spacing: 4px">
+                        {% if posts %}
+                            {% if posts|length > 1 %}
+
+                                You have {{ posts|length }} Blog entries,<a href="{% url 'blog_create' %}"
+                                                                            style="color: #234c73; font-weight: bold">add</a>
+                                more!
+                            {% else %}
+                                Only {{ posts|length }} Blog entry, <a href="{% url 'blog_create' %}"
+                                                                       style="color: #234c73; font-weight: bold">add</a>
+                                more!
+                            {% endif %}
+                        {% else %}
+                            You have no Blogs! :(
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        <nav class="navbar fixed-bottom navbar-light" style="background-size: 100%;background: linear-gradient(to right, #14213D, #265883, #14213D);
+        background-size: 100%;
+        background-repeat: repeat;justify-content: space-between; padding: 0 20px 0 20px; height: 40px">
+            <span style="color: white">
+                @ 2020 CollegeHub
+            </span>
+            <span>
+                <a class="nav-link" href="https://github.com/UB-CSE/course-project-a9-collegehub" target="_blank"
+                   style="color: white"><span> <i class="fab fa-github"></i> </span>Github</a>
+            </span>
+        </nav>
+    </footer>
+    <!--*******************************************CONTENT************************************************-->
+</div>
+<div id="mobile-body">
+    <div id="mobile-container">
+        <img src="../../static/collegehub/images/CH_white.png" style="width: 100px; height: 100px;margin-right: 10px">
+        <h1 style="font-weight: bold">CollegeHub</h1>
+        <hr style="height:1px;color:gray;background-color:gray; width: 80%;">
+        <h2 style="font-weight: lighter">COMING SOON</h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Mobile support for college hub will be in construction soon</h6>
+        <br>
+        <h6 style="padding: 0 30px 0 30px"> Sorry for inconvenience, please visit on desktop</h6>
+    </div>
+</div>
+<!-- JavaScript -->
+<!--<script src="script.js"></script>-->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="{% static 'collegeHub/script.js' %}"></script>
+</body>
+</html>
+
