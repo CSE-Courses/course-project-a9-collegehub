@@ -51,16 +51,18 @@
                     <h6 style="margin: 0; padding: 0; font-weight: lighter">Use templates, share schedules and stand of
                         to recruiters</h6>
                 </div>
-                  {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
                 <br>
                 <form enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     <div class="form-row" style="margin-bottom: 20px">
-                            {{ form.non_field_errors }}
+                        {% if form.errors%}
+                            <div class = 'container'>
+                            {% for key,value in form.errors.items %}
+                            <p>{{value}}</p>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                            
                         <div class="col">
                             {{ form.first_name }}
                         </div>

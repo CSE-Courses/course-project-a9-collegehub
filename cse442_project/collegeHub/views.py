@@ -94,6 +94,7 @@ def register(user_request):
             # add registration confirmation html
             return redirect(reverse('emailed'))
         else:
+            print(form.errors)
             return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
 
     else:
