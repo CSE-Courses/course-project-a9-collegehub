@@ -94,8 +94,8 @@ def register(user_request):
             # add registration confirmation html
             return redirect(reverse('emailed'))
         else:
-            messages.error(user_request, 'Invalid form.')
-            return redirect('signup')
+            return render(user_request, 'collegeHub/Signup.html', {'form': form, 'p_form':p_form})
+
     else:
         form = SignupForm()
         p_form = UserProfileForm()

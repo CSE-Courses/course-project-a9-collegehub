@@ -60,7 +60,7 @@
                 <form enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     <div class="form-row" style="margin-bottom: 20px">
-                            {{ form.errors }}
+                            {{ form.non_field_errors }}
                         <div class="col">
                             {{ form.first_name }}
                         </div>
