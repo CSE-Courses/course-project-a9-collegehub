@@ -105,7 +105,7 @@
                                 </li>
                             {% endif %}
                             <li><strong> <span style="color: #68d3c5;font-weight: bold"> email: </span> </strong>
-                                <span> {{ user.email }} </span></li>
+                                <span> {{ user_profile.user.email }} </span></li>
                             {% if user_profile.location != None and user_profile.location != "" %}
                                 <li><strong> <span style="color: #68d3c5;font-weight: bold"> address: </span> </strong>
                                     <span> {{ user_profile.location }} </span></li>
