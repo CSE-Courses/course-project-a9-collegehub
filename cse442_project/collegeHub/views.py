@@ -277,19 +277,7 @@ class delete_event(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     def get(self, request, *args, **kwargs):
         event_pk = kwargs.get('pk')
         event_obj = get_object_or_404(Event, pk=event_pk)
-        current_site = get_current_site(request)
-        email_subject = f'NOTICE: Event Deleted: {event_obj.title}'
-        message = render_to_string('collegeHub/event_delete_email.html', {
-            'user': request.user,
-            'domain': current_site.domain,
-            'event': event_obj
-        })
-
-        to_email = request.user.email
-        email = EmailMessage(
-            email_subject, message, to=[to_email]
-        )
-        email.send()     
+        # email.send()     
         messages.success(self.request, 'You have successfully deleted the event')   
         return self.post(request, *args, **kwargs)
 
