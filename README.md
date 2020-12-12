@@ -11,8 +11,12 @@ CollegeHub is a simple online desktop tool where you can create website which sh
 </ol>
   
 <h1>Deployment Notes</h1>
-This website has been deployed to Heroku.
+This website has been deployed to Heroku.  
 On Heroku, we currently use a Free Dyno and Free tier of Heroku Postgresql for the database
+
+You can access the website at :-
+
+<a href='https://collegehub442.herokuapp.com/'>https://collegehub442.herokuapp.com/</a>
 
 <h1>Infrastructure and Stack</h1>
 <ul>
