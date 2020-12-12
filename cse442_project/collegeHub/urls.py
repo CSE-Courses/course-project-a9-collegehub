@@ -8,7 +8,7 @@ from .views import (
 )
 
 urlpatterns = [
-    re_path(r'^.well-known/acme-challenge/.*$', views.acme_challenge, name='acme-challenge'),
+    # re_path(r'^.well-known/acme-challenge/.*$', views.acme_challenge, name='acme-challenge'),
     path('', views.Home.as_view(), name='home'),
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
