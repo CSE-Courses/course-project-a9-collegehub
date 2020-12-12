@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_quill',
     "mdeditor",
     'markdownx',
+    'debug_toolbar',
 ]
 
 
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'cse442_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, '/markdownx/') ],
+        'DIRS': [TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, '/markdownx') ],
         'APP_DIRS': True,
         'OPTIONS': {
          
@@ -87,7 +89,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cse442_project.wsgi.application'
 
-
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
