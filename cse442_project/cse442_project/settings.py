@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'storages',
     "materializecssform",
     'django_quill',
     "mdeditor",
     'markdownx',
 ]
+
 
 
 
@@ -65,14 +67,19 @@ ROOT_URLCONF = 'cse442_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, ],
+        'DIRS': [TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, '/markdownx/') ],
         'APP_DIRS': True,
         'OPTIONS': {
+         
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+             'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.template.context_processors.i18n',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.template.context_processors.tz',
+            'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -125,6 +132,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -153,7 +161,7 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 LOGIN_REDIRECT_URL =  'index'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL =  'home'
-
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 MDEDITOR_CONFIGS = {
     'default':{
         'language' : 'en',
