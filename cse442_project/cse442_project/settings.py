@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django_quill',
     "mdeditor",
     'markdownx',
-    'debug_toolbar',
+    
 ]
 
 
@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 
@@ -89,11 +89,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cse442_project.wsgi.application'
 
-INTERNAL_IPS = [
-    # ...
-    '127.0.0.1',
-    # ...
-]
+# INTERNAL_IPS = [
+#     # ...
+#     '127.0.0.1',
+#     # ...
+# ]
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
