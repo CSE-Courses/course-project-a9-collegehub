@@ -12,6 +12,7 @@ import uuid
 from collegeHub.validators import validate_pdf, validate_image
 from markdownx.models import MarkdownxField
 from django.template.defaultfilters import slugify
+from markdownx.utils import markdownify
 
 CurrentUser = get_user_model()
 
@@ -130,7 +131,7 @@ class Post(models.Model):
     slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
-        return self.title
+        return markdownify(self.content)
 
     def save(self, *args, **kwargs): # new
         if not self.slug:

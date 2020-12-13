@@ -43,8 +43,7 @@ INSTALLED_APPS = [
     'django.forms',
     'storages',
     "materializecssform",
-    'markdownx',
-    
+    'markdownx',    
 ]
 
 

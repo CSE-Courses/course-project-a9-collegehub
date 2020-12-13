@@ -39,7 +39,7 @@
     <div class="blog_detail_title"> {{ object.title }}</div>
     <div class="blog_detail" style="background-color: transparent;
         border: none;color: #3c3c3c; font-size: 1rem;font-family: Roboto Slab, Helvetica, Arial, sans-serif" id="content">
-        <textarea>{{ object.content }}</textarea>
+       {{ object | safe }}
     </div>
 </div>
 
