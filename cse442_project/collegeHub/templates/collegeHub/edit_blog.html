@@ -92,10 +92,10 @@
             </div>
         </div>
         <div id="inner-event-right">
-            <div id="create_event">
-                <h1 class="event_heading">Update Blog Entry</h1>
+             <div id="create_event">
                 
-               <form enctype="multipart/form-data" class="create_event_form" method="POST">
+                <h1 class="event_heading">New Blog Entry</h1>
+                <form enctype="multipart/form-data" class="create_event_form" method="POST">
                     {% csrf_token %}
                     
                     {{form.as_p}}                  

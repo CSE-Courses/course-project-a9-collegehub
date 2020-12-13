@@ -11,6 +11,7 @@ from mdeditor.fields import MDTextField
 import uuid
 from collegeHub.validators import validate_pdf, validate_image
 from markdownx.models import MarkdownxField
+from django.template.defaultfilters import slugify
 
 CurrentUser = get_user_model()
 
@@ -126,6 +127,12 @@ class Post(models.Model):
     content = MarkdownxField(null=True, blank=True)
     date_posted = models.DateTimeField(default = timezone.now)  
     profile =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs): # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)

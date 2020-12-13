@@ -349,8 +349,8 @@
                 <div class="card-body" style="font-size: 15px">
                     <p class="card-text mg-0"><span><i class="fas fa-user"></i> </span> <b>Username:</b>
                         {{ user_profile.user }}</p>
-                    <p class="card-text mg-0"><span> <i class="fas fa-globe-americas"></i></span> <b>Domain:</b>
-                        {{ user_profile.user | lower }}.collegehub.com</p>
+                    {% comment %} <p class="card-text mg-0"><span> <i class="fas fa-globe-americas"></i></span> <b>Domain:</b>
+                        {{ user_profile.user | lower }}.collegehub.com</p> {% endcomment %}
                     <p class="card-text mg-0"><span> <i class="fas fa-user-md"></i></span> <b>Major:</b>
                         {{ user_profile.occupation }}</p>
                     {% if user_profile.location != None and user_profile.location != "" %}
