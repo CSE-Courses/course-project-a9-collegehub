@@ -8,6 +8,7 @@ from .views import (
 )
 
 urlpatterns = [
+    # re_path(r'^.well-known/acme-challenge/.*$', views.acme_challenge, name='acme-challenge'),
     path('', views.Home.as_view(), name='home'),
     path('login/', views.login_request, name='login'),
     path('signup/', views.register, name='signup'),
@@ -50,15 +51,15 @@ urlpatterns = [
 
     path('login/', auth_views.LoginView.as_view(template_name='templates/login.html'), name='login'),
     path('account/', views.EditProfile, name='account'),
-    path('settings/', views.Settings.as_view(), name='settings'),
+    path('dashboard/', views.Settings.as_view(), name='settings'),
     path('logout/', auth_views.LogoutView.as_view(template_name='templates/logout.html'), name='logout'),
 
     #path('blog_create/', views.create_blog, name = 'blog_create'),
     path('blogs/', PostListView.as_view() , name = 'blog_all'),
     path('blogs_create/', views.create_blog , name = 'blog_create'),
-    path('blogs/delete/<int:pk>', views.delete_blog.as_view(), name = 'delete_blog' ),
-    path('blogs/update/<int:pk>', views.update_blog.as_view(), name = 'edit_blog' ),
-    path('blogs/<int:pk>/', PostDetailView.as_view() , name = 'blog_detail'),
+    path('blogs/delete/<slug:slug>', views.delete_blog.as_view(), name = 'delete_blog' ),
+    path('blogs/update/<slug:slug>', views.update_blog.as_view(), name = 'edit_blog' ),
+    path('blogs/<slug:slug>/', PostDetailView.as_view() , name = 'blog_detail'),
     path('Search/', views.SearchResult, name='Search'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "collegeHub/password_reset.html",form_class=UserPasswordResetForm), name = "reset_password"),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name = "collegeHub/password_reset_sent.html"), name = "password_reset_done"),
