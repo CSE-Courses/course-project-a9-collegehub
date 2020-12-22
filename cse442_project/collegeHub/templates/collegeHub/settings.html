@@ -93,7 +93,7 @@
                                             <button type="submit" class="btn choose_temp" id="temp-0">Select Template
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-0">Close
                                         </button>
                                         <a href="{% url 'temp0' %}" class="btn btn-warning">Visit</a>
                                     </div>
@@ -141,7 +141,7 @@
                                                 Template
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-1">Close
                                         </button>
                                         <a href="{% url 'temp1' %}" class="btn btn-warning">Visit</a>
                                     </div>
@@ -247,7 +247,7 @@
                                                 Template
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-2">Close
                                         </button>
                                         <a href="{% url 'temp2' %}" class="btn btn-warning">Visit</a>
                                     </div>
@@ -294,7 +294,7 @@
                                                 Template
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-3">Close
                                         </button>
                                         <a href="{% url 'temp3' %}" class="btn btn-warning">Visit</a>
                                     </div>
@@ -357,19 +357,17 @@
                         <p class="card-text mg-0"><span> <i class="fas fa-search-location"></i></span> <b>Address:</b>
                             {{ user_profile.location }}</p>
                     {% endif %}
+                    <p class="card-text mg-0" id="template-name"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
                     {% if userprofile.template_number == 0 %}
-                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
-                            Red marble</p>
+                            Red marble
                     {% elif  userprofile.template_number == 1 %}
-                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
-                            Purple Candy</p>
+                            Purple Candy
                     {% elif  userprofile.template_number == 2 %}
-                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
-                            Subtle Blue</p>
+                            Subtle Blue
                     {% elif  userprofile.template_number == 3 %}
-                        <p class="card-text mg-0"><span><i class="fas fa-scroll"></i></span> <b>Template:</b>
-                            The Book</p>
+                            The Book
                     {% endif %}
+                    </p>
                     {#                    <p class="card-text mg-0"><span> <i class="fas fa-calendar-alt"></i></span> <b>Schedule:</b> Public#}
                     {#                    </p>#}
                 </div>
@@ -481,7 +479,9 @@
             dataType: 'json',
             success: function (response) {
                 if (!response.fail) {
-                    alert('Template Changed Successfully');
+                    var dict = {0: ' Red marble', 1: 'Purple Candy', 2: 'Subtle Blue', 3: 'The Book'};
+                    document.getElementById("template-name").innerHTML = '<span><i class="fas fa-scroll"></i></span> <b>Template:</b> ' + dict[response.temp_number];
+                    document.getElementById('close-'+response.temp_number.toString()).click();
                     var tickList = document.getElementsByClassName("chosen_tick");
                     for (var i = 0; i < tickList.length; i++) {
                         tickList[i].style.visibility = "hidden";
