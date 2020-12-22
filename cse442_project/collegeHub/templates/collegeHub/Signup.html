@@ -55,6 +55,14 @@
                 <form enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
                     <div class="form-row" style="margin-bottom: 20px">
+                        {% if form.errors%}
+                            <div class = 'container'>
+                            {% for key,value in form.errors.items %}
+                            <p>{{value}}</p>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                            
                         <div class="col">
                             {{ form.first_name }}
                         </div>

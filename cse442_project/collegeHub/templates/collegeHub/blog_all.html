@@ -106,21 +106,21 @@
                             </div>
                             <div class="blog_options">
                                 {% if user.is_authenticated %}
-                                    <form method='POST' action= {% url 'delete_blog' pk=post.pk %}>
+                                    <form method='POST' action= {% url 'delete_blog' slug=post.slug %}>
                                         {% csrf_token %}
                                         <button type="submit" value='DELETE' class="remove_exp_card"><i
                                                 class="far fa-trash-alt"></i>
                                         </button>
                                     </form>
                                     &nbsp;&nbsp;&nbsp;
-                                    <a href="{% url 'edit_blog' pk=post.pk %}" style="font-size: larger;"><i
+                                    <a href="{% url 'edit_blog' slug=post.slug %}" style="font-size: larger;"><i
                                             style="margin: 0;color: #17a2b8"
                                             class="far remove_exp_card fa-edit"></i></a>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="blog_title">
-                            <a href= {% url 'blog_detail' pk=post.pk %}>
+                            <a href= {% url 'blog_detail' slug=post.slug %}>
                                 {{ post.title }}
                             </a>
                         </div>

@@ -40,7 +40,7 @@
                             {% if user.is_authenticated %}
 
                                 <a class="dropdown-item" href="{% url 'settings'  %}"><span> <i
-                                        class="fas fa-cog"></i> </span>Settings</a>
+                                        class="fas fa-cog"></i> </span>Dashboard</a>
                                 <a class="dropdown-item" href="{% url 'logout' %}"><span> <i
                                         class="fas fa-sign-out-alt"></i> </span>Logout</a>
                             {% else %}
@@ -105,7 +105,7 @@
                                 </li>
                             {% endif %}
                             <li><strong> <span style="color: #68d3c5;font-weight: bold"> email: </span> </strong>
-                                <span> {{ user.email }} </span></li>
+                                <span> {{ user_profile.user.email }} </span></li>
                             {% if user_profile.location != None and user_profile.location != "" %}
                                 <li><strong> <span style="color: #68d3c5;font-weight: bold"> address: </span> </strong>
                                     <span> {{ user_profile.location }} </span></li>

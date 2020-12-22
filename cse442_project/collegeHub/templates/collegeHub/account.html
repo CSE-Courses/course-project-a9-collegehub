@@ -40,8 +40,8 @@
                         &nbsp;General</a>
                     <a class="header-item list-group-item-action" id="list-general-list" data-toggle="list"
                        href="#list-general" role="tab" aria-controls="username"><i class="fas fa-id-card-alt"></i>&nbsp;Profile</a>
-                    <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab"
-                       aria-controls="domain"><i class="fas fa-link"></i>&nbsp;Domain</a>
+                    {% comment %} <a class="header-item" id="list-domain-list" data-toggle="list" href="#list-profile" role="tab"
+                       aria-controls="domain"><i class="fas fa-link"></i>&nbsp;Domain</a> {% endcomment %}
                     {#            <a class="header-item" id="list-template-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="template">Template</a>#}
                     {#                    <a class="header-item" id="list-password-list" data-toggle="list" href="#list-password" role="tab"#}
                     {#                       aria-controls="password">Password Reset</a>#}
@@ -203,21 +203,7 @@
                     </div>
 
 
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                        <h3 style="color: #14213D"><i class="fas fa-link"></i> Domain Details</h3>
-                        <hr>
-                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
-                        <form class="forms">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1"><i class="fas fa-globe-americas"></i> &nbsp;Domain Name</label>
-                                <input type="email" class="form-control" id="domain" aria-describedby="domain"
-                                       placeholder="{{ url_form }}" value={{ url_form }} disabled>
-                                <small class="form-text text-muted">Your domain is unique to your username.</small>
-                            </div>
-                        </form>
-                        {% comment %} domain settings --------------------------------------------------------------------------------- {% endcomment %}
-
-                    </div>
+        
                     {% comment %}
                     <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
                         <h3 style="color: #14213D"> Password Reset</h3>

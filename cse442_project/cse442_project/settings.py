@@ -40,11 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.forms',
     'storages',
     "materializecssform",
-    'django_quill',
-    "mdeditor",
+    'markdownx',    
 ]
+
 
 
 
@@ -56,21 +57,28 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
 
 ROOT_URLCONF = 'cse442_project.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR, ],
+        'DIRS': [TEMPLATE_DIR, os.path.join(TEMPLATE_DIR, '/markdownx') ],
         'APP_DIRS': True,
         'OPTIONS': {
+         
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+             'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.template.context_processors.i18n',
+            'django.template.context_processors.media',
+            'django.template.context_processors.static',
+            'django.template.context_processors.tz',
+            'django.contrib.messages.context_processors.messages',
             ],
         },
     },
@@ -78,7 +86,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cse442_project.wsgi.application'
 
-
+# INTERNAL_IPS = [
+#     # ...
+#     '127.0.0.1',
+#     # ...
+# ]
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -123,6 +135,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -137,6 +150,7 @@ EMAIL_HOST_USER = 'teamcollegehub@gmail.com'
 EMAIL_HOST_PASSWORD = 'collegehub@442'
 EMAIL_PORT = 587
 
+ACME_CHALLENGE_CONTENT = os.environ.get('ACME_CHALLENGE_CONTENT')
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -144,65 +158,15 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 LOGIN_REDIRECT_URL =  'index'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL =  'home'
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
-MDEDITOR_CONFIGS = {
-    'default':{
-        'language' : 'en',
-        'width': '90% ',  # Custom edit box width
-        'heigth': 500,  # Custom edit box height
-        'toolbar': ["undo", "redo", "|",
-                    "bold", "del", "italic", "quote", "ucwords", "uppercase", "lowercase", "|",
-                    "h1", "h2", "h3", "h5", "h6", "|",
-                    "list-ul", "list-ol", "hr", "|",
-                    "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "datetime"
-                    "emoji", "html-entities", "pagebreak", "goto-line", "|",
-                    "help", "info",
-                    "||", "preview", "watch", "fullscreen"],  # custom edit box toolbar 
-        'upload_image_formats': ["jpg", "jpeg", "gif", "png", "bmp", "webp"],  # image upload format type
-        'image_folder': 'editor',  # image save the folder name
-        'theme': 'default',  # edit box theme, dark / default
-        'preview_theme': 'default',  # Preview area theme, dark / default
-        'editor_theme': 'default',  # edit area theme, pastel-on-dark / default
-        'toolbar_autofixed': True,  # Whether the toolbar capitals
-        'search_replace': True,  # Whether to open the search for replacement
-        'emoji': True,  # whether to open the expression function
-        'tex': True,  # whether to open the tex chart function
-        'flow_chart': True,  # whether to open the flow chart function
-        'sequence': True, # Whether to open the sequence diagram function
-        'watch': True,  # Live preview
-        'lineWrapping': False,  # lineWrapping
-        'lineNumbers': False  # lineNumbers
-    }
-    
-}
 
-QUILL_CONFIGS = {
-    'default':{
-        'theme': 'snow',
-        'modules': {
-            'syntax': True,
-            'toolbar': [
-                [
-                    {'font': []},
-                    {'header': []},
-                    {'align': []},
-                    'bold', 'italic', 'underline', 'strike', 'blockquote',
-                    {'color': []},
-                    {'background': []},
-                ],
-                ['code-block', 'link', 'image'],
-                ['clean'],
-            ]
-        }
-    }
-}
-
-X_FRAME_OPTIONS = 'SAMEORIGIN' 
 
 LOGGING = {
     'version': 1,
@@ -236,5 +200,6 @@ LOGGING = {
         }
     }
 }
+DEBUG_PROPAGATE_EXCEPTIONS = True
 # django_heroku.settings(locals())
 

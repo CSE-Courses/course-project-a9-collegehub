@@ -1,1 +1,1 @@
-web: gunicorn cse442_project.wsgi 
+web: gunicorn --pythonpath cse442_project cse442_project.wsgi 
